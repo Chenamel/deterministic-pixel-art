@@ -34,14 +34,14 @@ The refresh icon and ship each needed one targeted revision. A wider ship and br
 
 | Task | Baseline render ms | Candidate render ms | Review CLI seconds | Candidates / revisions |
 |---|---:|---:|---:|---:|
-| directions-12 | 0.4347 | 0.4206 | 0.178 | 1 / 0 |
-| functions-16 | 0.3532 | 0.3686 | 0.201 | 1 / 1 |
-| ship-32 | 0.1310 | 0.2453 | 0.176 | 2 / 1 |
-| materials-32 | 0.2922 | 0.3614 | 0.180 | 1 / 0 |
-| ui-states | 0.3795 | 0.5313 | 0.192 | 1 / 0 |
-| ui-panel | 0.1272 | 0.2036 | 0.191 | 2 / 0 |
-| minecraft-states | 0.6590 | 0.4278 | 0.177 | 1 / 0 |
-| minecraft-panel | 0.2574 | 0.2267 | 0.186 | 1 / 0 |
+| directions-12 | 0.4347 | 0.4206 | 0.172 | 1 / 0 |
+| functions-16 | 0.3532 | 0.3686 | 0.175 | 1 / 1 |
+| ship-32 | 0.1310 | 0.2453 | 0.167 | 2 / 1 |
+| materials-32 | 0.2922 | 0.3614 | 0.176 | 1 / 0 |
+| ui-states | 0.3795 | 0.5313 | 0.197 | 1 / 0 |
+| ui-panel | 0.1272 | 0.2036 | 0.195 | 2 / 0 |
+| minecraft-states | 0.6590 | 0.4278 | 0.202 | 1 / 0 |
+| minecraft-panel | 0.2574 | 0.2267 | 0.182 | 1 / 0 |
 
 Render values are individual local measurements from the authoring records, not repeated performance benchmarks. Review duration includes Python startup, loading, diagnostics and writing reports. Total model authoring time and tokens were not instrumented and are recorded as null. These numbers do not establish a faster workflow; some richer candidates render more slowly. The earlier runtime benchmark and its CLI/allocation regressions remain in the [historical report](optimization-report.zh-CN.md). No token-saving or quality-percentage claim is made.
 

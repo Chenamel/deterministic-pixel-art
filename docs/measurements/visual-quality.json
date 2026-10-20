@@ -1,5 +1,5 @@
 {
-  "measured_at": "2026-10-20T18:07:41.021816+00:00",
+  "measured_at": "2026-10-20T18:15:38.000753+00:00",
   "environment": {
     "os": "Windows",
     "python": "3.14.2",
@@ -16,7 +16,7 @@
         "rgba_sha256": "21f6530534f55e3e2715d391fa7ff9ba3618a9d4f652c13f47b2f2ae2f29f323",
         "changed_pixels": 0,
         "warnings": [],
-        "review_command_seconds": 0.1783454999094829,
+        "review_command_seconds": 0.1717252000235021,
         "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
       },
       {
@@ -26,7 +26,7 @@
         "rgba_sha256": "25ddd4d2feb0141cbcb72459b1ed7c73433f76d472ea1f224ee9f0085bc1b53a",
         "changed_pixels": 68,
         "warnings": [],
-        "review_command_seconds": 0.20141780003905296,
+        "review_command_seconds": 0.17511079995892942,
         "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
       },
       {
@@ -36,7 +36,7 @@
         "rgba_sha256": "157f32af9e67f3634a87c8f949fc7c0b6eeb94c9cda715594d0ff4b6748cfff1",
         "changed_pixels": 248,
         "warnings": [],
-        "review_command_seconds": 0.1764401999535039,
+        "review_command_seconds": 0.1671134999487549,
         "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
       },
       {
@@ -46,7 +46,7 @@
         "rgba_sha256": "0659b22eb552a7791199d33ac0ad8a18d3ced082b7e49ae96a4faf999aba22a3",
         "changed_pixels": 1404,
         "warnings": [],
-        "review_command_seconds": 0.1804190999828279,
+        "review_command_seconds": 0.176433099899441,
         "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
       },
       {
@@ -56,7 +56,7 @@
         "rgba_sha256": "cd6681406bc96aa22748cafadcad7ac931436504420302836a30c86051987b99",
         "changed_pixels": 2630,
         "warnings": [],
-        "review_command_seconds": 0.1916226000757888,
+        "review_command_seconds": 0.19708860001992434,
         "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
       },
       {
@@ -66,7 +66,7 @@
         "rgba_sha256": "6a149c9eb6308890176ed4a015892a022f9d10fec06b8089fc01f1e2321cc84d",
         "changed_pixels": 4303,
         "warnings": [],
-        "review_command_seconds": 0.19104519998654723,
+        "review_command_seconds": 0.1945085000479594,
         "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
       },
       {
@@ -76,7 +76,7 @@
         "rgba_sha256": "57b028597c164dd045d11cdbabfbff9b0e0715e523c93c9f4d355589f14880e8",
         "changed_pixels": 282,
         "warnings": [],
-        "review_command_seconds": 0.17675779992714524,
+        "review_command_seconds": 0.20217640011105686,
         "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
       },
       {
@@ -86,7 +86,7 @@
         "rgba_sha256": "411877183d734c01e620167bdb721262d2f64e2a4e17c1c41260e5685312f1f4",
         "changed_pixels": 0,
         "warnings": [],
-        "review_command_seconds": 0.18570819997694343,
+        "review_command_seconds": 0.182266499963589,
         "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
       }
     ],

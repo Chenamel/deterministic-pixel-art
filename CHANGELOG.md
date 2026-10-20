@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+- Promote the verified release candidate without changing its artwork or review behavior.
+- Distribute the standalone Skill ZIP, SHA-256 sums, per-file manifest and bilingual quality report through GitHub Releases.
+- Verify the downloaded candidate artifact and cross-platform CI before promotion.
+
 ## 1.1.0-rc.1
 
 - Add optional pixel-art, UI and Minecraft art direction with a short task brief and bounded revisions.

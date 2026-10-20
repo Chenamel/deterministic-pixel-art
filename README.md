@@ -82,4 +82,4 @@ The default project-local validator checks metadata and references; it is not th
 
 ## License
 
-[MIT](LICENSE), including the standalone skill. Pillow and the development-only PyYAML are installed dependencies and are not vendored. Repository visibility is managed separately from the license; the initial repository is private.
+[MIT](LICENSE), including the standalone skill. Pillow and the development-only PyYAML are installed dependencies and are not vendored.

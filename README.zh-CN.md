@@ -80,4 +80,4 @@ python -B tools/test_skill.py --python /path/to/python --validator /path/to/quic
 
 ## 协议
 
-仓库及独立 Skill 使用 [MIT](LICENSE)。Pillow 和仅开发使用的 PyYAML 通过依赖安装，不随仓库捆绑。协议与仓库可见性分别管理；初始仓库保持私有。
+仓库及独立 Skill 使用 [MIT](LICENSE)。Pillow 和仅开发使用的 PyYAML 通过依赖安装，不随仓库捆绑。

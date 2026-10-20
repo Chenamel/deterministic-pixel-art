@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "kind": "atlas",
+  "columns": 3,
+  "cells": [
+    {
+      "name": "add",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 7,
+            "y": 3,
+            "w": 2,
+            "h": 10,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 3,
+            "y": 7,
+            "w": 10,
+            "h": 2,
+            "color": "D8E3ED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "remove",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 3,
+            "y": 7,
+            "w": 10,
+            "h": 2,
+            "color": "D8E3ED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "filter",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                3,
+                3
+              ],
+              [
+                12,
+                3
+              ],
+              [
+                12,
+                5
+              ],
+              [
+                9,
+                8
+              ],
+              [
+                9,
+                12
+              ],
+              [
+                6,
+                13
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                3,
+                5
+              ]
+            ],
+            "color": "D8E3ED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "refresh",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 5,
+            "y": 3,
+            "w": 5,
+            "h": 2,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 3,
+            "y": 5,
+            "w": 2,
+            "h": 5,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 5,
+            "y": 10,
+            "w": 5,
+            "h": 2,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 10,
+            "y": 8,
+            "w": 2,
+            "h": 2,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                9,
+                3
+              ],
+              [
+                12,
+                3
+              ],
+              [
+                12,
+                7
+              ],
+              [
+                8,
+                7
+              ]
+            ],
+            "color": "D8E3ED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "transfer",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 3,
+            "y": 5,
+            "w": 8,
+            "h": 2,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                10,
+                3
+              ],
+              [
+                13,
+                6
+              ],
+              [
+                10,
+                8
+              ]
+            ],
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 5,
+            "y": 10,
+            "w": 8,
+            "h": 2,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                5,
+                8
+              ],
+              [
+                2,
+                11
+              ],
+              [
+                5,
+                13
+              ]
+            ],
+            "color": "D8E3ED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "lock",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 4,
+            "y": 7,
+            "w": 8,
+            "h": 6,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 5,
+            "y": 4,
+            "w": 2,
+            "h": 4,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 9,
+            "y": 4,
+            "w": 2,
+            "h": 4,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 6,
+            "y": 3,
+            "w": 4,
+            "h": 2,
+            "color": "D8E3ED"
+          },
+          {
+            "op": "rect",
+            "x": 7,
+            "y": 9,
+            "w": 2,
+            "h": 2,
+            "color": "1D293D"
+          }
+        ]
+      }
+    }
+  ]
+}

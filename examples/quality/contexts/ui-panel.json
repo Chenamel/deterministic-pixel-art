@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "asset_type": "ui",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "1D293D"
+    }
+  ],
+  "regions": [
+    {
+      "name": "header",
+      "rect": [
+        11,
+        7,
+        76,
+        6
+      ],
+      "role": "reserved_text"
+    },
+    {
+      "name": "navigation",
+      "rect": [
+        14,
+        23,
+        13,
+        5
+      ],
+      "role": "reserved_text"
+    },
+    {
+      "name": "detail",
+      "rect": [
+        42,
+        25,
+        46,
+        8
+      ],
+      "role": "reserved_text"
+    },
+    {
+      "name": "secondary",
+      "rect": [
+        42,
+        43,
+        46,
+        7
+      ],
+      "role": "reserved_text"
+    }
+  ]
+}

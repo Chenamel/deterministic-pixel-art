@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "asset_type": "sprite",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "1D293D"
+    }
+  ],
+  "atlas": {
+    "cell_size": [
+      12,
+      12
+    ],
+    "columns": 4,
+    "rows": 1,
+    "cells": [
+      {
+        "name": "right",
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 12
+      },
+      {
+        "name": "left",
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 12
+      },
+      {
+        "name": "down",
+        "x": 24,
+        "y": 0,
+        "w": 12,
+        "h": 12
+      },
+      {
+        "name": "up",
+        "x": 36,
+        "y": 0,
+        "w": 12,
+        "h": 12
+      }
+    ]
+  }
+}

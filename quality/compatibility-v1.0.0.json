@@ -1,0 +1,346 @@
+[
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v2.json",
+    "size": [
+      96,
+      16
+    ],
+    "rgba_sha256": "154c5d1ed69fdb08e93386c7208c0d7c8eeab40b6bb3aa3aee3fc95d26a18aba"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v2.json",
+    "size": [
+      16,
+      32
+    ],
+    "rgba_sha256": "8635bb2939a8b99a776028d0beda56acb876b09ff5bdf0dd8d494f0957101b4e"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v2.json",
+    "size": [
+      22,
+      15
+    ],
+    "rgba_sha256": "3c015261ddfefbcdbf5562f0ca4ccc5b90549c41afabc9efacb0d0abb13875ad"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v1.json",
+    "size": [
+      22,
+      10
+    ],
+    "rgba_sha256": "d6b28362ca91b5b526206fff3b4faf59d0353cea45a93b9401d8c8dfa52292cf"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v3.json",
+    "size": [
+      22,
+      30
+    ],
+    "rgba_sha256": "cb497e1c45b3734162a6a935fe07f43994bab055adb132f8aa153801e2d7c44f"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v4.json",
+    "size": [
+      22,
+      15
+    ],
+    "rgba_sha256": "aedba2c1f016ffa1698f836492335f8024e7f7669213961a6e743f0d1d1ce57e"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v3.json",
+    "size": [
+      96,
+      16
+    ],
+    "rgba_sha256": "4d94478e216b1589ccf2a464ef73e244bdb87d2dfa69bb6e90830f49aa9374b1"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close-v2.json",
+    "size": [
+      16,
+      32
+    ],
+    "rgba_sha256": "741f74975aed323e7c38bc956ce209893140d18851f83932234637f53c344763"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_popup_button-v1.json",
+    "size": [
+      22,
+      80
+    ],
+    "rgba_sha256": "57a8d3103c7538d042f76a7d0900a3269e7193bf3cd20a245eaf91d69ee9ae2a"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v1.json",
+    "size": [
+      20,
+      40
+    ],
+    "rgba_sha256": "be6ea3a90a72f0e9dca9736cf85c01d992821b49477aa7a4d5f86518b54cf639"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/blocked_cache_status_icons.json",
+    "size": [
+      48,
+      16
+    ],
+    "rgba_sha256": "fbdece94463c0e4561460988ffa07dad76b154a34db2c35b25aa85c8b937bc63"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/heart_16x16.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "0b0ade14340adefa520ab9c7fab7c9235255d7e3e2daa96d7b99ee75469f0ad9"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/heart_preview.json",
+    "size": [
+      256,
+      256
+    ],
+    "rgba_sha256": "8d649117a8e59b7913e989a1495542f750ea08b8d55e2d697d3ec6aae1680c40"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/gui_panel_128x48.json",
+    "size": [
+      128,
+      48
+    ],
+    "rgba_sha256": "b9e892c7ed95234536b72b28717c922719b8c2961969cccac9009626ab161362"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/gui_panel_preview.json",
+    "size": [
+      384,
+      144
+    ],
+    "rgba_sha256": "2656fa706e5e459438eab3a8e6840c94f89c733e0f1b71a7b301e41fdeaa6a38"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/btn_states_44x46.json",
+    "size": [
+      44,
+      46
+    ],
+    "rgba_sha256": "ef39a5e32b6579d06166150d04184f2f0fac6f9ffcb7d39b8ea7846e32d39561"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/btn_states_preview.json",
+    "size": [
+      176,
+      184
+    ],
+    "rgba_sha256": "11280abea853efa4eeb89d25c859f1a3fd00a66d10d12918b8cf3c71dd3ef19b"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/face_selector_mode_buttons-v2.json",
+    "size": [
+      110,
+      66
+    ],
+    "rgba_sha256": "a66858f0ff2dedf97783522a6e4cc5cd5aa43035659c2842f7cd171a5eb820da"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/face_selector_button.json",
+    "size": [
+      22,
+      110
+    ],
+    "rgba_sha256": "8bfd16e62f5f43f9234f1e7faa5aec0325598a40569211d5d89713850fb35dce"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/view_control_icons.json",
+    "size": [
+      48,
+      16
+    ],
+    "rgba_sha256": "0430e9362d8c9a7bf4056604367cffd427cc370f605ecd53b834dabb4b59b266"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/face_selector_button_preview.json",
+    "size": [
+      132,
+      660
+    ],
+    "rgba_sha256": "9e6be6aabbd72e7d93172a3c9355cdda33d78cf8cc98e6f779ac004795c2be21"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/view_control_icons_preview.json",
+    "size": [
+      480,
+      160
+    ],
+    "rgba_sha256": "1bd0ab6be48238a112cba9477f91054974bbf13e5131012bdc98d5fcc0211276"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_front.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "54752ee2600541533ac54c9a9d5eee88bf6d7a002448594a6b2dd091f0f83f9f"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_back.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "df717f33edefb0aab301159138859b0e0b277b1037c4d2136fbfee98893f732d"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_left.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "a84485ee7f12af5bee63087ca553f9b278fa656b6ec11d82a6ceca533b6dba10"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_right.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "7335b50706b8fedfd47131d736c73fc9cc3a84515e2a72ca1842e2bc064dac57"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_top.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "0bf3dde711f14ef2ad8500848d917a63df19f1b3adb23550713fbf7f4918e181"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_bottom.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "ddd7f0f23937bcc617620f160f836be685badd7a57da772501f2bbc90505c98e"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_scheduler.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "94ca721e03d016263bb6ffcd54b95ea2e7dadacdd5ac21e9914cfd200a634096"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_expand.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "054ad9d643a8efa252ee5b721bb30eb8053076b551d7b2626f358683b772f85e"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/clear_side_config.json",
+    "size": [
+      16,
+      16
+    ],
+    "rgba_sha256": "a9fc8c9cb92394e1ebf9aba24a44459029be476894de44068a675c55430dc9eb"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_face_icons.json",
+    "size": [
+      96,
+      16
+    ],
+    "rgba_sha256": "707c1f7a560e14a4d9c58b63e0f17aecf15dadcdc18ffab1b8115fcfdacf8fe3"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/editor_redstone_icons.json",
+    "size": [
+      48,
+      16
+    ],
+    "rgba_sha256": "67f3b76e889990ab6a15c38c793e4ad8aac3059f9090446549f0dd2d92d3d58d"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/editor_redstone_icons_preview.json",
+    "size": [
+      480,
+      160
+    ],
+    "rgba_sha256": "85b0a1a4c40f0b7dcce33ec8d7c1b6fb329c031f6cdfd68b428416af8503fd44"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/redstone_on_buttons_1to1.json",
+    "size": [
+      68,
+      20
+    ],
+    "rgba_sha256": "a1db1832a05ee444a449f8dba0097b71425c4b5befab30fe0b039c4da71ae56f"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/redstone_on_buttons_preview.json",
+    "size": [
+      544,
+      160
+    ],
+    "rgba_sha256": "3d978c036aa0ad8437c063d2e7a1a5dcaa011c29f4030a2d758b7a0ebc1737f1"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/candidate_torch.json",
+    "size": [
+      48,
+      16
+    ],
+    "rgba_sha256": "543abc070e91e9365deb0c4133fe6af727176cc0286414dc10d2802f8bc48250"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/candidate_signal.json",
+    "size": [
+      48,
+      16
+    ],
+    "rgba_sha256": "075516c3438b452dc767514872ca5f34706d22ebaf8502c3ff28a932a2cab4c1"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/candidate_torch_preview.json",
+    "size": [
+      480,
+      160
+    ],
+    "rgba_sha256": "0c180bebdcb04de0a9c3e7e19c097afde9c1edbf89cde163638c0b3fafc713f5"
+  },
+  {
+    "spec": "specs/legacy/llm-pixel-art/out/candidate_signal_preview.json",
+    "size": [
+      480,
+      160
+    ],
+    "rgba_sha256": "2bd58c1d248ac751d99f8e707fe2f25288ffad2dfe1be88b0d610a51ec175c6e"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/scene_visibility_icons.json",
+    "size": [
+      64,
+      16
+    ],
+    "rgba_sha256": "1b6d5c7f48a786b5aa79f1736b6f0edd98d601be8d3d7d202ee7adc860893992"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_plane_horizontal-v4.json",
+    "size": [
+      80,
+      16
+    ],
+    "rgba_sha256": "c65ed34e5d5f17bb6f56445152a5fd0bbe15bd821e5dae3d87fc7e95fae5974b"
+  },
+  {
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_decal_final-v6.json",
+    "size": [
+      64,
+      16
+    ],
+    "rgba_sha256": "db8519f275be9364ebee13a1e7a6a3be6dc0a6fc30bc37270d7e3fe6865ebda9"
+  }
+]

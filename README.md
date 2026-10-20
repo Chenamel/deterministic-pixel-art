@@ -4,7 +4,7 @@
 
 Create editable pixel-art PNGs from character grids, integer drawing commands, masks, and named sprite atlases. Rendering uses Python and Pillow, with exact pixel coordinates and nearest-neighbor previews. Minecraft GUI styling is an optional preset.
 
-![Asset comparisons and generic examples](docs/comparison.png)
+![Original UI studies: frozen baseline on the left, candidate on the right](docs/quality/ui.png)
 
 ## Quick start
 
@@ -22,6 +22,7 @@ macOS/Linux shell: `source .venv/bin/activate`
 python -m pip install -r requirements.txt
 python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png --preview output/gem-preview.png
 python src/pixel_art.py validate --image output/gem.png
+python src/pixel_art.py review --image output/gem.png --out-dir output/gem-review
 ```
 
 Use absolute script/input/output paths when running from another working directory. Existing outputs require an explicit `--force` to overwrite.
@@ -34,20 +35,27 @@ Use absolute script/input/output paths when running from another working directo
 | [asymmetric-ship-32.json](examples/asymmetric-ship-32.json) | A 32×32 asymmetric sprite drawn with polygons |
 | [generic-panel-96x40.json](examples/generic-panel-96x40.json) | A GUI panel with a non-Minecraft palette |
 | [minecraft-button-states.json](examples/minecraft-button-states.json) | A named atlas of five optional Minecraft-style button states |
+| [quality/](examples/quality/) | Eight editable studies: icons, materials, UI states, layout and Minecraft controls |
 
 Keep the spec alongside the resulting PNG. Inspect native-size artwork and a magnified preview; dimensions alone cannot verify direction, state meaning, or readability.
+
+`review` writes a contact sheet and advisory JSON report with native/enlarged views, light/dark backgrounds, grayscale and optional named atlas cells, sprite silhouettes and baseline differences. Pass a [review context](skill/deterministic-pixel-art/references/review.md) to declare backgrounds, reserved content and functional color pairs. Warnings return success; malformed inputs return an error. It never edits the source image or assigns an aesthetic score.
 
 The [format reference](skill/deterministic-pixel-art/references/formats.md) covers JSON v1, the compact GUI DSL, `render(spec)`, `Canvas`, validation rules, and atlas metadata. Invalid symbols, unknown commands, and implicit clipping produce errors. Rectangles use `x, y, width, height`.
 
 ## Use as a Codex skill
 
-The self-contained [skill/deterministic-pixel-art](skill/deterministic-pixel-art/SKILL.md) folder contains its runtime, examples, references, and MIT license. Copy that folder to your Codex skills directory (`$CODEX_HOME/skills`, or `~/.codex/skills` by default), and install its `requirements.txt` in a Python environment available to your task.
+Download the Skill ZIP and SHA-256 manifest from [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases). Release tags pin the runtime and guidance together; `v1.0.0` preserves the previous stable baseline. Verify the checksum, then extract the self-contained `deterministic-pixel-art` folder into your Codex skills directory (`$CODEX_HOME/skills`, or `~/.codex/skills` by default), and install its `requirements.txt` in a Python environment available to your task. Back up any previous installation outside the skills directory. The same folder is available at [skill/deterministic-pixel-art](skill/deterministic-pixel-art/SKILL.md).
 
 Example request: “Use `$deterministic-pixel-art` to create four 16×16 directional icons in a named horizontal atlas, with a transparent one-pixel margin and an enlarged preview.”
 
 Build a tested ZIP with `python -B tools/check.py` after installing the development dependencies below. The ZIP is generated locally, rather than committed. No global skill installation happens during the checks.
 
 ## What improved, and what did not
+
+The visual-quality update adds task-specific art direction, eight original editable studies and contextual review. In an **author self-review of eight paired tasks**, six were preferred and two retained their exact pixels. All **43 v1.0.0 migration outputs remain pixel-compatible**. JSON v1, existing public Python interfaces and previous commands are preserved. This is a small, unblinded authored study, not independent evidence of a general model-quality improvement. Actual fonts and in-game integration were not tested. See the [quality report](docs/quality-report.md), [Chinese report](docs/quality-report.zh-CN.md) and [raw study results](docs/measurements/visual-quality.json).
+
+The earlier rendering optimization remains a separate historical comparison:
 
 The initial Windows comparison preserved 40 of 43 legacy images pixel-for-pixel. Three declared changes fix incomplete button compositions or align a footer with the resource actually in use.
 
@@ -59,7 +67,7 @@ The initial Windows comparison preserved 40 of 43 legacy images pixel-for-pixel.
 
 These are measured results from one environment, excluding process startup and disk I/O. The equivalent full command became **47.03 ms slower (+35%)**; atlas tail latency and some Python allocation peaks also increased. Token savings, fewer model correction rounds, and in-game quality were not measured. See the [detailed report in Chinese](docs/optimization-report.zh-CN.md) and [raw measurements](docs/measurements/metrics.json).
 
-Further render-speed tuning has limited absolute benefit for these sub-millisecond assets. Batch CLI support may help repeated invocations, but has not been implemented or benchmarked. Current release work focuses on portable tests and reproducible packaging.
+Further render-speed tuning has limited absolute benefit for these sub-millisecond assets. The quality update makes no workflow-speed or token-saving claim. More detailed examples can require more colors and drawing operations.
 
 ## Development checks
 
@@ -68,7 +76,7 @@ python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
-This runs 24 unit tests, 43 image regressions, integrity checks for 86 frozen fixture files, benchmarks, reproducible ZIP packaging, and 19 artifact checks from an unrelated directory containing spaces and Chinese characters. It needs no original mod checkout or Codex installation. Results are written to ignored `output/` and `evaluation/` directories.
+This runs 33 unit tests, 43 image regressions, integrity checks for 86 historical fixture files and eight frozen study baselines, benchmarks, reproducible ZIP packaging, and 37 artifact checks from an unrelated directory containing spaces and Chinese characters. It needs no original mod checkout or Codex installation. Results are written to ignored `output/` and `evaluation/` directories.
 
 When the official skill-creator validator is available, also run:
 
@@ -78,7 +86,7 @@ python -B tools/test_skill.py --python /path/to/python --validator /path/to/quic
 
 The default project-local validator checks metadata and references; it is not the official validator. GitHub Actions is configured for Python 3.14 on Windows and Ubuntu. Platform validation is established by completed runs, not by the workflow file alone.
 
-`src/` is the runtime source, `skill/` is the generated distribution, and `tools/package_skill.py` holds its instruction/reference sources. Make runtime changes in `src/`, then run the checks to synchronize the skill. `baselines/` contains curated historical fixtures; see [provenance](docs/PROVENANCE.md). The complete original-project preservation archive remains outside this repository.
+`src/` holds the runtime, `skill-content/` holds maintained instructions and references, and `skill/` is the generated distribution. Make changes in the source directories, then run the checks to synchronize the skill. `tools/package_skill.py` copies these sources and records every packaged file. `quality/` preserves study briefs, frozen baselines, alternatives and self-review records. `baselines/` contains curated historical fixtures; see [provenance](docs/PROVENANCE.md). The complete original-project preservation archive remains outside this repository.
 
 ## License
 

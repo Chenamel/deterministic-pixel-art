@@ -1,36 +1,45 @@
 ---
 name: deterministic-pixel-art
 license: MIT
-description: Create or edit deterministic pixel-art PNG assets from text grids, palettes, integer drawing commands, or Python pixel masks. Use for sprites, icons, pixel GUI components and sprite atlases, including optional Minecraft styling. Use existing vector tools for SVG/icon-system edits and image generation tools for photorealistic imagery.
+description: Create or edit deterministic pixel-art PNG sprites, icons, GUI components and named sprite atlases from editable text grids, integer drawing commands or Python pixel masks. Includes reference-informed art direction, contextual visual review and optional Minecraft styling. Use existing vector tools for vector icon systems and image generation tools for photorealistic imagery.
 ---
 
 # Deterministic Pixel Art
 
-Create editable specifications and exact-grid PNG assets using Python and Pillow; no image-generation API is needed. Work at the asset's native logical resolution and preview with nearest-neighbor scaling.
+Create editable specifications and exact-grid PNGs with Python and Pillow. Work at native logical resolution; enlarge with nearest-neighbor scaling.
 
-## Choose the representation
+## Select the effort and reference
 
-- Use grid + palette for small sprites; mirror only shapes that are actually symmetric. Unknown symbols are errors, including `.` unless explicitly mapped to null.
-- Use draw operations for geometric GUI components and masks for irregular silhouettes. Rectangles use **x, y, width, height**, never inclusive end coordinates.
-- Use an atlas for named, equal-size states. Preserve the consumer's existing dimensions, cell order, UVs and margins when editing an asset.
-- Use the compact DSL for simple Minecraft panels. Choose JSON or the Python API for general artwork, custom masks, explicit clipping and composition.
+For a small edit, inherit the accepted artwork's dimensions, palette, light direction, outline and atlas contract; inspect the edited area and its neighbors. Do not redesign the set without a reason in the request.
 
-Read [formats.md](references/formats.md) for the selected format/API. Read [minecraft.md](references/minecraft.md) only when Minecraft styling is wanted. Do not apply that preset's palette or transparency constraints to unrelated assets.
+For new assets, capture a short brief: meaning, native size, intended background, style reference, palette roles, outline/light convention, state names and consumer constraints. User-provided reference art takes priority over demo styling. Read only the relevant guide:
 
-## Run and inspect
+- [Pixel art](references/pixel-art.md): silhouette, clusters, diagonals, form and material; start with `assets/quality/ship-32.json` or `materials-32.json`.
+- [Pixel UI](references/ui.md): hierarchy, spacing, optical weight, state language and text reservations; start with `assets/quality/ui-states.json` or `ui-panel.json`.
+- [Minecraft](references/minecraft.md): target-version conventions, slots, bevel seams and UV/GUI-scale contracts. It is optional, never a universal palette.
 
-Use an available Python with Pillow. The tested dependency is pinned in `requirements.txt`; install it into a task-local virtual environment if needed. Resolve `scripts/pixel_art.py` relative to this skill, not the working directory.
+For a new sprite or icon, compare two silhouette ideas when the shape is uncertain, then develop the clearer one. For a UI set, establish layout and a representative component before expanding its states. Normally allow up to two targeted revision rounds; a small edit need not produce alternatives. Retain unresolved candidates and describe the specific remaining issue instead of claiming acceptance.
+
+## Represent and render
+
+Read [formats.md](references/formats.md) for the chosen format or API. Use grid + palette for small sprites, draw operations for geometric components, masks for irregular silhouettes, and named atlases for equal-size states. Mirror only genuinely symmetric forms. Use the compact DSL for simple Minecraft panels. Rectangle arguments are `x, y, width, height`; unknown symbols and implicit clipping are errors.
+
+Resolve `scripts/pixel_art.py` relative to this skill, not the working directory. Use an available Python with Pillow; if needed, install `requirements.txt` in a task-local virtual environment.
 
 ```text
 python <skill>/scripts/pixel_art.py render --spec scene.json --out sprite.png --preview preview.png --metadata layout.json
 python <skill>/scripts/pixel_art.py validate --image sprite.png --rules rules.json
-python <skill>/scripts/pixel_art.py preview --image sprite.png --out grey-preview.png --background C6C6C6 --scale 8
+python <skill>/scripts/pixel_art.py review --image sprite.png --out-dir review --context context.json --compare previous.png
 ```
 
-Start from the relevant JSON example in `assets/` rather than copying renderer code. Keep the editable spec with the generated asset. Output paths must be explicit; existing files are refused unless `--force` is supplied. Generate a separate candidate when revising existing artwork unless overwriting is part of the user's request.
+Keep the editable spec alongside the PNG. Choose explicit output paths; existing files require `--force`. When revising accepted artwork, use a separate candidate unless replacement is requested. Python recipes may import `Canvas`, `render`, `outline`, `make_preview` and `validate` from the skill's `scripts/pixelart`; keep task-specific writes behind an entrypoint.
 
-Validate dimensions, RGBA mode, intended alpha values and relevant cell contracts. Transparent margins are a requested rule, not a universal requirement; opaque panels and opaque atlas cells are valid. Partial alpha is supported; restrict to 0/255 when the target requires it. Out-of-bounds drawing fails unless that operation sets `clip: true`.
+## Inspect against intent
 
-Inspect both native-size output and an enlarged preview. Check silhouette, arrow direction, distinct states, cell boundaries and contrast against the intended background. For UI assets, also composite onto the real component at 1:1; a large preview alone does not establish readability. Fix the spec and rerender when defects are observed. Do not describe automated checks as a blind visual review or claim in-game verification without doing it.
+Validate size, mode, intended alpha values and atlas contracts. Transparency margins, binary alpha and palette limits apply only when the consumer requires them. Preserve UVs, cell order, reserved content and attached opaque edges.
 
-For custom Python recipes, import `Canvas`, `render`, `outline`, `make_preview`, and `validate` from `scripts/pixelart`; put geometry in the task's recipe and keep file writes behind an explicit entrypoint. Importing the supplied runtime does not write files.
+Inspect 1:1 and enlarged output on the intended background. Check silhouette and direction before detail; then light/material, set consistency, named states and component seams. UI artwork needs a native-size scene composite; test text reservations with real content and the consumer's font. If that font or runtime is unavailable, state which checks remain unverified.
+
+Use [review.md](references/review.md) when arranging review sheets, per-cell inspection, intentional-speck exceptions or functional contrast pairs. The tool does not alter artwork or judge beauty. A warning is a prompt to inspect; a clean report is not visual acceptance. Revise the spec only when the observed issue conflicts with the brief. Hand-placed antialiasing, dithering, extra colors and isolated pixels may be intentional.
+
+Describe concrete improvements and any tradeoffs. Distinguish author self-review, independent review and actual in-game testing. See [sources.md](references/sources.md) for the external methods and their limits; examples are original work, not bundled third-party artwork.

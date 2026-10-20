@@ -15,6 +15,7 @@ def run(name, *arguments):
 if __name__ == '__main__':
     run('migrate_assets.py')
     run('evaluate.py')
+    run('evaluate_quality.py')
     run('package_skill.py')
     archive = ROOT / 'deterministic-pixel-art.zip'
     before = hashlib.sha256(archive.read_bytes()).hexdigest()

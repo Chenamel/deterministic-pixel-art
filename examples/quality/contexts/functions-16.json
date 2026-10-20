@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "asset_type": "sprite",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "1D293D"
+    }
+  ],
+  "atlas": {
+    "cell_size": [
+      16,
+      16
+    ],
+    "columns": 3,
+    "rows": 2,
+    "cells": [
+      {
+        "name": "add",
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "remove",
+        "x": 16,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "filter",
+        "x": 32,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "refresh",
+        "x": 0,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "transfer",
+        "x": 16,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "lock",
+        "x": 32,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      }
+    ]
+  }
+}

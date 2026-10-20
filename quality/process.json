@@ -1,0 +1,77 @@
+{
+  "created_at": "2026-10-20T18:01:03.189266+00:00",
+  "records": [
+    {
+      "task": "directions-12",
+      "render_ms": 0.4206,
+      "candidates_used": 1,
+      "revision_rounds": 0,
+      "authoring_time_seconds": null,
+      "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+    },
+    {
+      "task": "functions-16",
+      "render_ms": 0.3686,
+      "candidates_used": 1,
+      "revision_rounds": 1,
+      "authoring_time_seconds": null,
+      "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+    },
+    {
+      "task": "ship-32",
+      "render_ms": 0.2453,
+      "candidates_used": 2,
+      "revision_rounds": 1,
+      "authoring_time_seconds": null,
+      "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+    },
+    {
+      "task": "materials-32",
+      "render_ms": 0.3614,
+      "candidates_used": 1,
+      "revision_rounds": 0,
+      "authoring_time_seconds": null,
+      "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+    },
+    {
+      "task": "ui-states",
+      "render_ms": 0.5313,
+      "candidates_used": 1,
+      "revision_rounds": 0,
+      "authoring_time_seconds": null,
+      "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+    },
+    {
+      "task": "ui-panel",
+      "render_ms": 0.2036,
+      "candidates_used": 2,
+      "revision_rounds": 0,
+      "authoring_time_seconds": null,
+      "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+    },
+    {
+      "task": "minecraft-states",
+      "render_ms": 0.4278,
+      "candidates_used": 1,
+      "revision_rounds": 0,
+      "authoring_time_seconds": null,
+      "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+    },
+    {
+      "task": "minecraft-panel",
+      "render_ms": 0.2267,
+      "candidates_used": 1,
+      "revision_rounds": 0,
+      "authoring_time_seconds": null,
+      "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+    }
+  ],
+  "evaluation": "Same author and evaluator; source-inspired authored studies, not randomized model trials.",
+  "decisions": {
+    "ship": "Narrow wing preserves clearer nose-to-engine axis; wide variant crowds silhouette.",
+    "panel": "Quieter header keeps action and selection emphasis; brighter alternate competes for attention.",
+    "functions_revision_1": "Initial rectangular refresh looked too square; use a curved ring with an arrowhead.",
+    "ship_revision_1": "Separate exhaust from hull alpha silhouette with a two-pixel offset.",
+    "contact_sheet_revision": "Increase row height to show the complete native-size panels; source art unchanged."
+  }
+}

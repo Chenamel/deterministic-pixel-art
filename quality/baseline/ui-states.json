@@ -1,0 +1,303 @@
+{
+  "version": 1,
+  "kind": "atlas",
+  "columns": 3,
+  "cells": [
+    {
+      "name": "normal",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          18
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 32,
+            "h": 18,
+            "color": "75899A"
+          },
+          {
+            "op": "rect",
+            "x": 1,
+            "y": 1,
+            "w": 30,
+            "h": 16,
+            "color": "263E56"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                5
+              ],
+              [
+                19,
+                9
+              ],
+              [
+                12,
+                13
+              ]
+            ],
+            "color": "E5ECEE"
+          }
+        ]
+      }
+    },
+    {
+      "name": "hover",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          18
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 32,
+            "h": 18,
+            "color": "75899A"
+          },
+          {
+            "op": "rect",
+            "x": 1,
+            "y": 1,
+            "w": 30,
+            "h": 16,
+            "color": "335A78"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                5
+              ],
+              [
+                19,
+                9
+              ],
+              [
+                12,
+                13
+              ]
+            ],
+            "color": "E5ECEE"
+          }
+        ]
+      }
+    },
+    {
+      "name": "focus",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          18
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 32,
+            "h": 18,
+            "color": "7FCECF"
+          },
+          {
+            "op": "rect",
+            "x": 1,
+            "y": 1,
+            "w": 30,
+            "h": 16,
+            "color": "263E56"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                5
+              ],
+              [
+                19,
+                9
+              ],
+              [
+                12,
+                13
+              ]
+            ],
+            "color": "E5ECEE"
+          }
+        ]
+      }
+    },
+    {
+      "name": "pressed",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          18
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 32,
+            "h": 18,
+            "color": "75899A"
+          },
+          {
+            "op": "rect",
+            "x": 1,
+            "y": 1,
+            "w": 30,
+            "h": 16,
+            "color": "182B40"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                5
+              ],
+              [
+                19,
+                9
+              ],
+              [
+                12,
+                13
+              ]
+            ],
+            "color": "E5ECEE"
+          }
+        ]
+      }
+    },
+    {
+      "name": "selected",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          18
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 32,
+            "h": 18,
+            "color": "7FCECF"
+          },
+          {
+            "op": "rect",
+            "x": 1,
+            "y": 1,
+            "w": 30,
+            "h": 16,
+            "color": "2E5960"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                5
+              ],
+              [
+                19,
+                9
+              ],
+              [
+                12,
+                13
+              ]
+            ],
+            "color": "E5ECEE"
+          },
+          {
+            "op": "rect",
+            "x": 2,
+            "y": 2,
+            "w": 2,
+            "h": 14,
+            "color": "7FCECF"
+          }
+        ]
+      }
+    },
+    {
+      "name": "disabled",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          18
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 32,
+            "h": 18,
+            "color": "75899A"
+          },
+          {
+            "op": "rect",
+            "x": 1,
+            "y": 1,
+            "w": 30,
+            "h": 16,
+            "color": "3B4552"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                5
+              ],
+              [
+                19,
+                9
+              ],
+              [
+                12,
+                13
+              ]
+            ],
+            "color": "89939D"
+          }
+        ]
+      }
+    }
+  ]
+}

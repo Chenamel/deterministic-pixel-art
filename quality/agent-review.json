@@ -1,0 +1,121 @@
+{
+  "type": "author_self_review",
+  "independent": false,
+  "blind": false,
+  "in_game": false,
+  "text_layout_verified": false,
+  "cases": [
+    {
+      "task": "directions-12",
+      "verdict": "unchanged",
+      "semantic_regression": false,
+      "basis": "Four directions retain the same flat silhouette, margins and equal optical weight. Extra shading was not needed.",
+      "tradeoffs": "No extra detail; the intentionally flat style is retained.",
+      "spec_sha256": "bbc308c8d83e8e39b48b833914abb0e5ae74a84de3336e3add61fbca6890a8ad",
+      "context_sha256": "0a1bea7daeee06e34d9baf833bd64a5cc16347aea704162f69dca9ff95b09c37",
+      "inspected": [
+        "native-size on intended background",
+        "nearest-neighbor paired sheet",
+        "contextual review sheet"
+      ]
+    },
+    {
+      "task": "functions-16",
+      "verdict": "improved",
+      "semantic_regression": false,
+      "basis": "Lock arch and filter rim now match the two-pixel stems better. Refresh was revised after the first sheet to restore a curved clockwise form. Add/remove/transfer remain stable.",
+      "tradeoffs": "The refresh ring is heavier than the thin baseline; a deliberately fine-line project should retain the old style.",
+      "spec_sha256": "07629f611543a1ee1e7ef7fb9fcdf81274d857022c7b846205a7cef661a09954",
+      "context_sha256": "216402c8fec2f6713b83296996db5de3df9af293df08b2657aeda5eaf72aa72b",
+      "inspected": [
+        "native-size on intended background",
+        "nearest-neighbor paired sheet",
+        "contextual review sheet"
+      ]
+    },
+    {
+      "task": "ship-32",
+      "verdict": "improved",
+      "semantic_regression": false,
+      "basis": "Cockpit, pointed nose, swept wing and connected engine direction establish the upper-right flight axis. Exhaust is separated from the hull and the unrelated spark is removed. A targeted revision moved exhaust two pixels down/left to leave an explicit silhouette gap.",
+      "tradeoffs": "More cockpit and hull detail; the simpler baseline remains preferable for a minimal pictogram brief.",
+      "spec_sha256": "8982098be6acc5a1b70b56640095cdbf10e49407ae9d1e1f7c0d5f7c80b185c1",
+      "context_sha256": "6a6b8dfd2152a9ed1f9e509a42ef71b990f603027c5a9342f1b6474c423b2604",
+      "inspected": [
+        "native-size on intended background",
+        "nearest-neighbor paired sheet",
+        "contextual review sheet"
+      ]
+    },
+    {
+      "task": "materials-32",
+      "verdict": "improved",
+      "semantic_regression": false,
+      "basis": "Same octagonal silhouette now uses crystal facets, a hard metal reflection band and matte stone planes/cracks. Material differences remain visible in grayscale.",
+      "tradeoffs": "More colors and operations than the simple palette-swap baseline; no palette-count or authoring-speed gain claimed.",
+      "spec_sha256": "41acc9e8c0ac179042eb7fb25a1f998569dfef60d7c7b18ba964f96ce0bf90ee",
+      "context_sha256": "98c60b48abe09b5d81e90c82e45353e927a82eb1563e00da97557f3660cea9b2",
+      "inspected": [
+        "native-size on intended background",
+        "nearest-neighbor paired sheet",
+        "contextual review sheet"
+      ]
+    },
+    {
+      "task": "ui-states",
+      "verdict": "improved",
+      "semantic_regression": false,
+      "basis": "Focus has a persistent outer cue, selection has a check and underline, and pressed offsets the play glyph with an inverted bevel. Meaning survives grayscale better than color-only changes.",
+      "tradeoffs": "Focus/selection decoration consumes inner padding; these are 32x18 symbol buttons, not proof that long text labels fit.",
+      "spec_sha256": "c316a125f73acb82e84fd72ce3e9d9a9209bf2e40cb0ef6d2bc3a691c05192d3",
+      "context_sha256": "37b7d6a73f01ee4e3b3e295e9afac12a136c397ca11d7769a6df6ef45f67b4fb",
+      "inspected": [
+        "native-size on intended background",
+        "nearest-neighbor paired sheet",
+        "contextual review sheet"
+      ]
+    },
+    {
+      "task": "ui-panel",
+      "verdict": "improved",
+      "semantic_regression": false,
+      "basis": "Navigation selection, two content groups and the primary action have distinct positions and visual emphasis. Header emphasis stays below the action; reserved text rectangles are clear.",
+      "tradeoffs": "Actual font and translated content were not tested. The panel is a layout study, not a finished application screenshot.",
+      "spec_sha256": "f13f0f579038e6a6643cb1845464b129e0e7f98183dffe98975250c9d65689b8",
+      "context_sha256": "0db39bcc6e206baabd2b6895f7c58298e2b79666b18d022b5abc08ff632b6732",
+      "inspected": [
+        "native-size on intended background",
+        "nearest-neighbor paired sheet",
+        "contextual review sheet"
+      ]
+    },
+    {
+      "task": "minecraft-states",
+      "verdict": "improved",
+      "semantic_regression": false,
+      "basis": "Power mark is familiar; on has an inset plus a bottom marker. Opposed arrows occupy separate lanes in both mode instead of overlapping, preserving input/output direction at native scale.",
+      "tradeoffs": "Both mode has smaller arrow shafts than single-direction modes. This tradeoff was inspected at 1:1; game hitboxes/UV remain untested.",
+      "spec_sha256": "13ae65c958f1dfa69938b310e607bb7bf5fcdd067f7517a181f7f4864f8d114e",
+      "context_sha256": "da3d3a2f6afbfa9d04b598a97ccf15c19da56fc84f3b6e83f5bc9b76d31c745e",
+      "inspected": [
+        "native-size on intended background",
+        "nearest-neighbor paired sheet",
+        "contextual review sheet"
+      ]
+    },
+    {
+      "task": "minecraft-panel",
+      "verdict": "unchanged",
+      "semantic_regression": false,
+      "basis": "Three recessed slots and two raised actions already have coherent bevels and spacing; current dimensions and artwork are retained.",
+      "tradeoffs": "Existing unused panel space remains available for runtime content; no redesign or text-fit claim.",
+      "spec_sha256": "c2baae7fd002aa6caecc04f7c6f71accb36db9b9ceb68719e37fef8269eae99b",
+      "context_sha256": "06559548be73cf122f5af4a2efee532eefb50abda16b5537953f5e1bf24c7339",
+      "inspected": [
+        "native-size on intended background",
+        "nearest-neighbor paired sheet",
+        "contextual review sheet"
+      ]
+    }
+  ]
+}

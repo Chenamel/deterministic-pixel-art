@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "kind": "atlas",
+  "columns": 4,
+  "cells": [
+    {
+      "name": "right",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          12,
+          12
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                2,
+                5
+              ],
+              [
+                6,
+                5
+              ],
+              [
+                6,
+                2
+              ],
+              [
+                10,
+                6
+              ],
+              [
+                6,
+                9
+              ],
+              [
+                6,
+                7
+              ],
+              [
+                2,
+                7
+              ]
+            ],
+            "color": "E9D8A6"
+          }
+        ]
+      }
+    },
+    {
+      "name": "left",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          12,
+          12
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                9,
+                5
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                5,
+                9
+              ],
+              [
+                5,
+                7
+              ],
+              [
+                9,
+                7
+              ]
+            ],
+            "color": "E9D8A6"
+          }
+        ]
+      }
+    },
+    {
+      "name": "down",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          12,
+          12
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                5,
+                2
+              ],
+              [
+                5,
+                6
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                6,
+                10
+              ],
+              [
+                9,
+                6
+              ],
+              [
+                7,
+                6
+              ],
+              [
+                7,
+                2
+              ]
+            ],
+            "color": "E9D8A6"
+          }
+        ]
+      }
+    },
+    {
+      "name": "up",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          12,
+          12
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                5,
+                9
+              ],
+              [
+                5,
+                5
+              ],
+              [
+                2,
+                5
+              ],
+              [
+                6,
+                1
+              ],
+              [
+                9,
+                5
+              ],
+              [
+                7,
+                5
+              ],
+              [
+                7,
+                9
+              ]
+            ],
+            "color": "E9D8A6"
+          }
+        ]
+      }
+    }
+  ]
+}

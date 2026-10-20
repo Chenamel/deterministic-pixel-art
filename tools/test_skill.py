@@ -15,6 +15,12 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def nonportable_host_path(text):
+    # Citations are URLs, not machine paths; avoid matching the s:/ in https://.
+    without_urls = re.sub(r'https?://\S+', '', text)
+    return re.search(r'(?<![A-Za-z0-9])[A-Za-z]:[\\/]|/Users/|/home/', without_urls) is not None
+
+
 def main(python, validator):
     env = {k: v for k, v in os.environ.items() if k not in ('PYTHONPATH', 'PYTHONHOME')}
     env.update(PYTHONIOENCODING='utf-8', PYTHONUTF8='1')
@@ -35,7 +41,9 @@ def main(python, validator):
         if (skill / 'LICENSE').read_bytes() != (ROOT / 'LICENSE').read_bytes():
             raise RuntimeError('Standalone skill must retain the project license')
         for relative in manifest:
-            if re.search(r'[A-Za-z]:[\\/]|/Users/|/home/', (skill / relative).read_text(encoding='utf-8')):
+            if relative.endswith('.png'):
+                continue
+            if nonportable_host_path((skill / relative).read_text(encoding='utf-8')):
                 raise RuntimeError(f'Nonportable host path in skill file {relative}')
         for target in re.findall(r'\]\(([^)]+)\)', (skill / 'SKILL.md').read_text(encoding='utf-8')):
             if not (skill / target).is_file():
@@ -72,6 +80,32 @@ def main(python, validator):
             run(f'validate-example-{name}', [cli, 'validate', '--image', output])
         atlas_meta = json.loads((folder / '输出 results/minecraft-button-states.json').read_text(encoding='utf-8'))
         assert [c['name'] for c in atlas_meta['atlas']['cells']] == ['normal', 'hover', 'pressed', 'selected', 'disabled']
+
+        for source in sorted((skill / 'assets/quality').glob('*.json')):
+            name = source.stem
+            output = folder / 'quality 输出' / f'{name}.png'
+            run(f'quality-render-{name}', [cli, 'render', '--spec', source, '--out', output])
+            run(f'quality-review-{name}', [cli, 'review', '--image', output,
+                '--context', skill / 'assets/quality/contexts' / source.name,
+                '--compare', output, '--out-dir', folder / 'reviews' / name])
+            report = json.loads((folder / 'reviews' / name / 'report.json').read_text(encoding='utf-8'))
+            assert report['advisory'] and report['comparison']['changed_visible_pixels'] == 0
+        from PIL import Image
+        warning_image = folder / 'intentional particle.png'
+        with Image.new('RGBA', (3, 3)) as particle:
+            particle.putpixel((1, 1), (255, 200, 100, 128))
+            particle.save(warning_image)
+        run('packaged-advisory-warning-exit-zero', [cli, 'review', '--image', warning_image,
+            '--out-dir', folder / 'warning-review'])
+        bad_context = folder / 'bad-context.json'
+        bad_context.write_text('{"atlas":{}}', encoding='utf-8')
+        run('packaged-bad-context-no-output', [cli, 'review', '--image', warning_image,
+            '--context', bad_context, '--out-dir', folder / 'bad-review'], expected=2)
+        assert not (folder / 'bad-review').exists()
+        for doc in (skill / 'references').glob('*.md'):
+            for target in re.findall(r'\]\(([^)]+)\)', doc.read_text(encoding='utf-8')):
+                if '://' not in target:
+                    assert (doc.parent / target).is_file(), f'Broken reference: {doc.name} -> {target}'
 
         # Held-out task: four named directional icons with safe margins, no MC palette.
         directions = {'right': [[3, 7], [9, 7], [9, 4], [12, 8], [9, 11], [9, 9], [3, 9]]}

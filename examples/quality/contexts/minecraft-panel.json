@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "asset_type": "ui",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "C6C6C6"
+    }
+  ]
+}

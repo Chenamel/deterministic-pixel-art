@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "kind": "draw",
+  "size": [
+    96,
+    54
+  ],
+  "background": "C6C6C6",
+  "operations": [
+    {
+      "op": "bevel",
+      "x": 0,
+      "y": 0,
+      "w": 96,
+      "h": 54,
+      "tl": "FFFFFF",
+      "br": "555555"
+    },
+    {
+      "op": "slot",
+      "x": 6,
+      "y": 8
+    },
+    {
+      "op": "slot",
+      "x": 26,
+      "y": 8
+    },
+    {
+      "op": "slot",
+      "x": 46,
+      "y": 8
+    },
+    {
+      "op": "button",
+      "x": 6,
+      "y": 32,
+      "w": 38,
+      "h": 16,
+      "state": "NORMAL"
+    },
+    {
+      "op": "button",
+      "x": 50,
+      "y": 32,
+      "w": 38,
+      "h": 16,
+      "state": "HOVER"
+    },
+    {
+      "op": "polygon",
+      "points": [
+        [
+          22,
+          36
+        ],
+        [
+          29,
+          40
+        ],
+        [
+          22,
+          44
+        ]
+      ],
+      "color": "202020"
+    },
+    {
+      "op": "rect",
+      "x": 62,
+      "y": 38,
+      "w": 13,
+      "h": 3,
+      "color": "202020"
+    }
+  ],
+  "preset": "minecraft"
+}

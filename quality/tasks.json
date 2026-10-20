@@ -1,0 +1,40 @@
+{
+  "authoring": "Same-agent authored paired study, not independent model trials",
+  "baseline_skill_commit": "4fb793962d2f489f1c32486f65dbeb5a032284f5",
+  "candidate_budget": 2,
+  "max_revision_rounds": 2,
+  "tasks": [
+    {
+      "id": "directions-12",
+      "prompt": "Four 12x12 directional icons on a dark blue UI; equal visual weight and safe margins."
+    },
+    {
+      "id": "functions-16",
+      "prompt": "Six 16x16 icons: add, remove, filter, refresh, transfer, lock; a coherent dark UI set."
+    },
+    {
+      "id": "ship-32",
+      "prompt": "A 32x32 asymmetric cyan ship, pointing upper-right, visible cockpit and separated exhaust."
+    },
+    {
+      "id": "materials-32",
+      "prompt": "The same 32x32 octagonal object in crystal, metal and stone; retain silhouette, show material."
+    },
+    {
+      "id": "ui-states",
+      "prompt": "32x18 buttons in normal, hover, focus, pressed, selected and disabled states, with a play icon."
+    },
+    {
+      "id": "ui-panel",
+      "prompt": "96x64 dark UI: header, navigation, grouped detail content, primary action; reserve runtime text areas."
+    },
+    {
+      "id": "minecraft-states",
+      "prompt": "16x16 Minecraft-like off, on, input, output, both controls; readable on a grey panel."
+    },
+    {
+      "id": "minecraft-panel",
+      "prompt": "96x54 Minecraft-like panel with three 18x18 slots and two distinct action buttons; seamless bevels."
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "version": 1,
+  "kind": "atlas",
+  "columns": 5,
+  "cells": [
+    {
+      "name": "off",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 16,
+            "state": "NORMAL"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                5,
+                5
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                10,
+                10
+              ],
+              [
+                10,
+                5
+              ]
+            ],
+            "color": "303030"
+          },
+          {
+            "op": "rect",
+            "x": 7,
+            "y": 3,
+            "w": 2,
+            "h": 5,
+            "color": "303030"
+          }
+        ],
+        "preset": "minecraft"
+      }
+    },
+    {
+      "name": "on",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 16,
+            "state": "SELECTED"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                5,
+                5
+              ],
+              [
+                5,
+                10
+              ],
+              [
+                10,
+                10
+              ],
+              [
+                10,
+                5
+              ]
+            ],
+            "color": "85BD72"
+          },
+          {
+            "op": "rect",
+            "x": 7,
+            "y": 3,
+            "w": 2,
+            "h": 5,
+            "color": "85BD72"
+          }
+        ],
+        "preset": "minecraft"
+      }
+    },
+    {
+      "name": "input",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 16,
+            "state": "NORMAL"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                3,
+                6
+              ],
+              [
+                7,
+                6
+              ],
+              [
+                7,
+                4
+              ],
+              [
+                10,
+                8
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                7,
+                9
+              ],
+              [
+                3,
+                9
+              ]
+            ],
+            "color": "2C4D69"
+          }
+        ],
+        "preset": "minecraft"
+      }
+    },
+    {
+      "name": "output",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 16,
+            "state": "NORMAL"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                6
+              ],
+              [
+                9,
+                6
+              ],
+              [
+                9,
+                4
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                9,
+                11
+              ],
+              [
+                9,
+                9
+              ],
+              [
+                12,
+                9
+              ]
+            ],
+            "color": "6E3434"
+          }
+        ],
+        "preset": "minecraft"
+      }
+    },
+    {
+      "name": "both",
+      "spec": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          16,
+          16
+        ],
+        "background": null,
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 16,
+            "state": "NORMAL"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                3,
+                6
+              ],
+              [
+                7,
+                6
+              ],
+              [
+                7,
+                4
+              ],
+              [
+                10,
+                8
+              ],
+              [
+                7,
+                11
+              ],
+              [
+                7,
+                9
+              ],
+              [
+                3,
+                9
+              ]
+            ],
+            "color": "2C4D69"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                6
+              ],
+              [
+                9,
+                6
+              ],
+              [
+                9,
+                4
+              ],
+              [
+                6,
+                8
+              ],
+              [
+                9,
+                11
+              ],
+              [
+                9,
+                9
+              ],
+              [
+                12,
+                9
+              ]
+            ],
+            "color": "6E3434"
+          }
+        ],
+        "preset": "minecraft"
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "asset_type": "ui",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "1D293D"
+    }
+  ],
+  "atlas": {
+    "cell_size": [
+      32,
+      18
+    ],
+    "columns": 3,
+    "rows": 2,
+    "cells": [
+      {
+        "name": "normal",
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 18
+      },
+      {
+        "name": "hover",
+        "x": 32,
+        "y": 0,
+        "w": 32,
+        "h": 18
+      },
+      {
+        "name": "focus",
+        "x": 64,
+        "y": 0,
+        "w": 32,
+        "h": 18
+      },
+      {
+        "name": "pressed",
+        "x": 0,
+        "y": 18,
+        "w": 32,
+        "h": 18
+      },
+      {
+        "name": "selected",
+        "x": 32,
+        "y": 18,
+        "w": 32,
+        "h": 18
+      },
+      {
+        "name": "disabled",
+        "x": 64,
+        "y": 18,
+        "w": 32,
+        "h": 18
+      }
+    ]
+  }
+}

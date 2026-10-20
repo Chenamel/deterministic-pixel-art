@@ -1,0 +1,422 @@
+{
+  "measured_at": "2026-10-20T18:07:41.021816+00:00",
+  "environment": {
+    "os": "Windows",
+    "python": "3.14.2",
+    "pillow": "12.3.0"
+  },
+  "results": {
+    "technical_checks_passed": true,
+    "stable_outputs_unchanged": 43,
+    "cases": [
+      {
+        "task": "directions-12",
+        "spec_sha256": "bbc308c8d83e8e39b48b833914abb0e5ae74a84de3336e3add61fbca6890a8ad",
+        "context_sha256": "0a1bea7daeee06e34d9baf833bd64a5cc16347aea704162f69dca9ff95b09c37",
+        "rgba_sha256": "21f6530534f55e3e2715d391fa7ff9ba3618a9d4f652c13f47b2f2ae2f29f323",
+        "changed_pixels": 0,
+        "warnings": [],
+        "review_command_seconds": 0.1783454999094829,
+        "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
+      },
+      {
+        "task": "functions-16",
+        "spec_sha256": "07629f611543a1ee1e7ef7fb9fcdf81274d857022c7b846205a7cef661a09954",
+        "context_sha256": "216402c8fec2f6713b83296996db5de3df9af293df08b2657aeda5eaf72aa72b",
+        "rgba_sha256": "25ddd4d2feb0141cbcb72459b1ed7c73433f76d472ea1f224ee9f0085bc1b53a",
+        "changed_pixels": 68,
+        "warnings": [],
+        "review_command_seconds": 0.20141780003905296,
+        "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
+      },
+      {
+        "task": "ship-32",
+        "spec_sha256": "8982098be6acc5a1b70b56640095cdbf10e49407ae9d1e1f7c0d5f7c80b185c1",
+        "context_sha256": "6a6b8dfd2152a9ed1f9e509a42ef71b990f603027c5a9342f1b6474c423b2604",
+        "rgba_sha256": "157f32af9e67f3634a87c8f949fc7c0b6eeb94c9cda715594d0ff4b6748cfff1",
+        "changed_pixels": 248,
+        "warnings": [],
+        "review_command_seconds": 0.1764401999535039,
+        "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
+      },
+      {
+        "task": "materials-32",
+        "spec_sha256": "41acc9e8c0ac179042eb7fb25a1f998569dfef60d7c7b18ba964f96ce0bf90ee",
+        "context_sha256": "98c60b48abe09b5d81e90c82e45353e927a82eb1563e00da97557f3660cea9b2",
+        "rgba_sha256": "0659b22eb552a7791199d33ac0ad8a18d3ced082b7e49ae96a4faf999aba22a3",
+        "changed_pixels": 1404,
+        "warnings": [],
+        "review_command_seconds": 0.1804190999828279,
+        "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
+      },
+      {
+        "task": "ui-states",
+        "spec_sha256": "c316a125f73acb82e84fd72ce3e9d9a9209bf2e40cb0ef6d2bc3a691c05192d3",
+        "context_sha256": "37b7d6a73f01ee4e3b3e295e9afac12a136c397ca11d7769a6df6ef45f67b4fb",
+        "rgba_sha256": "cd6681406bc96aa22748cafadcad7ac931436504420302836a30c86051987b99",
+        "changed_pixels": 2630,
+        "warnings": [],
+        "review_command_seconds": 0.1916226000757888,
+        "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
+      },
+      {
+        "task": "ui-panel",
+        "spec_sha256": "f13f0f579038e6a6643cb1845464b129e0e7f98183dffe98975250c9d65689b8",
+        "context_sha256": "0db39bcc6e206baabd2b6895f7c58298e2b79666b18d022b5abc08ff632b6732",
+        "rgba_sha256": "6a149c9eb6308890176ed4a015892a022f9d10fec06b8089fc01f1e2321cc84d",
+        "changed_pixels": 4303,
+        "warnings": [],
+        "review_command_seconds": 0.19104519998654723,
+        "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
+      },
+      {
+        "task": "minecraft-states",
+        "spec_sha256": "13ae65c958f1dfa69938b310e607bb7bf5fcdd067f7517a181f7f4864f8d114e",
+        "context_sha256": "da3d3a2f6afbfa9d04b598a97ccf15c19da56fc84f3b6e83f5bc9b76d31c745e",
+        "rgba_sha256": "57b028597c164dd045d11cdbabfbff9b0e0715e523c93c9f4d355589f14880e8",
+        "changed_pixels": 282,
+        "warnings": [],
+        "review_command_seconds": 0.17675779992714524,
+        "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
+      },
+      {
+        "task": "minecraft-panel",
+        "spec_sha256": "c2baae7fd002aa6caecc04f7c6f71accb36db9b9ceb68719e37fef8269eae99b",
+        "context_sha256": "06559548be73cf122f5af4a2efee532eefb50abda16b5537953f5e1bf24c7339",
+        "rgba_sha256": "411877183d734c01e620167bdb721262d2f64e2a4e17c1c41260e5685312f1f4",
+        "changed_pixels": 0,
+        "warnings": [],
+        "review_command_seconds": 0.18570819997694343,
+        "time_scope": "Source CLI startup, PNG/context loading, diagnostics and report writes; not authoring time."
+      }
+    ],
+    "evidence": "Authored paired study, same author/evaluator, not independent blind review or causal model evaluation.",
+    "in_game_tested": false,
+    "text_layout_tested": false,
+    "workflow_speed_measured": false,
+    "agent_review_passed": true,
+    "agent_preferred": 6,
+    "agent_unchanged": 2,
+    "aesthetic_improvement_independently_proven": false
+  },
+  "baseline": {
+    "frozen_at": "2026-10-20T17:42:24.483320+00:00",
+    "records": [
+      {
+        "task": "directions-12",
+        "render_ms": 0.4347,
+        "size": [
+          48,
+          12
+        ],
+        "spec_sha256": "bbc308c8d83e8e39b48b833914abb0e5ae74a84de3336e3add61fbca6890a8ad",
+        "png_sha256": "d21d59d0cbeaf5693ab52298a70012d29c1f8c0dce82bb235cc573e02a68edb5",
+        "rgba_sha256": "21f6530534f55e3e2715d391fa7ff9ba3618a9d4f652c13f47b2f2ae2f29f323",
+        "candidates_used": 1,
+        "revision_rounds": 0
+      },
+      {
+        "task": "functions-16",
+        "render_ms": 0.3532,
+        "size": [
+          48,
+          32
+        ],
+        "spec_sha256": "5733cceae0d361bf64c45ace570d9dc45c313cf2a6fc264a284d1d40b49b1779",
+        "png_sha256": "08a20e730c2ae5318fff6e27f27a1006916bdafb58245fd8cb5440741f96c09d",
+        "rgba_sha256": "9aa94a08b53bba99f7e7698e93e4cce808a8507089bdc5c1b064739a8ffe56fa",
+        "candidates_used": 1,
+        "revision_rounds": 0
+      },
+      {
+        "task": "ship-32",
+        "render_ms": 0.131,
+        "size": [
+          32,
+          32
+        ],
+        "spec_sha256": "d266d81d3a1784c0407f1a97543c0ae37221d3c9ed15897ae78b0414bb1264a6",
+        "png_sha256": "ffd47cd217076375e922872cf85107ab36cdf047b19873dba570c87e7e0a3c8a",
+        "rgba_sha256": "9a739ed28667ffd36aaf4ce525c85069692250b1ab2113e0c1054bf484d4cbc1",
+        "candidates_used": 1,
+        "revision_rounds": 0
+      },
+      {
+        "task": "materials-32",
+        "render_ms": 0.2922,
+        "size": [
+          96,
+          32
+        ],
+        "spec_sha256": "315d4a0427765e967b2b6abf5a9b00f56d2491528b06c144287dabc0f0cd1403",
+        "png_sha256": "3dba349bfccca83394d772ca6562058ca152f6f42f7c467605fad627d83d15b1",
+        "rgba_sha256": "0595ae009f3d6dbde8c698a09cbf9236aa55b677cb3b9963ad09e2a4609657ad",
+        "candidates_used": 1,
+        "revision_rounds": 0
+      },
+      {
+        "task": "ui-states",
+        "render_ms": 0.3795,
+        "size": [
+          96,
+          36
+        ],
+        "spec_sha256": "9e0ec1c4de4b07629dc791f9d00ea1a3ea78645bb61975edf01f5047cded1857",
+        "png_sha256": "d06d66ef0fc0dd1533786b249fe9d29584fd4eeecc3532b4572f7974005f64f3",
+        "rgba_sha256": "79c0ce83e5c265beae4d363559c20e47862badd970aceb952f8da882917427e3",
+        "candidates_used": 1,
+        "revision_rounds": 0
+      },
+      {
+        "task": "ui-panel",
+        "render_ms": 0.1272,
+        "size": [
+          96,
+          64
+        ],
+        "spec_sha256": "bdfe85c8490fe81fdc32061d74bffaacd38be1815c7f605bf29471124c54f636",
+        "png_sha256": "c09be489f4d156c85690fe6fb77a949fdf2ab2d48f76b5d134a9510d20af4daf",
+        "rgba_sha256": "f4e33b44be4c78776f2f1b74812e3785eda877edfb8d14421235909e9bc0205e",
+        "candidates_used": 1,
+        "revision_rounds": 0
+      },
+      {
+        "task": "minecraft-states",
+        "render_ms": 0.659,
+        "size": [
+          80,
+          16
+        ],
+        "spec_sha256": "32c02b394c840836f0bb732f6a076b985e53284576a8a9e41ac41f82fa2728f7",
+        "png_sha256": "f3d26480c332e656db4aebe69095d5536bfae6f3345bc8e0bc555e79cc93787a",
+        "rgba_sha256": "0afc749d6da1931e7f3e9fe5088fa9ce2bf84b5e3961c2e2ff1de0c49cf53078",
+        "candidates_used": 1,
+        "revision_rounds": 0
+      },
+      {
+        "task": "minecraft-panel",
+        "render_ms": 0.2574,
+        "size": [
+          96,
+          54
+        ],
+        "spec_sha256": "c2baae7fd002aa6caecc04f7c6f71accb36db9b9ceb68719e37fef8269eae99b",
+        "png_sha256": "fa97d2789c92f6a1116de2e2370f6f2ef8189047af7709230d573b02086950d6",
+        "rgba_sha256": "411877183d734c01e620167bdb721262d2f64e2a4e17c1c41260e5685312f1f4",
+        "candidates_used": 1,
+        "revision_rounds": 0
+      }
+    ],
+    "guidance": "Installed v1.0.0 SKILL and references, before quality workflow changes; no deliberate defects added.",
+    "limitations": "Author already discussed improvement directions; this is not an unbiased causal experiment."
+  },
+  "process": {
+    "created_at": "2026-10-20T18:01:03.189266+00:00",
+    "records": [
+      {
+        "task": "directions-12",
+        "render_ms": 0.4206,
+        "candidates_used": 1,
+        "revision_rounds": 0,
+        "authoring_time_seconds": null,
+        "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+      },
+      {
+        "task": "functions-16",
+        "render_ms": 0.3686,
+        "candidates_used": 1,
+        "revision_rounds": 1,
+        "authoring_time_seconds": null,
+        "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+      },
+      {
+        "task": "ship-32",
+        "render_ms": 0.2453,
+        "candidates_used": 2,
+        "revision_rounds": 1,
+        "authoring_time_seconds": null,
+        "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+      },
+      {
+        "task": "materials-32",
+        "render_ms": 0.3614,
+        "candidates_used": 1,
+        "revision_rounds": 0,
+        "authoring_time_seconds": null,
+        "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+      },
+      {
+        "task": "ui-states",
+        "render_ms": 0.5313,
+        "candidates_used": 1,
+        "revision_rounds": 0,
+        "authoring_time_seconds": null,
+        "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+      },
+      {
+        "task": "ui-panel",
+        "render_ms": 0.2036,
+        "candidates_used": 2,
+        "revision_rounds": 0,
+        "authoring_time_seconds": null,
+        "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+      },
+      {
+        "task": "minecraft-states",
+        "render_ms": 0.4278,
+        "candidates_used": 1,
+        "revision_rounds": 0,
+        "authoring_time_seconds": null,
+        "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+      },
+      {
+        "task": "minecraft-panel",
+        "render_ms": 0.2267,
+        "candidates_used": 1,
+        "revision_rounds": 0,
+        "authoring_time_seconds": null,
+        "timing_note": "Render time only. Model authoring/token cost was not instrumented; no workflow speed claim."
+      }
+    ],
+    "evaluation": "Same author and evaluator; source-inspired authored studies, not randomized model trials.",
+    "decisions": {
+      "ship": "Narrow wing preserves clearer nose-to-engine axis; wide variant crowds silhouette.",
+      "panel": "Quieter header keeps action and selection emphasis; brighter alternate competes for attention.",
+      "functions_revision_1": "Initial rectangular refresh looked too square; use a curved ring with an arrowhead.",
+      "ship_revision_1": "Separate exhaust from hull alpha silhouette with a two-pixel offset.",
+      "contact_sheet_revision": "Increase row height to show the complete native-size panels; source art unchanged."
+    }
+  },
+  "review": {
+    "type": "author_self_review",
+    "independent": false,
+    "blind": false,
+    "in_game": false,
+    "text_layout_verified": false,
+    "cases": [
+      {
+        "task": "directions-12",
+        "verdict": "unchanged",
+        "semantic_regression": false,
+        "basis": "Four directions retain the same flat silhouette, margins and equal optical weight. Extra shading was not needed.",
+        "tradeoffs": "No extra detail; the intentionally flat style is retained.",
+        "spec_sha256": "bbc308c8d83e8e39b48b833914abb0e5ae74a84de3336e3add61fbca6890a8ad",
+        "context_sha256": "0a1bea7daeee06e34d9baf833bd64a5cc16347aea704162f69dca9ff95b09c37",
+        "inspected": [
+          "native-size on intended background",
+          "nearest-neighbor paired sheet",
+          "contextual review sheet"
+        ]
+      },
+      {
+        "task": "functions-16",
+        "verdict": "improved",
+        "semantic_regression": false,
+        "basis": "Lock arch and filter rim now match the two-pixel stems better. Refresh was revised after the first sheet to restore a curved clockwise form. Add/remove/transfer remain stable.",
+        "tradeoffs": "The refresh ring is heavier than the thin baseline; a deliberately fine-line project should retain the old style.",
+        "spec_sha256": "07629f611543a1ee1e7ef7fb9fcdf81274d857022c7b846205a7cef661a09954",
+        "context_sha256": "216402c8fec2f6713b83296996db5de3df9af293df08b2657aeda5eaf72aa72b",
+        "inspected": [
+          "native-size on intended background",
+          "nearest-neighbor paired sheet",
+          "contextual review sheet"
+        ]
+      },
+      {
+        "task": "ship-32",
+        "verdict": "improved",
+        "semantic_regression": false,
+        "basis": "Cockpit, pointed nose, swept wing and connected engine direction establish the upper-right flight axis. Exhaust is separated from the hull and the unrelated spark is removed. A targeted revision moved exhaust two pixels down/left to leave an explicit silhouette gap.",
+        "tradeoffs": "More cockpit and hull detail; the simpler baseline remains preferable for a minimal pictogram brief.",
+        "spec_sha256": "8982098be6acc5a1b70b56640095cdbf10e49407ae9d1e1f7c0d5f7c80b185c1",
+        "context_sha256": "6a6b8dfd2152a9ed1f9e509a42ef71b990f603027c5a9342f1b6474c423b2604",
+        "inspected": [
+          "native-size on intended background",
+          "nearest-neighbor paired sheet",
+          "contextual review sheet"
+        ]
+      },
+      {
+        "task": "materials-32",
+        "verdict": "improved",
+        "semantic_regression": false,
+        "basis": "Same octagonal silhouette now uses crystal facets, a hard metal reflection band and matte stone planes/cracks. Material differences remain visible in grayscale.",
+        "tradeoffs": "More colors and operations than the simple palette-swap baseline; no palette-count or authoring-speed gain claimed.",
+        "spec_sha256": "41acc9e8c0ac179042eb7fb25a1f998569dfef60d7c7b18ba964f96ce0bf90ee",
+        "context_sha256": "98c60b48abe09b5d81e90c82e45353e927a82eb1563e00da97557f3660cea9b2",
+        "inspected": [
+          "native-size on intended background",
+          "nearest-neighbor paired sheet",
+          "contextual review sheet"
+        ]
+      },
+      {
+        "task": "ui-states",
+        "verdict": "improved",
+        "semantic_regression": false,
+        "basis": "Focus has a persistent outer cue, selection has a check and underline, and pressed offsets the play glyph with an inverted bevel. Meaning survives grayscale better than color-only changes.",
+        "tradeoffs": "Focus/selection decoration consumes inner padding; these are 32x18 symbol buttons, not proof that long text labels fit.",
+        "spec_sha256": "c316a125f73acb82e84fd72ce3e9d9a9209bf2e40cb0ef6d2bc3a691c05192d3",
+        "context_sha256": "37b7d6a73f01ee4e3b3e295e9afac12a136c397ca11d7769a6df6ef45f67b4fb",
+        "inspected": [
+          "native-size on intended background",
+          "nearest-neighbor paired sheet",
+          "contextual review sheet"
+        ]
+      },
+      {
+        "task": "ui-panel",
+        "verdict": "improved",
+        "semantic_regression": false,
+        "basis": "Navigation selection, two content groups and the primary action have distinct positions and visual emphasis. Header emphasis stays below the action; reserved text rectangles are clear.",
+        "tradeoffs": "Actual font and translated content were not tested. The panel is a layout study, not a finished application screenshot.",
+        "spec_sha256": "f13f0f579038e6a6643cb1845464b129e0e7f98183dffe98975250c9d65689b8",
+        "context_sha256": "0db39bcc6e206baabd2b6895f7c58298e2b79666b18d022b5abc08ff632b6732",
+        "inspected": [
+          "native-size on intended background",
+          "nearest-neighbor paired sheet",
+          "contextual review sheet"
+        ]
+      },
+      {
+        "task": "minecraft-states",
+        "verdict": "improved",
+        "semantic_regression": false,
+        "basis": "Power mark is familiar; on has an inset plus a bottom marker. Opposed arrows occupy separate lanes in both mode instead of overlapping, preserving input/output direction at native scale.",
+        "tradeoffs": "Both mode has smaller arrow shafts than single-direction modes. This tradeoff was inspected at 1:1; game hitboxes/UV remain untested.",
+        "spec_sha256": "13ae65c958f1dfa69938b310e607bb7bf5fcdd067f7517a181f7f4864f8d114e",
+        "context_sha256": "da3d3a2f6afbfa9d04b598a97ccf15c19da56fc84f3b6e83f5bc9b76d31c745e",
+        "inspected": [
+          "native-size on intended background",
+          "nearest-neighbor paired sheet",
+          "contextual review sheet"
+        ]
+      },
+      {
+        "task": "minecraft-panel",
+        "verdict": "unchanged",
+        "semantic_regression": false,
+        "basis": "Three recessed slots and two raised actions already have coherent bevels and spacing; current dimensions and artwork are retained.",
+        "tradeoffs": "Existing unused panel space remains available for runtime content; no redesign or text-fit claim.",
+        "spec_sha256": "c2baae7fd002aa6caecc04f7c6f71accb36db9b9ceb68719e37fef8269eae99b",
+        "context_sha256": "06559548be73cf122f5af4a2efee532eefb50abda16b5537953f5e1bf24c7339",
+        "inspected": [
+          "native-size on intended background",
+          "nearest-neighbor paired sheet",
+          "contextual review sheet"
+        ]
+      }
+    ]
+  },
+  "original_files_audit": {
+    "protected_files": 96,
+    "unchanged": 96,
+    "failed": []
+  },
+  "checks": {
+    "unit_tests": 33,
+    "isolated_package_cases": 37,
+    "package_files": 42,
+    "official_skill_validator_passed": true
+  }
+}

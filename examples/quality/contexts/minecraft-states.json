@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "asset_type": "ui",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "C6C6C6"
+    }
+  ],
+  "atlas": {
+    "cell_size": [
+      16,
+      16
+    ],
+    "columns": 5,
+    "rows": 1,
+    "cells": [
+      {
+        "name": "off",
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "on",
+        "x": 16,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "input",
+        "x": 32,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "output",
+        "x": 48,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "both",
+        "x": 64,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      }
+    ]
+  },
+  "contrast_pairs": [
+    {
+      "name": "input indicator",
+      "foreground": "193E5C",
+      "background": "8B8B8B"
+    },
+    {
+      "name": "output indicator",
+      "foreground": "632D2D",
+      "background": "8B8B8B"
+    }
+  ]
+}

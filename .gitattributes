@@ -2,3 +2,6 @@
 *.png binary
 *.zip binary
 /baselines/** -text
+/quality/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+/examples/quality/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
+/skill/deterministic-pixel-art/assets/quality/** -text whitespace=trailing-space,space-before-tab,cr-at-eol

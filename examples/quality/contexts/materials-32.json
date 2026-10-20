@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "asset_type": "sprite",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "1D293D"
+    }
+  ],
+  "atlas": {
+    "cell_size": [
+      32,
+      32
+    ],
+    "columns": 3,
+    "rows": 1,
+    "cells": [
+      {
+        "name": "crystal",
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      {
+        "name": "metal",
+        "x": 32,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      {
+        "name": "stone",
+        "x": 64,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      }
+    ]
+  }
+}

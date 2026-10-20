@@ -10,3 +10,17 @@ Select `preset: minecraft` for JSON button/slot operations. The DSL selects it a
 - For new icon sets, an optional mode palette is grey A0A0A0, input 559FE8, output E36B6B, bidirectional B679D1, cache 6DBB78. Existing accepted artwork may use different shades.
 
 For an existing mod, generate a candidate asset and compare native-size composites. The generic renderer does not install files into a resource tree or claim in-game visual acceptance.
+
+## Version and integration checks
+
+Identify edition, game version, loader and resource consumer before borrowing an online recipe. The study project targets Forge 1.20.1. Newer Fabric documentation and modern GUI sprite metadata are not automatically compatible. The preset is a demo style, not a full vanilla replacement.
+
+Inspect accepted assets for border width, bevel corner ownership, slot inset, padding and attached footer edges. A five-pixel-high footer has little room for decoration: changing one row can break a seam. Preserve texture sizes, UV rectangles and state order when drawing a separate candidate.
+
+`assets/quality/minecraft-states.json` separates input and output arrows in the bidirectional cell rather than overlapping them. `minecraft-panel.json` retains a serviceable panel: a quality workflow should recognize when no redesign is needed.
+
+The original [Minecraft paired study](../assets/studies/minecraft.png) shows both cases at native size and enlarged. It is offline author self-review.
+
+Forge 1.20.1 renders text, items, textures and tooltips separately. Use real font/content measurements when available; avoid baking a substitute font into assets. Inspect native-size composites first, then integer GUI-scale views. Offline views cannot verify UV selection, hover hitboxes, z ordering, font fallback or in-game scaling; record these as unverified until the consumer runs.
+
+Use the versioned [Forge screen documentation](https://docs.minecraftforge.net/en/1.20.1/gui/screens/) for integration. The hierarchy and state guidance in [ui.md](ui.md) applies within the existing Minecraft style.

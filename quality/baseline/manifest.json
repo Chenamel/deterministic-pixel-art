@@ -1,0 +1,111 @@
+{
+  "frozen_at": "2026-10-20T17:42:24.483320+00:00",
+  "records": [
+    {
+      "task": "directions-12",
+      "render_ms": 0.4347,
+      "size": [
+        48,
+        12
+      ],
+      "spec_sha256": "bbc308c8d83e8e39b48b833914abb0e5ae74a84de3336e3add61fbca6890a8ad",
+      "png_sha256": "d21d59d0cbeaf5693ab52298a70012d29c1f8c0dce82bb235cc573e02a68edb5",
+      "rgba_sha256": "21f6530534f55e3e2715d391fa7ff9ba3618a9d4f652c13f47b2f2ae2f29f323",
+      "candidates_used": 1,
+      "revision_rounds": 0
+    },
+    {
+      "task": "functions-16",
+      "render_ms": 0.3532,
+      "size": [
+        48,
+        32
+      ],
+      "spec_sha256": "5733cceae0d361bf64c45ace570d9dc45c313cf2a6fc264a284d1d40b49b1779",
+      "png_sha256": "08a20e730c2ae5318fff6e27f27a1006916bdafb58245fd8cb5440741f96c09d",
+      "rgba_sha256": "9aa94a08b53bba99f7e7698e93e4cce808a8507089bdc5c1b064739a8ffe56fa",
+      "candidates_used": 1,
+      "revision_rounds": 0
+    },
+    {
+      "task": "ship-32",
+      "render_ms": 0.131,
+      "size": [
+        32,
+        32
+      ],
+      "spec_sha256": "d266d81d3a1784c0407f1a97543c0ae37221d3c9ed15897ae78b0414bb1264a6",
+      "png_sha256": "ffd47cd217076375e922872cf85107ab36cdf047b19873dba570c87e7e0a3c8a",
+      "rgba_sha256": "9a739ed28667ffd36aaf4ce525c85069692250b1ab2113e0c1054bf484d4cbc1",
+      "candidates_used": 1,
+      "revision_rounds": 0
+    },
+    {
+      "task": "materials-32",
+      "render_ms": 0.2922,
+      "size": [
+        96,
+        32
+      ],
+      "spec_sha256": "315d4a0427765e967b2b6abf5a9b00f56d2491528b06c144287dabc0f0cd1403",
+      "png_sha256": "3dba349bfccca83394d772ca6562058ca152f6f42f7c467605fad627d83d15b1",
+      "rgba_sha256": "0595ae009f3d6dbde8c698a09cbf9236aa55b677cb3b9963ad09e2a4609657ad",
+      "candidates_used": 1,
+      "revision_rounds": 0
+    },
+    {
+      "task": "ui-states",
+      "render_ms": 0.3795,
+      "size": [
+        96,
+        36
+      ],
+      "spec_sha256": "9e0ec1c4de4b07629dc791f9d00ea1a3ea78645bb61975edf01f5047cded1857",
+      "png_sha256": "d06d66ef0fc0dd1533786b249fe9d29584fd4eeecc3532b4572f7974005f64f3",
+      "rgba_sha256": "79c0ce83e5c265beae4d363559c20e47862badd970aceb952f8da882917427e3",
+      "candidates_used": 1,
+      "revision_rounds": 0
+    },
+    {
+      "task": "ui-panel",
+      "render_ms": 0.1272,
+      "size": [
+        96,
+        64
+      ],
+      "spec_sha256": "bdfe85c8490fe81fdc32061d74bffaacd38be1815c7f605bf29471124c54f636",
+      "png_sha256": "c09be489f4d156c85690fe6fb77a949fdf2ab2d48f76b5d134a9510d20af4daf",
+      "rgba_sha256": "f4e33b44be4c78776f2f1b74812e3785eda877edfb8d14421235909e9bc0205e",
+      "candidates_used": 1,
+      "revision_rounds": 0
+    },
+    {
+      "task": "minecraft-states",
+      "render_ms": 0.659,
+      "size": [
+        80,
+        16
+      ],
+      "spec_sha256": "32c02b394c840836f0bb732f6a076b985e53284576a8a9e41ac41f82fa2728f7",
+      "png_sha256": "f3d26480c332e656db4aebe69095d5536bfae6f3345bc8e0bc555e79cc93787a",
+      "rgba_sha256": "0afc749d6da1931e7f3e9fe5088fa9ce2bf84b5e3961c2e2ff1de0c49cf53078",
+      "candidates_used": 1,
+      "revision_rounds": 0
+    },
+    {
+      "task": "minecraft-panel",
+      "render_ms": 0.2574,
+      "size": [
+        96,
+        54
+      ],
+      "spec_sha256": "c2baae7fd002aa6caecc04f7c6f71accb36db9b9ceb68719e37fef8269eae99b",
+      "png_sha256": "fa97d2789c92f6a1116de2e2370f6f2ef8189047af7709230d573b02086950d6",
+      "rgba_sha256": "411877183d734c01e620167bdb721262d2f64e2a4e17c1c41260e5685312f1f4",
+      "candidates_used": 1,
+      "revision_rounds": 0
+    }
+  ],
+  "guidance": "Installed v1.0.0 SKILL and references, before quality workflow changes; no deliberate defects added.",
+  "limitations": "Author already discussed improvement directions; this is not an unbiased causal experiment."
+}

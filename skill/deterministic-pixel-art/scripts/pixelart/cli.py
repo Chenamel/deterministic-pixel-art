@@ -39,8 +39,43 @@ def main(argv=None):
     check = commands.add_parser('validate')
     check.add_argument('--image', type=Path, required=True)
     check.add_argument('--rules', type=Path)
+    review_cmd = commands.add_parser('review', help='Advisory contact sheet and contextual warnings; never edits the input.')
+    review_cmd.add_argument('--image', type=Path, required=True)
+    review_cmd.add_argument('--out-dir', type=Path, required=True)
+    review_cmd.add_argument('--context', type=Path)
+    review_cmd.add_argument('--compare', type=Path)
+    review_cmd.add_argument('--force', action='store_true')
     args = parser.parse_args(argv)
     try:
+        if args.command == 'review':
+            # Keep the optional review module out of existing render/validate startup.
+            from .review import review
+            with Image.open(args.image) as opened:
+                source = opened.copy()
+            comparison = None
+            if args.compare:
+                with Image.open(args.compare) as opened:
+                    comparison = opened.copy()
+            report, sheet, difference = review(source,
+                read_json(args.context) if args.context else None, comparison)
+            artifacts = {'report.json': report, 'review.png': sheet}
+            if difference is not None:
+                artifacts['difference.png'] = difference
+            inputs = {p.resolve() for p in (args.image, args.context, args.compare) if p}
+            destinations = {name: (args.out_dir / name).resolve() for name in artifacts}
+            if inputs & set(destinations.values()):
+                raise PixelArtError('review outputs must not replace inputs')
+            if not args.force and any(p.exists() for p in destinations.values()):
+                raise PixelArtError('review output already exists; choose another directory or use --force')
+            args.out_dir.mkdir(parents=True, exist_ok=True)
+            for name, artifact in artifacts.items():
+                if isinstance(artifact, dict):
+                    destinations[name].write_text(json.dumps(artifact, ensure_ascii=False, indent=2), encoding='utf-8')
+                else:
+                    artifact.save(destinations[name], format='PNG')
+            print(json.dumps({'advisory': True, 'warnings': len(report['warnings']),
+                              'outputs': {k: str(v) for k,v in destinations.items()}}, ensure_ascii=False))
+            return 0
         outputs = [p.resolve() for p in (getattr(args, 'out', None),
                    getattr(args, 'preview', None), getattr(args, 'metadata', None)) if p]
         inputs = [p.resolve() for p in (getattr(args, 'spec', None),

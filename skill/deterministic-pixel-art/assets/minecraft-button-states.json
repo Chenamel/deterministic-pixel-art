@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "kind": "atlas",
+  "columns": 1,
+  "cells": [
+    {
+      "name": "normal",
+      "spec": {
+        "kind": "draw",
+        "size": [
+          22,
+          20
+        ],
+        "preset": "minecraft",
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 22,
+            "h": 20,
+            "state": "NORMAL"
+          }
+        ]
+      }
+    },
+    {
+      "name": "hover",
+      "spec": {
+        "kind": "draw",
+        "size": [
+          22,
+          20
+        ],
+        "preset": "minecraft",
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 22,
+            "h": 20,
+            "state": "HOVER"
+          }
+        ]
+      }
+    },
+    {
+      "name": "pressed",
+      "spec": {
+        "kind": "draw",
+        "size": [
+          22,
+          20
+        ],
+        "preset": "minecraft",
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 22,
+            "h": 20,
+            "state": "PRESSED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "selected",
+      "spec": {
+        "kind": "draw",
+        "size": [
+          22,
+          20
+        ],
+        "preset": "minecraft",
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 22,
+            "h": 20,
+            "state": "SELECTED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "disabled",
+      "spec": {
+        "kind": "draw",
+        "size": [
+          22,
+          20
+        ],
+        "preset": "minecraft",
+        "operations": [
+          {
+            "op": "button",
+            "x": 0,
+            "y": 0,
+            "w": 22,
+            "h": 20,
+            "state": "DISABLED"
+          }
+        ]
+      }
+    }
+  ]
+}

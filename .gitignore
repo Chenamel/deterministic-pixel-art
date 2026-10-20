@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+/output/
+/evaluation/
+/deterministic-pixel-art.zip
+*.egg-info/
+/build/
+/dist/

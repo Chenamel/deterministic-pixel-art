@@ -1,0 +1,1 @@
+{"version":1,"kind":"draw","size":[44,46],"preset":"minecraft","operations":[{"op":"rect","x":0,"y":0,"w":44,"h":46,"color":[198,198,198,255],"_line":3},{"op":"button","x":2,"y":1,"w":40,"h":14,"state":"NORMAL","_line":4},{"op":"button","x":2,"y":16,"w":40,"h":14,"state":"HOVER","_line":5},{"op":"button","x":2,"y":31,"w":40,"h":14,"state":"PRESSED","_line":6}]}

@@ -1,0 +1,260 @@
+[
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v2.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v2.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v2.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v2.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v2.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v2.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v1.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v1.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v3.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v3.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v4.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v4.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": "align-with-current-runtime-pixels; normalize RGB to RGBA"
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v3.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v3.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close-v2.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close-v2.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_popup_button-v1.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_popup_button-v1.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v1.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v1.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/blocked_cache_status_icons.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/blocked_cache_status_icons.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/heart_16x16.png",
+    "spec": "specs/legacy/llm-pixel-art/out/heart_16x16.json",
+    "method": "semantic-grid",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/heart_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/heart_preview.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/gui_panel_128x48.png",
+    "spec": "specs/legacy/llm-pixel-art/out/gui_panel_128x48.json",
+    "method": "semantic-dsl",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/gui_panel_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/gui_panel_preview.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/btn_states_44x46.png",
+    "spec": "specs/legacy/llm-pixel-art/out/btn_states_44x46.json",
+    "method": "semantic-dsl",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/btn_states_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/btn_states_preview.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/face_selector_mode_buttons-v2.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/face_selector_mode_buttons-v2.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/face_selector_button.png",
+    "spec": "specs/legacy/llm-pixel-art/out/face_selector_button.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/view_control_icons.png",
+    "spec": "specs/legacy/llm-pixel-art/out/view_control_icons.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/face_selector_button_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/face_selector_button_preview.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/view_control_icons_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/view_control_icons_preview.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_front.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_front.json",
+    "method": "semantic-geometry",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_back.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_back.json",
+    "method": "semantic-geometry",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_left.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_left.json",
+    "method": "semantic-geometry",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_right.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_right.json",
+    "method": "semantic-geometry",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_top.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_top.json",
+    "method": "semantic-geometry",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_bottom.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/block/nexus_bottom.json",
+    "method": "semantic-geometry",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_scheduler.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_scheduler.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_expand.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_expand.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/clear_side_config.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/clear_side_config.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_face_icons.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_face_icons.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/editor_redstone_icons.png",
+    "spec": "specs/legacy/llm-pixel-art/out/editor_redstone_icons.json",
+    "method": "semantic-geometry",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/editor_redstone_icons_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/editor_redstone_icons_preview.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/redstone_on_buttons_1to1.png",
+    "spec": "specs/legacy/llm-pixel-art/out/redstone_on_buttons_1to1.json",
+    "method": "semantic-composition",
+    "intended_change": "corrected-button-preview"
+  },
+  {
+    "output": "llm-pixel-art/out/redstone_on_buttons_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/redstone_on_buttons_preview.json",
+    "method": "semantic-composition",
+    "intended_change": "corrected-button-preview"
+  },
+  {
+    "output": "llm-pixel-art/out/candidate_torch.png",
+    "spec": "specs/legacy/llm-pixel-art/out/candidate_torch.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/candidate_signal.png",
+    "spec": "specs/legacy/llm-pixel-art/out/candidate_signal.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/candidate_torch_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/candidate_torch_preview.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "llm-pixel-art/out/candidate_signal_preview.png",
+    "spec": "specs/legacy/llm-pixel-art/out/candidate_signal_preview.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/scene_visibility_icons.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/scene_visibility_icons.json",
+    "method": "lossless-rectangle-encoding",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_plane_horizontal-v4.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_plane_horizontal-v4.json",
+    "method": "semantic-mask-atlas",
+    "intended_change": null
+  },
+  {
+    "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_decal_final-v6.png",
+    "spec": "specs/legacy/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_decal_final-v6.json",
+    "method": "semantic-mask-atlas",
+    "intended_change": null
+  }
+]

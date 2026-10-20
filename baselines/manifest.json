@@ -1,0 +1,620 @@
+{
+  "format": 1,
+  "scope": "curated frozen regression fixtures; not live original-project paths",
+  "historical_protected_file_count": 96,
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "pillow": "12.3.0",
+  "fixture_files": {
+    "rendered/llm-pixel-art/out/btn_states_44x46.png": "dcbbcde693d2908eaa06f1ad5dcf015bea400eaa819acfa21d79ac42c5d1cfac",
+    "rendered/llm-pixel-art/out/btn_states_preview.png": "0630ee29ae11beac0d5c67a9083fc01ff8b26d4cf860df5846b65e4d50824448",
+    "rendered/llm-pixel-art/out/candidate_signal.png": "70f567c8db4a21d276656e26ce663503019392e644c49be5a9d9360ba8204308",
+    "rendered/llm-pixel-art/out/candidate_signal_preview.png": "6815b264fd77ca8f25b9d5d89cda5ee528b6a209b9854b65ecec31849076b8c4",
+    "rendered/llm-pixel-art/out/candidate_torch.png": "2d2e333f438541ecfbeee0f85af22a7747abbdf5599a5c578c23a1822478be8a",
+    "rendered/llm-pixel-art/out/candidate_torch_preview.png": "341b4ae02d718def8e0192376207505097d175870593ed19789128c835ea1eab",
+    "rendered/llm-pixel-art/out/editor_redstone_icons.png": "fdb06b42c29cc0aa92e16d776f50022b9dbd1a3178b6158a3524868b862f1b2a",
+    "rendered/llm-pixel-art/out/editor_redstone_icons_preview.png": "8a1bee6c63570c94418dc09786db77c5b747c894469ada3be3d747060e19301b",
+    "rendered/llm-pixel-art/out/face_selector_button.png": "df968af2a961f81c4f5765680ab06a5be84ce63210a7e02596fab29071ca61f5",
+    "rendered/llm-pixel-art/out/face_selector_button_preview.png": "fa5a5f513f13fbf55203f92b8d9e4321f039ee4b283b197ea89432548ec260a1",
+    "rendered/llm-pixel-art/out/gui_panel_128x48.png": "4cddae099c3b1a98d8e62a2b131f51adced5ae19e6785dc4f8ec87ec29d15bd4",
+    "rendered/llm-pixel-art/out/gui_panel_preview.png": "d35a2017bf3cca17f6d0f6ed563fd5adebd7aca03c7d89bd1c64916f679405f9",
+    "rendered/llm-pixel-art/out/heart_16x16.png": "b05350ac7dd3de42df5a37c480874715a963ac9a92eac9f41faf589aa20ce514",
+    "rendered/llm-pixel-art/out/heart_preview.png": "2568cc1a7d9a596f4d7ff4cf9e098bcd64168d5269d44496d21b06359d3bdd85",
+    "rendered/llm-pixel-art/out/redstone_on_buttons_1to1.png": "7bee0c73a31f1253655fb6cbb3732f4fd3fe6c710c776db4b69d0b950ecd4e89",
+    "rendered/llm-pixel-art/out/redstone_on_buttons_preview.png": "698a6bc0d4d72d65dcdb6109fabc1975d408f8aebf49a64d210ae8a467876922",
+    "rendered/llm-pixel-art/out/view_control_icons.png": "45b75666b15478af807bf497f1fe7c02a0db2332cab863660212a6f035f208d9",
+    "rendered/llm-pixel-art/out/view_control_icons_preview.png": "44d6501ec0e9731609e587b262ccbc40061d59b7284098c5f29fed18a4f9e030",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/block/nexus_back.png": "46521cc226fda9c829c57dce21479a404f73afd5c2027e9e674f24541fb18985",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/block/nexus_bottom.png": "4b214b23875bd81e3d1f7f09e1d280cd6b3519075d5ae6a1ab40c5e816029a04",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/block/nexus_front.png": "d9eb940e1d7f7f6b956c273cdfe5a50e0bb0079787064fe33181f08a22106402",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/block/nexus_left.png": "a67ac2049fdf6df142d9f017c4536b3dbf087db72cfc489c0376719c53de3dc1",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/block/nexus_right.png": "fd8abb214b3e029951345d19eb033affbb98fa586206787becde6fd4fba3f9d4",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/block/nexus_top.png": "d35a62598c74e5cf6d85b21b618d148a023a5be4b952faa76422cf50b931b214",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_face_icons.png": "2620c04168bb5f219faf7456eca15c668e0a4a5da02a4cdf350d544c03012832",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_scheduler.png": "2b7dfb6a0b3acff16d7ffd4bb5d00e65e561716f8ffc96cf44edfb9eee440d2d",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close-v2.png": "63eb43dc61d960764b0ecbf29f93f896bf1d0a280367dbfa4d73a1945186c70e",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v1.png": "f76967c82b2664381510a104660c82c381f0983e904def9a988c4ca78f62ff31",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v2.png": "06a046f4567c29cdc05ea3805411cb11bbdac3cca21cdbf2f768ec317c7ddfe4",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v2.png": "ee0a715f84e134669af78d01251b37dda34026f1f51d3c58898b5d05d37ed911",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v3.png": "4edbf205accdbd3439e2a008466398e5be114c6c3ee30db41791926373aa7f45",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_expand.png": "26a29ee7316e702ae0bb35785c685a2f557574cba1ade63e0d0bb3806ee8ed72",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_popup_button-v1.png": "471b6c182618c8a32955cea53dc3b34be2bce8f713e6b90911578ead0f5c0867",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v1.png": "722eb46ab16cd6259443e4865c920a9878a0b0b5d22c6965f1d9d149535162f7",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v2.png": "2c65603066238c0046bd210c6cb308862e5da627ddf0ad5af8d3882ed4095297",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v3.png": "47d6a165a866ed4edacf0dd163c4b201ea04cfef9e62618be57f58185007f4be",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v4.png": "e330ebdb39e93784578062e819a2e854cb58a7fe245eb4b72e1548486ede22f0",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/blocked_cache_status_icons.png": "94fb89098671d68a4caf83496fd60d17fe0bd1af89af9c93b8a31b539bf5ff63",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/clear_side_config.png": "4bdb109f3eba8fc01cd83dc4e5ac90c72a6b3b0f5a9eaab1b0b4de36d024d20a",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/face_selector_mode_buttons-v2.png": "bb2f2c172efd78184e2e89417e8291d863ca9ce9e7b8cc7d78b01a9f0f550d96",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/scene_visibility_icons.png": "c0b8ef08dc34ac1d23e1f00238d214c15f9a41be9243a60f0ddaa86c43ddb282",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_decal_final-v6.png": "665af2bb97368159c8529a3fe33525a071a42b1a8add5f6e429b00406d118810",
+    "rendered/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_plane_horizontal-v4.png": "ab1c1b29c8185a1f8927d6a05fb312458e23811ab1fbeb1edc8032afc0cf4785",
+    "snapshot/llm-pixel-art/render_bidirectional_controls.py": "4fc23a542d4ff06c899ba42f854e12a0a3ea1b625eaebeaf3aa1d6f710021185",
+    "snapshot/llm-pixel-art/render_bidirectional_controls_v2.py": "7fced8e07d18c975f5c14a395f7175afcd4a99602de6c84d144368035661fb3e",
+    "snapshot/llm-pixel-art/render_bidirectional_footer_v1.py": "dd01b36dbf30ab457db10213bce07d0a4aa9ef763278a16446438826c0439e24",
+    "snapshot/llm-pixel-art/render_bidirectional_footer_v3.py": "8406981c44eeeb9e18cc63e6a1eea34d123fa340b966d1c58bf2f3738b5308e9",
+    "snapshot/llm-pixel-art/render_bidirectional_footer_v4.py": "c8437b69edbe8645e20a3e30ed37518bdda6553805bbc1f1871269fde2072ffd",
+    "snapshot/llm-pixel-art/render_bidirectional_panel_v3.py": "5308d0561a23d815aa700cc0082b8c3d9e15c9777ff7172c8c5c7fec19a1bc46",
+    "snapshot/llm-pixel-art/render_bidirectional_popup_buttons_v1.py": "7531a62b8729de2301e5a441f97d8205429161926be848b3480b914a52e101e7",
+    "snapshot/llm-pixel-art/render_blocked_cache_status_icons.py": "924c9d144d94982e79b366fa3e66f25a7f59c8d6ae426566e21b7c6582565e3d",
+    "snapshot/llm-pixel-art/render_demo.py": "0634c3f5442fa97f8765fc3c827d2f2bd8eda3a26b2329c069025d391b417131",
+    "snapshot/llm-pixel-art/render_dsl_demo.py": "7d28d8ae4e2ba5364f6428bf3e1622e5395c1469fe0aa0a6499d69db83e68ec8",
+    "snapshot/llm-pixel-art/render_face_selector_mode_buttons.py": "2a50a9d8502c5079972e87a084cc75e588973d510e1806d49b2404df40737634",
+    "snapshot/llm-pixel-art/render_gui_assets.py": "7bd5dc3b38d56bec3b719dd65a487ad459e95e6194da97f09374730e77d41bc5",
+    "snapshot/llm-pixel-art/render_nexus_block_faces.py": "c0e814419ffa3243c7931d649c2f8f4198193411a4a909a73bddb8f627ecdae5",
+    "snapshot/llm-pixel-art/render_phase2b_icons.py": "dba2a06f760a9c022c50efc03f380b0d9a366ab121183290ac0b156bd6ff24eb",
+    "snapshot/llm-pixel-art/render_redstone_icons_v2.py": "871bd0d72d4bd7c04c9cbb433657fd6d6e505ceccd38f5c9c54dafbdecde5641",
+    "snapshot/llm-pixel-art/render_redstone_traditional.py": "5e3610fabedb8220fd4830ca6a82ec798cf877eda91f541bdbd5490a1fa01db3",
+    "snapshot/llm-pixel-art/render_scene_visibility_icons.py": "4219dd1c7214329c92b53cf3e00715d9324bfecb7813938c4fa1a65395ba63ce",
+    "snapshot/llm-pixel-art/render_side_mode_final_v6.py": "86c268fea323b568999f7db1ea8f3a6e12012a8332e8d293ee82dc05b86a5c14",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/block/nexus_back.png": "46521cc226fda9c829c57dce21479a404f73afd5c2027e9e674f24541fb18985",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/block/nexus_bottom.png": "4b214b23875bd81e3d1f7f09e1d280cd6b3519075d5ae6a1ab40c5e816029a04",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/block/nexus_front.png": "d9eb940e1d7f7f6b956c273cdfe5a50e0bb0079787064fe33181f08a22106402",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/block/nexus_left.png": "a67ac2049fdf6df142d9f017c4536b3dbf087db72cfc489c0376719c53de3dc1",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/block/nexus_right.png": "fd8abb214b3e029951345d19eb033affbb98fa586206787becde6fd4fba3f9d4",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/block/nexus_top.png": "d35a62598c74e5cf6d85b21b618d148a023a5be4b952faa76422cf50b931b214",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_face_icons.png": "2620c04168bb5f219faf7456eca15c668e0a4a5da02a4cdf350d544c03012832",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_scheduler.png": "2b7dfb6a0b3acff16d7ffd4bb5d00e65e561716f8ffc96cf44edfb9eee440d2d",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close-v2.png": "63eb43dc61d960764b0ecbf29f93f896bf1d0a280367dbfa4d73a1945186c70e",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v1.png": "f76967c82b2664381510a104660c82c381f0983e904def9a988c4ca78f62ff31",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v2.png": "06a046f4567c29cdc05ea3805411cb11bbdac3cca21cdbf2f768ec317c7ddfe4",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v2.png": "ee0a715f84e134669af78d01251b37dda34026f1f51d3c58898b5d05d37ed911",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v3.png": "4edbf205accdbd3439e2a008466398e5be114c6c3ee30db41791926373aa7f45",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_expand.png": "26a29ee7316e702ae0bb35785c685a2f557574cba1ade63e0d0bb3806ee8ed72",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_popup_button-v1.png": "471b6c182618c8a32955cea53dc3b34be2bce8f713e6b90911578ead0f5c0867",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v1.png": "722eb46ab16cd6259443e4865c920a9878a0b0b5d22c6965f1d9d149535162f7",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v2.png": "2c65603066238c0046bd210c6cb308862e5da627ddf0ad5af8d3882ed4095297",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v3.png": "47d6a165a866ed4edacf0dd163c4b201ea04cfef9e62618be57f58185007f4be",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v4.png": "cae68fe5e19240b43f0d359cf45005ac29bd3f7f374529a90280dd14350b35ae",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/blocked_cache_status_icons.png": "94fb89098671d68a4caf83496fd60d17fe0bd1af89af9c93b8a31b539bf5ff63",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/clear_side_config.png": "4bdb109f3eba8fc01cd83dc4e5ac90c72a6b3b0f5a9eaab1b0b4de36d024d20a",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/face_selector_mode_buttons-v2.png": "bb2f2c172efd78184e2e89417e8291d863ca9ce9e7b8cc7d78b01a9f0f550d96",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/scene_visibility_icons.png": "c0b8ef08dc34ac1d23e1f00238d214c15f9a41be9243a60f0ddaa86c43ddb282",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_decal_final-v6.png": "665af2bb97368159c8529a3fe33525a071a42b1a8add5f6e429b00406d118810",
+    "snapshot/src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_plane_horizontal-v4.png": "ab1c1b29c8185a1f8927d6a05fb312458e23811ab1fbeb1edc8032afc0cf4785"
+  },
+  "entries": [
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v2.png",
+      "script": "render_bidirectional_controls.py",
+      "size": [
+        96,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "ee0a715f84e134669af78d01251b37dda34026f1f51d3c58898b5d05d37ed911",
+      "rgba_sha256": "154c5d1ed69fdb08e93386c7208c0d7c8eeab40b6bb3aa3aee3fc95d26a18aba",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v2.png",
+      "script": "render_bidirectional_controls_v2.py",
+      "size": [
+        16,
+        32
+      ],
+      "mode": "RGBA",
+      "png_sha256": "06a046f4567c29cdc05ea3805411cb11bbdac3cca21cdbf2f768ec317c7ddfe4",
+      "rgba_sha256": "8635bb2939a8b99a776028d0beda56acb876b09ff5bdf0dd8d494f0957101b4e",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v2.png",
+      "script": "render_bidirectional_controls_v2.py",
+      "size": [
+        22,
+        15
+      ],
+      "mode": "RGBA",
+      "png_sha256": "2c65603066238c0046bd210c6cb308862e5da627ddf0ad5af8d3882ed4095297",
+      "rgba_sha256": "3c015261ddfefbcdbf5562f0ca4ccc5b90549c41afabc9efacb0d0abb13875ad",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v1.png",
+      "script": "render_bidirectional_footer_v1.py",
+      "size": [
+        22,
+        10
+      ],
+      "mode": "RGBA",
+      "png_sha256": "722eb46ab16cd6259443e4865c920a9878a0b0b5d22c6965f1d9d149535162f7",
+      "rgba_sha256": "d6b28362ca91b5b526206fff3b4faf59d0353cea45a93b9401d8c8dfa52292cf",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v3.png",
+      "script": "render_bidirectional_footer_v3.py",
+      "size": [
+        22,
+        30
+      ],
+      "mode": "RGBA",
+      "png_sha256": "47d6a165a866ed4edacf0dd163c4b201ea04cfef9e62618be57f58185007f4be",
+      "rgba_sha256": "cb497e1c45b3734162a6a935fe07f43994bab055adb132f8aa153801e2d7c44f",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v4.png",
+      "script": "render_bidirectional_footer_v4.py",
+      "size": [
+        22,
+        15
+      ],
+      "mode": "RGBA",
+      "png_sha256": "e330ebdb39e93784578062e819a2e854cb58a7fe245eb4b72e1548486ede22f0",
+      "rgba_sha256": "f9c05d93f16c5d6c1cb900b0b46379f1e12c8de612cffc2c0525ddcc040aaf9a",
+      "existing_mode": "RGB",
+      "existing_rgba_equal": false
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v3.png",
+      "script": "render_bidirectional_panel_v3.py",
+      "size": [
+        96,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "4edbf205accdbd3439e2a008466398e5be114c6c3ee30db41791926373aa7f45",
+      "rgba_sha256": "4d94478e216b1589ccf2a464ef73e244bdb87d2dfa69bb6e90830f49aa9374b1",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close-v2.png",
+      "script": "render_bidirectional_panel_v3.py",
+      "size": [
+        16,
+        32
+      ],
+      "mode": "RGBA",
+      "png_sha256": "63eb43dc61d960764b0ecbf29f93f896bf1d0a280367dbfa4d73a1945186c70e",
+      "rgba_sha256": "741f74975aed323e7c38bc956ce209893140d18851f83932234637f53c344763",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_popup_button-v1.png",
+      "script": "render_bidirectional_popup_buttons_v1.py",
+      "size": [
+        22,
+        80
+      ],
+      "mode": "RGBA",
+      "png_sha256": "471b6c182618c8a32955cea53dc3b34be2bce8f713e6b90911578ead0f5c0867",
+      "rgba_sha256": "57a8d3103c7538d042f76a7d0900a3269e7193bf3cd20a245eaf91d69ee9ae2a",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v1.png",
+      "script": "render_bidirectional_popup_buttons_v1.py",
+      "size": [
+        20,
+        40
+      ],
+      "mode": "RGBA",
+      "png_sha256": "f76967c82b2664381510a104660c82c381f0983e904def9a988c4ca78f62ff31",
+      "rgba_sha256": "be6ea3a90a72f0e9dca9736cf85c01d992821b49477aa7a4d5f86518b54cf639",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/blocked_cache_status_icons.png",
+      "script": "render_blocked_cache_status_icons.py",
+      "size": [
+        48,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "94fb89098671d68a4caf83496fd60d17fe0bd1af89af9c93b8a31b539bf5ff63",
+      "rgba_sha256": "fbdece94463c0e4561460988ffa07dad76b154a34db2c35b25aa85c8b937bc63",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "llm-pixel-art/out/heart_16x16.png",
+      "script": "render_demo.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "b05350ac7dd3de42df5a37c480874715a963ac9a92eac9f41faf589aa20ce514",
+      "rgba_sha256": "0b0ade14340adefa520ab9c7fab7c9235255d7e3e2daa96d7b99ee75469f0ad9"
+    },
+    {
+      "output": "llm-pixel-art/out/heart_preview.png",
+      "script": "render_demo.py",
+      "size": [
+        256,
+        256
+      ],
+      "mode": "RGBA",
+      "png_sha256": "2568cc1a7d9a596f4d7ff4cf9e098bcd64168d5269d44496d21b06359d3bdd85",
+      "rgba_sha256": "8d649117a8e59b7913e989a1495542f750ea08b8d55e2d697d3ec6aae1680c40"
+    },
+    {
+      "output": "llm-pixel-art/out/gui_panel_128x48.png",
+      "script": "render_dsl_demo.py",
+      "size": [
+        128,
+        48
+      ],
+      "mode": "RGBA",
+      "png_sha256": "4cddae099c3b1a98d8e62a2b131f51adced5ae19e6785dc4f8ec87ec29d15bd4",
+      "rgba_sha256": "b9e892c7ed95234536b72b28717c922719b8c2961969cccac9009626ab161362"
+    },
+    {
+      "output": "llm-pixel-art/out/gui_panel_preview.png",
+      "script": "render_dsl_demo.py",
+      "size": [
+        384,
+        144
+      ],
+      "mode": "RGBA",
+      "png_sha256": "d35a2017bf3cca17f6d0f6ed563fd5adebd7aca03c7d89bd1c64916f679405f9",
+      "rgba_sha256": "2656fa706e5e459438eab3a8e6840c94f89c733e0f1b71a7b301e41fdeaa6a38"
+    },
+    {
+      "output": "llm-pixel-art/out/btn_states_44x46.png",
+      "script": "render_dsl_demo.py",
+      "size": [
+        44,
+        46
+      ],
+      "mode": "RGBA",
+      "png_sha256": "dcbbcde693d2908eaa06f1ad5dcf015bea400eaa819acfa21d79ac42c5d1cfac",
+      "rgba_sha256": "ef39a5e32b6579d06166150d04184f2f0fac6f9ffcb7d39b8ea7846e32d39561"
+    },
+    {
+      "output": "llm-pixel-art/out/btn_states_preview.png",
+      "script": "render_dsl_demo.py",
+      "size": [
+        176,
+        184
+      ],
+      "mode": "RGBA",
+      "png_sha256": "0630ee29ae11beac0d5c67a9083fc01ff8b26d4cf860df5846b65e4d50824448",
+      "rgba_sha256": "11280abea853efa4eeb89d25c859f1a3fd00a66d10d12918b8cf3c71dd3ef19b"
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/face_selector_mode_buttons-v2.png",
+      "script": "render_face_selector_mode_buttons.py",
+      "size": [
+        110,
+        66
+      ],
+      "mode": "RGBA",
+      "png_sha256": "bb2f2c172efd78184e2e89417e8291d863ca9ce9e7b8cc7d78b01a9f0f550d96",
+      "rgba_sha256": "a66858f0ff2dedf97783522a6e4cc5cd5aa43035659c2842f7cd171a5eb820da",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "llm-pixel-art/out/face_selector_button.png",
+      "script": "render_gui_assets.py",
+      "size": [
+        22,
+        110
+      ],
+      "mode": "RGBA",
+      "png_sha256": "df968af2a961f81c4f5765680ab06a5be84ce63210a7e02596fab29071ca61f5",
+      "rgba_sha256": "8bfd16e62f5f43f9234f1e7faa5aec0325598a40569211d5d89713850fb35dce"
+    },
+    {
+      "output": "llm-pixel-art/out/view_control_icons.png",
+      "script": "render_gui_assets.py",
+      "size": [
+        48,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "45b75666b15478af807bf497f1fe7c02a0db2332cab863660212a6f035f208d9",
+      "rgba_sha256": "0430e9362d8c9a7bf4056604367cffd427cc370f605ecd53b834dabb4b59b266"
+    },
+    {
+      "output": "llm-pixel-art/out/face_selector_button_preview.png",
+      "script": "render_gui_assets.py",
+      "size": [
+        132,
+        660
+      ],
+      "mode": "RGBA",
+      "png_sha256": "fa5a5f513f13fbf55203f92b8d9e4321f039ee4b283b197ea89432548ec260a1",
+      "rgba_sha256": "9e6be6aabbd72e7d93172a3c9355cdda33d78cf8cc98e6f779ac004795c2be21"
+    },
+    {
+      "output": "llm-pixel-art/out/view_control_icons_preview.png",
+      "script": "render_gui_assets.py",
+      "size": [
+        480,
+        160
+      ],
+      "mode": "RGBA",
+      "png_sha256": "44d6501ec0e9731609e587b262ccbc40061d59b7284098c5f29fed18a4f9e030",
+      "rgba_sha256": "1bd0ab6be48238a112cba9477f91054974bbf13e5131012bdc98d5fcc0211276"
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_front.png",
+      "script": "render_nexus_block_faces.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "d9eb940e1d7f7f6b956c273cdfe5a50e0bb0079787064fe33181f08a22106402",
+      "rgba_sha256": "54752ee2600541533ac54c9a9d5eee88bf6d7a002448594a6b2dd091f0f83f9f",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_back.png",
+      "script": "render_nexus_block_faces.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "46521cc226fda9c829c57dce21479a404f73afd5c2027e9e674f24541fb18985",
+      "rgba_sha256": "df717f33edefb0aab301159138859b0e0b277b1037c4d2136fbfee98893f732d",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_left.png",
+      "script": "render_nexus_block_faces.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "a67ac2049fdf6df142d9f017c4536b3dbf087db72cfc489c0376719c53de3dc1",
+      "rgba_sha256": "a84485ee7f12af5bee63087ca553f9b278fa656b6ec11d82a6ceca533b6dba10",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_right.png",
+      "script": "render_nexus_block_faces.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "fd8abb214b3e029951345d19eb033affbb98fa586206787becde6fd4fba3f9d4",
+      "rgba_sha256": "7335b50706b8fedfd47131d736c73fc9cc3a84515e2a72ca1842e2bc064dac57",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_top.png",
+      "script": "render_nexus_block_faces.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "d35a62598c74e5cf6d85b21b618d148a023a5be4b952faa76422cf50b931b214",
+      "rgba_sha256": "0bf3dde711f14ef2ad8500848d917a63df19f1b3adb23550713fbf7f4918e181",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_bottom.png",
+      "script": "render_nexus_block_faces.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "4b214b23875bd81e3d1f7f09e1d280cd6b3519075d5ae6a1ab40c5e816029a04",
+      "rgba_sha256": "ddd7f0f23937bcc617620f160f836be685badd7a57da772501f2bbc90505c98e",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_scheduler.png",
+      "script": "render_phase2b_icons.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "2b7dfb6a0b3acff16d7ffd4bb5d00e65e561716f8ffc96cf44edfb9eee440d2d",
+      "rgba_sha256": "94ca721e03d016263bb6ffcd54b95ea2e7dadacdd5ac21e9914cfd200a634096",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_expand.png",
+      "script": "render_phase2b_icons.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "26a29ee7316e702ae0bb35785c685a2f557574cba1ade63e0d0bb3806ee8ed72",
+      "rgba_sha256": "054ad9d643a8efa252ee5b721bb30eb8053076b551d7b2626f358683b772f85e",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/clear_side_config.png",
+      "script": "render_phase2b_icons.py",
+      "size": [
+        16,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "4bdb109f3eba8fc01cd83dc4e5ac90c72a6b3b0f5a9eaab1b0b4de36d024d20a",
+      "rgba_sha256": "a9fc8c9cb92394e1ebf9aba24a44459029be476894de44068a675c55430dc9eb",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_face_icons.png",
+      "script": "render_phase2b_icons.py",
+      "size": [
+        96,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "2620c04168bb5f219faf7456eca15c668e0a4a5da02a4cdf350d544c03012832",
+      "rgba_sha256": "707c1f7a560e14a4d9c58b63e0f17aecf15dadcdc18ffab1b8115fcfdacf8fe3",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "llm-pixel-art/out/editor_redstone_icons.png",
+      "script": "render_redstone_icons_v2.py",
+      "size": [
+        48,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "fdb06b42c29cc0aa92e16d776f50022b9dbd1a3178b6158a3524868b862f1b2a",
+      "rgba_sha256": "67f3b76e889990ab6a15c38c793e4ad8aac3059f9090446549f0dd2d92d3d58d"
+    },
+    {
+      "output": "llm-pixel-art/out/editor_redstone_icons_preview.png",
+      "script": "render_redstone_icons_v2.py",
+      "size": [
+        480,
+        160
+      ],
+      "mode": "RGBA",
+      "png_sha256": "8a1bee6c63570c94418dc09786db77c5b747c894469ada3be3d747060e19301b",
+      "rgba_sha256": "85b0a1a4c40f0b7dcce33ec8d7c1b6fb329c031f6cdfd68b428416af8503fd44"
+    },
+    {
+      "output": "llm-pixel-art/out/redstone_on_buttons_1to1.png",
+      "script": "render_redstone_icons_v2.py",
+      "size": [
+        68,
+        20
+      ],
+      "mode": "RGBA",
+      "png_sha256": "7bee0c73a31f1253655fb6cbb3732f4fd3fe6c710c776db4b69d0b950ecd4e89",
+      "rgba_sha256": "876b3313762e6151fae433e02b4515d5c915b797f7e3857f1e4f7c227174f6b2"
+    },
+    {
+      "output": "llm-pixel-art/out/redstone_on_buttons_preview.png",
+      "script": "render_redstone_icons_v2.py",
+      "size": [
+        544,
+        160
+      ],
+      "mode": "RGBA",
+      "png_sha256": "698a6bc0d4d72d65dcdb6109fabc1975d408f8aebf49a64d210ae8a467876922",
+      "rgba_sha256": "4fdf08540aa90e714bda7ddc265919949df02f25639fc0306513c308e837b55a"
+    },
+    {
+      "output": "llm-pixel-art/out/candidate_torch.png",
+      "script": "render_redstone_traditional.py",
+      "size": [
+        48,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "2d2e333f438541ecfbeee0f85af22a7747abbdf5599a5c578c23a1822478be8a",
+      "rgba_sha256": "543abc070e91e9365deb0c4133fe6af727176cc0286414dc10d2802f8bc48250"
+    },
+    {
+      "output": "llm-pixel-art/out/candidate_signal.png",
+      "script": "render_redstone_traditional.py",
+      "size": [
+        48,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "70f567c8db4a21d276656e26ce663503019392e644c49be5a9d9360ba8204308",
+      "rgba_sha256": "075516c3438b452dc767514872ca5f34706d22ebaf8502c3ff28a932a2cab4c1"
+    },
+    {
+      "output": "llm-pixel-art/out/candidate_torch_preview.png",
+      "script": "render_redstone_traditional.py",
+      "size": [
+        480,
+        160
+      ],
+      "mode": "RGBA",
+      "png_sha256": "341b4ae02d718def8e0192376207505097d175870593ed19789128c835ea1eab",
+      "rgba_sha256": "0c180bebdcb04de0a9c3e7e19c097afde9c1edbf89cde163638c0b3fafc713f5"
+    },
+    {
+      "output": "llm-pixel-art/out/candidate_signal_preview.png",
+      "script": "render_redstone_traditional.py",
+      "size": [
+        480,
+        160
+      ],
+      "mode": "RGBA",
+      "png_sha256": "6815b264fd77ca8f25b9d5d89cda5ee528b6a209b9854b65ecec31849076b8c4",
+      "rgba_sha256": "2bd58c1d248ac751d99f8e707fe2f25288ffad2dfe1be88b0d610a51ec175c6e"
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/scene_visibility_icons.png",
+      "script": "render_scene_visibility_icons.py",
+      "size": [
+        64,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "c0b8ef08dc34ac1d23e1f00238d214c15f9a41be9243a60f0ddaa86c43ddb282",
+      "rgba_sha256": "1b6d5c7f48a786b5aa79f1736b6f0edd98d601be8d3d7d202ee7adc860893992",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_plane_horizontal-v4.png",
+      "script": "render_side_mode_final_v6.py",
+      "size": [
+        80,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "ab1c1b29c8185a1f8927d6a05fb312458e23811ab1fbeb1edc8032afc0cf4785",
+      "rgba_sha256": "c65ed34e5d5f17bb6f56445152a5fd0bbe15bd821e5dae3d87fc7e95fae5974b",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_decal_final-v6.png",
+      "script": "render_side_mode_final_v6.py",
+      "size": [
+        64,
+        16
+      ],
+      "mode": "RGBA",
+      "png_sha256": "665af2bb97368159c8529a3fe33525a071a42b1a8add5f6e429b00406d118810",
+      "rgba_sha256": "db8519f275be9364ebee13a1e7a6a3be6dc0a6fc30bc37270d7e3fe6865ebda9",
+      "existing_mode": "RGBA",
+      "existing_rgba_equal": true
+    }
+  ]
+}

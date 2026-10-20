@@ -1,0 +1,597 @@
+{
+  "quality_gate_passed": true,
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "pillow": "12.3.0",
+  "protected_files": 96,
+  "originals_unchanged": true,
+  "tests_passed": true,
+  "comparisons": [
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v2.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v2.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v2.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v1.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v3.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_settings_footer-v4.png",
+      "same_rgba": false,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 60,
+      "intended_change": "align-with-current-runtime-pixels; normalize RGB to RGBA",
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_controls_v3.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close-v2.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_popup_button-v1.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_close_button-v1.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/blocked_cache_status_icons.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/heart_16x16.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "semantic-grid",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/heart_preview.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/gui_panel_128x48.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "semantic-dsl",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/gui_panel_preview.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/btn_states_44x46.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "semantic-dsl",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/btn_states_preview.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/face_selector_mode_buttons-v2.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/face_selector_button.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/view_control_icons.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/face_selector_button_preview.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/view_control_icons_preview.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_front.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "semantic-geometry",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_back.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "semantic-geometry",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_left.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "semantic-geometry",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_right.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "semantic-geometry",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_top.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "semantic-geometry",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/block/nexus_bottom.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "semantic-geometry",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_scheduler.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/bidirectional_expand.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/clear_side_config.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/active_transfer_face_icons.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/editor_redstone_icons.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "semantic-geometry",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/editor_redstone_icons_preview.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/redstone_on_buttons_1to1.png",
+      "same_rgba": false,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 621,
+      "intended_change": "corrected-button-preview",
+      "runtime_rgba_equal": null,
+      "migration_method": "semantic-composition",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/redstone_on_buttons_preview.png",
+      "same_rgba": false,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 39744,
+      "intended_change": "corrected-button-preview",
+      "runtime_rgba_equal": null,
+      "migration_method": "semantic-composition",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/candidate_torch.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/candidate_signal.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/candidate_torch_preview.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "llm-pixel-art/out/candidate_signal_preview.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": null,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/scene_visibility_icons.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "lossless-rectangle-encoding",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_plane_horizontal-v4.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "semantic-mask-atlas",
+      "valid": true
+    },
+    {
+      "output": "src/main/resources/assets/chenamels_nexus/textures/gui/nexus/side_mode_decal_final-v6.png",
+      "same_rgba": true,
+      "original_mode": "RGBA",
+      "new_mode": "RGBA",
+      "changed_pixels": 0,
+      "intended_change": null,
+      "runtime_rgba_equal": true,
+      "migration_method": "semantic-mask-atlas",
+      "valid": true
+    }
+  ],
+  "benchmarks": [
+    {
+      "case": "panel_128x48",
+      "old": {
+        "median_ms": 1.3127499999999999,
+        "p95_ms": 1.832,
+        "samples": 400,
+        "python_peak_bytes": 1569
+      },
+      "new": {
+        "median_ms": 0.1529,
+        "p95_ms": 0.1848,
+        "samples": 400,
+        "python_peak_bytes": 2868
+      },
+      "speedup": 8.58567691301504,
+      "includes_io": false,
+      "includes_process_start": false
+    },
+    {
+      "case": "block_front_16x16",
+      "old": {
+        "median_ms": 0.3163,
+        "p95_ms": 0.3712,
+        "samples": 400,
+        "python_peak_bytes": 4501
+      },
+      "new": {
+        "median_ms": 0.116,
+        "p95_ms": 0.123,
+        "samples": 400,
+        "python_peak_bytes": 3044
+      },
+      "speedup": 2.7267241379310345,
+      "includes_io": false,
+      "includes_process_start": false
+    },
+    {
+      "case": "mode_atlas_80x16",
+      "old": {
+        "median_ms": 0.5078,
+        "p95_ms": 0.7482,
+        "samples": 400,
+        "python_peak_bytes": 9085
+      },
+      "new": {
+        "median_ms": 0.9884,
+        "p95_ms": 1.2597,
+        "samples": 400,
+        "python_peak_bytes": 20591
+      },
+      "speedup": 0.5137596114933226,
+      "includes_io": false,
+      "includes_process_start": false
+    }
+  ],
+  "cold_cli": {
+    "old": {
+      "median_ms": 129.01625,
+      "p95_ms": 138.0342,
+      "samples": 12
+    },
+    "new": {
+      "median_ms": 161.3831,
+      "p95_ms": 170.9641,
+      "samples": 12
+    }
+  },
+  "error_probes": [
+    {
+      "case": "unknown_instruction",
+      "old_rejects": false,
+      "new_rejects": true,
+      "message": "line 2: unknown instruction 'MISTYPED'"
+    },
+    {
+      "case": "invalid_color_suffix",
+      "old_rejects": false,
+      "new_rejects": true,
+      "message": "line 2: color: expected RRGGBB, RRGGBBAA, 3/4 byte channels or null, got 'FF0000XYZ'"
+    },
+    {
+      "case": "repeated_canvas",
+      "old_rejects": false,
+      "new_rejects": true,
+      "message": "line 2: CANVAS must appear exactly once"
+    },
+    {
+      "case": "implicit_clipping",
+      "old_rejects": false,
+      "new_rejects": true,
+      "message": "line 2: bounds: rectangle (0, 0, 18, 18) exceeds canvas (2, 2); use clip=true explicitly"
+    },
+    {
+      "case": "unknown_grid_symbol",
+      "old_rejects": false,
+      "new_rejects": true
+    }
+  ],
+  "rect_probe": {
+    "old_drawn": 0,
+    "new_drawn": 4,
+    "expected": 4
+  },
+  "spec_lengths": {
+    "old_panel_dsl_characters": 143,
+    "new_panel_json_characters": 558
+  },
+  "measurement_limits": [
+    "Python peak excludes native Pillow image buffers",
+    "No token counts or LLM correction-round improvements were measured",
+    "Cold CLI is same asset + preview, not the complete original four-output demo",
+    "Lossless migrated encodings are not independent legacy algorithm rewrites"
+  ]
+}

@@ -58,6 +58,8 @@ Build a tested ZIP with `python -B tools/check.py` after installing the developm
 
 v1.2.0-rc.1 is a candidate: automated checks establish the new measurements and exact round trips. External paired agent trials are pending; workflow time, correction-round savings and general aesthetic improvement are not yet established. The [candidate report and evaluation protocol](docs/audit-v1.2.md) separate measured capabilities from these pending outcomes. The latest stable release remains v1.1.1.
 
+For external testing, use the [Chinese distribution guide and ready-to-copy prompts](docs/agent-testing-guide.zh-CN.md). The optional `tools/prepare_agent_trials.py` splits the released agent bundle into one-package, one-task session ZIPs. Controlled comparisons, open audits, creative trials and independent review have separate prompts and evidence requirements.
+
 In one local Windows comparison with v1.1.0, full render/review command medians increased by 15.0/16.7 ms (about 9%); the sample review JSON grew from 1,237 to 6,999 bytes. Pure rendering was essentially unchanged. These costs are reported separately from agent workflow outcomes.
 
 v1.1.1 fixes null mask outlines, primary review backgrounds, wide-image sheets and output publication failures. It adds precise diagnostics and a Pillow compatibility boundary. See the [external-feedback and reliability report](docs/audit-feedback.md); these fixes make no new aesthetic-improvement claim.

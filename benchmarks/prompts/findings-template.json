@@ -1,0 +1,39 @@
+{
+  "audit_kind": "open_audit",
+  "environment_id": null,
+  "platform": null,
+  "model_visible_name": null,
+  "exact_model_version": null,
+  "can_execute": null,
+  "can_view_images": null,
+  "os": null,
+  "python": null,
+  "pillow": null,
+  "package_sha256": null,
+  "native_or_shim": null,
+  "commands_recorded": null,
+  "elapsed_seconds_measured": null,
+  "tokens_measured": null,
+  "findings": [
+    {
+      "id": "F-001",
+      "title": null,
+      "category": null,
+      "evidence_status": null,
+      "impact_and_priority_reason": null,
+      "input_files": [],
+      "reproduction_commands": [],
+      "expected": null,
+      "actual": null,
+      "exit_code": null,
+      "evidence_files": [],
+      "rect_xywh": null,
+      "suggested_minimal_change": null,
+      "verification": null,
+      "possible_regression": null
+    }
+  ],
+  "working_well": [],
+  "untested": [],
+  "unproven_claims": []
+}

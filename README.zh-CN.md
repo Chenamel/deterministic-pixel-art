@@ -56,6 +56,8 @@ python src/pixel_art.py review --image output/gem.png --out-dir output/gem-revie
 
 自动检查验证测量与精确往返能力；外部 Agent 配对试验尚未完成，暂不宣称减少修改轮次、节省 token 或普遍提高画质。详见[候选版报告与测评流程](docs/audit-v1.2.md)。最新稳定版保持 v1.1.1。
 
+准备交给不同 AI 测评时，使用[分发指南和完整提示词](docs/agent-testing-guide.zh-CN.md)。`tools/prepare_agent_trials.py` 可将已发布 Agent 包拆成“一个版本、一个任务、一个新会话”的 ZIP；固定对照、开放审计、创作研究与独立验收分别记录，便于核对具体改进点。
+
 同机 Windows 对比 v1.1.0，完整 render/review 命令中位耗时分别增加 15.0/16.7 ms（约 9%），样例审阅 JSON 从 1,237 增至 6,999 字节，纯渲染基本持平。这些运行与上下文成本单独披露，不作为 Agent 工作流收益。
 
 v1.1.1 修复空描边、主审阅背景、宽图拼板及文件提交问题，并补充错误定位和 Pillow 兼容检查。详见[外部反馈与可靠性报告](docs/audit-feedback.md)；这些修复不附带新的审美提升结论。

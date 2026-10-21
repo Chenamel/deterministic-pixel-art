@@ -5,6 +5,7 @@ from collections.abc import Mapping
 import re
 
 from PIL import Image, ImageDraw
+from .compat import pixels
 
 
 class PixelArtError(ValueError):
@@ -88,8 +89,7 @@ class Canvas:
     def paint(self, coordinates, fill, *, clip=False):
         boolean(clip, 'clip')
         pts = points(coordinates)
-        if not clip and any(not (0 <= x < self.image.width and 0 <= y < self.image.height) for x, y in pts):
-            raise PixelArtError('bounds: point exceeds canvas; use clip=true explicitly')
+        self._check_points(pts, clip, 'point')
         if pts:
             self.draw.point(pts, fill=color(fill))
 
@@ -107,10 +107,13 @@ class Canvas:
         self._check_points(pts, clip)
         self.draw.polygon(pts, fill=color(fill))
 
-    def _check_points(self, pts, clip):
+    def _check_points(self, pts, clip, label='geometry'):
         boolean(clip, 'clip')
-        if not clip and any(not (0 <= x < self.image.width and 0 <= y < self.image.height) for x, y in pts):
-            raise PixelArtError('bounds: geometry exceeds canvas; use clip=true explicitly')
+        if not clip:
+            for x, y in sorted(pts):
+                if not (0 <= x < self.image.width and 0 <= y < self.image.height):
+                    raise PixelArtError(f'bounds: {label} point {(x, y)} exceeds canvas '
+                                        f'{self.image.size}; use clip=true explicitly')
 
     def bevel(self, x, y, w, h, top_left, bottom_right, thickness=1, *, clip=False):
         self._box(x, y, w, h, clip)
@@ -126,10 +129,10 @@ class Canvas:
 
     def mask(self, coordinates, fill, outline_color=None, *, neighborhood=8, thickness=1, clip=False):
         body = set(points(coordinates))
-        self._check_points(body, clip)
+        self._check_points(body, clip, 'mask body')
         if outline_color is not None:
             edge = _outline_validated(body, neighborhood, thickness)
-            self._check_points(edge, clip)
+            self._check_points(edge, clip, 'mask outline')
             if edge:
                 self.draw.point(list(edge), fill=color(outline_color))
         if body:
@@ -186,7 +189,7 @@ def validate(image, rules=None):
     if unknown:
         raise PixelArtError(f'rules: unknown fields {sorted(unknown)}')
     rgba = image.convert('RGBA')
-    colors = set(rgba.get_flattened_data())
+    colors = set(pixels(rgba))
     alpha = sorted({c[3] for c in colors})
     errors = []
 

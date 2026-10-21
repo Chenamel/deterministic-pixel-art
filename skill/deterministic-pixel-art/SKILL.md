@@ -24,7 +24,7 @@ For a new sprite or icon, compare two silhouette ideas when the shape is uncerta
 
 Read [formats.md](references/formats.md) for the chosen format or API. Use grid + palette for small sprites, draw operations for geometric components, masks for irregular silhouettes, and named atlases for equal-size states. Mirror only genuinely symmetric forms. Use the compact DSL for simple Minecraft panels. Rectangle arguments are `x, y, width, height`; unknown symbols and implicit clipping are errors.
 
-Resolve `scripts/pixel_art.py` relative to this skill, not the working directory. Use an available Python with Pillow; if needed, install `requirements.txt` in a task-local virtual environment.
+Resolve `scripts/pixel_art.py` relative to this skill, not the working directory. Use Python 3.10+ with Pillow >=10.4,<13; Pillow 12.3.0 is the reproducibility baseline. If needed, install `requirements.txt` in a task-local virtual environment.
 
 ```text
 python <skill>/scripts/pixel_art.py render --spec scene.json --out sprite.png --preview preview.png --metadata layout.json

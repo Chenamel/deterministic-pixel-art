@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1
+
+- Fix null mask outlines, contextual background selection and bounded wide-image review sheets.
+- Stage output groups, reserve concurrent writers and roll back normal commit failures; preserve single-file atomic publication.
+- Improve bounds/DSL/deep-JSON errors and missing-Pillow guidance; retain replace versus source-over semantics.
+- Support the Pillow 10.4/11.3/12.1 compatibility matrix alongside the 12.3 baseline, and preserve POSIX virtualenv interpreter paths.
+- These are reliability improvements; no new general aesthetic-quality claim is made.
+
 ## 1.1.0
 
 - Promote the verified release candidate without changing its artwork or review behavior.

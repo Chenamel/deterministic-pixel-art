@@ -198,7 +198,7 @@ def _render(spec, depth):
                 fields(op, ('op', 'points', 'color'), opts + (('outline', 'neighborhood', 'thickness') if name == 'mask' else ()))
                 if name == 'mask':
                     cv.mask(op['points'], resolve(op['color']),
-                            resolve(op['outline']) if 'outline' in op else None,
+                            resolve(op['outline']) if op.get('outline') is not None else None,
                             neighborhood=op.get('neighborhood', 8), thickness=op.get('thickness', 1), clip=clip)
                 else:
                     getattr(cv, 'paint' if name == 'points' else name)(op['points'], resolve(op['color']), clip=clip)
@@ -224,5 +224,8 @@ def _render(spec, depth):
             else:
                 raise PixelArtError(f'unknown operation {name!r}')
         except (ValueError, TypeError, KeyError) as exc:
-            raise PixelArtError(f'{location}: {exc}') from exc
+            message = str(exc)
+            if location.startswith('line '):
+                message = message.replace('; use clip=true explicitly', '; adjust coordinates or use JSON with clip=true')
+            raise PixelArtError(f'{location}: {message}') from exc
     return cv.image

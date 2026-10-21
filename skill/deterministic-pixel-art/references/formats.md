@@ -49,7 +49,9 @@ Commands: `CANVAS w h`, `BG color`, `RECT x y w h color`, `BEVEL x y w h tl br t
 
 ## Validation
 
-`validate(image, rules)` returns `{valid, errors: [{rule,message}], facts: {size,mode,colors,alpha}}`. Invalid rule syntax raises `PixelArtError`; image contract violations set valid=false. The CLI exits 0 for success, 1 for a contract violation and 2 for input/I/O errors. No output files are created when rendering/specification validation fails; filesystem failures can leave already-written files.
+`validate(image, rules)` returns `{valid, errors: [{rule,message}], facts: {size,mode,colors,alpha}}`. Invalid rule syntax raises `PixelArtError`; image contract violations set valid=false. The CLI exits 0 for success, 1 for a contract violation and 2 for input/I/O errors. All artifacts are encoded and staged before publication. Each file is published atomically; cooperating writers reserve targets. No-force publication uses exclusive hard links and fails on filesystems without that support. Normal commit failures attempt rollback and report actual paths; this is not a crash-safe multi-file transaction. A crash may leave sibling `.pixelart.lock`/temporary files; inspect the owning process before removing them.
+
+Drawing primitives replace RGBA bytes, including partial alpha. `blit`/`Canvas.composite` use source-over compositing. For an overlay, draw onto a transparent nested `draw` source and `blit` it onto the destination. `mask` with omitted or null outline has no edge; an explicit `00000000` outline paints transparent pixels.
 
 Rules (all optional): `size: [w,h]`, `mode: RGBA`, `alpha: [0,255]`, `palette: [colors...]`, positive `max_colors`, boolean `nonempty`, `cell_size: [w,h]`, integer `transparent_margin`, and `expected_pixels: [{at:[x,y],color:...}]`. Cell size must divide the canvas; margins apply to every cell, not only the outer image border. Palette checks count complete RGBA values, including transparent pixels. State meaning/order comes from atlas metadata and the consumer's contract, not image-only validation.
 

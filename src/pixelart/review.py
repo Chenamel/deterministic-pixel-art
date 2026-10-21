@@ -7,6 +7,7 @@ import math
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from .core import PixelArtError, color, dimensions, integer, pair
+from .compat import pixels
 
 
 def _fields(value, required=(), optional=(), where='context'):
@@ -62,7 +63,7 @@ def contrast(fg,bg):
 
 def _context(value,size):
     value={} if value is None else value
-    _fields(value,optional=('version','asset_type','backgrounds','atlas','regions',
+    _fields(value,optional=('version','asset_type','backgrounds','primary_background','atlas','regions',
                             'contrast_pairs','allowed_specks'))
     if type(value.get('version',1)) is not int or value.get('version',1)!=1:
         raise PixelArtError('context.version: only integer 1 is supported')
@@ -75,6 +76,9 @@ def _context(value,size):
         name=_name(item['name'],'background.name')
         if name in names: raise PixelArtError('background.name: names must be unique, including dark/light')
         names.add(name); backgrounds.append(dict(name=name,color=_opaque(item['color'],'background.color')))
+    primary=value.get('primary_background', backgrounds[2]['name'] if len(backgrounds)>2 else 'dark')
+    if not isinstance(primary,str) or primary not in names:
+        raise PixelArtError('primary_background: expected a declared background name')
     cells=[]
     if 'atlas' in value:
         layout=value['atlas']; _fields(layout,('cell_size','columns','rows','cells'),where='atlas')
@@ -118,7 +122,7 @@ def _context(value,size):
         fg=color(item['foreground']); bg=_opaque(item['background'],'contrast_pair.background')
         pairs.append(dict(name=name,foreground=list(fg),background=list(bg),min_ratio=minimum,
                           ratio=contrast(fg,bg),rect=_box(item['rect'],size,'contrast_pair.rect') if 'rect' in item else None))
-    return dict(asset_type=kind,backgrounds=backgrounds,cells=cells,regions=regions,
+    return dict(asset_type=kind,backgrounds=backgrounds,primary_background=primary,cells=cells,regions=regions,
                 allowed_specks=allowed,contrast_pairs=pairs)
 
 
@@ -129,7 +133,7 @@ def _crop(image,rect):
 
 def _visual_bytes(image):
     # RGB under alpha=0 has no visible meaning. Preserve all partially visible RGB.
-    return bytes(v for rgba in image.get_flattened_data() for v in ((0,0,0,0) if rgba[3]==0 else rgba))
+    return bytes(v for rgba in pixels(image) for v in ((0,0,0,0) if rgba[3]==0 else rgba))
 
 
 def _specks(image,scopes,allowed):
@@ -161,7 +165,8 @@ def _label(name):
 def _sheet(image,ctx,report,difference):
     w,h=image.size
     scale=max(1,min(8,512//max(w,h)))
-    base=_composite(image,ctx['backgrounds'][0]['color'])
+    primary=next(bg['color'] for bg in ctx['backgrounds'] if bg['name']==ctx['primary_background'])
+    base=_composite(image,primary)
     checker=Image.new('RGBA',image.size,'#2C2C2C'); pen=ImageDraw.Draw(checker)
     for y in range(0,h,4):
         for x in range(0,w,4):
@@ -172,7 +177,7 @@ def _sheet(image,ctx,report,difference):
     views += [('grayscale / context only',ImageOps.grayscale(base).convert('RGBA'),scale)]
     if ctx['asset_type']=='sprite':
         silhouette=Image.new('RGBA',image.size,'#E9EDF2');silhouette.putalpha(image.getchannel('A'))
-        views.append(('alpha silhouette',_composite(silhouette,ctx['backgrounds'][0]['color']),scale))
+        views.append(('alpha silhouette',_composite(silhouette,primary),scale))
     annotated=base.copy();pen=ImageDraw.Draw(annotated)
     for cell in ctx['cells']:
         x,y,cw,ch=cell['rect'];pen.rectangle((x,y,x+cw-1,y+ch-1),outline='#F5C26B')
@@ -186,10 +191,33 @@ def _sheet(image,ctx,report,difference):
     for i,cell in enumerate(ctx['cells']):
         piece=_crop(base,cell['rect'])
         views.append((f"cell {i+1}: {_label(cell['name'])}",piece,scale))
-    card_w=max(240,max(im.width*s for _,im,s in views))+16
-    card_h=max(im.height*s for _,im,s in views)+44
-    columns=min(3,len(views));rows=(len(views)+columns-1)//columns
-    size=dimensions((card_w*columns,card_h*rows+32))
+    def fit(items, maximum_columns):
+        cw=max(240,max(im.width*s for _,im,s in items))+16
+        ch=max(im.height*s for _,im,s in items)+44
+        for cols in range(min(maximum_columns,len(items)),0,-1):
+            size=(cw*cols,ch*((len(items)+cols-1)//cols)+32)
+            if max(size)<=8192 and size[0]*size[1]<=16_777_216:
+                return cw,ch,cols,size
+        return None
+    layout=fit(views,3)
+    manifest=[]
+    if layout is None:
+        # Keep bounded native crops plus a labeled overview, never an implicit
+        # resize of a card claiming to be native 1:1.
+        overview=base.copy();overview.thumbnail((128,128),Image.Resampling.NEAREST)
+        cropped=[('full image / nearest thumbnail',overview,1)]
+        manifest.append(dict(label='full image / nearest thumbnail',source_rect=[0,0,w,h],downsampled=True))
+        for label,im,_ in views:
+            cw,ch=min(128,im.width),min(128,im.height)
+            cropped.append((label+f' / native crop [0,0,{cw},{ch}]',im.crop((0,0,cw,ch)),1))
+            manifest.append(dict(label=label,source_rect=[0,0,cw,ch],scale=1,
+                                 cropped=(cw,ch)!=im.size))
+        views=cropped
+        layout=fit(views,8)
+    else:
+        manifest=[dict(label=label,source_rect=[0,0,*im.size],scale=s,cropped=False) for label,im,s in views]
+    card_w,card_h,columns,size=layout
+    report['facts']['review_views']=manifest
     sheet=Image.new('RGB',size,'#101827');pen=ImageDraw.Draw(sheet);font=ImageFont.load_default(size=12)
     pen.text((8,8),'ADVISORY REVIEW - overlays and diagnostics are separate from source art',fill='#E9EDF2',font=font)
     for i,(label,im,s) in enumerate(views):
@@ -229,7 +257,7 @@ def review(image,context=None,comparison=None):
         comparison_report=dict(changed_visible_pixels=sum(mask.histogram()[1:]),bbox=mask.getbbox(),
                                note='Pixel changes do not establish better artwork.')
     facts=dict(size=list(image.size),mode=image.mode,asset_type=ctx['asset_type'],
-        backgrounds=ctx['backgrounds'],isolated_pixels=speck_count,
+        backgrounds=ctx['backgrounds'],primary_background=ctx['primary_background'],isolated_pixels=speck_count,
         omitted_isolated_warnings=max(0,speck_count-256),cells=ctx['cells'],regions=ctx['regions'],
         contrast_pairs=ctx['contrast_pairs'],allowed_specks=[list(p) for p in sorted(ctx['allowed_specks'])])
     report=dict(version=1,advisory=True,facts=facts,warnings=warnings,comparison=comparison_report,

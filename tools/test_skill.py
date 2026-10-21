@@ -15,6 +15,11 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def invocation_path(path):
+    """Absolute invocation path, deliberately preserving a venv symlink."""
+    return Path(os.path.abspath(path))
+
+
 def nonportable_host_path(text):
     # Citations are URLs, not machine paths; avoid matching the s:/ in https://.
     without_urls = re.sub(r'https?://\S+', '', text)
@@ -169,4 +174,5 @@ if __name__ == '__main__':
     parser.add_argument('--python', type=Path, required=True)
     parser.add_argument('--validator', type=Path, help='Optional external skill-creator validator')
     args = parser.parse_args()
-    main(args.python.resolve(), args.validator.resolve() if args.validator else None)
+    # POSIX venv interpreters are symlinks: keep the invocation path, not its target.
+    main(invocation_path(args.python), args.validator.resolve() if args.validator else None)

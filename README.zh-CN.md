@@ -51,6 +51,8 @@ python src/pixel_art.py review --image output/gem.png --out-dir output/gem-revie
 
 ## 实测收益与代价
 
+v1.1.1 修复空描边、主审阅背景、宽图拼板及文件提交问题，并补充错误定位和 Pillow 兼容检查。详见[外部反馈与可靠性报告](docs/audit-feedback.md)；这些修复不附带新的审美提升结论。
+
 本次质量更新增加按任务选择的创作指导、八项原创可编辑范例及上下文审阅工具。八项前后对照的**作者代理自评**中，六项改善、两项保持原像素；**v1.0.0 的 43 张迁移产物全部保持像素兼容**。JSON v1、现有 Python 公共接口与旧命令行为保留。样本有限且未盲评，不能据此证明模型的通用画质提高；未做真实字体适配和游戏内验收。详见[质量报告](docs/quality-report.zh-CN.md)、[英文报告](docs/quality-report.md)和[原始结果](docs/measurements/visual-quality.json)。
 
 以下是此前渲染优化的独立历史比较：

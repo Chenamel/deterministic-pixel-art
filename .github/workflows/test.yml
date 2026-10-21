@@ -22,3 +22,22 @@ jobs:
           cache: pip
       - run: python -m pip install -r requirements-dev.txt
       - run: python -B tools/check.py
+  compatibility:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        runtime:
+          - {python: '3.10', pillow: '10.4.0'}
+          - {python: '3.12', pillow: '11.3.0'}
+          - {python: '3.13', pillow: '12.1.0'}
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: ${{ matrix.runtime.python }}
+      - run: python -m pip install Pillow==${{ matrix.runtime.pillow }} PyYAML==6.0.3
+      - run: python -B -W error -m unittest discover -s tests -q

@@ -8,7 +8,7 @@ Create editable pixel-art PNGs from character grids, integer drawing commands, m
 
 ## Quick start
 
-The tested runtime is Python 3.14.2 with Pillow 12.3.0. From a checkout, create a virtual environment and activate it:
+The reproducibility baseline is Python 3.14.2 with Pillow 12.3.0. Runtime compatibility checks also cover Pillow 10.4, 11.3 and 12.1 on Python 3.10+. From a checkout, create a virtual environment and activate it:
 
 ```sh
 python -m venv .venv
@@ -52,6 +52,8 @@ Example request: “Use `$deterministic-pixel-art` to create four 16×16 directi
 Build a tested ZIP with `python -B tools/check.py` after installing the development dependencies below. The ZIP is generated locally, rather than committed. No global skill installation happens during the checks.
 
 ## What improved, and what did not
+
+v1.1.1 fixes null mask outlines, primary review backgrounds, wide-image sheets and output publication failures. It adds precise diagnostics and a Pillow compatibility boundary. See the [external-feedback and reliability report](docs/audit-feedback.md); these fixes make no new aesthetic-improvement claim.
 
 The visual-quality update adds task-specific art direction, eight original editable studies and contextual review. In an **author self-review of eight paired tasks**, six were preferred and two retained their exact pixels. All **43 v1.0.0 migration outputs remain pixel-compatible**. JSON v1, existing public Python interfaces and previous commands are preserved. This is a small, unblinded authored study, not independent evidence of a general model-quality improvement. Actual fonts and in-game integration were not tested. See the [quality report](docs/quality-report.md), [Chinese report](docs/quality-report.zh-CN.md) and [raw study results](docs/measurements/visual-quality.json).
 

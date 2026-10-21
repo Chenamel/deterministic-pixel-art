@@ -6,6 +6,8 @@ import sys
 
 from PIL import Image, UnidentifiedImageError
 from . import PixelArtError, make_preview, render, validate
+from .compat import require_pillow
+from .output import publish
 
 
 def read_json(path):
@@ -16,7 +18,10 @@ def read_json(path):
                 raise PixelArtError(f'duplicate JSON key: {key}')
             result[key] = value
         return result
-    return json.loads(Path(path).read_text(encoding='utf-8-sig'), object_pairs_hook=unique)
+    try:
+        return json.loads(Path(path).read_text(encoding='utf-8-sig'), object_pairs_hook=unique)
+    except RecursionError as exc:
+        raise PixelArtError('JSON nesting exceeds the decoder limit; simplify the input') from exc
 
 
 def main(argv=None):
@@ -47,6 +52,7 @@ def main(argv=None):
     review_cmd.add_argument('--force', action='store_true')
     args = parser.parse_args(argv)
     try:
+        require_pillow()
         if args.command == 'review':
             # Keep the optional review module out of existing render/validate startup.
             from .review import review
@@ -67,12 +73,7 @@ def main(argv=None):
                 raise PixelArtError('review outputs must not replace inputs')
             if not args.force and any(p.exists() for p in destinations.values()):
                 raise PixelArtError('review output already exists; choose another directory or use --force')
-            args.out_dir.mkdir(parents=True, exist_ok=True)
-            for name, artifact in artifacts.items():
-                if isinstance(artifact, dict):
-                    destinations[name].write_text(json.dumps(artifact, ensure_ascii=False, indent=2), encoding='utf-8')
-                else:
-                    artifact.save(destinations[name], format='PNG')
+            publish({destinations[name]: artifact for name, artifact in artifacts.items()}, force=args.force)
             print(json.dumps({'advisory': True, 'warnings': len(report['warnings']),
                               'outputs': {k: str(v) for k,v in destinations.items()}}, ensure_ascii=False))
             return 0
@@ -95,14 +96,12 @@ def main(argv=None):
             enlarged = make_preview(image, args.scale) if args.preview else None
             metadata = {'size': list(image.size), 'mode': image.mode,
                         'atlas': image.info.get('pixelart')}
-            # All rendering/validation and path checks complete before any file write.
-            for path in outputs:
-                path.parent.mkdir(parents=True, exist_ok=True)
-            image.save(args.out, format='PNG')
+            artifacts = {args.out: image}
             if enlarged:
-                enlarged.save(args.preview, format='PNG')
+                artifacts[args.preview] = enlarged
             if args.metadata:
-                args.metadata.write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding='utf-8')
+                artifacts[args.metadata] = metadata
+            publish(artifacts, force=args.force)
             print(json.dumps({'output': str(args.out.resolve()), **metadata}, ensure_ascii=False))
         else:
             with Image.open(args.image) as opened:
@@ -112,8 +111,7 @@ def main(argv=None):
                 print(json.dumps(report, ensure_ascii=False))
                 return 0 if report['valid'] else 1
             image = make_preview(image, args.scale, None if args.background == 'transparent' else args.background)
-            args.out.parent.mkdir(parents=True, exist_ok=True)
-            image.save(args.out, format='PNG')
+            publish({args.out: image}, force=args.force)
             print(json.dumps({'output': str(args.out.resolve()), 'size': list(image.size)}, ensure_ascii=False))
         return 0
     except (PixelArtError, OSError, ValueError, UnidentifiedImageError) as exc:

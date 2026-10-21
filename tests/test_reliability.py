@@ -92,7 +92,7 @@ class ReliabilityTests(unittest.TestCase):
             a.write_bytes(b'old-a'); b.write_bytes(b'old-b')
             replace = os.replace
             def fail_second(source, target):
-                if Path(target) == b and str(source).endswith('.tmp'):
+                if Path(target).resolve() == b.resolve() and str(source).endswith('.tmp'):
                     raise OSError('injected second commit failure')
                 return replace(source, target)
             with patch('pixelart.output.os.replace', side_effect=fail_second):
@@ -120,13 +120,13 @@ raise SystemExit(main(sys.argv[3:]))
 '''
             arguments=['render','--spec',str(spec),'--out',str(out)]
             first=subprocess.Popen([sys.executable,'-B','-c',code,str(ROOT/'src'),str(ready),*arguments],
-                stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+                stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,encoding='utf-8')
             try:
                 deadline=time.monotonic()+10
                 while not ready.exists() and time.monotonic()<deadline and first.poll() is None:
                     time.sleep(.01)
                 self.assertTrue(ready.exists())
-                second=subprocess.run([sys.executable,'-B',str(CLI),*arguments],capture_output=True,text=True,timeout=15)
+                second=subprocess.run([sys.executable,'-B',str(CLI),*arguments],capture_output=True,text=True,encoding='utf-8',timeout=15)
                 self.assertEqual(second.returncode,2,second.stderr)
                 stdout,stderr=first.communicate('\n',timeout=15)
                 self.assertEqual(first.returncode,0,stderr)

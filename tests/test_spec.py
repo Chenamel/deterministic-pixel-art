@@ -28,7 +28,7 @@ class SpecificationTests(unittest.TestCase):
 
     def test_dsl_rect_is_actually_rendered(self):
         image = render('CANVAS 4 3\nRECT 1 1 2 1 FF0000\n')
-        self.assertEqual(sum(p[3] > 0 for p in image.get_flattened_data()), 2)
+        self.assertEqual(sum(image.getchannel('A').histogram()[1:]), 2)
         self.assertEqual(image.getpixel((2, 1)), color('FF0000'))
 
     def test_dsl_errors_include_locations(self):

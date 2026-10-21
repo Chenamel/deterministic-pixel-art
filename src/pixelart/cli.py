@@ -25,6 +25,10 @@ def read_json(path):
 
 
 def main(argv=None):
+    # JSON and Unicode paths have a stable wire encoding even on legacy Windows locales.
+    for stream in (sys.stdout,sys.stderr):
+        if hasattr(stream,'reconfigure'):
+            stream.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description='Deterministic pixel asset renderer (JSON v1 / DSL).')
     commands = parser.add_subparsers(dest='command', required=True)
     draw = commands.add_parser('render')

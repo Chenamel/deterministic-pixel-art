@@ -10,6 +10,8 @@ Outputs: `report.json`, `review.png`, plus `difference.png` when comparing. View
 
 ## Context v1
 
+`--metadata layout.json` can reuse render output; embedded layouts are read automatically. Conflicting layouts or stale pixel digests are errors. Legacy sidecars are marked unverified. The additive `analysis` report uses the same measurements as `inspect`; see [text-workflow.md](text-workflow.md).
+
 All fields are optional. Unknown fields are errors. Coordinates are native; rectangles are `[x,y,width,height]`, positive extents, inside the image.
 
 ```json

@@ -20,6 +20,7 @@ Windows PowerShell 激活：`.\.venv\Scripts\Activate.ps1`；macOS/Linux shell�
 python -m pip install -r requirements.txt
 python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png --preview output/gem-preview.png
 python src/pixel_art.py validate --image output/gem.png
+python src/pixel_art.py inspect --image output/gem.png --grid
 python src/pixel_art.py review --image output/gem.png --out-dir output/gem-review
 ```
 
@@ -51,6 +52,12 @@ python src/pixel_art.py review --image output/gem.png --out-dir output/gem-revie
 
 ## 实测收益与代价
 
+**v1.2.0-rc.1 候选版**增加像素文本分析、无损 PNG 导入和布局复用。已有 PNG 可先用 `import --image existing.png --out editable.json` 转为规格，修改并渲染候选，再用 `inspect --compare existing.png` 检查。保持解码后的 8 位 RGBA，包括透明像素下的 RGB，不自动减色。详见[纯文本工作流](skill/deterministic-pixel-art/references/text-workflow.md)。
+
+自动检查验证测量与精确往返能力；外部 Agent 配对试验尚未完成，暂不宣称减少修改轮次、节省 token 或普遍提高画质。详见[候选版报告与测评流程](docs/audit-v1.2.md)。最新稳定版保持 v1.1.1。
+
+同机 Windows 对比 v1.1.0，完整 render/review 命令中位耗时分别增加 15.0/16.7 ms（约 9%），样例审阅 JSON 从 1,237 增至 6,999 字节，纯渲染基本持平。这些运行与上下文成本单独披露，不作为 Agent 工作流收益。
+
 v1.1.1 修复空描边、主审阅背景、宽图拼板及文件提交问题，并补充错误定位和 Pillow 兼容检查。详见[外部反馈与可靠性报告](docs/audit-feedback.md)；这些修复不附带新的审美提升结论。
 
 本次质量更新增加按任务选择的创作指导、八项原创可编辑范例及上下文审阅工具。八项前后对照的**作者代理自评**中，六项改善、两项保持原像素；**v1.0.0 的 43 张迁移产物全部保持像素兼容**。JSON v1、现有 Python 公共接口与旧命令行为保留。样本有限且未盲评，不能据此证明模型的通用画质提高；未做真实字体适配和游戏内验收。详见[质量报告](docs/quality-report.zh-CN.md)、[英文报告](docs/quality-report.md)和[原始结果](docs/measurements/visual-quality.json)。
@@ -76,7 +83,7 @@ python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
-检查包含 33 个单元测试、43 张逐图回归、86 个历史夹具文件和八项冻结研究基线的完整性校验、基准测试、可复现 ZIP 打包及 37 项独立目录包执行检查。工作目录含中文和空格，不依赖原模组路径或 Codex 安装；产物写入被 Git 忽略的 `output/` 与 `evaluation/`。
+检查包含 61 个单元测试、43 张逐图回归、86 个历史夹具文件和八项冻结研究基线的完整性校验、八项无损导入/分析场景、基准测试、可复现 ZIP 打包及 45 项独立目录包执行检查。工作目录含中文和空格，不依赖原模组路径或 Codex 安装；产物写入被 Git 忽略的 `output/` 与 `evaluation/`。
 
 如有 skill-creator 官方校验器，可追加执行：
 

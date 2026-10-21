@@ -102,6 +102,22 @@ def main(python, validator):
             particle.save(warning_image)
         run('packaged-advisory-warning-exit-zero', [cli, 'review', '--image', warning_image,
             '--out-dir', folder / 'warning-review'])
+        inspection=folder/'pixel-facts.json'
+        run('packaged-inspect-grid', [cli,'inspect','--image',warning_image,'--grid','--out',inspection])
+        assert json.loads(inspection.read_text(encoding='utf-8'))['facts']['bbox']==[1,1,1,1]
+        imported=folder/'imported.json';roundtrip=folder/'roundtrip.png'
+        run('packaged-lossless-import',[cli,'import','--image',warning_image,'--out',imported])
+        run('packaged-import-render',[cli,'render','--spec',imported,'--out',roundtrip])
+        with Image.open(warning_image) as a,Image.open(roundtrip) as b:
+            assert a.convert('RGBA').tobytes()==b.convert('RGBA').tobytes()
+        run('packaged-import-no-clobber',[cli,'import','--image',warning_image,'--out',imported],expected=2)
+        run('packaged-inspect-input-alias',[cli,'inspect','--image',warning_image,'--out',warning_image,'--force'],expected=2)
+        embedded=folder/'embedded-atlas.png'
+        run('packaged-embed-layout',[cli,'render','--spec',skill/'assets/minecraft-button-states.json',
+            '--out',embedded,'--embed-metadata'])
+        run('packaged-auto-layout-cell',[cli,'inspect','--image',embedded,'--cell','selected','--grid'])
+        run('packaged-sidecar-layout-review',[cli,'review','--image',folder/'输出 results/minecraft-button-states.png',
+            '--metadata',folder/'输出 results/minecraft-button-states.json','--out-dir',folder/'sidecar-review'])
         bad_context = folder / 'bad-context.json'
         bad_context.write_text('{"atlas":{}}', encoding='utf-8')
         run('packaged-bad-context-no-output', [cli, 'review', '--image', warning_image,

@@ -1,0 +1,52 @@
+{
+  "baseline_commit": "f6a75287182e16ecd9d6d0a1613bd0360ade51a8",
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "pillow": "12.3.0",
+  "environment": "one local Windows host; alternating processes, two warmups, 12 measured pairs",
+  "kernel_render": {
+    "v1.1.0": {
+      "samples": 200,
+      "median_ms": 0.07705000462010503,
+      "p95_ms": 0.08270004764199257
+    },
+    "candidate": {
+      "samples": 200,
+      "median_ms": 0.07650000043213367,
+      "p95_ms": 0.09139999747276306
+    }
+  },
+  "cli": {
+    "v1.1.0": {
+      "render": {
+        "samples": 12,
+        "median_ms": 165.00755003653467,
+        "p95_ms": 179.6161999227479
+      },
+      "review": {
+        "samples": 12,
+        "median_ms": 177.75410000467673,
+        "p95_ms": 204.80439998209476
+      }
+    },
+    "candidate": {
+      "render": {
+        "samples": 12,
+        "median_ms": 180.03220000537112,
+        "p95_ms": 190.50210004206747
+      },
+      "review": {
+        "samples": 12,
+        "median_ms": 194.4073499762453,
+        "p95_ms": 203.7459999555722
+      }
+    }
+  },
+  "review_json_bytes": {
+    "v1.1.0": 1237,
+    "candidate": 6999
+  },
+  "default_png_bytes_equal": true,
+  "workflow_time_measured": false,
+  "token_savings_measured": false,
+  "limits": "Process and kernel timings are not agent correction-round or aesthetic evidence."
+}

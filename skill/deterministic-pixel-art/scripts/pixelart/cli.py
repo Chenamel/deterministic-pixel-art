@@ -8,20 +8,21 @@ from PIL import Image, UnidentifiedImageError
 from . import PixelArtError, make_preview, render, validate
 from .compat import require_pillow
 from .output import publish
+from .jsonio import read_json
 
 
-def read_json(path):
-    def unique(pairs):
-        result = {}
-        for key, value in pairs:
-            if key in result:
-                raise PixelArtError(f'duplicate JSON key: {key}')
-            result[key] = value
-        return result
-    try:
-        return json.loads(Path(path).read_text(encoding='utf-8-sig'), object_pairs_hook=unique)
-    except RecursionError as exc:
-        raise PixelArtError('JSON nesting exceeds the decoder limit; simplify the input') from exc
+def check_alias(inputs, outputs):
+    inputs={Path(p).resolve() for p in inputs if p is not None}
+    outputs=[Path(p).resolve() for p in outputs if p is not None]
+    if len(set(outputs))!=len(outputs) or inputs & set(outputs):
+        raise PixelArtError('output paths must be distinct and must not replace inputs')
+
+
+def read_image(path):
+    from .core import dimensions
+    with Image.open(path) as opened:
+        dimensions(opened.size)
+        return opened.copy()
 
 
 def main(argv=None):
@@ -36,6 +37,7 @@ def main(argv=None):
     draw.add_argument('--out', type=Path, required=True)
     draw.add_argument('--preview', type=Path)
     draw.add_argument('--metadata', type=Path)
+    draw.add_argument('--embed-metadata', action='store_true')
     draw.add_argument('--scale', type=int, default=8)
     draw.add_argument('--rules', type=Path)
     draw.add_argument('--force', action='store_true')
@@ -53,25 +55,65 @@ def main(argv=None):
     review_cmd.add_argument('--out-dir', type=Path, required=True)
     review_cmd.add_argument('--context', type=Path)
     review_cmd.add_argument('--compare', type=Path)
+    review_cmd.add_argument('--metadata', type=Path)
     review_cmd.add_argument('--force', action='store_true')
+    inspect_cmd=commands.add_parser('inspect',help='Bounded pixel facts and optional exact symbol grid.')
+    inspect_cmd.add_argument('--image',type=Path,required=True)
+    inspect_cmd.add_argument('--context',type=Path)
+    inspect_cmd.add_argument('--metadata',type=Path)
+    inspect_cmd.add_argument('--compare',type=Path)
+    scope=inspect_cmd.add_mutually_exclusive_group()
+    scope.add_argument('--region',type=int,nargs=4,metavar=('X','Y','W','H'))
+    scope.add_argument('--cell')
+    inspect_cmd.add_argument('--grid',action='store_true')
+    inspect_cmd.add_argument('--out',type=Path)
+    inspect_cmd.add_argument('--force',action='store_true')
+    ingest_cmd=commands.add_parser('import',help='Lossless decoded 8-bit PNG to an editable JSON v1 spec.')
+    ingest_cmd.add_argument('--image',type=Path,required=True)
+    ingest_cmd.add_argument('--out',type=Path,required=True)
+    ingest_cmd.add_argument('--region',type=int,nargs=4,metavar=('X','Y','W','H'))
+    ingest_cmd.add_argument('--force',action='store_true')
     args = parser.parse_args(argv)
     try:
         require_pillow()
+        if args.command=='inspect':
+            from .analysis import inspect_image
+            check_alias([args.image,args.context,args.metadata,args.compare],[args.out])
+            report=inspect_image(read_image(args.image),read_json(args.context) if args.context else None,
+                region=args.region,cell=args.cell,grid=args.grid,
+                comparison=read_image(args.compare) if args.compare else None,
+                metadata=read_json(args.metadata) if args.metadata else None)
+            if args.out:
+                publish({args.out:report},force=args.force)
+                print(json.dumps(dict(output=str(args.out.resolve()),advisory=True)))
+            else:print(json.dumps(report,ensure_ascii=False,indent=2))
+            return 0
+        if args.command=='import':
+            from .ingest import image_to_spec,spec_bytes
+            check_alias([args.image],[args.out])
+            with args.image.open('rb') as handle:header=handle.read(33)
+            if len(header)<33 or header[:8]!=b'\x89PNG\r\n\x1a\n' or header[12:16]!=b'IHDR':
+                raise PixelArtError('import: expected a PNG input')
+            if header[24]>8:raise PixelArtError('import: PNG bit depth above 8 is not supported')
+            with Image.open(args.image) as opened:
+                spec=image_to_spec(opened,region=args.region)
+            publish({args.out:spec_bytes(spec)},force=args.force)
+            print(json.dumps(dict(output=str(args.out.resolve()),kind=spec['kind'],size=spec['size'],lossless_rgba=True)))
+            return 0
         if args.command == 'review':
             # Keep the optional review module out of existing render/validate startup.
             from .review import review
-            with Image.open(args.image) as opened:
-                source = opened.copy()
+            source = read_image(args.image)
             comparison = None
             if args.compare:
-                with Image.open(args.compare) as opened:
-                    comparison = opened.copy()
+                comparison = read_image(args.compare)
             report, sheet, difference = review(source,
-                read_json(args.context) if args.context else None, comparison)
+                read_json(args.context) if args.context else None, comparison,
+                metadata=read_json(args.metadata) if args.metadata else None)
             artifacts = {'report.json': report, 'review.png': sheet}
             if difference is not None:
                 artifacts['difference.png'] = difference
-            inputs = {p.resolve() for p in (args.image, args.context, args.compare) if p}
+            inputs = {p.resolve() for p in (args.image, args.context, args.compare,args.metadata) if p}
             destinations = {name: (args.out_dir / name).resolve() for name in artifacts}
             if inputs & set(destinations.values()):
                 raise PixelArtError('review outputs must not replace inputs')
@@ -98,9 +140,9 @@ def main(argv=None):
                 print(json.dumps(report, ensure_ascii=False))
                 return 1
             enlarged = make_preview(image, args.scale) if args.preview else None
-            metadata = {'size': list(image.size), 'mode': image.mode,
-                        'atlas': image.info.get('pixelart')}
-            artifacts = {args.out: image}
+            from .metadata import layout_record,encode_png
+            metadata = layout_record(image)
+            artifacts = {args.out: encode_png(image,metadata) if args.embed_metadata else image}
             if enlarged:
                 artifacts[args.preview] = enlarged
             if args.metadata:

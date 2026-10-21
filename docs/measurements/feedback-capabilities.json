@@ -1,0 +1,74 @@
+{
+  "version": "1.2.0-rc.1",
+  "artifact_checks_passed": true,
+  "cases": [
+    {
+      "task": "directions-12",
+      "lossless_rgba": true,
+      "shared_review_analysis": true,
+      "bounded_grid": true,
+      "cells": 4,
+      "source_sha256": "bbc308c8d83e8e39b48b833914abb0e5ae74a84de3336e3add61fbca6890a8ad"
+    },
+    {
+      "task": "functions-16",
+      "lossless_rgba": true,
+      "shared_review_analysis": true,
+      "bounded_grid": true,
+      "cells": 6,
+      "source_sha256": "07629f611543a1ee1e7ef7fb9fcdf81274d857022c7b846205a7cef661a09954"
+    },
+    {
+      "task": "ship-32",
+      "lossless_rgba": true,
+      "shared_review_analysis": true,
+      "bounded_grid": true,
+      "cells": 0,
+      "source_sha256": "8982098be6acc5a1b70b56640095cdbf10e49407ae9d1e1f7c0d5f7c80b185c1"
+    },
+    {
+      "task": "materials-32",
+      "lossless_rgba": true,
+      "shared_review_analysis": true,
+      "bounded_grid": true,
+      "cells": 3,
+      "source_sha256": "41acc9e8c0ac179042eb7fb25a1f998569dfef60d7c7b18ba964f96ce0bf90ee"
+    },
+    {
+      "task": "ui-states",
+      "lossless_rgba": true,
+      "shared_review_analysis": true,
+      "bounded_grid": true,
+      "cells": 6,
+      "source_sha256": "c316a125f73acb82e84fd72ce3e9d9a9209bf2e40cb0ef6d2bc3a691c05192d3"
+    },
+    {
+      "task": "ui-panel",
+      "lossless_rgba": true,
+      "shared_review_analysis": true,
+      "bounded_grid": true,
+      "cells": 0,
+      "source_sha256": "f13f0f579038e6a6643cb1845464b129e0e7f98183dffe98975250c9d65689b8"
+    },
+    {
+      "task": "minecraft-states",
+      "lossless_rgba": true,
+      "shared_review_analysis": true,
+      "bounded_grid": true,
+      "cells": 5,
+      "source_sha256": "13ae65c958f1dfa69938b310e607bb7bf5fcdd067f7517a181f7f4864f8d114e"
+    },
+    {
+      "task": "minecraft-panel",
+      "lossless_rgba": true,
+      "shared_review_analysis": true,
+      "bounded_grid": true,
+      "cells": 0,
+      "source_sha256": "c2baae7fd002aa6caecc04f7c6f71accb36db9b9ceb68719e37fef8269eae99b"
+    }
+  ],
+  "external_agent_trials_completed": false,
+  "workflow_gain_proven": false,
+  "aesthetic_improvement_proven": false,
+  "note": "Scripted artifact checks, not model task performance or blind review."
+}

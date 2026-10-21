@@ -61,6 +61,8 @@ Rules (all optional): `size: [w,h]`, `mode: RGBA`, `alpha: [0,255]`, `palette: [
 
 ## Custom Python
 
+For `inspect_image`, `image_to_spec`, bounded local grids and optional content-bound layout records, read [text-workflow.md](text-workflow.md). These additions retain JSON v1 and the existing draw/validate APIs. `render --metadata` retains size/mode/atlas and adds version plus an RGBA digest; PNG embedding requires `--embed-metadata`.
+
 Add the skill's `scripts/` directory to sys.path, then:
 
 ```python

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0-rc.1
+
+- Add bounded `inspect` facts: geometry, alpha locations, palette frequencies, 4/8-neighbor components, symmetry and exact local grids.
+- Add lossless static 8-bit PNG `import` into JSON v1 grids or row-run rectangles, preserving hidden RGBA bytes without quantization.
+- Share analysis with `review`; reuse sidecar layouts and optionally embed deterministic, content-bound layout records in PNGs.
+- Route small edits, text-only inspection and visual review separately; provide paired external-agent evaluation packages.
+- Remains a candidate until the agreed external workflow gate passes. No general aesthetic or token-saving claim is made.
+
 ## 1.1.1
 
 - Fix null mask outlines, contextual background selection and bounded wide-image review sheets.

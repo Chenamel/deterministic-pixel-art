@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "size": [
+    256,
+    256
+  ],
+  "require_coverage": true,
+  "parts": [
+    {
+      "name": "nw",
+      "image": "tiles/nw.png",
+      "at": [
+        0,
+        0
+      ],
+      "mode": "copy"
+    },
+    {
+      "name": "ne",
+      "image": "tiles/ne.png",
+      "at": [
+        128,
+        0
+      ],
+      "mode": "copy"
+    },
+    {
+      "name": "sw",
+      "image": "tiles/sw.png",
+      "at": [
+        0,
+        128
+      ],
+      "mode": "copy"
+    },
+    {
+      "name": "se",
+      "image": "tiles/se.png",
+      "at": [
+        128,
+        128
+      ],
+      "mode": "copy"
+    }
+  ]
+}

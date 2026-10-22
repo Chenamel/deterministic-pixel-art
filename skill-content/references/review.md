@@ -6,7 +6,7 @@ python <skill>/scripts/pixel_art.py review --image asset.png --out-dir review --
 
 `--context` and `--compare` are optional. Valid input exits 0 even with warnings; malformed input, mismatched comparison dimensions or I/O errors exit 2. Existing managed outputs require `--force`; inputs cannot be replaced. Source pixels remain unchanged. Use a separate output directory per review; `report.json` identifies the current comparison, not a leftover file from a previous invocation.
 
-Outputs: `report.json`, `review.png`, plus `difference.png` when comparing. Views include native 1:1, nearest-neighbor, dark/light/declared backgrounds, grayscale and annotations. Sprite context adds alpha silhouettes; atlas cells get separate cards. Integer enlargement is at most 8. Columns adapt to the sheet budget; oversized views use explicitly labeled native crops and a nearest-neighbor overview. `facts.review_views` records displayed rectangles and scales. Unicode names remain in JSON; diagnostic labels do not use the consumer's font.
+Outputs: `report.json`, `review.png`, plus `difference.png` when comparing. Each declared background has native 1:1 and nearest-neighbor views, alongside checkerboard, grayscale and annotations. Sprite context adds an alpha silhouette whose black/white foreground is chosen for contrast with the primary background; `facts.silhouette_color` records the choice. Atlas cells get separate cards. Integer enlargement is at most 8. Columns adapt to the sheet budget; oversized views use explicitly labeled native crops and a nearest-neighbor overview. `facts.review_views` records displayed rectangles, scales and each card's `sheet_rect` in contact-sheet coordinates. Unicode names remain in JSON; diagnostic labels do not use the consumer's font.
 
 ## Context v1
 
@@ -26,7 +26,7 @@ All fields are optional. Unknown fields are errors. Coordinates are native; rect
 ```
 
 - `asset_type`: `general` (default), `sprite`, `ui`.
-- `backgrounds`: up to eight named opaque colors, retaining default `dark`/`light` whose names are reserved. Colors use the render API format.
+- `backgrounds`: up to eight declarations of named opaque colors. Built-in `dark` (`172033`) and `light` (`E9EDF2`) are retained; identical redeclarations are accepted. To use other colors, choose custom names, which must be unique. Colors use the render API format.
 - `primary_background`: a declared name used for native, grayscale and cell cards. Defaults to the first custom background, or `dark` when none is declared.
 - `atlas`: copy the object under `atlas` in `render --metadata` output: `cell_size`, `columns`, `rows`, and `cells` with `name,x,y,w,h`. It must match the PNG grid with unique aligned cells; at most 256. PNGs do not retain CLI layout metadata automatically.
 - `regions`: names/rectangles with role `content`, `control`, `reserved_text` or `decoration`. Annotations cannot determine whether real text overlaps or fits.
@@ -36,5 +36,7 @@ All fields are optional. Unknown fields are errors. Coordinates are native; rect
 ## Interpretation
 
 Warnings identify isolated pixels, visually identical named cells and declared pairs below target. Particles may be isolated; states may share a texture; decoration has no general 3:1 requirement. Isolated warnings are capped at 256 entries; the full count and omitted count remain in facts.
+
+`cell_summary` surfaces the existing per-cell visible count, occupancy, bounding box, margins and pixel centroid. These measurements do not estimate optical weight or determine whether an icon should be centered. For raw-RGBA edit boundaries, including RGB under zero alpha, use `verify` in [workflows.md](workflows.md).
 
 Comparison reports changed visible RGBA pixels and a bounding box, ignoring RGB under zero alpha. Changes do not establish improvement. Diagnostic images are not replacement artwork. There is no aesthetic score, automatic repair, text-layout acceptance, independent judgement or in-game verification.

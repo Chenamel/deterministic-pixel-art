@@ -4,6 +4,7 @@ Each file is published atomically. This is not a crash-safe group transaction.
 """
 from io import BytesIO
 import json
+import errno
 import os
 from pathlib import Path
 import tempfile
@@ -21,12 +22,14 @@ def encoded(artifact):
     return buffer.getvalue()
 
 
-def publish(artifacts, *, force=False):
+def publish(artifacts, *, force=False, portable=False):
     """Publish path->artifact, rejecting existing targets unless force is set.
 
     Encoding and predictable path errors precede publication. No-force uses an
     exclusive hard link, so another writer cannot be overwritten by a late race.
     Filesystems without hard-link support fail explicitly rather than clobber.
+    Opt-in portable publication uses exclusive creation: no overwrite, but other
+    readers can see a partially written NEW file. Force still uses os.replace.
     """
     prepared = [(Path(p).resolve(), encoded(value)) for p, value in artifacts.items()]
     if len({p for p, _ in prepared}) != len(prepared):
@@ -39,6 +42,8 @@ def publish(artifacts, *, force=False):
                 raise PixelArtError(f'output parent is not a directory: {parent}')
     locks, staged, backups, committed = [], {}, {}, []
     rollback_errors = []
+    portable_created = {}
+    step = None
     try:
         for path, _ in sorted(prepared):
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -65,14 +70,29 @@ def publish(artifacts, *, force=False):
         for path, _ in prepared:
             if force:
                 os.replace(staged[path], path)
+                committed.append(path)
+            elif portable:
+                fd=os.open(path,os.O_WRONLY | os.O_CREAT | os.O_EXCL,0o666)
+                portable_created[path]=os.fstat(fd)
+                committed.append(path)
+                with os.fdopen(fd,'wb') as handle:
+                    data=next(data for p,data in prepared if p==path)
+                    if handle.write(data)!=len(data):
+                        raise OSError('short portable output write')
             else:
+                step='hard_link'
                 os.link(staged[path], path)
-            committed.append(path)
+                step=None
+                committed.append(path)
     except (OSError, PixelArtError) as exc:
         for path in reversed(committed):
             try:
                 expected = next(data for p, data in prepared if p == path)
-                if not path.is_file() or path.read_bytes() != expected:
+                actual=path.read_bytes() if path.is_file() else None
+                identity=portable_created.get(path)
+                owned_partial=(identity is not None and actual is not None and expected.startswith(actual)
+                    and (path.stat().st_dev,path.stat().st_ino)==(identity.st_dev,identity.st_ino))
+                if actual != expected and not owned_partial:
                     raise OSError('target changed after publication; left untouched')
                 if path in backups:
                     os.replace(backups[path], path)
@@ -83,6 +103,8 @@ def publish(artifacts, *, force=False):
         detail = {'cause': str(exc), 'committed_before_error': list(map(str, committed)),
                   'rollback_errors': rollback_errors,
                   'remaining_outputs': [str(p) for p in committed if p.exists()]}
+        if step=='hard_link' and isinstance(exc,OSError) and exc.errno in (errno.EPERM,errno.EXDEV,errno.ENOTSUP,errno.EACCES):
+            detail['hint']='Hard-link publication was rejected (filesystem or permissions). Choose a local output directory or explicitly use --portable-output; it preserves no-overwrite but NEW files are not atomically visible. Do not use --force as an automatic workaround.'
         raise PixelArtError('output publication failed: ' + json.dumps(detail, ensure_ascii=False)) from exc
     finally:
         for path in [*staged.values(), *backups.values(), *locks]:

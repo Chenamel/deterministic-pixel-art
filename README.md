@@ -37,10 +37,26 @@ Use absolute script/input/output paths when running from another working directo
 | [generic-panel-96x40.json](examples/generic-panel-96x40.json) | A GUI panel with a non-Minecraft palette |
 | [minecraft-button-states.json](examples/minecraft-button-states.json) | A named atlas of five optional Minecraft-style button states |
 | [quality/](examples/quality/) | Eight editable studies: icons, materials, UI states, layout and Minecraft controls |
+| [transparent-grid.json](examples/transparent-grid.json) | A complete minimal transparent grid |
+| [workflows/](examples/workflows/) | Named-cell editing, an original native 128×128 courier and a 256×256 component/tile scene |
 
 Keep the spec alongside the resulting PNG. Inspect native-size artwork and a magnified preview; dimensions alone cannot verify direction, state meaning, or readability.
 
-The **v1.2.0-rc.1 candidate** adds bounded textual pixel facts, exact PNG-to-spec import and optional layout reuse. For an existing PNG, run `python src/pixel_art.py import --image existing.png --out editable.json`, edit the spec, render a separate candidate and inspect it with `--compare existing.png`. No color quantization is applied; decoded 8-bit RGBA, including hidden RGB, is preserved. See the [text workflow](skill/deterministic-pixel-art/references/text-workflow.md).
+The **local v1.2.0-rc.2 candidate** adds named PNG editing, exact allowed-change checks and component assembly to the existing textual inspection and lossless import tools. For an existing PNG, run `python src/pixel_art.py import --image existing.png --out editable.json`; add `--metadata layout.json` to retain named atlas cells. No color quantization is applied; decoded 8-bit RGBA, including hidden RGB, is preserved. See the [text workflow](skill/deterministic-pixel-art/references/text-workflow.md).
+
+For an existing named atlas, replace one cell and prove that other pixels are unchanged:
+
+```sh
+python src/pixel_art.py import --image examples/workflows/atlas-before.png --metadata examples/workflows/atlas-before-layout.json --out output/editable.json
+python src/pixel_art.py replace-cell --spec output/editable.json --cell transfer --replacement examples/workflows/atlas-replacement.json --out output/candidate.json --image-out output/candidate.png --metadata output/candidate-layout.json
+python src/pixel_art.py verify --image output/candidate.png --compare examples/workflows/atlas-before.png --allow-region 32 0 16 16
+python src/pixel_art.py assemble --project examples/workflows/scene-tiles.json --out output/scene.png --report output/assembly.json --seams output/seams.png
+```
+
+![Original courier at native 128×128, shown at 3× nearest-neighbor](docs/workflows/sprite-128-preview.png)
+![Original 256×256 watermill scene, shown at 2×](docs/workflows/scene-256-preview.png)
+
+The [editing and assembly guide](skill/deterministic-pixel-art/references/workflows.md) explains masks, component cropping, explicit copy/composite behavior and boundary ownership. `render --preview-background E9EDF2` selects a target background. On a filesystem that rejects hard links, explicitly choose `--portable-output` or a local output directory. Portable publication preserves no-overwrite, but newly created files can be visible while being written.
 
 `review` writes a contact sheet and advisory JSON report with native/enlarged views, light/dark backgrounds, grayscale and optional named atlas cells, sprite silhouettes and baseline differences. Pass a [review context](skill/deterministic-pixel-art/references/review.md) to declare backgrounds, reserved content and functional color pairs. Warnings return success; malformed inputs return an error. It never edits the source image or assigns an aesthetic score.
 
@@ -56,11 +72,11 @@ Build a tested ZIP with `python -B tools/check.py` after installing the developm
 
 ## What improved, and what did not
 
-v1.2.0-rc.1 is a candidate: automated checks establish the new measurements and exact round trips. External paired agent trials are pending; workflow time, correction-round savings and general aesthetic improvement are not yet established. The [candidate report and evaluation protocol](docs/audit-v1.2.md) separate measured capabilities from these pending outcomes. The latest stable release remains v1.1.1.
+v1.2.0-rc.2 is a local candidate. Eight external exploratory tasks supplied useful feedback; all 10 main final PNGs were reproduced exactly in the fixed baseline environment. They are not the previously proposed controlled A/B trials. The [current workflow report](docs/workflow-report.md) records the fixes, exact edit/assembly checks and limits; the [earlier candidate protocol](docs/audit-v1.2.md) remains historical. Workflow time, correction-round savings and general aesthetic improvement are not established. The latest stable release and installed local Skill remain v1.1.1.
 
 For external testing, use the [Chinese distribution guide and ready-to-copy prompts](docs/agent-testing-guide.zh-CN.md). The optional `tools/prepare_agent_trials.py` splits the released agent bundle into one-package, one-task session ZIPs. Controlled comparisons, open audits, creative trials and independent review have separate prompts and evidence requirements.
 
-In one local Windows comparison with v1.1.0, full render/review command medians increased by 15.0/16.7 ms (about 9%); the sample review JSON grew from 1,237 to 6,999 bytes. Pure rendering was essentially unchanged. These costs are reported separately from agent workflow outcomes.
+In the earlier rc.1 local Windows comparison with v1.1.0, full render/review command medians increased by 15.0/16.7 ms (about 9%); the sample review JSON grew from 1,237 to 6,999 bytes. Pure rendering was essentially unchanged. These historical costs are separate from agent workflow outcomes.
 
 v1.1.1 fixes null mask outlines, primary review backgrounds, wide-image sheets and output publication failures. It adds precise diagnostics and a Pillow compatibility boundary. See the [external-feedback and reliability report](docs/audit-feedback.md); these fixes make no new aesthetic-improvement claim.
 
@@ -87,7 +103,7 @@ python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
-This runs 61 unit tests, 43 image regressions, integrity checks for 86 historical fixture files and eight frozen study baselines, eight exact import/inspection tasks, benchmarks, reproducible ZIP packaging, and 45 artifact checks from an unrelated directory containing spaces and Chinese characters. It needs no original mod checkout or Codex installation. Results are written to ignored `output/` and `evaluation/` directories.
+This runs source unit tests, 43 image regressions, integrity checks for 86 historical fixture files and eight frozen study baselines, eight exact import/inspection tasks, executable editing/assembly controls, benchmarks, reproducible ZIP packaging, and artifact checks from an unrelated directory containing spaces and Chinese characters. Exact current counts are recorded in the [workflow report](docs/workflow-report.md). It needs no original mod checkout or Codex installation. Results are written to ignored `output/` and `evaluation/` directories.
 
 When the official skill-creator validator is available, also run:
 

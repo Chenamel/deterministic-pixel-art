@@ -57,11 +57,17 @@ def _sheet(image,ctx,report,difference):
         for x in range(0,w,4):
             if (x//4+y//4)%2==0:pen.rectangle((x,y,x+3,y+3),fill='#484848')
     checker.alpha_composite(image)
-    views=[('native 1:1',base,1),('checker / nearest',checker,scale)]
-    views += [(_label(bg['name'])+' background',_composite(image,bg['color']),scale) for bg in ctx['backgrounds']]
+    views=[('native 1:1 / '+_label(ctx['primary_background']),base,1),('checker / nearest',checker,scale)]
+    for bg in ctx['backgrounds']:
+        piece=_composite(image,bg['color'])
+        if bg['name']!=ctx['primary_background']:
+            views.append((_label(bg['name'])+' background / native 1:1',piece,1))
+        views.append((_label(bg['name'])+' background / nearest',piece,scale))
     views += [('grayscale / context only',ImageOps.grayscale(base).convert('RGBA'),scale)]
     if ctx['asset_type']=='sprite':
-        silhouette=Image.new('RGBA',image.size,'#E9EDF2');silhouette.putalpha(image.getchannel('A'))
+        ink=max(((0,0,0,255),(255,255,255,255)),key=lambda c:contrast(c,primary))
+        report['facts']['silhouette_color']=list(ink)
+        silhouette=Image.new('RGBA',image.size,ink);silhouette.putalpha(image.getchannel('A'))
         views.append(('alpha silhouette',_composite(silhouette,primary),scale))
     annotated=base.copy();pen=ImageDraw.Draw(annotated)
     for cell in ctx['cells']:
@@ -107,6 +113,7 @@ def _sheet(image,ctx,report,difference):
     pen.text((8,8),'ADVISORY REVIEW - overlays and diagnostics are separate from source art',fill='#E9EDF2',font=font)
     for i,(label,im,s) in enumerate(views):
         x=i%columns*card_w+8;y=i//columns*card_h+40
+        manifest[i]['sheet_rect']=[x,y+22,im.width*s,im.height*s]
         pen.text((x,y),label[:100],fill='#E9EDF2',font=font)
         sheet.paste(im.resize((im.width*s,im.height*s),Image.Resampling.NEAREST).convert('RGB'),(x,y+22))
     return sheet
@@ -157,4 +164,6 @@ def review(image,context=None,comparison=None,*,metadata=None):
                      'Only explicitly declared functional color pairs have contrast thresholds.',
                      'Isolated pixels are tested per cell with visible alpha and 8-neighbor connectivity.'])
     report['analysis']=inspect_image(image,context,comparison=comparison,metadata=metadata)
+    report['cell_summary']=[{key:cell[key] for key in ('name','visible_pixels','occupancy','bbox','margins','centroid')}
+                            for cell in report['analysis']['cells']]
     return report,_sheet(rgba,ctx,report,difference),difference

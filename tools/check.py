@@ -13,6 +13,7 @@ def run(name, *arguments):
 
 
 if __name__ == '__main__':
+    run('build_workflow_examples.py')
     run('migrate_assets.py')
     run('evaluate.py')
     run('evaluate_quality.py')

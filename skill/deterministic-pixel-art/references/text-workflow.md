@@ -83,4 +83,4 @@ consumer's state contract separately; imported pixels do not recover them.
 
 Python APIs: `inspect_image(image, context=None, *, region=None, cell=None,
 grid=False, comparison=None, metadata=None)` and `image_to_spec(image, *,
-region=None)` return JSON-serializable mappings and perform no file writes.
+region=None, metadata=None)` return JSON-serializable mappings and perform no file writes. Passing verified atlas metadata to import retains named editable cells with explicit raw-copy assembly. For single-cell replacement, exact allowed-region/mask checks and component PNG projects, read [workflows.md](workflows.md).

@@ -118,6 +118,63 @@ def main(python, validator):
         run('packaged-auto-layout-cell',[cli,'inspect','--image',embedded,'--cell','selected','--grid'])
         run('packaged-sidecar-layout-review',[cli,'review','--image',folder/'输出 results/minecraft-button-states.png',
             '--metadata',folder/'输出 results/minecraft-button-states.json','--out-dir',folder/'sidecar-review'])
+
+        # Exercise the distributed workflow assets, not the source checkout.
+        workflows=skill/'assets/workflows';work=folder/'新工作流 outputs';work.mkdir()
+        run('packaged-preview-target-background',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'transparent.png','--preview',work/'target.png','--preview-background','E9EDF2','--scale','3'])
+        with Image.open(work/'target.png') as preview:
+            assert preview.size==(12,12) and preview.convert('RGB').getpixel((0,0))==(233,237,242)
+        imported=work/'named-editable.json';candidate=work/'named-candidate.png';layout=work/'named-layout.json'
+        run('packaged-named-import',[cli,'import','--image',workflows/'atlas-before.png',
+            '--metadata',workflows/'atlas-before-layout.json','--out',imported])
+        data=json.loads(imported.read_text(encoding='utf-8'))
+        assert data['assembly']=='copy' and [cell['name'] for cell in data['cells']]==['add','refresh','transfer','lock']
+        run('packaged-replace-named-cell',[cli,'replace-cell','--spec',imported,'--cell','transfer',
+            '--replacement',workflows/'atlas-replacement.json','--out',work/'named-candidate.json',
+            '--image-out',candidate,'--metadata',layout])
+        run('packaged-verify-cell-boundary',[cli,'verify','--image',candidate,'--compare',workflows/'atlas-before.png',
+            '--allow-region','32','0','16','16','--out',work/'verification.json'])
+        verified=json.loads((work/'verification.json').read_text(encoding='utf-8'))
+        assert verified['changed_rgba_pixels']==66 and verified['changed_outside']==0
+        run('packaged-verify-reject-wrong-region',[cli,'verify','--image',candidate,'--compare',workflows/'atlas-before.png',
+            '--allow-region','0','0','16','16'],expected=1)
+        run('packaged-named-candidate-inspect',[cli,'inspect','--image',candidate,'--metadata',layout,'--cell','transfer','--grid'])
+        run('packaged-named-stale-layout',[cli,'inspect','--image',candidate,
+            '--metadata',workflows/'atlas-before-layout.json','--cell','transfer'],expected=2)
+        run('packaged-replace-input-alias',[cli,'replace-cell','--spec',imported,'--cell','transfer',
+            '--replacement',workflows/'atlas-replacement.json','--out',imported,'--force'],expected=2)
+        run('packaged-native-128-render',[cli,'render','--spec',workflows/'sprite-128.json','--out',work/'sprite.png'])
+        light=work/'light-context.json';light.write_text(json.dumps(dict(asset_type='sprite',
+            backgrounds=[dict(name='light',color='E9EDF2')],primary_background='light')),encoding='utf-8')
+        run('packaged-light-silhouette',[cli,'review','--image',work/'sprite.png','--context',light,'--out-dir',work/'review'])
+        report=json.loads((work/'review/report.json').read_text(encoding='utf-8'))
+        assert report['facts']['silhouette_color']==[0,0,0,255]
+        silhouette=next(v for v in report['facts']['review_views'] if v['label']=='alpha silhouette')
+        x,y,w,h=silhouette['sheet_rect']
+        with Image.open(work/'review/review.png') as sheet:
+            assert len(sheet.crop((x,y,x+w,y+h)).getcolors(w*h))>1
+        run('packaged-component-assembly',[cli,'assemble','--project',workflows/'scene-components.json',
+            '--out',work/'components.png','--report',work/'components.json'])
+        run('packaged-tile-assembly',[cli,'assemble','--project',workflows/'scene-tiles.json',
+            '--out',work/'tiles.png','--report',work/'tiles.json','--seams',work/'seams.png',
+            '--preview',work/'scene-preview.png','--scale','2'])
+        run('packaged-whole-scene-control',[cli,'render','--spec',workflows/'scene-control.json','--out',work/'control.png'])
+        with Image.open(work/'control.png') as control:
+            for name in ('components.png','tiles.png'):
+                with Image.open(work/name) as assembled:
+                    assert assembled.size==(256,256) and assembled.convert('RGBA').tobytes()==control.convert('RGBA').tobytes()
+        tiles=json.loads((work/'tiles.json').read_text(encoding='utf-8'))
+        assert tiles['uncovered_pixels']==0 and tiles['seam_count']==4 and len(tiles['seam_views'])==8
+        run('packaged-assembly-input-alias',[cli,'assemble','--project',workflows/'scene-tiles.json',
+            '--out',workflows/'tiles/nw.png','--force'],expected=2)
+        run('packaged-portable-output',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'portable.png','--portable-output'])
+        original=(work/'portable.png').read_bytes()
+        run('packaged-portable-no-clobber',[cli,'render','--spec',skill/'assets/gem-16.json',
+            '--out',work/'portable.png','--portable-output'],expected=2)
+        assert (work/'portable.png').read_bytes()==original
+
         bad_context = folder / 'bad-context.json'
         bad_context.write_text('{"atlas":{}}', encoding='utf-8')
         run('packaged-bad-context-no-output', [cli, 'review', '--image', warning_image,

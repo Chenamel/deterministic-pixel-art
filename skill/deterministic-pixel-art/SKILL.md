@@ -13,6 +13,7 @@ Create editable specifications and exact-grid PNGs with Python and Pillow. Work 
 - **Small edit:** inherit dimensions, palette, lighting, outline and atlas order. Modify only the affected region and check its neighbors. An existing PNG can be imported to an editable spec. Alternatives and a full contact sheet are optional.
 - **Text-only work:** read [text-workflow.md](references/text-workflow.md). Use `inspect` for coordinates, colors, components and a bounded symbol grid; import, edit, render and compare. Measurements do not identify objects or judge beauty.
 - **Visual work:** inspect native size and nearest-neighbor enlargement on the intended background. Use [review.md](references/review.md) for contact sheets, named cells, baseline differences, intentional specks and declared functional contrast pairs.
+- **Named PNG edit or component scene:** read [workflows.md](references/workflows.md) for named import, single-cell replacement, exact allowed-change checks and PNG assembly. Load it only for these tasks.
 
 For new artwork, capture meaning, native size, target background, style reference, palette roles, light/outline rules, state names and consumer constraints. User references take priority over demo styling. Read only the relevant guide:
 
@@ -29,7 +30,7 @@ Read [formats.md](references/formats.md) for the chosen representation or Python
 Resolve `scripts/pixel_art.py` relative to this skill, not the working directory. Use Python 3.10+ with Pillow >=10.4,<13; the fixed reproduction baseline is Pillow 12.3.0. Install `requirements.txt` in a task-local virtual environment when needed.
 
 ```text
-python <skill>/scripts/pixel_art.py render --spec scene.json --out candidate.png --preview preview.png --metadata layout.json
+python <skill>/scripts/pixel_art.py render --spec scene.json --out candidate.png --preview preview.png --preview-background 172033 --metadata layout.json
 python <skill>/scripts/pixel_art.py inspect --image candidate.png --metadata layout.json --cell normal --grid
 python <skill>/scripts/pixel_art.py validate --image candidate.png --rules rules.json
 ```
@@ -37,6 +38,10 @@ python <skill>/scripts/pixel_art.py validate --image candidate.png --rules rules
 Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores layout for later automatic reuse. Keep the editable spec alongside the PNG. Existing outputs require `--force`; revise accepted art into a separate candidate unless replacement is requested. Python APIs include `Canvas`, `render`, `outline`, `make_preview`, `validate`, `inspect_image` and `image_to_spec`; keep task-specific writes behind an entrypoint.
 
 ## Check against intent
+
+Use `preview --image candidate.png --out native.png --scale 1 --background 172033` for a native target-background view; `review` makes diagnostic sheets. `import` creates editable pixels, `replace-cell` updates one atlas member, `verify` checks allowed RGBA changes, and `assemble` places PNG components. See `assets/transparent-grid.json` for a complete grid including `".":null`; unknown symbols remain errors.
+
+If hard-link publication is rejected, choose a local output directory or explicitly use `--portable-output`: exclusive creation preserves no-overwrite, but new files can be visible while writing. Never add `--force` automatically. Task-local dependency recovery is in [workflows.md](references/workflows.md). Supported Pillow versions can differ in polygon fill; exact reproduction uses the fixed baseline or a frozen imported pixel spec.
 
 Validate the consumer's size, alpha, palette and atlas contracts. Transparent margins, binary alpha, symmetry and palette limits apply only when required. Preserve UVs, state order, reserved content and attached opaque edges. Check direction and silhouette before detail, then lighting/material, set consistency, state meaning and seams.
 

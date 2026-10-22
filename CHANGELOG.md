@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0-rc.2 (local candidate)
+
+- Fix invisible silhouettes on light primary backgrounds; expose native views for each background and existing per-cell geometry summaries.
+- Add explicit preview backgrounds and opt-in no-hard-link output; preserve no-overwrite and disclose weaker new-file visibility.
+- Preserve named PNG atlas cells through lossless import; add `replace-cell` and raw-RGBA `verify` with allowed rectangles or masks.
+- Add opt-in copy/sparse atlas assembly while retaining old source-over defaults.
+- Add bounded file-based `assemble`, explicit component crops/overlaps/coverage and coordinate-labeled seam views.
+- Include original native 128×128 and 256×256 examples, editable sources and executable exact-copy controls.
+- Keep stable v1.1.1 and the existing local installation; exploratory external feedback is not the controlled release gate or proof of general aesthetic gains.
+
 ## 1.2.0-rc.1
 
 - Add bounded `inspect` facts: geometry, alpha locations, palette frequencies, 4/8-neighbor components, symmetry and exact local grids.

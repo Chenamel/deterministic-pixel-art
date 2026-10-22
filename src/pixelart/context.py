@@ -69,8 +69,13 @@ def _context(value,size):
     for item in _items(value.get('backgrounds',[]),'backgrounds',8):
         _fields(item,('name','color'),where='background')
         name=_name(item['name'],'background.name')
-        if name in names: raise PixelArtError('background.name: names must be unique, including dark/light')
-        names.add(name); backgrounds.append(dict(name=name,color=_opaque(item['color'],'background.color')))
+        rgba=_opaque(item['color'],'background.color')
+        if name in ('dark','light'):
+            if rgba!=next(bg['color'] for bg in backgrounds if bg['name']==name):
+                raise PixelArtError('background.name: built-in dark/light colors are fixed; use a custom name')
+            continue
+        if name in names: raise PixelArtError('background.name: custom names must be unique')
+        names.add(name); backgrounds.append(dict(name=name,color=rgba))
     primary=value.get('primary_background', backgrounds[2]['name'] if len(backgrounds)>2 else 'dark')
     if not isinstance(primary,str) or primary not in names:
         raise PixelArtError('primary_background: expected a declared background name')

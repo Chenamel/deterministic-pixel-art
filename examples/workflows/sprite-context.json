@@ -1,0 +1,9 @@
+{
+  "asset_type": "sprite",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "243449"
+    }
+  ]
+}

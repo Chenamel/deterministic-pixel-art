@@ -1,0 +1,118 @@
+{
+  "version": "1.2.0-rc.2",
+  "status": "local candidate, not published or installed",
+  "date": "2026-10-23",
+  "environment": {
+    "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "pillow": "12.3.0",
+    "os": "Windows-11-10.0.22631-SP0"
+  },
+  "unit_tests": 76,
+  "zip_cases": 61,
+  "official_skill_validator": true,
+  "stable_images_unchanged": 43,
+  "external_final_pngs_unchanged": 10,
+  "historical_fixtures": 86,
+  "frozen_authored_study_baselines": 8,
+  "protected_originals_and_external_inputs": 138,
+  "package_files": 85,
+  "reproducible_zip": true,
+  "zip_bytes": 213762,
+  "zip_sha256": "a34e5c58e420fd43702fe9b892fbbae2a32a57a47311e58f242dad140e9ded22",
+  "workflows": {
+    "sprite_native_size": [
+      128,
+      128
+    ],
+    "scene_native_size": [
+      256,
+      256
+    ],
+    "component_control_exact": true,
+    "tile_reassembly_exact": true,
+    "tile_seams": 4,
+    "edit_verification": {
+      "version": 1,
+      "valid": true,
+      "changed_rgba_pixels": 66,
+      "changed_inside": 66,
+      "changed_outside": 0,
+      "allowed_pixels": 256,
+      "outside_bbox": null,
+      "outside_samples": [],
+      "omitted_outside_samples": 0,
+      "note": "Exact edit boundary only; does not judge appearance, object identity or state meaning."
+    },
+    "review": "Author agent visual review; not independent or game/runtime acceptance."
+  },
+  "costs": {
+    "comparison": {
+      "rc1": {
+        "version": "1.2.0-rc.1",
+        "render": {
+          "median_ms": 0.07576333333333334,
+          "samples": 9,
+          "batch": 30
+        },
+        "review": {
+          "median_ms": 6.8185,
+          "samples": 9,
+          "batch": 1
+        },
+        "review_json_bytes": 7505,
+        "sheet_size": [
+          816,
+          932
+        ],
+        "render_cli": {
+          "median_ms": 175.3729,
+          "samples": 9
+        },
+        "review_cli": {
+          "median_ms": 235.0179,
+          "samples": 9
+        },
+        "zip_bytes": 113055
+      },
+      "rc2": {
+        "version": "1.2.0-rc.2",
+        "render": {
+          "median_ms": 0.07528666666666667,
+          "samples": 9,
+          "batch": 30
+        },
+        "review": {
+          "median_ms": 6.5223,
+          "samples": 9,
+          "batch": 1
+        },
+        "review_json_bytes": 8966,
+        "sheet_size": [
+          816,
+          1232
+        ],
+        "render_cli": {
+          "median_ms": 197.0671,
+          "samples": 9
+        },
+        "review_cli": {
+          "median_ms": 258.7816,
+          "samples": 9
+        },
+        "zip_bytes": 213762
+      }
+    },
+    "environment": {
+      "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]"
+    },
+    "design": "Same interpreter, fixed Pillow 12.3.0, Windows; 9 samples, alternate full-command order. Render: ship32 + 8x preview. Review CLI: courier128; pure: ship32.",
+    "limitation": "Small local timing sample, process/I/O variability; not model time, tokens or correction rounds.",
+    "package_note": "Final package size includes a subsequent reference-only legacy-metadata clarification; timed runtime unchanged."
+  },
+  "limitations": [
+    "Windows fixed-baseline checks only for this candidate; updated Ubuntu/Pillow CI and original cloud mount unverified.",
+    "Authored visual self-review, not general aesthetic, model-time or token savings proof.",
+    "Tiles are exact crop/reassembly controls, not independently painted chunks.",
+    "Eight exploratory external tasks are not the previously agreed controlled A/B release gate."
+  ]
+}

@@ -6,7 +6,7 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
-from pixelart import image_to_spec,inspect_image,render
+from pixelart import __version__,image_to_spec,inspect_image,render
 from pixelart.review import review
 
 
@@ -30,7 +30,7 @@ def main():
         (folder/'grid.json').write_text(json.dumps(selected['grid'],indent=2),encoding='utf-8')
         cases.append(dict(task=name,lossless_rgba=True,shared_review_analysis=True,
                           bounded_grid=True,cells=len(cells),source_sha256=hashlib.sha256(spec.read_bytes()).hexdigest()))
-    result=dict(version='1.2.0-rc.1',artifact_checks_passed=True,cases=cases,
+    result=dict(version=__version__,artifact_checks_passed=True,cases=cases,
                 external_agent_trials_completed=False,workflow_gain_proven=False,
                 aesthetic_improvement_proven=False,
                 note='Scripted artifact checks, not model task performance or blind review.')

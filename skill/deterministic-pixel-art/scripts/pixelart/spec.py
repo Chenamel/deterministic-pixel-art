@@ -122,16 +122,19 @@ def _render(spec, depth):
         fields(spec, ('kind', 'source'), common + ('scale', 'background'))
         return make_preview(_render(spec['source'], depth + 1), spec.get('scale', 8), spec.get('background', 'checker'))
     if kind == 'atlas':
-        fields(spec, ('kind', 'cells', 'columns'), common + ('background',))
+        fields(spec, ('kind', 'cells', 'columns'), common + ('background','rows','assembly','base'))
         cells = spec['cells']
         if not isinstance(cells, list) or not cells:
             raise PixelArtError('cells: expected a nonempty list')
         columns = integer(spec['columns'], 'columns', 1)
-        if columns > len(cells):
+        if columns > len(cells) and 'rows' not in spec:
             raise PixelArtError('columns: cannot exceed cell count')
-        names, images = [], []
+        assembly=spec.get('assembly','over')
+        if assembly not in ('over','copy'):
+            raise PixelArtError('atlas.assembly: expected over or copy')
+        names, images, positions = [], [], []
         for i, cell in enumerate(cells):
-            fields(cell, ('name', 'spec'))
+            fields(cell, ('name', 'spec'), ('at',))
             if not isinstance(cell['name'], str) or not cell['name'] or cell['name'] in names:
                 raise PixelArtError(f'cells[{i}].name: requires a unique nonempty name')
             names.append(cell['name'])
@@ -139,12 +142,27 @@ def _render(spec, depth):
         size = images[0].size
         if any(im.size != size for im in images):
             raise PixelArtError('cells: all images must have identical dimensions')
-        rows = (len(cells) + columns - 1) // columns
+        for i,cell in enumerate(cells):
+            position=pair(cell.get('at',[i%columns*size[0],i//columns*size[1]]),'atlas.cell.at',0)
+            if position[0]%size[0] or position[1]%size[1]:
+                raise PixelArtError('atlas.cell.at: must align to cell grid')
+            if position in positions:
+                raise PixelArtError('atlas.cell.at: duplicate position')
+            positions.append(position)
+        rows=integer(spec.get('rows',max(y//size[1]+1 for x,y in positions)),'atlas.rows',1)
         cv = Canvas(size[0] * columns, size[1] * rows, spec.get('background'))
+        if 'base' in spec:
+            base=_render(spec['base'],depth+1)
+            if base.size!=cv.image.size:
+                raise PixelArtError('atlas.base: dimensions must match the atlas')
+            if assembly=='copy':cv.image.paste(base,(0,0))
+            else:cv.composite(base,0,0)
         metadata = []
         for i, (name, image) in enumerate(zip(names, images)):
-            x, y = i % columns * size[0], i // columns * size[1]
-            cv.composite(image, x, y)
+            x,y=positions[i]
+            cv._box(x,y,*size,False)
+            if assembly=='copy':cv.image.paste(image,(x,y))
+            else:cv.composite(image, x, y)
             metadata.append({'name': name, 'x': x, 'y': y, 'w': size[0], 'h': size[1]})
         cv.image.info['pixelart'] = {'cell_size': list(size), 'columns': columns, 'rows': rows, 'cells': metadata}
         return cv.image

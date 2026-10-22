@@ -32,6 +32,8 @@ Atlas: `kind: atlas`, positive `columns`, `cells: [{name, spec}, ...]`, optional
 
 Preview: `kind: preview`, `source` nested spec, `scale` positive integer (default 8), and `background` (`checker` by default, a color, or null). Preview pixels are nearest-neighbor replicas; the background is composited only into the preview, leaving source transparency intact.
 
+For lossless imported atlases, opt-in `assembly:"copy"` pastes raw RGBA; the default remains `"over"`. Optional positive `rows`, grid-aligned `cells[].at:[x,y]` and a full-sized nested `base` preserve sparse positions/unused pixels. With explicit rows, columns may exceed cell count. Duplicate positions, wrong-sized base, mismatched cell sizes and out-of-bounds cells are errors. See [workflows.md](workflows.md) for named import and replacement.
+
 ## DSL
 
 Select the DSL in the CLI using a `.dsl` filename. Commands are uppercase, one per line, with whitespace-separated arguments. Blank lines and lines starting with `#` are ignored. No inline comments. Exactly one CANVAS must appear before drawing.
@@ -52,6 +54,8 @@ Commands: `CANVAS w h`, `BG color`, `RECT x y w h color`, `BEVEL x y w h tl br t
 `validate(image, rules)` returns `{valid, errors: [{rule,message}], facts: {size,mode,colors,alpha}}`. Invalid rule syntax raises `PixelArtError`; image contract violations set valid=false. The CLI exits 0 for success, 1 for a contract violation and 2 for input/I/O errors. All artifacts are encoded and staged before publication. Each file is published atomically; cooperating writers reserve targets. No-force publication uses exclusive hard links and fails on filesystems without that support. Normal commit failures attempt rollback and report actual paths; this is not a crash-safe multi-file transaction. A crash may leave sibling `.pixelart.lock`/temporary files; inspect the owning process before removing them.
 
 Drawing primitives replace RGBA bytes, including partial alpha. `blit`/`Canvas.composite` use source-over compositing. For an overlay, draw onto a transparent nested `draw` source and `blit` it onto the destination. `mask` with omitted or null outline has no edge; an explicit `00000000` outline paints transparent pixels.
+
+Default publication above is unchanged. Explicit `--portable-output` uses exclusive creation for NEW files without hard links: it preserves no-overwrite but new files are visible while writing. It does not automatically enable force. See [workflows.md](workflows.md) for recovery and the separate PNG assembly project format.
 
 Rules (all optional): `size: [w,h]`, `mode: RGBA`, `alpha: [0,255]`, `palette: [colors...]`, positive `max_colors`, boolean `nonempty`, `cell_size: [w,h]`, integer `transparent_margin`, and `expected_pixels: [{at:[x,y],color:...}]`. Cell size must divide the canvas; margins apply to every cell, not only the outer image border. Palette checks count complete RGBA values, including transparent pixels. State meaning/order comes from atlas metadata and the consumer's contract, not image-only validation.
 

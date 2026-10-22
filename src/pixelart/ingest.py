@@ -15,12 +15,29 @@ def spec_bytes(spec):
     return result
 
 
-def image_to_spec(image,*,region=None):
+def image_to_spec(image,*,region=None,metadata=None):
     """Flatten an 8-bit Pillow image without quantizing or reconstructing layers."""
     dimensions(image.size)
     if getattr(image,'n_frames',1)!=1:raise PixelArtError('import: animated/multiframe PNG is not supported')
     if image.mode not in ('1','L','LA','P','RGB','RGBA'):
         raise PixelArtError('import: only decoded 8-bit grayscale, palette, RGB and RGBA images are supported')
+    if metadata is not None:
+        if region is not None:raise PixelArtError('import: metadata atlas and region are mutually exclusive')
+        from .metadata import merge_layout
+        from .context import _context
+        merged,_=merge_layout(image,metadata=metadata)
+        context=_context(merged,image.size)
+        if 'atlas' not in merged:raise PixelArtError('import: metadata does not declare an atlas')
+        layout=merged['atlas'];rgba=image.convert('RGBA');remaining=rgba.copy();cells=[]
+        for cell in context['cells']:
+            x,y,w,h=cell['rect'];box=(x,y,x+w,y+h)
+            cells.append(dict(name=cell['name'],at=[x,y],spec=image_to_spec(rgba.crop(box))))
+            remaining.paste((0,0,0,0),box)
+        spec=dict(version=1,kind='atlas',columns=layout['columns'],rows=layout['rows'],assembly='copy',cells=cells)
+        if len(cells)!=layout['columns']*layout['rows']:
+            spec['base']=image_to_spec(remaining)
+        spec_bytes(spec)
+        return spec
     if region is not None:
         x,y,w,h=_box(region,image.size,'region');image=image.crop((x,y,x+w,y+h))
     rgba=image.convert('RGBA');w,h=rgba.size;raw=rgba.tobytes()

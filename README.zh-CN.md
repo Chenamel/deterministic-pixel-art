@@ -35,8 +35,24 @@ python src/pixel_art.py review --image output/gem.png --out-dir output/gem-revie
 | [generic-panel-96x40.json](examples/generic-panel-96x40.json) | 非 Minecraft 配色的通用 GUI |
 | [minecraft-button-states.json](examples/minecraft-button-states.json) | 五种命名按钮状态组成的图集 |
 | [quality/](examples/quality/) | 八项可编辑范例：图标、材质、UI 状态、布局及 Minecraft 控件 |
+| [transparent-grid.json](examples/transparent-grid.json) | 可直接使用的最小透明网格 |
+| [workflows/](examples/workflows/) | 图集单格编辑、原生 128×128 飞船、256×256 组件与分块场景 |
 
 规格与 PNG 一起保存。检查原尺寸与放大预览；尺寸和像素断言不能代替对方向、状态语义和辨识度的判断。
+
+**本地 v1.2.0-rc.2 候选版**提供“保留名称导入图集 → 修改一格 → 验证其他像素”和组件/分块拼合流程：
+
+```sh
+python src/pixel_art.py import --image examples/workflows/atlas-before.png --metadata examples/workflows/atlas-before-layout.json --out output/editable.json
+python src/pixel_art.py replace-cell --spec output/editable.json --cell transfer --replacement examples/workflows/atlas-replacement.json --out output/candidate.json --image-out output/candidate.png --metadata output/candidate-layout.json
+python src/pixel_art.py verify --image output/candidate.png --compare examples/workflows/atlas-before.png --allow-region 32 0 16 16
+python src/pixel_art.py assemble --project examples/workflows/scene-tiles.json --out output/scene.png --report output/assembly.json --seams output/seams.png
+```
+
+![原创原生 128×128 飞船，最近邻放大 3 倍](docs/workflows/sprite-128-preview.png)
+![原创 256×256 水磨坊场景，最近邻放大 2 倍](docs/workflows/scene-256-preview.png)
+
+详细用法见[编辑与拼合指南](skill/deterministic-pixel-art/references/workflows.md)。`render --preview-background E9EDF2` 可直接选预览底色。文件系统拒绝硬链接时，可选本地输出目录或显式使用 `--portable-output`；后者保留拒绝覆盖，但新文件在写入期间可能被其他读取者看到。
 
 `review` 输出审阅图与建议性 JSON 报告，包括原尺寸、整数放大、深浅背景、灰度，以及可选的命名单元、精灵剪影与基线差异。通过[审阅上下文](skill/deterministic-pixel-art/references/review.md)声明目标背景、内容预留区和功能性颜色对。有提示仍返回成功，无效输入返回错误；工具不修改原图，也不为审美打分。
 
@@ -52,13 +68,13 @@ python src/pixel_art.py review --image output/gem.png --out-dir output/gem-revie
 
 ## 实测收益与代价
 
-**v1.2.0-rc.1 候选版**增加像素文本分析、无损 PNG 导入和布局复用。已有 PNG 可先用 `import --image existing.png --out editable.json` 转为规格，修改并渲染候选，再用 `inspect --compare existing.png` 检查。保持解码后的 8 位 RGBA，包括透明像素下的 RGB，不自动减色。详见[纯文本工作流](skill/deterministic-pixel-art/references/text-workflow.md)。
+已有 PNG 可先用 `import --image existing.png --out editable.json` 转为规格，附加 `--metadata layout.json` 可保留命名单元。保持解码后的 8 位 RGBA，包括透明像素下的 RGB，不自动减色。详见[纯文本工作流](skill/deterministic-pixel-art/references/text-workflow.md)。
 
-自动检查验证测量与精确往返能力；外部 Agent 配对试验尚未完成，暂不宣称减少修改轮次、节省 token 或普遍提高画质。详见[候选版报告与测评流程](docs/audit-v1.2.md)。最新稳定版保持 v1.1.1。
+八项外部探索任务提供了实质反馈，10 张主要最终 PNG 已在固定基准环境精确复现，但这些不是原先约定的受控 A/B 试验。修复、逐像素编辑和拼合结果见[本轮报告](docs/workflow-report.zh-CN.md)；[早期候选版方案](docs/audit-v1.2.md)保留为历史记录。暂不宣称减少修改轮次、节省 token 或普遍提高画质；最新稳定版及本地已安装 Skill 保持 v1.1.1。
 
 准备交给不同 AI 测评时，使用[分发指南和完整提示词](docs/agent-testing-guide.zh-CN.md)。`tools/prepare_agent_trials.py` 可将已发布 Agent 包拆成“一个版本、一个任务、一个新会话”的 ZIP；固定对照、开放审计、创作研究与独立验收分别记录，便于核对具体改进点。
 
-同机 Windows 对比 v1.1.0，完整 render/review 命令中位耗时分别增加 15.0/16.7 ms（约 9%），样例审阅 JSON 从 1,237 增至 6,999 字节，纯渲染基本持平。这些运行与上下文成本单独披露，不作为 Agent 工作流收益。
+此前 rc.1 同机 Windows 对比 v1.1.0，完整 render/review 命令中位耗时分别增加 15.0/16.7 ms（约 9%），样例审阅 JSON 从 1,237 增至 6,999 字节，纯渲染基本持平。这些历史运行与上下文成本单独披露，不作为 Agent 工作流收益。
 
 v1.1.1 修复空描边、主审阅背景、宽图拼板及文件提交问题，并补充错误定位和 Pillow 兼容检查。详见[外部反馈与可靠性报告](docs/audit-feedback.md)；这些修复不附带新的审美提升结论。
 
@@ -85,7 +101,7 @@ python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
-检查包含 61 个单元测试、43 张逐图回归、86 个历史夹具文件和八项冻结研究基线的完整性校验、八项无损导入/分析场景、基准测试、可复现 ZIP 打包及 45 项独立目录包执行检查。工作目录含中文和空格，不依赖原模组路径或 Codex 安装；产物写入被 Git 忽略的 `output/` 与 `evaluation/`。
+检查包含源码单元测试、43 张逐图回归、86 个历史夹具文件和八项冻结研究基线的完整性校验、八项无损导入/分析场景、可执行编辑与拼合对照、基准测试、可复现 ZIP 打包及独立目录包执行检查。[本轮报告](docs/workflow-report.zh-CN.md)记录当前实际数量。工作目录含中文和空格，不依赖原模组路径或 Codex 安装；产物写入被 Git 忽略的 `output/` 与 `evaluation/`。
 
 如有 skill-creator 官方校验器，可追加执行：
 

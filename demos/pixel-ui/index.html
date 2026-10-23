@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pixel UI · Consumer demo</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body data-theme="night">
+  <main>
+    <header><p class="eyebrow">DETERMINISTIC PIXEL ART</p><h1>Courier console</h1>
+      <p>Real PNG assets, live controls, native text.</p></header>
+    <section class="settings" aria-label="Preview settings">
+      <label>Scale <select id="scale"><option value="1">1×</option><option value="2" selected>2×</option><option value="3">3×</option></select></label>
+      <label>Background <select id="theme"><option value="night">Night</option><option value="paper">Paper</option></select></label>
+      <label>Asset revision <select id="revision"><option value="revised">Revised · 96 px</option><option value="baseline">Baseline · 64 px</option></select></label>
+    </section>
+    <p id="error" role="alert" hidden></p>
+    <section class="console" aria-label="Live consumer interface">
+      <div class="art"><img id="courier" width="128" height="128" alt="Asymmetric courier spacecraft, pointing right"></div>
+      <div class="transport"><h2>Flight controls</h2><p>Tab to focus. Enter or Space to activate.</p>
+        <div id="live-controls" class="live-controls">
+          <button id="run" class="pixel-button" aria-label="Run"><canvas aria-hidden="true"></canvas></button>
+          <button id="loop" class="pixel-button" aria-label="Loop" aria-pressed="false"><canvas aria-hidden="true"></canvas></button>
+          <button id="export" class="pixel-button" aria-label="Export map" disabled><canvas aria-hidden="true"></canvas></button>
+        </div>
+        <p id="activity" role="status" aria-live="polite">Loading assets…</p>
+        <p id="selection">Loop is off</p>
+      </div>
+    </section>
+    <section class="gallery"><h2>Six-state reference</h2><div id="states" class="states"></div></section>
+    <p id="fit-status" role="status"></p>
+    <details><summary>Asset and text checks</summary><p>Glyph bounds use the loaded font at native size. Measurements describe this browser, not in-game rendering.</p><pre id="checks">Loading…</pre></details>
+    <footer><a href="README.md">Sources and rebuild steps</a> · Font: Silkscreen Regular, <a href="fonts/OFL.txt">SIL OFL 1.1</a></footer>
+  </main>
+</body>
+</html>

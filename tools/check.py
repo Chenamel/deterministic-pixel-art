@@ -14,6 +14,7 @@ def run(name, *arguments):
 
 if __name__ == '__main__':
     run('build_workflow_examples.py')
+    run('build_consumer_demo.py', '--force')
     run('migrate_assets.py')
     run('evaluate.py')
     run('evaluate_quality.py')

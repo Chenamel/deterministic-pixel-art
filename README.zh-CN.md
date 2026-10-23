@@ -68,9 +68,18 @@ python recipes/buttons.py --out-dir output/buttons --width 64 --content 28 4 30 
 python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-light F9D5A0
 ```
 
-分发Skill中的位置是 `<skill>/scripts/recipes/`。128飞船常用编辑入口为49行配方（另有共享辅助），原展开JSON为33,744行；输出规格仍完整。86项源码测试、77项独立ZIP场景及官方校验通过，包体增加4.3%。[实测及限制](docs/recipe-workflows.zh-CN.md)；未据此宣称节省token或普遍提高审美，真实字体和消费端交互由下一阶段验证。
+分发Skill中的位置是 `<skill>/scripts/recipes/`。128飞船常用编辑入口为49行配方（另有共享辅助），原展开JSON为33,744行；输出规格仍完整，包体增加4.3%。[配方实测及限制](docs/recipe-workflows.zh-CN.md)；未据此宣称节省token或普遍提高审美。真实字体和消费端交互见下方示例。
 
 当前只需三个外部新会话：[清晰分工与已校验下载](docs/focused-trials.zh-CN.md)。本地稳定安装仍v1.1.1。
+
+## 真实 PNG 使用端示例
+
+```sh
+python tools/build_consumer_demo.py --force
+python -m http.server 8765 --bind 127.0.0.1 --directory demos/pixel-ui
+```
+
+浏览器打开 `http://127.0.0.1:8765/`。这个[仅仓库包含的示例](demos/pixel-ui/README.md)加载命名PNG图集、实际拉丁像素字体，支持原生鼠标/键盘、六态和1/2/3倍缩放。可切换64px基线与96px修正，查看真实 `EXPORT MAP` 标签从溢出到适配的对照。[结果与限制](docs/consumer-ui-report.zh-CN.md)：89项源码测试、43张稳定图与77项独立ZIP场景通过，封存Skill ZIP不变；未宣称中文/Minecraft字体或游戏内验收。
 
 ## 作为 Codex Skill 使用
 
@@ -129,4 +138,4 @@ python -B tools/test_skill.py --python /path/to/python --validator /path/to/quic
 
 ## 协议
 
-仓库及独立 Skill 使用 [MIT](LICENSE)。Pillow 和仅开发使用的 PyYAML 通过依赖安装，不随仓库捆绑。
+项目代码、原创图像与独立 Skill 使用 [MIT](LICENSE)。仅仓库演示附带的未修改Silkscreen Regular另遵循 [SIL OFL1.1](demos/pixel-ui/fonts/OFL.txt)，不进入Skill ZIP。Pillow 和仅开发使用的 PyYAML 通过依赖安装，不随仓库捆绑。

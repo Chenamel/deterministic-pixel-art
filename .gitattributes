@@ -1,6 +1,8 @@
 * text=auto eol=lf
 *.png binary
 *.zip binary
+*.ttf binary
+/demos/pixel-ui/fonts/OFL.txt -text -whitespace
 /baselines/** -text
 /quality/** -text whitespace=trailing-space,space-before-tab,cr-at-eol
 /examples/quality/** -text whitespace=trailing-space,space-before-tab,cr-at-eol

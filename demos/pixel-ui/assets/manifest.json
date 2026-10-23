@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "labels": {
+    "run": "RUN",
+    "loop": "LOOP",
+    "export": "EXPORT MAP"
+  },
+  "font": {
+    "family": "Silkscreen",
+    "size": 8,
+    "license": "SIL Open Font License 1.1",
+    "sha256": "c845473330b94c2079ce9af01c51ac8ba2d99c24f4d14c039843bbb8e642ebd8"
+  },
+  "variants": {
+    "baseline": {
+      "width": 64,
+      "height": 18,
+      "columns": 3,
+      "states": [
+        "normal",
+        "hover",
+        "focus",
+        "pressed",
+        "selected",
+        "disabled"
+      ]
+    },
+    "revised": {
+      "width": 96,
+      "height": 18,
+      "columns": 3,
+      "states": [
+        "normal",
+        "hover",
+        "focus",
+        "pressed",
+        "selected",
+        "disabled"
+      ]
+    }
+  },
+  "source_recipes": {
+    "buttons.py": "7317245a738208742389abcaa23be882e0e8d0e53cbef2bca5732afd64da7869",
+    "courier128.py": "c9d0c6bad1398bff2321a62a0a3a8a3d76ee73997f35f339f86897daa7c97dcc",
+    "icons.py": "1016d3e322a8dda0dde10405456889c90df5c045c82135c3ccd900d3e37467bb",
+    "_common.py": "89413e32b943b482294f5ebd3ef42950bc0b9aacf39f7d9e6689b8c4ae516a62"
+  },
+  "parameters": {
+    "buttons": {
+      "baseline_width": 64,
+      "button_width": 96,
+      "hover": "426B83",
+      "labels": {
+        "run": "RUN",
+        "loop": "LOOP",
+        "export": "EXPORT MAP"
+      }
+    },
+    "courier": {
+      "stripe": "E17B57",
+      "stripe_light": "F9D5A0"
+    },
+    "icons": {
+      "ink": "F5C26B"
+    }
+  },
+  "assets": {
+    "baseline/buttons.json": {
+      "bytes": 9136,
+      "sha256": "5b2cde389c940e99ef3662cefcd890f68045d7a222e1b10ffdfa5c743ea473d6"
+    },
+    "baseline/buttons.png": {
+      "bytes": 689,
+      "sha256": "bb0560a36c3b9d704baa6d42f34704d5c0d42194c6b06c1a395e154975682e0b"
+    },
+    "baseline/context.json": {
+      "bytes": 993,
+      "sha256": "1b38002c1ebfcf4399f9279d74841063c75ddaa00bb01eb3bb2b72fd0d5c8436"
+    },
+    "baseline/layout.json": {
+      "bytes": 930,
+      "sha256": "50991ab497903a7e4addd0c1ef0f67bc23d0c5dfb2806417a01a435a1ce9b83a"
+    },
+    "courier.png": {
+      "bytes": 1956,
+      "sha256": "a7384864cedcdd099db298dc98fe4f2322d061ecddf0ec626bc0ea6fc86ce0a5"
+    },
+    "icons-layout.json": {
+      "bytes": 702,
+      "sha256": "65e559cb5c8426da063d870f62a8d5f84649b82166eda45c86459701e038351d"
+    },
+    "icons.json": {
+      "bytes": 3088,
+      "sha256": "3e5063625f492e2d3a34ea499f1aec8468dd378a9d8e9f82788a1b64e025942d"
+    },
+    "icons.png": {
+      "bytes": 246,
+      "sha256": "3432522f4570b5dbabeb7c6ff81ac4d738a95389b2891b6e1e463845e767180a"
+    },
+    "revised/buttons.json": {
+      "bytes": 9136,
+      "sha256": "c413773eaf709ce934590d91d46f9b70c4ae845957d8297c309b2cbd00babe14"
+    },
+    "revised/buttons.png": {
+      "bytes": 762,
+      "sha256": "f75318e717d5c0e74238895fc9dd1bd7db6350a1a0ae4a500c64a6f1922fada7"
+    },
+    "revised/context.json": {
+      "bytes": 995,
+      "sha256": "055dff988e4c93062bee89f683a271140b8e722a91e69867a034c3a733235751"
+    },
+    "revised/layout.json": {
+      "bytes": 930,
+      "sha256": "979b011b14e2f2249b4630c04ff221dfd82c157e40a8cc3ededc8673ef5867d3"
+    }
+  },
+  "scope": "Browser consumer demonstration; no Minecraft font or in-game acceptance."
+}

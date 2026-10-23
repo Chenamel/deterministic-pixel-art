@@ -1,0 +1,280 @@
+{
+  "stage": "P3",
+  "date": "2026-10-23",
+  "base_commit": "db5b1b3ac3b74f034febae96cc25d0277936e700",
+  "evidence": "Actual local browser/font/interaction observations, author-agent review; not external or aesthetic evidence",
+  "environment": {
+    "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "pillow": "12.3.0",
+    "os": "Windows-11-10.0.22631-SP0",
+    "browser": "Codex IAB; single browser; no version claim"
+  },
+  "text_fit": {
+    "baseline": {
+      "cell_width": 64,
+      "checks": 18,
+      "failures": 6,
+      "export_normal": {
+        "state": "normal",
+        "label": "EXPORT MAP",
+        "region": [
+          28,
+          4,
+          30,
+          10
+        ],
+        "bounds": [
+          14,
+          7,
+          58,
+          5
+        ],
+        "fits": false,
+        "x": 14,
+        "y": 12,
+        "advance": 58
+      }
+    },
+    "revised": {
+      "cell_width": 96,
+      "checks": 18,
+      "failures": 0,
+      "export_normal": {
+        "state": "normal",
+        "label": "EXPORT MAP",
+        "region": [
+          28,
+          4,
+          62,
+          10
+        ],
+        "bounds": [
+          30,
+          7,
+          58,
+          5
+        ],
+        "fits": true,
+        "x": 30,
+        "y": 12,
+        "advance": 58
+      }
+    }
+  },
+  "font": {
+    "family": "Silkscreen Regular",
+    "cssFamily": "PixelDemo",
+    "size": 8,
+    "loaded": true,
+    "sha256": "c845473330b94c2079ce9af01c51ac8ba2d99c24f4d14c039843bbb8e642ebd8"
+  },
+  "texture": {
+    "width": 288,
+    "height": 36,
+    "cellWidth": 96,
+    "cellHeight": 18,
+    "hashVerified": true,
+    "namedLayoutVerified": true
+  },
+  "final_smoke": {
+    "verified_image_blob": {
+      "complete": true,
+      "height": 128,
+      "usesVerifiedBlob": true,
+      "width": 128
+    },
+    "run_count": 1,
+    "console_errors": []
+  },
+  "interactions": [
+    {
+      "test": "mouse RUN",
+      "verified": true
+    },
+    {
+      "test": "keyboard Enter RUN",
+      "verified": true
+    },
+    {
+      "test": "keyboard Space RUN",
+      "verified": true
+    },
+    {
+      "test": "keyboard selected+focus LOOP",
+      "verified": true
+    },
+    {
+      "test": "Tab skips disabled EXPORT",
+      "verified": true
+    },
+    {
+      "test": "pointer hover RUN",
+      "verified": true
+    },
+    {
+      "test": "held press RUN",
+      "verified": true
+    },
+    {
+      "test": "press/release without intervening full-page screenshot",
+      "verified": true
+    },
+    {
+      "test": "drag out then release cancels activation",
+      "verified": true
+    },
+    {
+      "test": "disabled EXPORT pointer activation ignored",
+      "verified": true
+    },
+    {
+      "test": "mouse deselect LOOP",
+      "verified": true
+    }
+  ],
+  "instrumentation_note": "First held-press full-page screenshot changed scrolling and prevented activation. Press/release without it activated correctly; preserved in local raw evidence.",
+  "scales": [
+    {
+      "background": "night",
+      "scale": 1,
+      "css_button_size": [
+        96.00000762939453,
+        18
+      ],
+      "viewport": [
+        848,
+        719
+      ],
+      "image_rendering": "pixelated",
+      "text_fits": true
+    },
+    {
+      "background": "night",
+      "scale": 2,
+      "css_button_size": [
+        192.00001525878906,
+        36
+      ],
+      "viewport": [
+        848,
+        719
+      ],
+      "image_rendering": "pixelated",
+      "text_fits": true
+    },
+    {
+      "background": "night",
+      "scale": 3,
+      "css_button_size": [
+        288,
+        54.000003814697266
+      ],
+      "viewport": [
+        848,
+        719
+      ],
+      "image_rendering": "pixelated",
+      "text_fits": true
+    },
+    {
+      "background": "paper",
+      "scale": 1,
+      "css_button_size": [
+        96.00000762939453,
+        18
+      ],
+      "viewport": [
+        848,
+        719
+      ],
+      "image_rendering": "pixelated",
+      "text_fits": true
+    },
+    {
+      "background": "paper",
+      "scale": 2,
+      "css_button_size": [
+        192.00001525878906,
+        36
+      ],
+      "viewport": [
+        848,
+        719
+      ],
+      "image_rendering": "pixelated",
+      "text_fits": true
+    },
+    {
+      "background": "paper",
+      "scale": 3,
+      "css_button_size": [
+        288,
+        54.000003814697266
+      ],
+      "viewport": [
+        848,
+        719
+      ],
+      "image_rendering": "pixelated",
+      "text_fits": true
+    }
+  ],
+  "further_edit": {
+    "width": 112,
+    "label": "START",
+    "css_size": [
+      224.00001525878906,
+      36
+    ],
+    "text_fits": true,
+    "manifest_driven_names_and_sizes": true,
+    "restored_generated_files": 13,
+    "restored_byte_exact": true
+  },
+  "validation": {
+    "source_tests": 89,
+    "new_tests": 3,
+    "stable_images": 43,
+    "zip_cases": 77,
+    "portable_pipeline_passed": true,
+    "external_final_pngs": 10,
+    "external_final_layouts_equal": true,
+    "protected_files_unchanged": 138,
+    "official_skill_validation_rerun": false,
+    "reason": "Skill bytes identical to P2 validated archive"
+  },
+  "skill": {
+    "package_sha256": "b680e73c966eb6557ed94bfc2e843dd4fca2c74c8aaf5f279caa2eeece6f308d",
+    "zip_bytes": 222984,
+    "sealed_rc3_unchanged": true,
+    "stable_and_local_install": "1.1.1",
+    "published_candidate": "1.2.0-rc.2",
+    "new_external_submissions": 0
+  },
+  "provenance": {
+    "demo_sources": {
+      "tools/build_consumer_demo.py": "088639632a2f143e594402d451c3566889168c2c9f7c454860318c516fade374",
+      "demos/pixel-ui/app.js": "7ef33f1f5ee69bc7877f3c27c35e96160155742a3bfc94457f1780db9ae9707f",
+      "demos/pixel-ui/demo.json": "c1e2c22619b5e4ddc5f6dcbff60e1455fb2f620c0491b417d75dc24b3557ef37",
+      "demos/pixel-ui/index.html": "484a761845ce170d1bebd77c75bc967741a70a8385aefea33c734e568fc48f55",
+      "demos/pixel-ui/README.md": "85675fc73ac75767591308b7bbdcd54ac037d5070ae882cbcddca925b81dcf50",
+      "demos/pixel-ui/style.css": "dc755407ca062848f2b2e9f46e1967107a42f3ba173ea7e8b8d10e21c7623b20"
+    },
+    "screenshots": {
+      "baseline.jpg": "58bde20a1f54e2ababf942001fdea211745042fbe9a3a0ac1b96f4fdb56b3c7f",
+      "night-1x.jpg": "9d0e272c8529b3ca400b686206fe4d22b8b021665b38bc4602af9d9b7a6c552f",
+      "night-3x.jpg": "2dc402b548a0d0d2265bbc0a33d60739ea467f561b1a0cd6c38a0a2d3eb7e09c",
+      "paper-1x.jpg": "599953bd22153a1f4e76c5c3d9e51661c92d3ad069808fad8623150716c46367",
+      "paper-3x.jpg": "8e231c7a9e336d47cf56751c391d139ab165fa86d19fbcc33f4eb79f2160f88b",
+      "pressed.jpg": "d597027933c1a54801a8590a771cba55e4e4cf8238eaaa43913b4fc6afbb90df",
+      "revised.jpg": "513ac51f03903ac4e4fa576c4c85a22befbb7acb531bfbcfbf3c56bf8f9ea148",
+      "selected-focus.jpg": "7d90baac842412b97b2acd89fa4444f1d40451736456ee857188d3f845c964af"
+    }
+  },
+  "limitations": [
+    "No Chinese or Minecraft font acceptance",
+    "No game/cross-browser/mobile/accessibility acceptance",
+    "No general art-quality or token/time productivity claim",
+    "Wider controls cost 32 additional logical pixels each"
+  ]
+}

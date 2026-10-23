@@ -1,0 +1,71 @@
+{
+  "asset_type": "ui",
+  "backgrounds": [
+    {
+      "name": "target",
+      "color": "1D293D"
+    }
+  ],
+  "regions": [
+    {
+      "name": "normal-text",
+      "rect": [
+        28,
+        4,
+        62,
+        10
+      ],
+      "role": "reserved_text"
+    },
+    {
+      "name": "hover-text",
+      "rect": [
+        124,
+        4,
+        62,
+        10
+      ],
+      "role": "reserved_text"
+    },
+    {
+      "name": "focus-text",
+      "rect": [
+        220,
+        4,
+        62,
+        10
+      ],
+      "role": "reserved_text"
+    },
+    {
+      "name": "pressed-text",
+      "rect": [
+        28,
+        22,
+        62,
+        10
+      ],
+      "role": "reserved_text"
+    },
+    {
+      "name": "selected-text",
+      "rect": [
+        124,
+        22,
+        62,
+        10
+      ],
+      "role": "reserved_text"
+    },
+    {
+      "name": "disabled-text",
+      "rect": [
+        220,
+        22,
+        62,
+        10
+      ],
+      "role": "reserved_text"
+    }
+  ]
+}

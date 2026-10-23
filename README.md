@@ -72,7 +72,16 @@ python recipes/buttons.py --out-dir output/buttons --width 64 --content 28 4 30 
 python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-light F9D5A0
 ```
 
-In an extracted Skill, resolve these at `<skill>/scripts/recipes/`. Defaults retain exact reference pixels at Pillow 12.3.0; changed outputs include independent JSON/PNG/layout. [Results and costs](docs/recipe-workflows.md): 86 source tests and 77 isolated ZIP cases pass locally; the ZIP grows 4.3%. Fonts and consumer interaction remain untested.
+In an extracted Skill, resolve these at `<skill>/scripts/recipes/`. Defaults retain exact reference pixels at Pillow 12.3.0; changed outputs include independent JSON/PNG/layout. [Recipe results and costs](docs/recipe-workflows.md): the ZIP grows 4.3%. See the actual-font consumer example below for text and interaction checks.
+
+## Real PNG consumer demo
+
+```sh
+python tools/build_consumer_demo.py --force
+python -m http.server 8765 --bind 127.0.0.1 --directory demos/pixel-ui
+```
+
+Open `http://127.0.0.1:8765/`. The [repository-only demo](demos/pixel-ui/README.md) uses named PNG atlas cells, a bundled Latin pixel font, native keyboard/mouse controls and 1/2/3× scaling. Compare the preserved 64px baseline with the 96px revision: the actual `EXPORT MAP` label now fits. [Consumer findings and limits](docs/consumer-ui-report.md): 89 source tests, 43 stable images and 77 isolated ZIP cases pass; the sealed Skill ZIP is unchanged. No Minecraft or Chinese-font acceptance is claimed.
 
 ## Use as a Codex skill
 
@@ -129,4 +138,4 @@ The default project-local validator checks metadata and references; it is not th
 
 ## License
 
-[MIT](LICENSE), including the standalone skill. Pillow and the development-only PyYAML are installed dependencies and are not vendored.
+[MIT](LICENSE), including the standalone skill. The repository-only demo bundles unmodified Silkscreen Regular under its separate [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt); it is not in the Skill ZIP. Pillow and the development-only PyYAML are installed dependencies and are not vendored.

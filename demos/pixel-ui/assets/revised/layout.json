@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "size": [
+    288,
+    36
+  ],
+  "mode": "RGBA",
+  "atlas": {
+    "cell_size": [
+      96,
+      18
+    ],
+    "columns": 3,
+    "rows": 2,
+    "cells": [
+      {
+        "name": "normal",
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 18
+      },
+      {
+        "name": "hover",
+        "x": 96,
+        "y": 0,
+        "w": 96,
+        "h": 18
+      },
+      {
+        "name": "focus",
+        "x": 192,
+        "y": 0,
+        "w": 96,
+        "h": 18
+      },
+      {
+        "name": "pressed",
+        "x": 0,
+        "y": 18,
+        "w": 96,
+        "h": 18
+      },
+      {
+        "name": "selected",
+        "x": 96,
+        "y": 18,
+        "w": 96,
+        "h": 18
+      },
+      {
+        "name": "disabled",
+        "x": 192,
+        "y": 18,
+        "w": 96,
+        "h": 18
+      }
+    ]
+  },
+  "rgba_sha256": "45bc4cc2870960ca4f9d627a315e725b249d20db685cbd1a6d7976f0f07d98cf"
+}

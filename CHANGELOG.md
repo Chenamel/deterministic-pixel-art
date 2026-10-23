@@ -1,5 +1,11 @@
 # Changelog
 
+## Repository consumer demonstration (no Skill version change)
+
+- Load actual named PNG atlas cells and a separately OFL-licensed local font in a dependency-free browser demo; implement native mouse/keyboard controls, six states and integer scaling.
+- Retain the 64px text-overflow baseline and a 96px recipe/layout correction, with actual-font bounds, screenshots and a further parameter-edit rehearsal. Do not claim general aesthetic or in-game gains.
+- Rebuild the demo in portable checks; retain the frozen rc.3 Skill ZIP and stable/local v1.1.1 unchanged.
+
 ## 1.2.0-rc.3 (local candidate)
 
 - Ship standalone editable Python recipes for named icons, six-state buttons with text reservations, the native128 courier and256 component scene. Defaults match frozen rc.2 pixels at Pillow12.3.0.

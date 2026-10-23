@@ -68,7 +68,7 @@ python recipes/buttons.py --out-dir output/buttons --width 64 --content 28 4 30 
 python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-light F9D5A0
 ```
 
-分发Skill中的位置是 `<skill>/scripts/recipes/`。128飞船常用编辑入口为49行配方（另有共享辅助），原展开JSON为33,744行；输出规格仍完整，包体增加4.3%。[配方实测及限制](docs/recipe-workflows.zh-CN.md)；未据此宣称节省token或普遍提高审美。真实字体和消费端交互见下方示例。
+分发Skill中的位置是 `<skill>/scripts/recipes/`。128飞船常用编辑入口为49行配方（另有共享辅助），原展开JSON为33,744行；输出规格仍完整。此前rc.3配方使包体增加4.3%，本次rc.4相对rc.3再增加3.359%。[配方实测及限制](docs/recipe-workflows.zh-CN.md)；未据此宣称节省token或普遍提高审美。真实字体和消费端交互见下方示例。
 
 本地rc.4另附一个分别绘制的双块小桥，直接演练局部改色：
 

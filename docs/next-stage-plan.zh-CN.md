@@ -1,6 +1,6 @@
 # 下一阶段：让 AI 更容易完成真实像素任务
 
-更新：2026-10-24。状态：**P1三包已发布，新外部返回0；P2/P3与P4a独立256完成；P4b用途门槛已评估，512绘制暂缓。现进入候选收口，rc.4本地检查完成，提交CI待核验**。[本次收口结果](candidate-closeout.zh-CN.md)。最新执行状态以恢复入口和开发日志为准。
+更新：2026-10-24。状态：**P1三包已发布，新外部返回0；P2/P3与P4a独立256完成；P4b用途门槛已评估，512绘制暂缓。rc.4候选收口完成，本地检查及实现提交8组CI通过；下一项外部回收/发布门槛**。[本次收口结果](candidate-closeout.zh-CN.md)。最新执行状态以恢复入口和开发日志为准。
 
 恢复入口：[WORK_STATE.md](../WORK_STATE.md)。过程与决策记录：[development-log.zh-CN.md](development-log.zh-CN.md)。前一阶段结果：[workflow-report.zh-CN.md](workflow-report.zh-CN.md)。
 
@@ -117,4 +117,4 @@ P2已封存v1.2.0-rc.3；本次按需指导与最小分块例子另封存v1.2.0-
 - 本计划：维护范围、顺序和验收；重大变更写明原因。
 - 本地 `evaluation/`：原始运行、复现、外部会话；`output/`：候选产物。公开摘要进入 `docs/measurements/`，原始资料不塞进 Skill。
 
-当前从 **rc.4候选收口的提交CI核验** 继续。P4b已决定暂缓，原因和再启动条件见 `docs/candidate-closeout.zh-CN.md`。本地98源码/43稳定图/86ZIP、官方格式、10外部旧图和138保护文件已通过，原始记录在 `evaluation/closeout-20261024/`。不要重跑不变整包或重画P4a；新代码/失败才重测相应范围。CI过关后记录检查点，下一项回收P1并检查发布门槛；正式发布与稳定安装仍按已有约定，不把外部尚未返回记为通过。
+当前从 **P1外部产物回收与既有发布门槛检查** 继续；任务入口 `docs/focused-trials.zh-CN.md`，新返回仍0。rc.4本地98源码/43稳定图/86ZIP、官方格式、10外部旧图和138保护文件通过；实现提交 `c033022` 的8组CI全部成功，见 `docs/measurements/candidate-closeout-ci.json`。原始记录在 `evaluation/closeout-20261024/`。不要重跑不变整包或重画P4a；新代码/失败才重测相应范围。P4b已暂缓，原因与再启动条件见 `docs/candidate-closeout.zh-CN.md`。正式发布与稳定安装仍按已有约定，不把外部尚未返回记为通过。

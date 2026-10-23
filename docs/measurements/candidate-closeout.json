@@ -65,7 +65,11 @@
     "stale_metadata_rejected": true
   },
   "ci": {
-    "status": "pending implementation push; see subsequent candidate-closeout-ci.json"
+    "implementation_commit": "c0330223114288a0790a4af9c3f2019e0f5bbeb7",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39985591333",
+    "passed_jobs": 8
   },
   "limitations": [
     "Author inspection, not independent aesthetic evidence or in-game acceptance.",

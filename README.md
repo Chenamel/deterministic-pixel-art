@@ -73,7 +73,7 @@ python recipes/buttons.py --out-dir output/buttons --width 64 --content 28 4 30 
 python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-light F9D5A0
 ```
 
-In an extracted Skill, resolve these at `<skill>/scripts/recipes/`. Defaults retain exact reference pixels at Pillow 12.3.0; changed outputs include independent JSON/PNG/layout. [Recipe results and costs](docs/recipe-workflows.md): the ZIP grows 4.3%. See the actual-font consumer example below for text and interaction checks.
+In an extracted Skill, resolve these at `<skill>/scripts/recipes/`. Defaults retain exact reference pixels at Pillow 12.3.0; changed outputs include independent JSON/PNG/layout. The earlier rc.3 recipe addition grew the ZIP by 4.3%; see [recipe results and costs](docs/recipe-workflows.md). The rc.4 additions below add a further 3.359%. See the actual-font consumer example below for text and interaction checks.
 
 The local rc.4 candidate also ships a small independently drawn two-owner bridge:
 

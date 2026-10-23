@@ -53,6 +53,6 @@
 
 SHA-256：`cb3472769754dbd9b5d56397e2620f6be12c253a8162a1642acd71225b4e69c1`。
 
-本地位置：`dist/v1.2.0-rc.4/`，含ZIP、逐文件清单、检查记录和SHA-256总表。原始执行记录保存在忽略的 `evaluation/closeout-20261024/`。新提交的Windows/Ubuntu及Pillow矩阵CI单列到 `candidate-closeout-ci.json`；已有配置或旧提交成功不冒充本候选通过。
+本地位置：`dist/v1.2.0-rc.4/`，含ZIP、逐文件清单、检查记录和SHA-256总表。原始执行记录保存在忽略的 `evaluation/closeout-20261024/`。实现提交 `c0330223114288a0790a4af9c3f2019e0f5bbeb7` 已推送，[CI运行39985591333](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39985591333)8组全部成功，覆盖Windows/Ubuntu主流程及各自Pillow10.4/11.3/12.1兼容矩阵；逐组结果见 [candidate-closeout-ci.json](measurements/candidate-closeout-ci.json)。CI验证工程行为，不替代独立审美或外部平台验收。
 
 MIT、英文主README和独立中文版保持。未完成项仍包括P1外部回收、原挂载环境、受控外部发布门槛、独立审美验证及游戏内验收；本次不扩大这些结论。

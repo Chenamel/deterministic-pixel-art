@@ -51,6 +51,8 @@
 
 Skill ZIP仍为222,984字节/91文件，SHA-256 `b680e73c966eb6557ed94bfc2e843dd4fca2c74c8aaf5f279caa2eeece6f308d`；不变包沿用P2官方格式校验结果，本轮不重复。示例仅放仓库，不替换原工具、模组资源、公开rc.2、封存rc.3或已安装v1.1.1。
 
+最终实现 `a6d84936618b5176c5eecffcea6accd8ec4b745e` 已推送，[CI运行39981625213](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39981625213)的8组全部成功，包含Windows/Ubuntu完整主流程和各自Pillow10.4/11.3/12.1兼容检查，已覆盖最后的批量参数代码。另行实际调用批量flag CLI，与独立块修改/拼合像素一致、清单参数正确。逐组记录见 [chunk-scene-ci.json](measurements/chunk-scene-ci.json)。视觉观察仍为本地作者自评，不声称CI替代审美验收。
+
 ## 未证明与下一项
 
 这是同一作者代理按合同分别绘制并自评，**不是多模型盲作、独立审美评测或普遍画质提升证明**。未做游戏内导航/碰撞、复杂曲线地形、跨块大型建筑、不同模型之间风格收敛或原生512验证；像素覆盖检查不能证明可走性。

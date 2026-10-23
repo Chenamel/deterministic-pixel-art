@@ -11,6 +11,9 @@
     "os": "Windows-11-10.0.22631-SP0"
   },
   "evidence": "One author-agent, separately authored local sources; no finished scene input; not independent blind/multi-agent aesthetic evidence",
+  "implementation_commit": "a6d84936618b5176c5eecffcea6accd8ec4b745e",
+  "ci_record": "chunk-scene-ci.json",
+  "final_batch_flag_cli_verified": true,
   "stage_plan": {
     "total_main_stages": 4,
     "P1": "distributed; external submissions pending",

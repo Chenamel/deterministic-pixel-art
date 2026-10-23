@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Canalworks crossing",
+  "size": [256, 256],
+  "chunk_size": [128, 128],
+  "view": "top-down miniature; six-pixel building fronts; light from upper left",
+  "chunks": {
+    "nw": [0, 0, 128, 128],
+    "ne": [128, 0, 128, 128],
+    "sw": [0, 128, 128, 128],
+    "se": [128, 128, 128, 128]
+  },
+  "palette": {
+    "ground": "66775A", "ground_light": "7B895F", "ground_dark": "52654E",
+    "stone": "A69B7E", "stone_light": "C6B794", "stone_dark": "807B68", "mortar": "706E5D",
+    "water": "356B80", "water_dark": "294D62", "water_light": "73A5AA",
+    "outline": "283D42", "roof": "9B6655", "roof_light": "CD9770", "roof_dark": "704F50",
+    "wall": "D2BD91", "wall_dark": "9A906E",
+    "wood": "9B7950", "wood_light": "C2A16C", "wood_dark": "705B43",
+    "metal": "526D75", "metal_light": "93A5A2", "gold": "E4BB6B", "shadow": "465949", "ivory": "E9DEB9"
+  },
+  "structure": {
+    "canal": [108, 0, 40, 256],
+    "left_quay": [100, 0, 8, 256],
+    "right_quay": [148, 0, 8, 256],
+    "left_walk": [86, 0, 14, 256],
+    "right_walk": [156, 0, 14, 256],
+    "west_approach": [0, 112, 100, 32],
+    "east_approach": [156, 112, 100, 32],
+    "bridge": [100, 112, 56, 32],
+    "bridge_top_rail": [100, 112, 56, 4],
+    "bridge_bottom_rail": [100, 140, 56, 4]
+  },
+  "phase": {
+    "paving": "8px rows; 16px slabs; odd global rows shifted by 8px",
+    "bridge": "8px vertical plank joints at global x=100+8k; grain at global y=118+8k",
+    "cross_seam_ripples": [[120,40,17,1],[116,72,21,1],[120,184,17,1],[116,216,21,1]]
+  },
+  "semantic_routes": [
+    "Water runs north-south; the bridge does not dam the visible upstream/downstream canal.",
+    "A 24px walkable bridge deck at y=116..139 connects west/east paving.",
+    "Rails are on the north/south edges, never across the walking direction."
+  ],
+  "validation": {
+    "clear_canal_rows": [96,160,240],
+    "vertical_water_seam": [[127,0,2,112],[127,144,2,112]],
+    "horizontal_road_seam": [[0,127,100,2],[156,127,100,2]],
+    "center_deck_seam": [124,124,8,8],
+    "note": "Palette/structure checks support author review; do not prove aesthetics or scene semantics."
+  }
+}

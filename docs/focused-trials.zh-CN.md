@@ -8,7 +8,7 @@
 | **千问办公助理** | [P1-C-Qwen.zip](https://github.com/Chenamel/deterministic-pixel-art/releases/download/v1.2.0-rc.2/P1-C-Qwen.zip) | 原生与便携输出、拒绝覆盖、依赖和挂载记录 |
 | **Gemini任务模式** | [P1-V-Gemini.zip](https://github.com/Chenamel/deterministic-pixel-art/releases/download/v1.2.0-rc.2/P1-V-Gemini.zip) | 只改metal单元并实际看图，检查浅背景及剪影 |
 
-发布状态：**本地三包已验证；GitHub下载与当前提交CI尚待确认。确认后更新此行。**
+发布状态：**v1.2.0-rc.2预发布已上线；8组CI全部通过；9份发布附件与本地一致（8份内容哈希加校验清单），千问直链还完成了无登录实际下载校验。** [发布页](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0-rc.2) · [校验记录](measurements/focused-release.json)。三个外部任务的实际结果尚未返回。
 
 ## 直接复制的启动语
 

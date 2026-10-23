@@ -42,7 +42,7 @@ Use absolute script/input/output paths when running from another working directo
 
 Keep the spec alongside the resulting PNG. Inspect native-size artwork and a magnified preview; dimensions alone cannot verify direction, state meaning, or readability.
 
-The **local v1.2.0-rc.2 candidate** adds named PNG editing, exact allowed-change checks and component assembly to the existing textual inspection and lossless import tools. For an existing PNG, run `python src/pixel_art.py import --image existing.png --out editable.json`; add `--metadata layout.json` to retain named atlas cells. No color quantization is applied; decoded 8-bit RGBA, including hidden RGB, is preserved. See the [text workflow](skill/deterministic-pixel-art/references/text-workflow.md).
+The **published v1.2.0-rc.2 candidate** adds named PNG editing, exact allowed-change checks and component assembly to the existing textual inspection and lossless import tools. For an existing PNG, run `python src/pixel_art.py import --image existing.png --out editable.json`; add `--metadata layout.json` to retain named atlas cells. No color quantization is applied; decoded 8-bit RGBA, including hidden RGB, is preserved. See the [text workflow](skill/deterministic-pixel-art/references/text-workflow.md).
 
 For an existing named atlas, replace one cell and prove that other pixels are unchanged:
 
@@ -62,6 +62,18 @@ The [editing and assembly guide](skill/deterministic-pixel-art/references/workfl
 
 The [format reference](skill/deterministic-pixel-art/references/formats.md) covers JSON v1, the compact GUI DSL, `render(spec)`, `Canvas`, validation rules, and atlas metadata. Invalid symbols, unknown commands, and implicit clipping produce errors. Rectangles use `x, y, width, height`.
 
+## Editable recipes (local rc.3)
+
+For repeated variants, use the shipped Python recipes instead of editing expanded point lists:
+
+```sh
+python recipes/icons.py --out-dir output/icons --ink F5C26B
+python recipes/buttons.py --out-dir output/buttons --width 64 --content 28 4 30 10 --hover 426B83
+python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-light F9D5A0
+```
+
+In an extracted Skill, resolve these at `<skill>/scripts/recipes/`. Defaults retain exact reference pixels at Pillow 12.3.0; changed outputs include independent JSON/PNG/layout. [Results and costs](docs/recipe-workflows.md): 86 source tests and 77 isolated ZIP cases pass locally; the ZIP grows 4.3%. Fonts and consumer interaction remain untested.
+
 ## Use as a Codex skill
 
 Download the Skill ZIP and SHA-256 manifest from [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases). Release tags pin the runtime and guidance together; `v1.0.0` preserves the previous stable baseline. Verify the checksum, then extract the self-contained `deterministic-pixel-art` folder into your Codex skills directory (`$CODEX_HOME/skills`, or `~/.codex/skills` by default), and install its `requirements.txt` in a Python environment available to your task. Back up any previous installation outside the skills directory. The same folder is available at [skill/deterministic-pixel-art](skill/deterministic-pixel-art/SKILL.md).
@@ -72,9 +84,9 @@ Build a tested ZIP with `python -B tools/check.py` after installing the developm
 
 ## What improved, and what did not
 
-v1.2.0-rc.2 is a local candidate. Eight external exploratory tasks supplied useful feedback; all 10 main final PNGs were reproduced exactly in the fixed baseline environment. They are not the previously proposed controlled A/B trials. The [current workflow report](docs/workflow-report.md) records the fixes, exact edit/assembly checks and limits; the [earlier candidate protocol](docs/audit-v1.2.md) remains historical. Workflow time, correction-round savings and general aesthetic improvement are not established. The latest stable release and installed local Skill remain v1.1.1.
+v1.2.0-rc.2 is a published prerelease. Eight external exploratory tasks supplied useful feedback; all 10 main final PNGs were reproduced exactly in the fixed baseline environment. They are not the previously proposed controlled A/B trials. The [current workflow report](docs/workflow-report.md) records the fixes, exact edit/assembly checks and limits; the [earlier candidate protocol](docs/audit-v1.2.md) remains historical. Workflow time, correction-round savings and general aesthetic improvement are not established. The latest stable release and installed local Skill remain v1.1.1.
 
-For external testing, use the [Chinese distribution guide and ready-to-copy prompts](docs/agent-testing-guide.zh-CN.md). The optional `tools/prepare_agent_trials.py` splits the released agent bundle into one-package, one-task session ZIPs. Controlled comparisons, open audits, creative trials and independent review have separate prompts and evidence requirements.
+For the current three focused follow-ups, use the [simple platform assignment and verified downloads](docs/focused-trials.zh-CN.md). The [older trial guide](docs/agent-testing-guide.zh-CN.md) remains available for the historical protocol. The optional `tools/prepare_agent_trials.py` splits the released agent bundle into one-package, one-task session ZIPs. Controlled comparisons, open audits, creative trials and independent review have separate prompts and evidence requirements.
 
 In the earlier rc.1 local Windows comparison with v1.1.0, full render/review command medians increased by 15.0/16.7 ms (about 9%); the sample review JSON grew from 1,237 to 6,999 bytes. Pure rendering was essentially unchanged. These historical costs are separate from agent workflow outcomes.
 

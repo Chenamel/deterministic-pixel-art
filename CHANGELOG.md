@@ -1,6 +1,12 @@
 # Changelog
 
-## 1.2.0-rc.2 (local candidate)
+## 1.2.0-rc.3 (local candidate)
+
+- Ship standalone editable Python recipes for named icons, six-state buttons with text reservations, the native128 courier and256 component scene. Defaults match frozen rc.2 pixels at Pillow12.3.0.
+- Reuse recipe geometry in the repository generator; re-render components before scene assembly. Keep JSONv1 and all prior command/API semantics.
+- Verify scoped color/state edits, standalone spec reproduction, grouped no-overwrite and fresh component assembly from the extracted Skill. No model-token, timing or general aesthetic gains are claimed.
+
+## 1.2.0-rc.2
 
 - Fix invisible silhouettes on light primary backgrounds; expose native views for each background and existing per-cell geometry summaries.
 - Add explicit preview backgrounds and opt-in no-hard-link output; preserve no-overwrite and disclose weaker new-file visibility.

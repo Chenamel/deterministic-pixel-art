@@ -29,8 +29,12 @@ Skill ZIP保持原有213,762字节、85文件，SHA-256：
 
 较早的 `dist/focused-v1.2.0-rc.2/` 是未分发的中间构建，**不要使用或上传**。发布使用 `-final` 目录；冻结Skill包未覆盖。
 
-## 待完成的核验
+## 工程检查与发布核验
 
-完整工程流水线已通过80个源码测试、43张稳定产物、8项精确分析/导入任务和61项独立ZIP场景；连续两次打包哈希与冻结rc.2完全相同。官方Skill校验、当前提交Windows/Ubuntu及Pillow兼容CI、候选发布后的下载哈希尚待本轮最终补记。配置存在或历史提交通过不能算本候选已通过。
+完整工程流水线已通过80个源码测试、43张稳定产物、8项精确分析/导入任务和61项独立ZIP场景；连续两次打包哈希与冻结rc.2完全相同。官方skill-creator校验及另一轮61项ZIP场景通过。
+
+提交 `8932e7a95424cebfbc55dd047b18fe6acc8f46fb` 的[实际CI](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39916354346)已完成，8组全部成功：Windows/Ubuntu主流程，以及各自Python3.10/Pillow10.4、Python3.12/Pillow11.3、Python3.13/Pillow12.1的兼容测试。原OSS/FUSE挂载仍未复现。
+
+[rc.2预发布](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0-rc.2)已上线，重新下载9份附件，8份内容哈希和校验清单全部与本地一致；千问任务ZIP另外通过无登录的公开URL实际下载，SHA-256一致。机器记录见 [focused-release.json](measurements/focused-release.json)。发布附件中的本准备报告是上传前快照；本页追加了下载结果，不覆盖冻结ZIP。此后开发中的rc.3配方不会改变本轮三个任务包。
 
 未验证：实际千问OSS/FUSE挂载、外部Agent本轮修改成功率和耗时、普遍审美/Token收益、独立盲评及游戏内效果。稳定发布和本地已安装Skill维持v1.1.1。下一步等待三份真实反馈期间推进P2可读配方。

@@ -40,7 +40,7 @@ python src/pixel_art.py review --image output/gem.png --out-dir output/gem-revie
 
 规格与 PNG 一起保存。检查原尺寸与放大预览；尺寸和像素断言不能代替对方向、状态语义和辨识度的判断。
 
-**本地 v1.2.0-rc.2 候选版**提供“保留名称导入图集 → 修改一格 → 验证其他像素”和组件/分块拼合流程：
+**已发布的 v1.2.0-rc.2 预发布版**提供“保留名称导入图集 → 修改一格 → 验证其他像素”和组件/分块拼合流程：
 
 ```sh
 python src/pixel_art.py import --image examples/workflows/atlas-before.png --metadata examples/workflows/atlas-before-layout.json --out output/editable.json
@@ -57,6 +57,20 @@ python src/pixel_art.py assemble --project examples/workflows/scene-tiles.json -
 `review` 输出审阅图与建议性 JSON 报告，包括原尺寸、整数放大、深浅背景、灰度，以及可选的命名单元、精灵剪影与基线差异。通过[审阅上下文](skill/deterministic-pixel-art/references/review.md)声明目标背景、内容预留区和功能性颜色对。有提示仍返回成功，无效输入返回错误；工具不修改原图，也不为审美打分。
 
 [格式说明](skill/deterministic-pixel-art/references/formats.md)包含 JSON v1、简短 GUI DSL、`render(spec)`、`Canvas`、校验规则与图集元数据。未知符号、未知指令、隐式裁切会明确报错。矩形坐标统一为 `x, y, width, height`。
+
+## 可读创作配方（本地rc.3）
+
+反复调整颜色、尺寸或部件时，可修改短配方参数，再生成完整JSON与PNG：
+
+```sh
+python recipes/icons.py --out-dir output/icons --ink F5C26B
+python recipes/buttons.py --out-dir output/buttons --width 64 --content 28 4 30 10 --hover 426B83
+python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-light F9D5A0
+```
+
+分发Skill中的位置是 `<skill>/scripts/recipes/`。128飞船常用编辑入口为49行配方（另有共享辅助），原展开JSON为33,744行；输出规格仍完整。86项源码测试、77项独立ZIP场景及官方校验通过，包体增加4.3%。[实测及限制](docs/recipe-workflows.zh-CN.md)；未据此宣称节省token或普遍提高审美，真实字体和消费端交互由下一阶段验证。
+
+当前只需三个外部新会话：[清晰分工与已校验下载](docs/focused-trials.zh-CN.md)。本地稳定安装仍v1.1.1。
 
 ## 作为 Codex Skill 使用
 

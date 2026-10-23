@@ -175,6 +175,44 @@ def main(python, validator):
             '--out',work/'portable.png','--portable-output'],expected=2)
         assert (work/'portable.png').read_bytes()==original
 
+        # Authoring recipes must work from the ZIP with PYTHONPATH cleared.
+        recipes=skill/'scripts/recipes';recipe_work=folder/'可读 recipes'
+        for name in ('icons','buttons','courier128','scene256'):
+            run('packaged-recipe-default-'+name,[recipes/(name+'.py'),'--out-dir',recipe_work/name])
+        for name,reference in [('icons',workflows/'atlas-before.png'),('courier128',workflows/'sprite-128.png'),
+                               ('scene256',workflows/'scene-256.png')]:
+            with Image.open(recipe_work/name/'asset.png') as produced,Image.open(reference) as frozen:
+                assert produced.size==frozen.size and produced.convert('RGBA').tobytes()==frozen.convert('RGBA').tobytes()
+        with Image.open(recipe_work/'buttons/asset.png') as produced,Image.open(folder/'quality 输出/ui-states.png') as frozen:
+            assert produced.convert('RGBA').tobytes()==frozen.convert('RGBA').tobytes()
+        run('packaged-recipe-icons-edit',[recipes/'icons.py','--out-dir',recipe_work/'icons-edited','--ink','F5C26B'])
+        run('packaged-recipe-ui-edit',[recipes/'buttons.py','--out-dir',recipe_work/'buttons-edited',
+            '--width','64','--content','28','4','30','10','--hover','426B83'])
+        run('packaged-recipe-sprite-edit',[recipes/'courier128.py','--out-dir',recipe_work/'courier-edited',
+            '--stripe','E17B57','--stripe-light','F9D5A0'])
+        run('packaged-recipe-sprite-scope',[cli,'verify','--image',recipe_work/'courier-edited/asset.png',
+            '--compare',recipe_work/'courier128/asset.png','--allow-region','42','68','48','10'])
+        for name in ('icons-edited','buttons-edited','courier-edited'):
+            rebuilt=recipe_work/(name+'-rebuilt.png')
+            run('packaged-recipe-rerender-'+name,[cli,'render','--spec',recipe_work/name/'asset.json','--out',rebuilt])
+            with Image.open(rebuilt) as image,Image.open(recipe_work/name/'asset.png') as expected:
+                assert image.convert('RGBA').tobytes()==expected.convert('RGBA').tobytes()
+        run('packaged-recipe-context-review',[cli,'review','--image',recipe_work/'buttons-edited/asset.png',
+            '--metadata',recipe_work/'buttons-edited/layout.json','--context',recipe_work/'buttons-edited/context.json',
+            '--out-dir',recipe_work/'button-review'])
+        before=(recipe_work/'icons-edited/asset.png').read_bytes()
+        run('packaged-recipe-no-clobber',[recipes/'icons.py','--out-dir',recipe_work/'icons-edited'],expected=2)
+        assert (recipe_work/'icons-edited/asset.png').read_bytes()==before
+        run('packaged-recipe-bad-content-no-output',[recipes/'buttons.py','--out-dir',recipe_work/'bad',
+            '--content','0','0','30','18'],expected=2)
+        assert not (recipe_work/'bad').exists()
+        run('packaged-recipe-scene-edit',[recipes/'scene256.py','--out-dir',recipe_work/'scene-edited',
+            '--roof','684C6A','--roof-light','A07A89'])
+        run('packaged-recipe-rebuilt-component-assembly',[cli,'assemble','--project',recipe_work/'scene-edited/project.json',
+            '--out',recipe_work/'scene-reassembled.png'])
+        with Image.open(recipe_work/'scene-reassembled.png') as image,Image.open(recipe_work/'scene-edited/asset.png') as expected:
+            assert image.convert('RGBA').tobytes()==expected.convert('RGBA').tobytes()
+
         bad_context = folder / 'bad-context.json'
         bad_context.write_text('{"atlas":{}}', encoding='utf-8')
         run('packaged-bad-context-no-output', [cli, 'review', '--image', warning_image,

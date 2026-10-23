@@ -2,6 +2,8 @@
 
 2026-10-23 · **v1.2.0-rc.2, local candidate** · [Detailed Chinese report](workflow-report.zh-CN.md)
 
+Historical snapshot below. The frozen rc.2 has since been [published and passed eight CI jobs](focused-trials-report.zh-CN.md). [Readable recipes](recipe-workflows.md) are the next local rc.3 candidate; the original measurements below remain unchanged.
+
 The candidate addresses observed agent friction: light-background silhouettes now remain visible, every background has a native-size card, previews accept a target background, and explicitly portable publication works without hard links. Named atlas import preserves layout and all decoded RGBA; `replace-cell` changes one member and `verify` checks exact allowed rectangles or masks. A separate `assemble` manifest places bounded PNG components with explicit copy/source-over, crop, overlap and coverage contracts.
 
 The editable [workflow examples](../examples/workflows/) include a native 128×128 asymmetric courier, a 256×256 watermill scene and a transfer-icon edit. The edit changes 66 pixels and zero outside the selected cell. Component assembly and four-tile reassembly exactly match the whole-scene control; there are no coverage gaps, and four boundaries are displayed in eight inspected seam crops. The tile example is crop/reassembly, not independently painted agent chunks.

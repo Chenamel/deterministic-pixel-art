@@ -1,6 +1,6 @@
 # 下一阶段：让 AI 更容易完成真实像素任务
 
-日期：2026-10-23。状态：**P1三包准备与本地演练完成，CI/发布核验进行中；外部复测结果尚未取得**。最新执行状态以恢复入口和开发日志为准。
+日期：2026-10-23。状态：**P1三包已发布且下载/8组CI通过，等待外部结果；P2本地候选与独立目录验证完成，提交CI待核对**。最新执行状态以恢复入口和开发日志为准。
 
 恢复入口：[WORK_STATE.md](../WORK_STATE.md)。过程与决策记录：[development-log.zh-CN.md](development-log.zh-CN.md)。前一阶段结果：[workflow-report.zh-CN.md](workflow-report.zh-CN.md)。
 

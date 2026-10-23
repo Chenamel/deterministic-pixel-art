@@ -4,7 +4,7 @@ from .spec import render
 
 __all__ = ['Canvas', 'PixelArtError', 'color', 'make_preview', 'outline', 'render', 'validate',
            'inspect_image', 'image_to_spec','replace_cell','verify_edit','assemble']
-__version__ = '1.2.0-rc.2'
+__version__ = '1.2.0-rc.3'
 
 
 def inspect_image(image, context=None, *, region=None, cell=None, grid=False, comparison=None, metadata=None):

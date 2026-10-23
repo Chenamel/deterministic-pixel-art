@@ -52,6 +52,7 @@
 - 10张已有外部最终PNG与布局仍精确匹配，138个受保护原工具/资源/输入文件哈希不变。这里重新核验的是旧输入，不是新增外部测评结果。
 - Skill内容不变，重新打包仍为222,984字节/91文件，SHA-256 `b680e73c966eb6557ed94bfc2e843dd4fca2c74c8aaf5f279caa2eeece6f308d`，与封存rc.3一致。本轮未重复官方Skill格式校验；其P2结果与不变包可追溯。
 - 示例、字体与截图仅进入仓库，不增加Skill或核心的浏览器/npm依赖。稳定发布和本地安装仍v1.1.1，公开候选仍rc.2，本地rc.3保持封存。P1三项外部复测仍无新返回。
+- 实现提交 `1f24256584e491a054c6bafd825383850b8f0b68` 已推送，[CI运行39934535393](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39934535393)的8组全部成功，包含Windows/Ubuntu主流程及Pillow10.4/11.3/12.1兼容矩阵。它验证生成器/运行时/打包；本地浏览器检查单列，不声称CI完成浏览器验收。逐组结果在 [consumer-ui-ci.json](measurements/consumer-ui-ci.json)。
 
 ## 适用范围与下一项
 

@@ -2,13 +2,13 @@
 
 Updated: 2026-10-23. Active branch: `codex/visual-quality`.
 
-## 当前任务：P3实际PNG/字体/交互示例本地完成，待提交与CI
+## 当前检查点：P3完成并通过CI；下一项P4独立256分块
 
-用户已批准开始下一阶段。当前从P1三份定向任务包、本地演练和可下载候选分发开始；外部等待期间继续P2可读配方。实际平台结果与准备工作分开记录。原工具、原始提交、已安装稳定Skill继续保留。
+用户已批准依次推进。P1三份定向任务包已分发，外部新返回仍0；P2可读配方与P3真实消费端示例已完成。实际平台结果与本地准备/演练分开记录。原工具、原始提交、已安装稳定Skill继续保留。
 
-P3恢复点（从 `db5b1b3` 开始，工作树干净）：实现无前端依赖的浏览器示例，实际PNG图集+可再分发字体、六态/键盘/禁用/整数缩放；保留64px初始版本，实际检查长标签，再生成改宽候选并复核。资源、许可、来源、重建命令和实际浏览器结果记入本地文档。核心/Skill冻结rc.3、原工具及本地v1.1.1不变。
+P3实现提交：`1f24256584e491a054c6bafd825383850b8f0b68`（起点 `db5b1b3`），已推送。本提交[CI运行39934535393](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39934535393)的8组全部成功，含Windows/Ubuntu完整流程及Pillow10.4/11.3/12.1兼容矩阵。记录 `docs/measurements/consumer-ui-ci.json`。P3资源/字体/截图仅在仓库，Skill封存rc.3与本地稳定v1.1.1不变。
 
-P3最新恢复点：`demos/pixel-ui/` 与 `tools/build_consumer_demo.py` 已完成。实际浏览器Silkscreen8px下 `EXPORT MAP`宽58px；64px基线文字区30px、六态均溢出，96px改后文字区62px、18项标签/状态全部适配。鼠标/Enter/Space、LOOP选中+焦点、禁用跳过/点击无效、按下/释放/移出取消、两底色1/2/3倍通过。112px/START真实重建与页面同步通过，恢复后13个产物逐字节一致；最终图片使用已校验字节、重载/Enter冒烟通过。3项新测试通过，首次Windows错误输出编码已修正。完整流水线89源码/43稳定图/77ZIP、10外部图/布局、138保护文件通过；重打包与冻结rc.3哈希不变。报告 `docs/consumer-ui-report.zh-CN.md`、`.md`，机器记录 `docs/measurements/consumer-ui.json`；原始记录 `evaluation/consumer-ui-20261023/`。下一动作：提交推送→核对本实现8组CI→记录检查点。P4尚未开始；稳定/本地v1.1.1、P1三包与本地封存rc.3不变。
+P3最新恢复点：`demos/pixel-ui/` 与 `tools/build_consumer_demo.py` 已完成。实际浏览器Silkscreen8px下 `EXPORT MAP`宽58px；64px基线文字区30px、六态均溢出，96px改后文字区62px、18项标签/状态全部适配。鼠标/Enter/Space、LOOP选中+焦点、禁用跳过/点击无效、按下/释放/移出取消、两底色1/2/3倍通过。112px/START真实重建与页面同步通过，恢复后13个产物逐字节一致；最终图片使用已校验字节、重载/Enter冒烟通过。3项新测试通过，首次Windows错误输出编码已修正。完整流水线89源码/43稳定图/77ZIP、10外部图/布局、138保护文件通过；重打包与冻结rc.3哈希不变。报告 `docs/consumer-ui-report.zh-CN.md`、`.md`，机器记录 `docs/measurements/consumer-ui.json`；原始记录 `evaluation/consumer-ui-20261023/`。实现提交8组CI已核验通过。下一动作：P4先冻结风格、跨块结构和边界所有权，再分别绘制/拼合/接缝复检。P4尚未开始；稳定/本地v1.1.1、P1三包与本地封存rc.3不变。
 
 - 详细计划：`docs/next-stage-plan.zh-CN.md`；开发过程和决策：`docs/development-log.zh-CN.md`。
 - 顺序：P1三个定向复测 → P2参数化创作配方/短编辑路径 → P3实际使用端闭环 → P4真正独立256分块，过关后才考虑512。
@@ -21,7 +21,7 @@ P3最新恢复点：`demos/pixel-ui/` 与 `tools/build_consumer_demo.py` 已完�
 - P2新增 `recipes/`：图标、六态按钮、128精灵、256组件场景及共享输出。生成器复用同一几何源码；JSON仍v1。Pillow12.3.0下4份默认图与冻结rc.2一致；固定小改17次独立目录命令、0意外失败（1次预期拒绝覆盖），3份JSON再渲染精确一致。飞船328像素和hover832像素变化均在允许区域，其他RGBA变化0。实际看图复查通过；字体/交互留P3。
 - P2本轮86源码测试、77项ZIP场景、官方Skill校验、43稳定图、10外部最终图/布局、138受保护文件全部通过/不变。候选rc.3包91文件/222,984字节，SHA-256 `b680e73c966eb6557ed94bfc2e843dd4fca2c74c8aaf5f279caa2eeece6f308d`。相对rc.2增加9,222字节/4.3%，未测模型token或修改耗时收益。报告：`docs/recipe-workflows.zh-CN.md`、`docs/measurements/recipe-workflows.json`。
 - P2代码提交 `5f700d977a05e3e50dd1ae6de9fab7a7b0ee3917` 已推送，8组CI全部成功：`https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39919655914`。本地封存 `dist/v1.2.0-rc.3/deterministic-pixel-art-v1.2.0-rc.3.zip`（同上SHA-256），有逐文件与整包清单；未发布rc.3、未替换本地稳定Skill。
-- **P3本地验收完成，待推送CI后转P4**。真实字体发现/修正文字溢出，交互与缩放、参数重建已实际验证。下一阶段先冻结256场景全局风格、边界所有权与跨块结构，再分别绘制四块并复检接缝，不能用裁切重组冒充。外部P1结果仍为0，不等同验收通过；Minecraft未做实际字体/游戏内验证。
+- **P3本地验收与本实现CI完成，下一项P4**。真实字体发现/修正文字溢出，交互与缩放、参数重建已实际验证。下一阶段先冻结256场景全局风格、边界所有权与跨块结构，再分别绘制四块并复检接缝，不能用裁切重组冒充。外部P1结果仍为0，不等同验收通过；Minecraft未做实际字体/游戏内验证。
 - 最终任务包：`dist/focused-v1.2.0-rc.2-final/`，勿上传较早无`-final`的中间产物。演练：`evaluation/focused-20261023/中文 rehearsal space attempt2/`。首次协调脚本误写verify选项的失败记录也保留。
 
 ## 前一阶段封存快照（后续状态以上方为准）

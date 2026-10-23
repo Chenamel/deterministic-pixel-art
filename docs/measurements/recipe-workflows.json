@@ -72,5 +72,18 @@
   "package_bytes": 222984,
   "stable_images_unchanged": 43,
   "external_final_pngs_unchanged": 10,
-  "protected_originals_and_inputs_unchanged": 138
+  "protected_originals_and_inputs_unchanged": 138,
+  "source_commit": "5f700d977a05e3e50dd1ae6de9fab7a7b0ee3917",
+  "ci_run": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39919655914",
+  "ci_jobs_passed": 8,
+  "ci_platforms": [
+    "windows-latest",
+    "ubuntu-latest"
+  ],
+  "compatibility_pillow": [
+    "10.4.0",
+    "11.3.0",
+    "12.1.0"
+  ],
+  "candidate_status": "local sealed; not published or installed"
 }

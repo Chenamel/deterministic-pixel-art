@@ -81,6 +81,8 @@ python -m http.server 8765 --bind 127.0.0.1 --directory demos/pixel-ui
 
 浏览器打开 `http://127.0.0.1:8765/`。这个[仅仓库包含的示例](demos/pixel-ui/README.md)加载命名PNG图集、实际拉丁像素字体，支持原生鼠标/键盘、六态和1/2/3倍缩放。可切换64px基线与96px修正，查看真实 `EXPORT MAP` 标签从溢出到适配的对照。[结果与限制](docs/consumer-ui-report.zh-CN.md)：89项源码测试、43张稳定图与77项独立ZIP场景通过，封存Skill ZIP不变；未宣称中文/Minecraft字体或游戏内验收。
 
+另外新增[独立256分块示例](demos/chunk-scene/README.md)：四个128局部源码分别绘制，先冻结风格/边界合同，再用现有拼合器组合；含接缝审阅和单块旗帜修改的精确保留证明。[P4a报告](docs/chunk-scene-report.zh-CN.md)记录94项源码测试和实际命令结果。它仅在仓库，不是把整图裁切重组，也不代表已验证原生512或多模型盲作。
+
 ## 作为 Codex Skill 使用
 
 从 [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases) 下载 Skill ZIP 与 SHA-256 清单；版本 tag 同时固定运行时和指导文档，`v1.0.0` 保留上一稳定基线。验证哈希后，将压缩包中的 `deterministic-pixel-art` 整个目录放到 Codex 的 skills 目录（`$CODEX_HOME/skills`，默认 `~/.codex/skills`），并在任务可用的 Python 环境中安装该目录的 `requirements.txt`。旧版备份应放在 skills 发现目录之外。仓库中的同一分发目录是 [skill/deterministic-pixel-art](skill/deterministic-pixel-art/SKILL.md)。

@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "valid": true,
+  "size": [
+    256,
+    256
+  ],
+  "covered_pixels": 65536,
+  "uncovered_pixels": 0,
+  "parts": [
+    {
+      "name": "nw",
+      "image": "chunks/nw.png",
+      "source_rect": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "rect": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "mode": "copy"
+    },
+    {
+      "name": "ne",
+      "image": "chunks/ne.png",
+      "source_rect": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "rect": [
+        128,
+        0,
+        128,
+        128
+      ],
+      "mode": "copy"
+    },
+    {
+      "name": "sw",
+      "image": "chunks/sw.png",
+      "source_rect": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "rect": [
+        0,
+        128,
+        128,
+        128
+      ],
+      "mode": "copy"
+    },
+    {
+      "name": "se",
+      "image": "chunks/se.png",
+      "source_rect": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "rect": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "mode": "copy"
+    }
+  ],
+  "intended_overlaps": [],
+  "seams": [
+    {
+      "parts": [
+        "nw",
+        "ne"
+      ],
+      "rect": [
+        124,
+        0,
+        8,
+        128
+      ]
+    },
+    {
+      "parts": [
+        "nw",
+        "sw"
+      ],
+      "rect": [
+        0,
+        124,
+        128,
+        8
+      ]
+    },
+    {
+      "parts": [
+        "ne",
+        "se"
+      ],
+      "rect": [
+        128,
+        124,
+        128,
+        8
+      ]
+    },
+    {
+      "parts": [
+        "sw",
+        "se"
+      ],
+      "rect": [
+        124,
+        128,
+        8,
+        128
+      ]
+    }
+  ],
+  "seam_count": 4,
+  "omitted_seams": 0,
+  "rgba_sha256": "afe99ab5447de6a60f1137070689f451f951b190b31254f282f240cf597dfbcc",
+  "limitations": [
+    "Coverage is geometric; transparent pixels still count.",
+    "Seam crops support visual inspection, not automatic color/shape continuity acceptance.",
+    "Copy replaces RGBA; over composites in manifest order. No artwork is silently resized."
+  ],
+  "seam_views": [
+    {
+      "parts": [
+        "nw",
+        "ne"
+      ],
+      "source_rect": [
+        124,
+        0,
+        8,
+        64
+      ],
+      "scale": 4
+    },
+    {
+      "parts": [
+        "nw",
+        "ne"
+      ],
+      "source_rect": [
+        124,
+        64,
+        8,
+        64
+      ],
+      "scale": 4
+    },
+    {
+      "parts": [
+        "nw",
+        "sw"
+      ],
+      "source_rect": [
+        0,
+        124,
+        64,
+        8
+      ],
+      "scale": 4
+    },
+    {
+      "parts": [
+        "nw",
+        "sw"
+      ],
+      "source_rect": [
+        64,
+        124,
+        64,
+        8
+      ],
+      "scale": 4
+    },
+    {
+      "parts": [
+        "ne",
+        "se"
+      ],
+      "source_rect": [
+        128,
+        124,
+        64,
+        8
+      ],
+      "scale": 4
+    },
+    {
+      "parts": [
+        "ne",
+        "se"
+      ],
+      "source_rect": [
+        192,
+        124,
+        64,
+        8
+      ],
+      "scale": 4
+    },
+    {
+      "parts": [
+        "sw",
+        "se"
+      ],
+      "source_rect": [
+        124,
+        128,
+        8,
+        64
+      ],
+      "scale": 4
+    },
+    {
+      "parts": [
+        "sw",
+        "se"
+      ],
+      "source_rect": [
+        124,
+        192,
+        8,
+        64
+      ],
+      "scale": 4
+    }
+  ],
+  "omitted_seam_views": 0
+}

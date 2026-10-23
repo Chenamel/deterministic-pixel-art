@@ -39,6 +39,7 @@ Use absolute script/input/output paths when running from another working directo
 | [quality/](examples/quality/) | Eight editable studies: icons, materials, UI states, layout and Minecraft controls |
 | [transparent-grid.json](examples/transparent-grid.json) | A complete minimal transparent grid |
 | [workflows/](examples/workflows/) | Named-cell editing, an original native 128×128 courier and a 256×256 component/tile scene |
+| [Independent chunk demo](demos/chunk-scene/README.md) | Four separately authored 128px sources, frozen seam contract, file assembly and an exact single-chunk edit |
 
 Keep the spec alongside the resulting PNG. Inspect native-size artwork and a magnified preview; dimensions alone cannot verify direction, state meaning, or readability.
 

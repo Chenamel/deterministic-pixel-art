@@ -1,5 +1,11 @@
 # Changelog
 
+## Repository independent-chunk example (no Skill version change)
+
+- Freeze a shared edge/style contract before four separately runnable 128px drawings; assemble a native256 scene without a finished-image input or post-assembly painting.
+- Check explicit material/phase anchors alongside geometric ownership; retain coordinate seam/native/grayscale views and a precise84-pixel single-chunk edit rehearsal.
+- Add isolated-source and drift/no-overwrite regression checks; keep frozen Skill contents and installed stable unchanged. Native512 remains conditional and untested.
+
 ## Repository consumer demonstration (no Skill version change)
 
 - Load actual named PNG atlas cells and a separately OFL-licensed local font in a dependency-free browser demo; implement native mouse/keyboard controls, six states and integer scaling.

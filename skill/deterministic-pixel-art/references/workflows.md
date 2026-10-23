@@ -44,7 +44,7 @@ Assembly uses a separate PNG project. JSON v1 rendering stays embedded data with
 python <skill>/scripts/pixel_art.py assemble --project <skill>/assets/workflows/scene-tiles.json --out scene.png --report assembly.json --seams seams.png --preview scene-2x.png
 ```
 
-`scene-components.json` assembles editable terrain, mill, bridge and decoration PNGs. Matching component JSON remains editable: rerender changed components before assembling. `scene-control.json` is the whole-scene embedded-spec control. `scene-tiles.json` is a crop/reassemble control, not evidence that independent agents painted seamless chunks.
+`scene-components.json` assembles editable terrain, mill, bridge and decoration PNGs. Matching component JSON remains editable: rerender changed components before assembling. `scene-control.json` is the whole-scene embedded-spec control. `scene-tiles.json` is a crop/reassemble control, not evidence that independent agents painted seamless chunks. For separately drawn owners and global texture phase, use [chunking.md](chunking.md) and its small executable recipe.
 
 Each part declares `mode:"copy"` (raw RGBA replacement) or `"over"` (source-over once). Later layers explicitly set `allow_overlap:true` when intended. `crop:[x,y,w,h]` selects the owned interior of a context-padded source. Placement is never resized/clipped; padding is not silently discarded.
 

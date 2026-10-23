@@ -63,7 +63,7 @@ The [editing and assembly guide](skill/deterministic-pixel-art/references/workfl
 
 The [format reference](skill/deterministic-pixel-art/references/formats.md) covers JSON v1, the compact GUI DSL, `render(spec)`, `Canvas`, validation rules, and atlas metadata. Invalid symbols, unknown commands, and implicit clipping produce errors. Rectangles use `x, y, width, height`.
 
-## Editable recipes (local rc.3)
+## Editable recipes (local rc.4)
 
 For repeated variants, use the shipped Python recipes instead of editing expanded point lists:
 
@@ -74,6 +74,16 @@ python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-l
 ```
 
 In an extracted Skill, resolve these at `<skill>/scripts/recipes/`. Defaults retain exact reference pixels at Pillow 12.3.0; changed outputs include independent JSON/PNG/layout. [Recipe results and costs](docs/recipe-workflows.md): the ZIP grows 4.3%. See the actual-font consumer example below for text and interaction checks.
+
+The local rc.4 candidate also ships a small independently drawn two-owner bridge:
+
+```sh
+python recipes/chunk_pair.py --out-dir output/bridge
+python recipes/chunk_pair.py --out-dir output/bridge-blue --flag 73A5AA
+python src/pixel_art.py verify --image output/bridge-blue/asset.png --compare output/bridge/asset.png --allow-region 51 5 6 4
+```
+
+Read [chunk authoring](skill/deterministic-pixel-art/references/chunking.md) for ownership, global texture phase and single-owner rebuilds; read [consumer UI](skill/deterministic-pixel-art/references/consumer-ui.md) only when integrating real text and input. The full [native256 demonstration](demos/chunk-scene/README.md) remains separate. Native512 is deferred until a concrete consumer/detail requirement justifies it. [Candidate closeout and limits](docs/candidate-closeout.md).
 
 ## Real PNG consumer demo
 

@@ -1,4 +1,4 @@
-"""Shared mechanics for the four editable recipes; no work at import time."""
+"""Shared mechanics for editable recipes; no output writes at import time."""
 import argparse
 import json
 from pathlib import Path

@@ -58,7 +58,7 @@ python src/pixel_art.py assemble --project examples/workflows/scene-tiles.json -
 
 [格式说明](skill/deterministic-pixel-art/references/formats.md)包含 JSON v1、简短 GUI DSL、`render(spec)`、`Canvas`、校验规则与图集元数据。未知符号、未知指令、隐式裁切会明确报错。矩形坐标统一为 `x, y, width, height`。
 
-## 可读创作配方（本地rc.3）
+## 可读创作配方（本地rc.4）
 
 反复调整颜色、尺寸或部件时，可修改短配方参数，再生成完整JSON与PNG：
 
@@ -69,6 +69,16 @@ python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-l
 ```
 
 分发Skill中的位置是 `<skill>/scripts/recipes/`。128飞船常用编辑入口为49行配方（另有共享辅助），原展开JSON为33,744行；输出规格仍完整，包体增加4.3%。[配方实测及限制](docs/recipe-workflows.zh-CN.md)；未据此宣称节省token或普遍提高审美。真实字体和消费端交互见下方示例。
+
+本地rc.4另附一个分别绘制的双块小桥，直接演练局部改色：
+
+```sh
+python recipes/chunk_pair.py --out-dir output/bridge
+python recipes/chunk_pair.py --out-dir output/bridge-blue --flag 73A5AA
+python src/pixel_art.py verify --image output/bridge-blue/asset.png --compare output/bridge/asset.png --allow-region 51 5 6 4
+```
+
+[分块指导](skill/deterministic-pixel-art/references/chunking.md)说明像素所有权、全局纹理相位和单块重建；接入文字/交互时再读[消费端指导](skill/deterministic-pixel-art/references/consumer-ui.md)。完整[原生256示例](demos/chunk-scene/README.md)单独保留。原生512暂缓，待具体消费端/细节需求明确后再启动。[候选收口结果与限制](docs/candidate-closeout.zh-CN.md)。
 
 当前只需三个外部新会话：[清晰分工与已校验下载](docs/focused-trials.zh-CN.md)。本地稳定安装仍v1.1.1。
 

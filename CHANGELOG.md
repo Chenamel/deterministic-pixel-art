@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0-rc.4 (local candidate)
+
+- Add on-demand guidance for real-font content fitting, combined UI states and consumer checks, drawing on the repository's actual browser study.
+- Ship a minimal two-owner native64x32 bridge recipe with separately runnable local sources, a global six-pixel material phase and exact24-pixel flag edits. Keep the native256 repository demonstration unchanged.
+- Defer native512 artwork until an actual consumer/detail/editing requirement warrants it. No new core commands or rendering semantics; keep stable/local v1.1.1 and frozen rc.2/rc.3 packages intact.
+
 ## Repository independent-chunk example (no Skill version change)
 
 - Freeze a shared edge/style contract before four separately runnable 128px drawings; assemble a native256 scene without a finished-image input or post-assembly painting.

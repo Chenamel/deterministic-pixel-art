@@ -213,6 +213,33 @@ def main(python, validator):
         with Image.open(recipe_work/'scene-reassembled.png') as image,Image.open(recipe_work/'scene-edited/asset.png') as expected:
             assert image.convert('RGBA').tobytes()==expected.convert('RGBA').tobytes()
 
+        # The minimal independently drawn owners must be usable from the ZIP alone.
+        pair = recipe_work / 'chunk-pair'
+        edited_pair = recipe_work / 'chunk-pair-edited'
+        run('packaged-chunk-pair', [recipes/'chunk_pair.py', '--out-dir', pair])
+        run('packaged-chunk-pair-edit', [recipes/'chunk_pair.py', '--out-dir', edited_pair, '--flag', '73A5AA'])
+        run('packaged-chunk-pair-scope', [cli, 'verify', '--image', edited_pair/'asset.png',
+            '--compare', pair/'asset.png', '--allow-region', '51', '5', '6', '4', '--out', edited_pair/'verified.json'])
+        assert json.loads((edited_pair/'verified.json').read_text(encoding='utf-8'))['changed_rgba_pixels']==24
+        assert (pair/'left/asset.png').read_bytes()==(edited_pair/'left/asset.png').read_bytes()
+        previous = (edited_pair/'asset.png').read_bytes()
+        run('packaged-one-owner-rebuild', [recipes/'chunk_right.py', '--out-dir', edited_pair/'right',
+            '--flag', 'C47763', '--force'])
+        run('packaged-owner-reassembly', [cli, 'assemble', '--project', edited_pair/'project.json',
+            '--out', edited_pair/'reassembled.png', '--report', edited_pair/'reassembled-report.json',
+            '--seams', edited_pair/'reassembled-seams.png'])
+        run('packaged-owner-reassembly-scope', [cli, 'verify', '--image', edited_pair/'reassembled.png',
+            '--compare', pair/'asset.png', '--allow-region', '51', '5', '6', '4'])
+        assert (edited_pair/'asset.png').read_bytes()==previous
+        with Image.open(edited_pair/'reassembled.png') as image:
+            assert image.convert('RGBA').getpixel((51,5))==(196,119,99,255)
+        run('packaged-owner-stale-merge-layout', [cli, 'inspect', '--image', edited_pair/'reassembled.png',
+            '--metadata', edited_pair/'layout.json'], expected=2)
+        run('packaged-chunk-no-clobber', [recipes/'chunk_pair.py', '--out-dir', pair], expected=2)
+        run('packaged-chunk-invalid-flag', [recipes/'chunk_pair.py', '--out-dir', recipe_work/'bad-chunks',
+            '--flag', 'invalid'], expected=2)
+        assert not (recipe_work/'bad-chunks').exists()
+
         bad_context = folder / 'bad-context.json'
         bad_context.write_text('{"atlas":{}}', encoding='utf-8')
         run('packaged-bad-context-no-output', [cli, 'review', '--image', warning_image,

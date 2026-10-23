@@ -9,9 +9,12 @@ python <skill>/scripts/recipes/icons.py --out-dir icons --ink F5C26B
 python <skill>/scripts/recipes/buttons.py --out-dir buttons --width 64 --content 28 4 30 10 --hover 426B83
 python <skill>/scripts/recipes/courier128.py --out-dir courier --stripe E17B57 --stripe-light F9D5A0
 python <skill>/scripts/recipes/scene256.py --out-dir scene --roof 684C6A --roof-light A07A89
+python <skill>/scripts/recipes/chunk_pair.py --out-dir bridge --flag 73A5AA
 ```
 
-Each produces `asset.json`, `asset.png`, content-bound `layout.json` and a nearest-neighbor `preview.png`. Buttons also produce `context.json`, with absolute reserved-text rectangles derived from the current cell layout; text is drawn by the consumer. These rectangles avoid the recipe's icon/focus/selection pixels. Verify real font fit in the consumer. Omitting `--content` declares no text reservations.
+The first four recipes each produce `asset.json`, `asset.png`, content-bound `layout.json` and a nearest-neighbor `preview.png`. Buttons also produce `context.json`, with absolute reserved-text rectangles derived from the current cell layout; text is drawn by the consumer. These rectangles avoid the recipe's icon/focus/selection pixels. Verify real font fit in the consumer using [consumer-ui.md](consumer-ui.md). Omitting `--content` declares no text reservations.
+
+`chunk_pair.py` instead produces an assembled PNG, local specs and a PNG project. See [chunking.md](chunking.md) for its two independently runnable owners, global texture phase and exact flag edit; it has no top-level `asset.json`. The original `scene256.py` below remains a component/control example with different provenance.
 
 The scene recipe re-renders every small component before assembly and writes `scene/*.json/png`, `project.json`, `assembly.json` and `seams.png`. Its `asset.json` is the self-contained JSON rendering control. The project uses the new component PNGs, never previously generated files. It is a component/crop control, not independently authored seamless chunks.
 

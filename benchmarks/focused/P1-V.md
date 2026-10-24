@@ -14,6 +14,8 @@ python run.py tool import --image inputs/materials.png --metadata inputs/layout.
 
 只修改 `metal` 单元：让它在浅背景上更容易读出受光面与金属体积，保留物体形状、32×32尺寸及原整体风格，不加文字。其他单元必须保持全部RGBA。不要因为工具警告就自动删除有意细节。
 
+每版候选建议分目录保存，如 `RUN/candidates/v01/`、`v02/`，包括规格/PNG/布局/审阅图。选定后再写final路径；已写final也可继续另存候选，不必以防覆盖拒绝作为停止审阅的理由。禁止的是自动加 `--force`，不是继续改进。平台不提供token用量时保留null。
+
 保存 `RUN/final.json`、`final.png` 和新 `final-layout.json`，通过tool命令实际渲染/检查，再生成：
 
 ```text

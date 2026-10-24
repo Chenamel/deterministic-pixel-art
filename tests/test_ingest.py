@@ -18,6 +18,54 @@ CLI=ROOT/'src/pixel_art.py'
 
 
 class IngestTests(unittest.TestCase):
+    def named_image(self):
+        image=Image.new('RGBA',(8,4),(91,82,73,0))
+        image.info['pixelart']=dict(cell_size=[2,2],columns=4,rows=2,cells=[
+            dict(name='first',x=0,y=0,w=2,h=2),dict(name='target',x=6,y=2,w=2,h=2)])
+        for x,y,rgba in [(6,2,(11,22,33,0)),(7,2,(44,55,66,128)),
+                         (6,3,(77,88,99,255)),(7,3,(10,20,30,1))]:image.putpixel((x,y),rgba)
+        return image
+
+    def test_named_cell_preserves_exact_sparse_pixels_and_default_atlas_import(self):
+        image=self.named_image();metadata=layout_record(image)
+        selected=image_to_spec(image,metadata=metadata,cell='target')
+        self.assertEqual(selected['kind'],'grid')
+        self.assertEqual(selected['size'],[2,2])
+        self.assertEqual(render(selected).tobytes(),image.crop((6,2,8,4)).tobytes())
+        self.assertEqual(render(selected).getpixel((0,0)),(11,22,33,0))
+        whole=image_to_spec(image,metadata=metadata)
+        self.assertEqual(whole['kind'],'atlas')
+        self.assertEqual(render(whole).tobytes(),image.tobytes())
+        self.assertEqual([c['name'] for c in whole['cells']],['first','target'])
+
+    def test_named_cell_with_many_colors_uses_lossless_runs(self):
+        image=Image.new('RGBA',(20,7))
+        image.info['pixelart']=dict(cell_size=[10,7],columns=2,rows=1,cells=[dict(name='target',x=10,y=0,w=10,h=7)])
+        for i in range(70):image.putpixel((10+i%10,i//10),(i,i*2,i*3,i))
+        result=image_to_spec(image,cell='target')
+        self.assertEqual(result['kind'],'draw')
+        self.assertEqual(render(result).tobytes(),image.crop((10,0,20,7)).tobytes())
+
+    def test_named_cell_uses_embedded_layout_and_rejects_conflicts_or_stale_digest(self):
+        from io import BytesIO
+        image=self.named_image();metadata=layout_record(image)
+        with Image.open(BytesIO(encode_png(image,metadata))) as embedded:
+            self.assertEqual(render(image_to_spec(embedded,cell='target')).tobytes(),image.crop((6,2,8,4)).tobytes())
+            conflict=json.loads(json.dumps(metadata));conflict['atlas']['cells'][1]['name']='renamed'
+            with self.assertRaisesRegex(PixelArtError,'conflicts'):image_to_spec(embedded,metadata=conflict,cell='target')
+        image.putpixel((0,0),(1,2,3,255))
+        with self.assertRaisesRegex(PixelArtError,'digest'):image_to_spec(image,metadata=metadata,cell='target')
+
+    def test_named_cell_requires_valid_name_layout_and_exclusive_scope(self):
+        image=self.named_image()
+        with self.assertRaisesRegex(PixelArtError,'choose region or cell'):
+            image_to_spec(image,cell='target',region=[6,2,2,2])
+        with self.assertRaisesRegex(PixelArtError,'unknown name'):image_to_spec(image,cell='missing')
+        with self.assertRaisesRegex(PixelArtError,'named atlas metadata'):
+            image_to_spec(Image.new('RGBA',(2,2)),cell='target')
+        for name in ('',3,False):
+            with self.subTest(name=name),self.assertRaises(PixelArtError):image_to_spec(image,cell=name)
+
     def test_exact_grid_rgb_rgba_palette_and_hidden_bytes(self):
         images=[Image.new('RGB',(3,2),(1,2,3)),Image.new('RGBA',(3,2),(99,88,77,0))]
         palette=Image.new('P',(3,2));palette.putpalette([255,0,0,0,255,0]+[0]*762)
@@ -47,6 +95,26 @@ class IngestTests(unittest.TestCase):
 
 
 class NewCliTests(unittest.TestCase):
+    def test_named_cell_cli_size_roundtrip_and_invalid_outputs_in_unicode_cwd(self):
+        with tempfile.TemporaryDirectory(prefix='命名单格 中文 space ') as directory:
+            root=Path(directory);source=root/'atlas.png';metadata=root/'layout.json';out=root/'cell.json'
+            image=IngestTests().named_image();image.save(source)
+            metadata.write_text(json.dumps(layout_record(image)),encoding='utf-8')
+            def run(*args):
+                return subprocess.run([sys.executable,'-B',str(CLI),*map(str,args)],cwd=root,
+                    capture_output=True,text=True,encoding='utf-8',timeout=30)
+            result=run('import','--image',source,'--metadata',metadata,'--cell','target','--out',out)
+            self.assertEqual(result.returncode,0,result.stderr)
+            self.assertEqual(json.loads(result.stdout)['size'],[2,2])
+            self.assertEqual(render(json.loads(out.read_text(encoding='utf-8'))).tobytes(),image.crop((6,2,8,4)).tobytes())
+            previous=out.read_bytes()
+            self.assertEqual(run('import','--image',source,'--metadata',metadata,'--cell','target','--out',out).returncode,2)
+            self.assertEqual(out.read_bytes(),previous)
+            for extra in [('--cell','missing'),('--cell','target','--region','0','0','2','2')]:
+                rejected=root/'rejected.json'
+                self.assertEqual(run('import','--image',source,'--metadata',metadata,*extra,'--out',rejected).returncode,2)
+                self.assertFalse(rejected.exists())
+
     def test_real_commands_roundtrip_metadata_and_no_clobber(self):
         with tempfile.TemporaryDirectory(prefix='导入 中文 space ') as directory:
             root=Path(directory);source=root/'原图.png';spec=root/'editable.json';out=root/'out.png'

@@ -2,7 +2,7 @@
 import json
 
 from .analysis import SYMBOLS
-from .context import _box
+from .context import _box, _name
 from .core import PixelArtError, dimensions
 
 MAX_SPEC_BYTES=4*1024*1024
@@ -15,19 +15,31 @@ def spec_bytes(spec):
     return result
 
 
-def image_to_spec(image,*,region=None,metadata=None):
+def image_to_spec(image,*,region=None,metadata=None,cell=None):
     """Flatten an 8-bit Pillow image without quantizing or reconstructing layers."""
     dimensions(image.size)
     if getattr(image,'n_frames',1)!=1:raise PixelArtError('import: animated/multiframe PNG is not supported')
     if image.mode not in ('1','L','LA','P','RGB','RGBA'):
         raise PixelArtError('import: only decoded 8-bit grayscale, palette, RGB and RGBA images are supported')
-    if metadata is not None:
+    if region is not None and cell is not None:
+        raise PixelArtError('import: choose region or cell, not both')
+    if cell is not None:
+        _name(cell,'import.cell')
+    if metadata is not None or cell is not None:
         if region is not None:raise PixelArtError('import: metadata atlas and region are mutually exclusive')
         from .metadata import merge_layout
         from .context import _context
         merged,_=merge_layout(image,metadata=metadata)
         context=_context(merged,image.size)
-        if 'atlas' not in merged:raise PixelArtError('import: metadata does not declare an atlas')
+        if 'atlas' not in merged:
+            if cell is not None:
+                raise PixelArtError('import.cell: requires sidecar, embedded or in-memory named atlas metadata')
+            raise PixelArtError('import: metadata does not declare an atlas')
+        if cell is not None:
+            selected=next((item for item in context['cells'] if item['name']==cell),None)
+            if selected is None:raise PixelArtError(f'import.cell: unknown name {cell!r}')
+            x,y,w,h=selected['rect']
+            return image_to_spec(image.crop((x,y,x+w,y+h)))
         layout=merged['atlas'];rgba=image.convert('RGBA');remaining=rgba.copy();cells=[]
         for cell in context['cells']:
             x,y,w,h=cell['rect'];box=(x,y,x+w,y+h)

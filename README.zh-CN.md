@@ -58,7 +58,7 @@ python src/pixel_art.py assemble --project examples/workflows/scene-tiles.json -
 
 [格式说明](skill/deterministic-pixel-art/references/formats.md)包含 JSON v1、简短 GUI DSL、`render(spec)`、`Canvas`、校验规则与图集元数据。未知符号、未知指令、隐式裁切会明确报错。矩形坐标统一为 `x, y, width, height`。
 
-## 可读创作配方（本地rc.4）
+## 可读创作配方（本地rc.5）
 
 反复调整颜色、尺寸或部件时，可修改短配方参数，再生成完整JSON与PNG：
 
@@ -80,7 +80,15 @@ python src/pixel_art.py verify --image output/bridge-blue/asset.png --compare ou
 
 [分块指导](skill/deterministic-pixel-art/references/chunking.md)说明像素所有权、全局纹理相位和单块重建；接入文字/交互时再读[消费端指导](skill/deterministic-pixel-art/references/consumer-ui.md)。完整[原生256示例](demos/chunk-scene/README.md)单独保留。原生512暂缓，待具体消费端/细节需求明确后再启动。[候选收口结果与限制](docs/candidate-closeout.zh-CN.md)。
 
-当前只需三个外部新会话：[清晰分工与已校验下载](docs/focused-trials.zh-CN.md)。本地稳定安装仍v1.1.1。
+本地rc.5补充直接导出命名单格的入口：
+
+```sh
+python src/pixel_art.py import --image examples/workflows/atlas-before.png --metadata examples/workflows/atlas-before-layout.json --cell transfer --out output/transfer.json
+```
+
+检查完整源图布局/摘要后，得到可独立编辑的精确grid/draw，再交给 `replace-cell`；完整图集导入默认行为不变。[三平台复测核验](docs/p1-results.zh-CN.md)区分已验证修复、使用痛点和未证明项。冻结P1包仍用rc.2，rc.5未发布为稳定版或替换本地安装。
+
+三份外部定向任务已收回并核验：[结果与改进](docs/p1-results.zh-CN.md)。[原任务分工和冻结下载](docs/focused-trials.zh-CN.md)保留作复现入口，无需重复执行。本地稳定安装仍v1.1.1。
 
 ## 真实 PNG 使用端示例
 

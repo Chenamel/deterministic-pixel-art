@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0-rc.5 (local candidate)
+
+- Independently audit all three external P1 submissions against frozen task inputs, exact RGBA, layouts and command records; retain the distinction between external logs, coordinator reproduction and visual judgment.
+- Add optional `import --cell NAME` and `image_to_spec(..., cell=NAME)` to export one exact named grid/draw through a verified sidecar, embedded or in-memory atlas layout. Preserve existing full-atlas/flat import defaults.
+- Clarify candidate directories, atlas replacement metadata, grid symbol remapping and future task direction/recorder instructions. Keep published task packages and earlier candidate ZIPs intact; do not promote stable from three uncontrolled follow-ups.
+
 ## 1.2.0-rc.4 (local candidate)
 
 - Add on-demand guidance for real-font content fitting, combined UI states and consumer checks, drawing on the repository's actual browser study.

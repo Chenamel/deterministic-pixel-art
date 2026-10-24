@@ -72,7 +72,9 @@ def main(argv=None):
     ingest_cmd=commands.add_parser('import',help='Lossless decoded 8-bit PNG to an editable JSON v1 spec.')
     ingest_cmd.add_argument('--image',type=Path,required=True)
     ingest_cmd.add_argument('--out',type=Path,required=True)
-    ingest_cmd.add_argument('--region',type=int,nargs=4,metavar=('X','Y','W','H'))
+    ingest_scope=ingest_cmd.add_mutually_exclusive_group()
+    ingest_scope.add_argument('--region',type=int,nargs=4,metavar=('X','Y','W','H'))
+    ingest_scope.add_argument('--cell',help='Import one named cell using verified sidecar, embedded or in-memory layout.')
     ingest_cmd.add_argument('--metadata',type=Path,help='Verified layout: import editable named cells with exact RGBA copy assembly.')
     ingest_cmd.add_argument('--force',action='store_true')
     replace_cmd=commands.add_parser('replace-cell',help='Replace one named atlas cell; optionally render PNG and fresh metadata.')
@@ -161,8 +163,8 @@ def main(argv=None):
                 raise PixelArtError('import: expected a PNG input')
             if header[24]>8:raise PixelArtError('import: PNG bit depth above 8 is not supported')
             with Image.open(args.image) as opened:
-                spec=image_to_spec(opened,region=args.region,metadata=read_json(args.metadata) if args.metadata else None)
-                imported_size=list(opened.size) if args.region is None else args.region[2:]
+                spec=image_to_spec(opened,region=args.region,metadata=read_json(args.metadata) if args.metadata else None,cell=args.cell)
+                imported_size=spec.get('size',list(opened.size))
             publish({args.out:spec_bytes(spec)},force=args.force,portable=args.portable_output)
             print(json.dumps(dict(output=str(args.out.resolve()),kind=spec['kind'],size=imported_size,lossless_rgba=True)))
             return 0

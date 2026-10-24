@@ -137,6 +137,21 @@ def main(python, validator):
             '--allow-region','32','0','16','16','--out',work/'verification.json'])
         verified=json.loads((work/'verification.json').read_text(encoding='utf-8'))
         assert verified['changed_rgba_pixels']==66 and verified['changed_outside']==0
+        run('packaged-named-cell-import',[cli,'import','--image',workflows/'atlas-before.png',
+            '--metadata',workflows/'atlas-before-layout.json','--cell','transfer','--out',work/'transfer-only.json'])
+        selected=json.loads((work/'transfer-only.json').read_text(encoding='utf-8'))
+        assert selected['kind']=='grid' and selected['size']==[16,16]
+        run('packaged-named-cell-render',[cli,'render','--spec',work/'transfer-only.json','--out',work/'transfer-only.png'])
+        with Image.open(workflows/'atlas-before.png') as atlas,Image.open(work/'transfer-only.png') as cell:
+            assert cell.convert('RGBA').tobytes()==atlas.convert('RGBA').crop((32,0,48,16)).tobytes()
+        run('packaged-named-cell-unknown',[cli,'import','--image',workflows/'atlas-before.png',
+            '--metadata',workflows/'atlas-before-layout.json','--cell','missing','--out',work/'missing-cell.json'],expected=2)
+        assert not (work/'missing-cell.json').exists()
+        run('packaged-named-cell-stale-layout',[cli,'import','--image',candidate,
+            '--metadata',workflows/'atlas-before-layout.json','--cell','transfer','--out',work/'stale-cell.json'],expected=2)
+        assert not (work/'stale-cell.json').exists()
+        run('packaged-named-cell-embedded',[cli,'import','--image',embedded,'--cell','selected',
+            '--out',work/'embedded-cell.json'])
         run('packaged-verify-reject-wrong-region',[cli,'verify','--image',candidate,'--compare',workflows/'atlas-before.png',
             '--allow-region','0','0','16','16'],expected=1)
         run('packaged-named-candidate-inspect',[cli,'inspect','--image',candidate,'--metadata',layout,'--cell','transfer','--grid'])

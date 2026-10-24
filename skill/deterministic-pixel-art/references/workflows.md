@@ -6,15 +6,26 @@ Read only the needed section. Inherit accepted style, dimensions and names. Coor
 
 ```text
 python <skill>/scripts/pixel_art.py import --image atlas.png --metadata layout.json --out editable.json
+python <skill>/scripts/pixel_art.py import --image atlas.png --metadata layout.json --cell transfer --out transfer.json
 python <skill>/scripts/pixel_art.py replace-cell --spec editable.json --cell transfer --replacement transfer.json --out candidate.json --image-out candidate.png --metadata candidate-layout.json
 python <skill>/scripts/pixel_art.py verify --image candidate.png --compare atlas.png --allow-region 32 0 16 16
 ```
 
-The replacement is a grid/draw spec with the original cell size. Import with current metadata checks dimensions and the image digest, retaining names, order, positions, rows and unused pixels. Legacy layouts without a digest provide structural checks only; they cannot verify content association or state-name meaning. `--region` and named metadata import are mutually exclusive. Without metadata, import keeps its flat grid/row-run behavior. Layers/original objects are not reconstructed. Keep fresh metadata; never delete the digest to reuse a stale layout.
+Edit `transfer.json` between import and replacement. `import --cell` exports only that cell as a grid/draw spec at local origin `[0,0]`; it validates the full source layout/digest first. Sidecar, embedded or in-memory named layouts are accepted; absent or unknown names fail. `--region` and `--cell` are mutually exclusive. The replacement has the original cell size, with exact RGBA including hidden RGB.
+
+Import with current metadata and no `--cell` retains the complete atlas: names, order, positions, rows and unused pixels. Legacy layouts without a digest provide structural checks only; they cannot verify content association or state-name meaning. `--region` and named metadata import remain mutually exclusive. Without metadata or `--cell`, import keeps its flat grid/row-run behavior. Layers/original objects are not reconstructed. Keep fresh metadata; never delete the digest to reuse a stale layout.
 
 Imported atlases explicitly use `assembly:"copy"` to preserve partial alpha and hidden RGB. Old atlas/blit defaults stay source-over. Optional `cells[].at`, `rows` and a `base` preserve sparse layouts. Do not switch assembly mode merely to hide a mismatch. The combined imported spec has the existing 4 MiB limit.
 
 Try `assets/workflows/atlas-before.png`, `atlas-before-layout.json` and `atlas-replacement.json`; transfer occupies `[32,0,16,16]`. `atlas-final.json` independently rerenders the result. Directly edit the selected grid when simpler than a replacement file.
+
+`replace-cell --image-out ... --metadata ...` writes the complete atlas block and a fresh `rgba_sha256`. A standalone cell render correctly has no atlas block; that does not describe the metadata produced by atlas replacement. No manual sidecar construction is needed.
+
+## Candidates without overwriting evidence
+
+When exploring variants, give each a directory such as `candidates/v01/` containing its spec, PNG, fresh layout and optional review. Use `v02/` for another candidate; keep paths meaningful rather than repeatedly occupying a shared `final.*`. After selecting a result, write the delivery paths. This is a useful convention, not a requirement to produce alternatives for every small edit.
+
+A later revision can use another candidate directory, or an explicit `--force` rebuild when replacement is authorized. A refusal is not a reason to add `--force` automatically. Do not select a visually weaker version just because it was written to a path called `final`. The renderer does not infer candidate lineage or an approved final choice from filenames.
 
 ## Prove a precise edit boundary
 

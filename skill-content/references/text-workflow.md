@@ -48,6 +48,11 @@ Cells have their own global-coordinate facts; use `--cell` to avoid reading all
 cells. Colors sort by frequency then RGBA; component ties sort by bounding box.
 Alpha facts include all scope pixels even when a foreground color is excluded.
 
+The symbol grid has its own palette sorted by exact RGBA, not frequency. Adding
+a color can change symbol assignments in a newly inspected grid. Edit using the
+palette from the same imported spec; do not carry a symbol's meaning between
+reports. Row and column indices start at zero within `grid.origin`.
+
 Comparison separates raw RGBA changes from visible changes. RGB under alpha=0
 is ignored only by the visible comparison/hash. Existing `review.comparison.bbox`
 retains its legacy `[left,top,right,bottom]` convention; new analysis uses xywh.
@@ -57,7 +62,7 @@ Neither changed pixels nor a clean report prove the candidate is better.
 
 `import --image input.png --out editable.json [--region X Y W H]` accepts static
 PNG with at most 8-bit channels, including indexed transparency. The API
-`image_to_spec(image, region=None)` operates on already-decoded 8-bit Pillow
+`image_to_spec(image, *, region=None, metadata=None, cell=None)` operates on already-decoded 8-bit Pillow
 images, not original PNG encoding. Animation and high-bit-depth modes are rejected.
 
 Up to 62 RGBA values produce a sorted palette and grid. More colors produce
@@ -66,6 +71,12 @@ layer reconstruction or inferred object naming. Hidden RGB under zero alpha is
 preserved. The specification is limited to 4 MiB; crop an individual asset when
 the complete image would exceed that limit. Pixel equality means decoded RGBA,
 not original PNG bytes, color profiles, palette indices or original layer structure.
+
+For one named atlas cell, use `import --image atlas.png --metadata layout.json
+--cell metal --out metal.json`. This produces an independently editable grid/draw
+at local origin, not a one-cell atlas. Embedded or in-memory layouts also work.
+The full source digest/layout is checked before selecting the cell; `--region`
+cannot be combined with `--cell`. Import without selection retains its prior behavior.
 
 ## Reuse layout
 
@@ -83,4 +94,4 @@ consumer's state contract separately; imported pixels do not recover them.
 
 Python APIs: `inspect_image(image, context=None, *, region=None, cell=None,
 grid=False, comparison=None, metadata=None)` and `image_to_spec(image, *,
-region=None, metadata=None)` return JSON-serializable mappings and perform no file writes. Passing verified atlas metadata to import retains named editable cells with explicit raw-copy assembly. For single-cell replacement, exact allowed-region/mask checks and component PNG projects, read [workflows.md](workflows.md).
+region=None, metadata=None, cell=None)` return JSON-serializable mappings and perform no file writes. Passing verified atlas metadata without `cell` retains named editable cells with explicit raw-copy assembly; `cell` exports just the selected grid/draw. For single-cell replacement, exact allowed-region/mask checks and component PNG projects, read [workflows.md](workflows.md).

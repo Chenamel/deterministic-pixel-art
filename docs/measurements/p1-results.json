@@ -1,0 +1,265 @@
+{
+  "date": "2026-10-25",
+  "base_commit": "e66d87d",
+  "tasks": {
+    "P1-W": {
+      "model": "Deepseek-V4.1-Flash",
+      "python": "3.13.14",
+      "platform": "Windows",
+      "pillow_sequence": [
+        "12.3.0"
+      ],
+      "task_digest_matches": true,
+      "declared_skill_digest_matches": true,
+      "archive_contains_runtime": false,
+      "provenance_limit": "Submission includes RUN only: runtime digest is declared in session/logs, not independently rehashed at the remote host.",
+      "commands": 31,
+      "command_types": {
+        "inspect": 4,
+        "import": 2,
+        "render": 11,
+        "preview": 7,
+        "replace-cell": 3,
+        "verify": 2,
+        "review": 2
+      },
+      "recorded_command_seconds": 30.709,
+      "nonzero": [
+        {
+          "index": 7,
+          "command": "render",
+          "exit_code": 2
+        }
+      ],
+      "automatic_force_used": false,
+      "submitted_checks_passed": true,
+      "no_clobber_hash_preserved": true
+    },
+    "P1-C": {
+      "model": "qwen3.8-max",
+      "python": "3.12.3",
+      "platform": "Linux",
+      "pillow_sequence": [
+        "13.0.0",
+        "12.3.0"
+      ],
+      "task_digest_matches": true,
+      "declared_skill_digest_matches": true,
+      "archive_contains_runtime": false,
+      "provenance_limit": "Submission includes RUN only: runtime digest is declared in session/logs, not independently rehashed at the remote host.",
+      "commands": 5,
+      "command_types": {
+        "render": 4,
+        "review": 1
+      },
+      "recorded_command_seconds": 6.813,
+      "nonzero": [
+        {
+          "index": 1,
+          "command": "render",
+          "exit_code": 2
+        },
+        {
+          "index": 2,
+          "command": "render",
+          "exit_code": 2
+        },
+        {
+          "index": 4,
+          "command": "render",
+          "exit_code": 2
+        }
+      ],
+      "automatic_force_used": false,
+      "submitted_checks_passed": true,
+      "portable_exact": true,
+      "preview_exact": true,
+      "no_clobber_hash_preserved": true,
+      "native_eprem_recorded": true,
+      "original_mount_identity": "unknown; reported ossfs2",
+      "temporary_native_success": "participant note only; no corresponding command record or PNG submitted"
+    },
+    "P1-V": {
+      "model": "Gemini",
+      "python": "3.11.2",
+      "platform": "Linux",
+      "pillow_sequence": [
+        "11.1.0"
+      ],
+      "task_digest_matches": true,
+      "declared_skill_digest_matches": true,
+      "archive_contains_runtime": false,
+      "provenance_limit": "Submission includes RUN only: runtime digest is declared in session/logs, not independently rehashed at the remote host.",
+      "commands": 17,
+      "command_types": {
+        "review": 5,
+        "import": 1,
+        "inspect": 2,
+        "replace-cell": 5,
+        "verify": 1,
+        "preview": 3
+      },
+      "recorded_command_seconds": 32.587,
+      "nonzero": [
+        {
+          "index": 17,
+          "command": "replace-cell",
+          "exit_code": 2
+        }
+      ],
+      "automatic_force_used": false,
+      "submitted_checks_passed": true,
+      "before-review-visible-black-silhouette": true,
+      "review-visible-black-silhouette": true,
+      "no_clobber_hash_preserved": true
+    }
+  },
+  "final_images": [
+    {
+      "task": "P1-W",
+      "image": "final",
+      "exact_current_and_rc2": true,
+      "exact_layout": true,
+      "changed_rgba_pixels": 70,
+      "changed_outside": 0,
+      "alpha_unchanged": false
+    },
+    {
+      "task": "P1-W",
+      "image": "hover",
+      "exact_current_and_rc2": true,
+      "exact_layout": true,
+      "changed_rgba_pixels": 96,
+      "changed_outside": 0,
+      "alpha_unchanged": false
+    },
+    {
+      "task": "P1-V",
+      "image": "final",
+      "exact_current_and_rc2": true,
+      "exact_layout": true,
+      "changed_rgba_pixels": 195,
+      "changed_outside": 0,
+      "alpha_unchanged": true
+    }
+  ],
+  "paired_specs": [
+    {
+      "task": "P1-W",
+      "spec": "candidates/variant-b.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-W",
+      "spec": "candidates/variant-c.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-W",
+      "spec": "candidates/variant-v1.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-W",
+      "spec": "candidates/variant-v2.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-W",
+      "spec": "candidates/variant-v3.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-W",
+      "spec": "candidates/variant-v5.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-W",
+      "spec": "final.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-W",
+      "spec": "hover.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-W",
+      "spec": "verification/crosscheck-final.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-V",
+      "spec": "candidates/cand1.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-V",
+      "spec": "candidates/cand2.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-V",
+      "spec": "candidates/cand4.json",
+      "exact_rgba": true
+    },
+    {
+      "task": "P1-V",
+      "spec": "final.json",
+      "exact_rgba": true
+    }
+  ],
+  "scope": "Independent coordinator engineering checks and author visual review; not blind or controlled A/B.",
+  "protected_new_source_files_unchanged": 10,
+  "command_count": 53,
+  "nonzero_count": 5,
+  "engineering_passed": true,
+  "coordinator_runtime_version": "1.2.0-rc.5",
+  "recorder_probe": {
+    "coordinator_controlled_probe": true,
+    "source": "known frozen P1-C recorder",
+    "external_target_command_logged": true,
+    "command_exit_code": 0,
+    "external_target_created": true,
+    "external_target_hash_not_snapshotted": true,
+    "conclusion": "Recorder logs commands targeting outside RUN; only automatic output hash snapshots are restricted to RUN. The participant omitted this call, rather than being unable to record it."
+  },
+  "named_cell_rehearsal": {
+    "coordinator_cli_rehearsal": true,
+    "commands": 5,
+    "unexpected_failures": 0,
+    "exact_participant_final": true,
+    "changed_rgba_pixels": 195,
+    "changed_outside": 0,
+    "same_selected_spec_as_prior_manual_extraction": true,
+    "whole_spec_bytes": 5857,
+    "selected_spec_bytes": 1551,
+    "benefit": "One explicit named import replaces locating and copying a cell object from the complete atlas. No new model task, token or time saving was measured."
+  },
+  "visual_review": {
+    "actually_viewed": [
+      "native/nearest-neighbor before-after montage",
+      "P1-V light/dark/target backgrounds and grayscale/silhouettes",
+      "P1-C target-background panel preview"
+    ],
+    "direction_wording_ambiguous_no_retroactive_failure": true,
+    "metal_tradeoff": "Clearer rounded highlight/volume, softer value steps than original hard horizontal bands.",
+    "evidence": "Participant self-review and coordinator author review; not blind or game acceptance."
+  },
+  "adopted": [
+    "optional named-cell lossless import",
+    "candidate/final path guidance",
+    "fresh atlas sidecar clarification",
+    "RGBA symbol-palette/local-origin clarification",
+    "future task direction and outside-RUN recording clarification"
+  ],
+  "deferred": [
+    "rotation syntax",
+    "automatic unique output names",
+    "extra gallery",
+    "palette-lock input",
+    "more preview scales/paired cell cards"
+  ],
+  "no_general_art_time_token_gain_established": true
+}

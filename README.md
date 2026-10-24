@@ -63,7 +63,7 @@ The [editing and assembly guide](skill/deterministic-pixel-art/references/workfl
 
 The [format reference](skill/deterministic-pixel-art/references/formats.md) covers JSON v1, the compact GUI DSL, `render(spec)`, `Canvas`, validation rules, and atlas metadata. Invalid symbols, unknown commands, and implicit clipping produce errors. Rectangles use `x, y, width, height`.
 
-## Editable recipes (local rc.4)
+## Editable recipes (local rc.5)
 
 For repeated variants, use the shipped Python recipes instead of editing expanded point lists:
 
@@ -84,6 +84,14 @@ python src/pixel_art.py verify --image output/bridge-blue/asset.png --compare ou
 ```
 
 Read [chunk authoring](skill/deterministic-pixel-art/references/chunking.md) for ownership, global texture phase and single-owner rebuilds; read [consumer UI](skill/deterministic-pixel-art/references/consumer-ui.md) only when integrating real text and input. The full [native256 demonstration](demos/chunk-scene/README.md) remains separate. Native512 is deferred until a concrete consumer/detail requirement justifies it. [Candidate closeout and limits](docs/candidate-closeout.md).
+
+Local rc.5 adds a direct named-cell editing entry:
+
+```sh
+python src/pixel_art.py import --image examples/workflows/atlas-before.png --metadata examples/workflows/atlas-before-layout.json --cell transfer --out output/transfer.json
+```
+
+It exports a standalone exact grid/draw after checking the complete source layout/digest. Edit this cell spec, then pass it to `replace-cell`; full-atlas import defaults remain unchanged. The [three-platform follow-up results](docs/p1-results.md) distinguish verified fixes, remaining workflow friction and limits. The frozen P1 packages still use rc.2; rc.5 is not installed or released as stable.
 
 ## Real PNG consumer demo
 

@@ -2,6 +2,8 @@
 
 本轮只开三个新会话，每个平台一个任务。每个 ZIP 都包含冻结的 **v1.2.0-rc.2 Skill**、固定输入、短提示词和记录器；无需另外安装旧测评包。
 
+2026-10-24重新核验：下面三个公开直链均实际下载成功（HTTP200），字节数和SHA-256与本地最终包完全一致。本地最终目录是 `dist/focused-v1.2.0-rc.2-final/`，不要使用没有 `-final` 的中间构建。虽然当前开发候选已到rc.4，这三项定向复测仍使用包内冻结rc.2，不额外升级Skill，以免改变固定输入/工具基线。无需重做先前八项探索任务。
+
 | 交给谁 | 下载包 | 任务 |
 |---|---|---|
 | **WorkBuddy / DeepSeek** | [P1-W-DeepSeek.zip](https://github.com/Chenamel/deterministic-pixel-art/releases/download/v1.2.0-rc.2/P1-W-DeepSeek.zip) | 改一个命名图标，再改空心边框；验证其他RGBA不变 |
@@ -21,6 +23,14 @@ DeepSeek、Gemini：上传对应ZIP，复制：
 > 请下载 https://github.com/Chenamel/deterministic-pixel-art/releases/download/v1.2.0-rc.2/P1-C-Qwen.zip 并解压，阅读 P1-C/START_HERE.md，使用包内 Skill 实际执行任务。按 run.py 记录命令和失败，区分原生与便携输出，不自动添加 --force。最后提供 submission-P1-C.zip 和可导出的原始会话。无法下载时给出实际错误，不假装已执行。
 
 每包中的 `START_HERE.md` 就是完整任务提示词。用户不必手抄命令或重新整理测评材料；需要完整提示词时也可直接复制仓库中的 [P1-W](../benchmarks/focused/P1-W.md)、[P1-C](../benchmarks/focused/P1-C.md)、[P1-V](../benchmarks/focused/P1-V.md)。
+
+## GitHub上查看P3/P4的位置
+
+P3/P4已推送至 [`codex/visual-quality`开发分支](https://github.com/Chenamel/deterministic-pixel-art/tree/codex/visual-quality)，尚未合并到默认 `main`，也没有将rc.4作为新Release发布。默认仓库页面或Releases的较早日期不能用来判断开发分支是否已提交；在分支选择器从 `main` 切换到 `codex/visual-quality`，或直接打开上面的链接。
+
+- [P3真实PNG/字体/交互提交1f242565](https://github.com/Chenamel/deterministic-pixel-art/commit/1f24256584e491a054c6bafd825383850b8f0b68)，北京时间2026-10-23 17:47；[示例目录](https://github.com/Chenamel/deterministic-pixel-art/tree/codex/visual-quality/demos/pixel-ui)。
+- [P4a独立256分块提交a6d84936](https://github.com/Chenamel/deterministic-pixel-art/commit/a6d84936618b5176c5eecffcea6accd8ec4b745e)，北京时间2026-10-23 23:49；[示例目录](https://github.com/Chenamel/deterministic-pixel-art/tree/codex/visual-quality/demos/chunk-scene)。
+- 开发分支还包含2026-10-24的rc.4收口提交；P1发布附件继续保持原冻结包。此次解释不更改默认分支、不合并或提升稳定版本。
 
 ## 收回什么、如何使用
 

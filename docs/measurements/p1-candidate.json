@@ -70,7 +70,11 @@
     "benefit": "One explicit named import replaces locating and copying a cell object from the complete atlas. No new model task, token or time saving was measured."
   },
   "ci": {
-    "status": "pending implementation push"
+    "implementation_commit": "6f685f4ceea4078bed4445d88e658739382d579c",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219",
+    "passed_jobs": 8
   },
   "limitations": [
     "Three uncontrolled follow-ups do not replace the existing eight-task paired release gate.",

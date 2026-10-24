@@ -63,7 +63,7 @@ The first implementation omitted the public forwarding wrapper's new argument: 4
 - 10 historical external final PNGs/layouts remain exact; 138 historical protected files plus 10 new source files retain hashes. Frozen rc.2/rc.3/rc.4 remain untouched; installed stable is 1.1.1.
 - ZIP: 97 files, 231,561 bytes; +1,087 bytes / 0.472% versus rc.4. SHA-256: `2b9cb652fb9e4a50bd3e4d11e098003b86c6195a16c9b1730dbc6907839178a4`. Local `dist/v1.2.0-rc.5/` includes ZIP, manifest, checks and reports; no new stable release.
 - Named selection checks the full image digest. No new paired performance benchmark establishes speedup or zero overhead. No old rendering regression was observed, which does not prove all styles/environments are unaffected.
-- Actual implementation Windows/Ubuntu and Pillow-matrix CI is recorded separately in [p1-results-ci.json](measurements/p1-results-ci.json).
+- Implementation `6f685f4` passes all 8 jobs in [CI run 40113419219](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219): Windows/Ubuntu main checks and Pillow 10.4/11.3/12.1 on both. Job evidence is recorded separately in [p1-results-ci.json](measurements/p1-results-ci.json).
 
 [Audit summary](measurements/p1-results.json) · [Candidate validation](measurements/p1-candidate.json) · [Recovery state](../WORK_STATE.md)
 

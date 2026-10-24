@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-25",
+  "implementation_commit": "6f685f4ceea4078bed4445d88e658739382d579c",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219",
+  "jobs": [
+    {
+      "name": "test (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219/job/120929669700"
+    },
+    {
+      "name": "compatibility (windows-latest, 3.12, 11.3.0)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219/job/120929669759"
+    },
+    {
+      "name": "compatibility (windows-latest, 3.10, 10.4.0)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219/job/120929669767"
+    },
+    {
+      "name": "compatibility (ubuntu-latest, 3.12, 11.3.0)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219/job/120929669792"
+    },
+    {
+      "name": "compatibility (windows-latest, 3.13, 12.1.0)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219/job/120929669809"
+    },
+    {
+      "name": "compatibility (ubuntu-latest, 3.13, 12.1.0)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219/job/120929669822"
+    },
+    {
+      "name": "compatibility (ubuntu-latest, 3.10, 10.4.0)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219/job/120929669840"
+    },
+    {
+      "name": "test (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219/job/120929669847"
+    }
+  ],
+  "scope": "Implementation engineering checks on Windows/Ubuntu and Pillow10.4/11.3/12.1; not original cloud mount, controlled A/B, game or independent aesthetic acceptance."
+}

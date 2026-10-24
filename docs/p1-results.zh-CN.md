@@ -63,7 +63,7 @@ python <skill>/scripts/pixel_art.py replace-cell --spec editable.json --cell met
 - 10张历史外部最终图/布局仍精确；138个历史保护文件加本轮10个来源文件，合计148个哈希不变。冻结rc.2/rc.3/rc.4不覆盖，本地稳定安装仍1.1.1。
 - rc.5 ZIP：97文件，231,561字节，较rc.4增加1,087字节（0.472%）。SHA-256：`2b9cb652fb9e4a50bd3e4d11e098003b86c6195a16c9b1730dbc6907839178a4`。本地目录 `dist/v1.2.0-rc.5/` 含包、清单、报告和检查记录；没有新稳定Release。
 - 额外选格有全图摘要核验成本，本轮没有做新旧性能配对，未证明加速或零开销。未观察到旧绘图结果降级，不能据此保证所有环境/画风无退步。
-- 当前实现的Windows/Ubuntu及Pillow多版本CI记录见后续 [p1-results-ci.json](measurements/p1-results-ci.json)；本地和实际CI证据分开。
+- 实现提交 `6f685f4` 的 [CI运行40113419219](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219) 8组全部通过：Windows/Ubuntu主流程及各自Pillow10.4/11.3/12.1矩阵。逐组记录见 [p1-results-ci.json](measurements/p1-results-ci.json)；本地和实际CI证据分开。
 
 [机器摘要](measurements/p1-results.json) · [候选验收数据](measurements/p1-candidate.json) · [后续阶段](next-stage-plan.zh-CN.md) · [恢复入口](../WORK_STATE.md)
 

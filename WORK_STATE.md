@@ -2,7 +2,7 @@
 
 Updated: 2026-10-25. Active branch: `codex/visual-quality`.
 
-## 最新恢复点：P1核验及rc.5本地收口完成，待本实现CI
+## 最新恢复点：P1核验及rc.5收口完成，本实现8组CI通过
 
 2026-10-25，用户提供 `D:\Users\philia093\Desktop\RC1测试`，含WorkBuddy/DeepSeek、千问、Gemini三个submission ZIP和7份过程/反馈Markdown。从干净提交 `e66d87d` 继续。目录名不直接当成工具版本；以各包task、环境、校验记录和实际输入核对冻结rc.2。
 
@@ -18,7 +18,11 @@ Updated: 2026-10-25. Active branch: `codex/visual-quality`.
 
 rc.5完整检查通过：**103源码测试/43稳定图/91独立ZIP场景**，官方格式及中文空格临时目录实际导入/渲染通过；10张历史外部最终图/布局一致，138历史+10本轮来源共148文件哈希不变。包97文件/231,561字节，较rc.4增加1087字节/0.472%，SHA-256 `2b9cb652fb9e4a50bd3e4d11e098003b86c6195a16c9b1730dbc6907839178a4`。封存目录 `dist/v1.2.0-rc.5/`，双语结果 `docs/p1-results.zh-CN.md` / `.md`，机器记录 `docs/measurements/p1-results.json` / `p1-candidate.json`。原始10文件、旧候选和稳定1.1.1已再检查，未修改。
 
-下一动作：检查差异和公开资料边界，提交/推送本实现至 `codex/visual-quality`，只核对本实现实际8组CI（Windows/Ubuntu主流程及Pillow10.4/11.3/12.1），记录 `p1-results-ci.json`，再文档收尾。不重复不变整包，不合并main、不自动发布稳定/更新安装。之后是实际项目使用和已有受控稳定门槛核对，原始云挂载、独立审美与游戏内仍未证实。阶段直接回复必须含4主阶段状态/当前位置/下一项/外部待项；P4b512只有具体需求才重启。
+实现提交 `6f685f4ceea4078bed4445d88e658739382d579c` 已成功推送至 `codex/visual-quality`；[本实现CI运行40113419219](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219)8组全部成功，覆盖Windows/Ubuntu主流程和各自Pillow10.4/11.3/12.1兼容矩阵。逐组记录 `docs/measurements/p1-results-ci.json`，同步到候选验收数据/本地封存目录。没有将较早提交的成功当作本次结果。
+
+最终收尾已通过：109处维护文档本地链接有效；本地封存13项交付文件清单匹配，rc.5 ZIP摘要不变；三个历史候选、10份本轮来源及本地已安装文件哈希再次核对不变。原始记录 `evaluation/p1-results-20261025/final-integrity.json`，原始会话没有进入Git/Skill。源码实现CI8/8已完成，最后文档改动无需重复整轮检查。
+
+本轮核验与候选交付已完成。下一项：围绕明确的真实项目与消费端使用rc.5，观察选格→局部修改→替换→使用端的阻碍；需要正式发布时核对先前约定的八项配对/具体工作流收益门槛，不用本轮三项代替。无新问题不重复测试不变整包，不增加画布/命令来制造进度；不合并main、不自动发布稳定/更新安装。原始云挂载、独立审美与游戏内仍未证实。阶段直接回复必须含4主阶段状态/当前位置/下一项/外部待项；P4b512只有具体需求才重启。
 
 ## 历史检查点：rc.4候选收口（当前状态以上方为准）
 

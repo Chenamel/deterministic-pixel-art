@@ -2,6 +2,8 @@
 
 更新：2026-10-25。用户希望利用WorkBuddy多模型、豆包/千问刷新额度及Gemini Pro分批尽量完成测试，不要求本周一次做完。本轮已准备两份冻结rc.5上手包；实际外部执行为0。模型名来自用户当时可选界面，能力/工具权限与免费活动均须在每次执行时记录，本文不保证永久免费或特定模型更强。
 
+准备验证已完成：4项新增针对性测试、2包中文空格路径协调端演练与看图通过；实现 `1ec1022` 的 [8组CI](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40118220301) 全部成功。两个包逐文件保留同一97文件Skill，封存rc.5及本地安装不变。[准备数据](measurements/long-term-preparation.json) · [CI证据](measurements/long-term-preparation-ci.json)。这些均非外部AI结果。
+
 恢复入口：[WORK_STATE](../WORK_STATE.md)；[正式版尚缺什么](release-readiness.zh-CN.md)。本计划不改变原稳定发布门槛，不自动调用平台、花额度、合并main、发布或安装Skill。
 
 ## 现在先发这两个

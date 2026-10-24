@@ -30,11 +30,24 @@
   ],
   "font_license": "SIL Open Font License1.1 retained outside the Skill folder",
   "ci": {
-    "status": "pending implementation push"
+    "implementation_commit": "1ec1022f591310bf61b7fbfea41ac008e26b3863",
+    "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40118220301",
+    "status": "completed",
+    "conclusion": "success",
+    "passed_jobs": 8
   },
   "limitations": [
     "Coordinator rehearsals are not AI-agent evaluations.",
     "No new A/B packages distributed; original stable gate unchanged.",
     "No paid-platform calls or scheduled reminder created."
+  ],
+  "preservation": {
+    "sealed_rc5_skill_unchanged": true,
+    "all_97_skill_files_exact_in_both_trials": true,
+    "installed_stable_file_hashes_unchanged": true
+  },
+  "coordinator_visual_inspection": [
+    "LT01 native atlas",
+    "LT02 nearest-neighbor 3x consumer"
   ]
 }

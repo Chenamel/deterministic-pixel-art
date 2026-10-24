@@ -2,6 +2,8 @@
 
 Updated: 2026-10-25. Active branch: `codex/visual-quality`.
 
+发布距离与未验证痛点：[docs/release-readiness.zh-CN.md](docs/release-readiness.zh-CN.md)。2026-10-25用户追问后已逐项核对：rc.5新入口尚无外部新会话试用，原八项配对/至少六项收益门槛未达；旧A/B包固定1.1.0/rc.1，不能直接证明rc.5。文档建议可由用户决定将工具可用性与普遍效率/审美声明分开验收，但**尚未改变原门槛**，不据此自动合并/发布/安装。工程实现与P1审核无需重做，512不是前置条件。
+
 ## 最新恢复点：P1核验及rc.5收口完成，本实现8组CI通过
 
 2026-10-25，用户提供 `D:\Users\philia093\Desktop\RC1测试`，含WorkBuddy/DeepSeek、千问、Gemini三个submission ZIP和7份过程/反馈Markdown。从干净提交 `e66d87d` 继续。目录名不直接当成工具版本；以各包task、环境、校验记录和实际输入核对冻结rc.2。

@@ -116,6 +116,8 @@ v1.2.0-rc.2 is a published prerelease. Eight external exploratory tasks supplied
 
 All three focused submissions have been received and engineering-audited; see [results and changes](docs/p1-results.md). The [original assignment and frozen downloads](docs/focused-trials.zh-CN.md) remain reproducibility references; repeating these sessions is unnecessary. The [older trial guide](docs/agent-testing-guide.zh-CN.md) documents the historical protocol. The optional `tools/prepare_agent_trials.py` splits the released agent bundle into one-package, one-task session ZIPs. Controlled comparisons, open audits, creative trials and independent review have separate prompts and evidence requirements.
 
+The current [quota-aware long-term assignment](docs/long-term-testing.zh-CN.md) starts with two rc.5 usability trials. Single-version coverage, future paired trials and independent visual review stay separate; prepared packages and coordinator rehearsals are not external-agent results.
+
 In the earlier rc.1 local Windows comparison with v1.1.0, full render/review command medians increased by 15.0/16.7 ms (about 9%); the sample review JSON grew from 1,237 to 6,999 bytes. Pure rendering was essentially unchanged. These historical costs are separate from agent workflow outcomes.
 
 v1.1.1 fixes null mask outlines, primary review backgrounds, wide-image sheets and output publication failures. It adds precise diagnostics and a Pillow compatibility boundary. See the [external-feedback and reliability report](docs/audit-feedback.md); these fixes make no new aesthetic-improvement claim.

@@ -1,5 +1,7 @@
 # 下一阶段：让 AI 更容易完成真实像素任务
 
+2026-10-25当前执行补充：[长期额度测试分配](long-term-testing.zh-CN.md) 已准备LT01给WorkBuddy/Step-5-Preview、LT02给WorkBuddy/Deepseek-V4.1-Flash；Gemini等实际产物复检，千问/豆包按额度恢复领取后续任务。本轮外部执行0；新增记录器/构建器4项本地针对性测试和2包协调端演练通过，不等同模型结果。原稳定门槛保留，提醒方式未选择前按手动队列推进。
+
 更新：2026-10-25。状态：**P1三份已全部收到并工程核验；P2/P3与P4a独立256完成；P4b因无具体需求暂缓。反馈改进另封存rc.5，本地103源码/43稳定图/91ZIP及官方校验通过；实现提交6f685f4的8组CI全部通过。下一项真实项目试用与既有稳定门槛检查**。[P1结果与改进](p1-results.zh-CN.md)。最新执行状态以恢复入口和开发日志为准。
 
 恢复入口：[WORK_STATE.md](../WORK_STATE.md)。过程与决策记录：[development-log.zh-CN.md](development-log.zh-CN.md)。前一阶段结果：[workflow-report.zh-CN.md](workflow-report.zh-CN.md)。

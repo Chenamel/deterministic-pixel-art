@@ -90,6 +90,8 @@ python src/pixel_art.py import --image examples/workflows/atlas-before.png --met
 
 三份外部定向任务已收回并核验：[结果与改进](docs/p1-results.zh-CN.md)。[原任务分工和冻结下载](docs/focused-trials.zh-CN.md)保留作复现入口，无需重复执行。本地稳定安装仍v1.1.1。
 
+按免费额度分批测试的当前入口：[模型分工、首轮两包与长期队列](docs/long-term-testing.zh-CN.md)。新上手测试、长期A/B和独立看图复检分别记录，不把本地演练当成外部结果。
+
 ## 真实 PNG 使用端示例
 
 ```sh

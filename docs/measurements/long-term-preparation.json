@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-25",
+  "skill_version": "1.2.0-rc.5",
+  "skill_zip_sha256": "2b9cb652fb9e4a50bd3e4d11e098003b86c6195a16c9b1730dbc6907839178a4",
+  "track": "single-version usability; not paired benefit evidence",
+  "prepared_tasks": 2,
+  "external_runs": 0,
+  "coordinator_rehearsals": 2,
+  "coordinator_rehearsals_passed": true,
+  "focused_tests": {
+    "command": "python -B -m unittest discover -s tests -p test_long_term_trials.py -v",
+    "passed": 4,
+    "source": "Actual tool execution captured before sealing the tasks"
+  },
+  "trials": [
+    {
+      "task": "LT01",
+      "recommended_model": "Step-5-Preview",
+      "archive": "LT01-Step5.zip",
+      "bytes": 244822,
+      "sha256": "fb904ed420dc78afe9a7bd89b1006ef3fdb6ff1267ad963237ebf5a9650e16ad"
+    },
+    {
+      "task": "LT02",
+      "recommended_model": "Deepseek-V4.1-Flash",
+      "archive": "LT02-DeepSeek.zip",
+      "bytes": 258977,
+      "sha256": "6a983a27c8ad7e4bf96bb98fa2a333c8e363a7e1cee9a20110a4c68d41ce423b"
+    }
+  ],
+  "font_license": "SIL Open Font License1.1 retained outside the Skill folder",
+  "ci": {
+    "status": "pending implementation push"
+  },
+  "limitations": [
+    "Coordinator rehearsals are not AI-agent evaluations.",
+    "No new A/B packages distributed; original stable gate unchanged.",
+    "No paid-platform calls or scheduled reminder created."
+  ]
+}

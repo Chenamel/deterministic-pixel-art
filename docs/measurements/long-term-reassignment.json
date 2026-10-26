@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-27",
+  "timezone": "Asia/Shanghai",
+  "base_commit": "a3c2e0e",
+  "skill_version": "1.2.0-rc.5",
+  "skill_zip_sha256": "2b9cb652fb9e4a50bd3e4d11e098003b86c6195a16c9b1730dbc6907839178a4",
+  "distribution": "20261027-model-neutral",
+  "external_runs": 0,
+  "focused_tests": {
+    "command": "python -B -m unittest discover -s tests -p test_long_term_trials.py -v",
+    "passed": 4
+  },
+  "trials": [
+    {
+      "task": "LT01",
+      "recommended_model": "GLM-5.3-Flash",
+      "archive": "LT01-AtlasEdit.zip",
+      "bytes": 244944,
+      "sha256": "eab4a2fcad68cbad65527640cdb821952e66bc7de0ef2598cf781fb05b9722ce",
+      "skill_files_exact": 97,
+      "changed_entries_vs_original": [
+        "START_HERE.md",
+        "checksums.json",
+        "task.json"
+      ],
+      "drawing_requirements_and_budget_unchanged": true,
+      "smoke_commands": [
+        {
+          "args": [
+            "start",
+            "--platform",
+            "coordinator smoke - not external",
+            "--model",
+            "fixture"
+          ],
+          "exit_code": 0
+        },
+        {
+          "args": [
+            "tool",
+            "inspect",
+            "--image",
+            "inputs/atlas.png",
+            "--metadata",
+            "inputs/layout.json",
+            "--cell",
+            "transfer",
+            "--grid"
+          ],
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "task": "LT02",
+      "recommended_model": "Deepseek-V4.1-Flash",
+      "archive": "LT02-Buttons.zip",
+      "bytes": 259158,
+      "sha256": "5ddb879738a4b15710213dc69b63de51c0bd704ec88f1150b9c5f68f129211f4",
+      "skill_files_exact": 97,
+      "changed_entries_vs_original": [
+        "START_HERE.md",
+        "checksums.json",
+        "task.json"
+      ],
+      "drawing_requirements_and_budget_unchanged": true,
+      "smoke_commands": [
+        {
+          "args": [
+            "start",
+            "--platform",
+            "coordinator smoke - not external",
+            "--model",
+            "fixture"
+          ],
+          "exit_code": 0
+        },
+        {
+          "args": [
+            "tool",
+            "--help"
+          ],
+          "exit_code": 0
+        }
+      ]
+    }
+  ],
+  "preservation": {
+    "protected_files_checked": 163,
+    "all_unchanged": true
+  },
+  "optional_replication": {
+    "model": "MiniMax-M3.1-Flash",
+    "task": "LT02",
+    "archive": "LT02-Buttons.zip",
+    "condition": "After first two submissions checked; fresh session with quota"
+  },
+  "limitations": [
+    "Local tests and smoke commands are not external model results.",
+    "Cross-model coverage on WorkBuddy is not a second operating-system environment or version A/B.",
+    "No Skill update, stable release, installation, model call or scheduled reminder."
+  ]
+}

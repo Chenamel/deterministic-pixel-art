@@ -29,7 +29,7 @@ class LongTermTrialsTests(unittest.TestCase):
         with redirect_stdout(StringIO()):build(self.skill_zip,self.out,self.digest)
 
     def extract(self,task):
-        filename={'LT01':'LT01-Step5.zip','LT02':'LT02-DeepSeek.zip'}[task]
+        filename={'LT01':'LT01-AtlasEdit.zip','LT02':'LT02-Buttons.zip'}[task]
         work=self.root/(task+' isolated')
         with zipfile.ZipFile(self.out/filename) as bundle:bundle.extractall(work)
         return work/task
@@ -46,7 +46,7 @@ class LongTermTrialsTests(unittest.TestCase):
 
     def test_reproducible_frozen_inputs_font_license_and_refuse_reuse_or_wrong_digest(self):
         with redirect_stdout(StringIO()):build(self.skill_zip,self.root/'repeat',self.digest)
-        for filename in ('LT01-Step5.zip','LT02-DeepSeek.zip'):
+        for filename in ('LT01-AtlasEdit.zip','LT02-Buttons.zip'):
             self.assertEqual((self.out/filename).read_bytes(),(self.root/'repeat'/filename).read_bytes())
             with zipfile.ZipFile(self.out/filename) as bundle:
                 task=filename.split('-')[0]

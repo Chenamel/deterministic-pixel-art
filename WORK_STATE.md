@@ -1,8 +1,20 @@
 # Resume this work here
 
-Updated: 2026-10-25. Active branch: `codex/visual-quality`.
+Updated: 2026-10-27 (Asia/Shanghai). Active branch: `codex/visual-quality`.
 
-## 最新执行：长期额度测试已排期，首轮两个rc.5任务包已准备
+## 当前恢复点：Step限免结束，改派GLM；MiniMax可独立补测UI
+
+2026-10-27用户提供WorkBuddy截图：GLM-5.3-Flash、MiniMax-M3.1-Flash均显示0.08×。**只调测试分配与分发包外层说明，不修改Skill、rc.5封存包或稳定安装，不根据截图宣称费用或能力优势。** 新分配：GLM→LT01；Deepseek-V4.1-Flash→LT02；前两项回收核验且有额度后，MiniMax可在新会话独立复测同一LT02。Gemini只审实际返回产物。GLM暂按截图高/1M、MiniMax极致/300K，记录实际设置和执行/看图能力；指定模型的思考强度与不固定后端的同名路由区分。深度/窗口变化单独记录，不能用容量估token。
+
+当前分发目录 `dist/long-term-v1.2.0-rc.5-wave1b/`，包按任务命名 `LT01-AtlasEdit.zip` / `LT02-Buttons.zip`，内有同一冻结rc.5、相同输入/绘制需求/预算/记录器/检查器；仅外层推荐、分发标识及环境记录说明更新。旧wave1和历史摘要保留，原Step计划标未运行改派，不记模型失败；MiniMax重复LT02不计新领域或版本A/B。分发指南 `benchmarks/long-term/START_TESTING.zh-CN.md`；总计划 `docs/long-term-testing.zh-CN.md`；新核验数据在 `docs/measurements/long-term-reassignment.json`，本地原始核验在忽略的 `evaluation/long-term-20261027-reassignment/`。下方2026-10-25 Step分配为历史准备记录，不是当前要发的模型。
+
+Skill不因模型售价/限免调整：已有工具错误或多次独立出现的入口阻碍，才决定修工具/说明，另封存候选。单版跨模型反馈不能替代原两环境×八任务×两版本32新会话、至少六项具体收益、另一环境无反退和独立复检门槛；本轮外部执行仍0，不自动调用平台、花额度、发布或安装。保持用户已选**按额度恢复手动推进、无定时提醒**。
+
+本次改派准备完成：4项针对性测试/4条新包中文空格路径实际入口命令通过；两包各97个Skill文件精确匹配，绘制需求与预算不变，163个保护文件哈希不变。LT01-AtlasEdit.zip 244944字节，SHA-256 `eab4a2fcad68cbad65527640cdb821952e66bc7de0ef2598cf781fb05b9722ce`；LT02-Buttons.zip 259158字节，SHA-256 `5ddb879738a4b15710213dc69b63de51c0bd704ec88f1150b9c5f68f129211f4`。不重复不变Skill整轮验证，不据本地入口测试宣传新模型通过。
+
+四主阶段：P1已核验，P2/P3/P4a完成，P4b原生512暂缓。当前位置是正式版前长期外部补证。下一步发GLM的LT01、DeepSeek的LT02；回收submission及过程，先核验工程/像素/布局，再让Gemini独立看图，有额度再补MiniMax。LT05精灵和LT08分块仍待后续独立冻结，不因同模型先做小任务而标完成。当前稳定/安装1.1.1，候选rc.5不变。
+
+## 历史准备：2026-10-25长期额度测试首轮两包
 
 2026-10-25用户提供WorkBuddy可选模型截图，说明豆包/千问额度需刷新、Gemini Pro可长期分批复检，希望尽量完成测试。当前行动是分配与准备外部任务，**不是自动调用平台/消耗额度或取消原发布门槛**。计划 `docs/long-term-testing.zh-CN.md`；私有额度/结果台账 `evaluation/long-term-20261025/{schedule,quota,paired-queue}.csv`，不可提交Git或Skill。截图倍率/免费活动不当作价格、能力或刷新政策，第二额度面板未独立确认归属/时区，个人用量不公开。
 

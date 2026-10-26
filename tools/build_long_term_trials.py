@@ -27,13 +27,14 @@ def build(skill_zip,out,expected=EXPECTED):
         frozen={e.filename:bundle.read(e.filename) for e in entries}
     out.mkdir(parents=True,exist_ok=False)
     trials=[]
-    for task,model,filename in [('LT01','Step-5-Preview','LT01-Step5.zip'),
-                                ('LT02','Deepseek-V4.1-Flash','LT02-DeepSeek.zip')]:
+    for task,model,filename in [('LT01','GLM-5.3-Flash','LT01-AtlasEdit.zip'),
+                                ('LT02','Deepseek-V4.1-Flash','LT02-Buttons.zip')]:
         files=dict(frozen)
         files['run.py']=(ROOT/'benchmarks/long-term/runner.py').read_bytes()
         files['START_HERE.md']=(ROOT/'benchmarks/long-term'/f'{task}.md').read_bytes()
         config=dict(id=task,recommended_platform='WorkBuddy',recommended_model=model,skill_zip_sha256=expected,
-                    cohort='long-term-rc5-wave1',kind='single-version usability; not paired benefit evidence',
+                    cohort='long-term-rc5-wave1',distribution='20261027-model-neutral',
+                    kind='single-version usability; not paired benefit evidence',
                     max_candidates=2,max_visual_revisions=2)
         files['task.json']=encoded(config)
         if task=='LT01':
@@ -50,6 +51,7 @@ def build(skill_zip,out,expected=EXPECTED):
     (out/'manifest.json').write_bytes(encoded(dict(skill_zip_sha256=expected,trials=trials,external_runs=0)))
     (out/'SHA256SUMS.txt').write_text(''.join(f"{t['sha256']}  {t['archive']}\n" for t in trials),encoding='ascii')
     (out/'Gemini-REVIEW.md').write_bytes((ROOT/'benchmarks/long-term/REVIEW.md').read_bytes())
+    (out/'START_TESTING.zh-CN.md').write_bytes((ROOT/'benchmarks/long-term/START_TESTING.zh-CN.md').read_bytes())
     print(json.dumps(dict(prepared=len(trials),external_runs=0,trials=trials),indent=2))
     return trials
 

@@ -241,6 +241,7 @@
 - 4项现有针对性测试通过，覆盖可复现封包/输入保护、防覆盖、额度失败证据归档、真实字体消费端；新包在中文空格临时路径执行4条启动/入口命令通过。163个保护文件哈希不变，包括原wave1、rc.5、生成Skill目录及本地安装。结果 `docs/measurements/long-term-reassignment.json`；原始核验 `evaluation/long-term-20261027-reassignment/`。
 - 更新私有schedule，原Step标not_run_reassigned，不记模型失败；保存修改前CSV。首次读取遇UTF-8 BOM导致KeyError，未写回原文件；改用utf-8-sig并保留BOM后完成。没有真实外部提交，本轮外部执行0；保持额度恢复手动推进、无自动提醒，不调用平台。
 - 四主阶段仍P1/P2/P3/P4a完成，P4b暂缓；当前位置长期外部补证。下一项交GLM/DeepSeek新会话运行，回收submission和原始过程，协调端核验后再交Gemini独立视觉复检；MiniMax同名submission放独立模型/日期目录，不覆盖。没有新稳定发布或安装。
+- 改派实现 `7bfffae` 已推送开发分支 `codex/visual-quality`；不合并main，不创建tag/Release，测试ZIP本地交付。此处只记录4项本地测试和4条入口命令，本提交远端CI未核对，旧CI结果不挪用。
 
 ## 后续追加记录的最小内容
 

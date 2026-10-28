@@ -16,7 +16,7 @@ Updated: 2026-10-28 (Asia/Shanghai). Active branch: `codex/visual-quality`.
 
 初始178文件清单含97个仓库生成Skill文件，本次授权重建其中6个并新增1个；另81个不可变文件（29分发、44安装、8用户原始提交）哈希不变。完整基线、失败和演练记录位于忽略的 `evaluation/ui-followup-20261028/`。首次保护总断言把授权生成文件也算入，已分组记录，未覆盖/重设原始摘要。详细结果 `docs/ui-font-followup.zh-CN.md` / `.md`，机器摘要 `docs/measurements/ui-font-followup.json`。
 
-四主阶段仍P1/P2/P3/P4a完成，P4b原生512暂缓；当前位置是候选使用体验修正/外部验收，不新增第五功能阶段。原正式版门槛保留；本轮不宣称外部命令数/token/普遍画质收益。启动时历史未同步提交已通过命令局部代理推送；本轮实现完成后的提交/远端以git日志核对。
+四主阶段仍P1/P2/P3/P4a完成，P4b原生512暂缓；当前位置是候选使用体验修正/外部验收，不新增第五功能阶段。原正式版门槛保留；本轮不宣称外部命令数/token/普遍画质收益。启动时历史未同步提交已通过命令局部代理推送；本轮实现 `deb3ac5` 也已推送并由ls-remote确认。[CI 40690070505](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40690070505) 的8组Windows/Ubuntu、Pillow10.4/11.3/12.1/12.3检查全部成功。证据 `docs/measurements/ui-font-followup-ci.json` 对应实现提交，不冒充后续纯文档提交的CI。
 
 ## 最新沟通与分发约定：外部任务只含操作信息
 

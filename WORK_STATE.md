@@ -12,6 +12,8 @@ Updated: 2026-10-28 (Asia/Shanghai). Active branch: `codex/visual-quality`.
 
 本次4项针对性封包/实际入口检查通过，含包内精简字段和协调材料隔离断言；19个本地链接有效，178个保护文件摘要不变。记录在忽略的evaluation/prompt-cleanup-20261028。新提示只在临时测试目录封包，未生成/分发新的UI复测包。
 
+分发整理实现已本地提交 `52532d5`。两次推送均报GitHub HTTPS连接重置，远端同步未确认成功；下一次联网时补推当前开发分支。本地文件/提交完整，不需重做整理；此次网络故障与测试包/模型无关。
+
 ## 2026-10-28 当前恢复点：rc.5三份外部提交核验完成，下一项共性UI闭环
 
 用户结果目录 `D:\Users\philia093\Desktop\rc5测试` 共8个原始文件：2份输入ZIP、3份submission、GLM/DeepSeek外置原始JSONL和Gemini review.md。**MiniMax原始JSONL在其submission的RUN/session-export内，三位制作端会话均已收到；Gemini没有独立review.json或原始审阅会话，不要求用户因此重跑。** 原始快照/哈希与核验代码放忽略的 `evaluation/long-term-results-20261028/`，原会话、个人用量/配置不进Git/Skill。

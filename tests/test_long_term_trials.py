@@ -12,6 +12,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 from build_long_term_trials import build
+from build_ui_followup import build as build_ui
 from prepare_agent_trials import archive_bytes,sha
 
 
@@ -131,6 +132,44 @@ class LongTermTrialsTests(unittest.TestCase):
         context['regions'][0]['rect'][0]=0
         (work/'RUN/context.json').write_text(json.dumps(context),encoding='utf-8')
         self.run_recorder(work,'check',expected=1)
+
+    def test_ui_followup_uses_helper_and_checks_motion_separately_from_reconstruction(self):
+        out=self.root/'ui-package';record=build_ui(self.skill_zip,out,self.digest)
+        self.assertEqual(record['external_runs'],0)
+        self.assertTrue((out/'coordinator/manifest.json').exists())
+        with zipfile.ZipFile(out/'UI-followup.zip') as bundle:
+            self.assertEqual(set(json.loads(bundle.read('UI01/task.json'))),{'id','skill_zip_sha256'})
+            self.assertFalse(any('/coordinator/' in name or '/evaluation/' in name for name in bundle.namelist()))
+            bundle.extractall(self.root/'ui-extracted')
+        work=self.root/'ui-extracted/UI01'
+        self.run_recorder(work,'start','--platform','fixture','--model','not-an-external-agent')
+        (work/'RUN/feedback.md').write_text('Local engineering fixture.',encoding='utf-8')
+        self.run_recorder(work,'script','deterministic-pixel-art/scripts/recipes/buttons.py',
+            '--out-dir','RUN/buttons','--width','88','--content','23','4','63','10')
+        args=['script','deterministic-pixel-art/scripts/recipes/label_atlas.py',
+            '--image','RUN/buttons/asset.png','--metadata','RUN/buttons/layout.json',
+            '--context','RUN/buttons/context.json','--font','inputs/Silkscreen-Regular.ttf',
+            '--font-size','8','--font-mode','monochrome','--color','E5ECEE',
+            '--state-color','disabled','8997A5','--labels','START','LOOP','EXPORT MAP','--out-dir','RUN/consumer']
+        self.run_recorder(work,*args,'--state-offset','pressed','0','1')
+        self.run_recorder(work,'check')
+        # Rebuild internally consistent images/report without motion: semantic checks must still fail.
+        self.run_recorder(work,*args,'--force')
+        self.run_recorder(work,'check',expected=1)
+        checks=json.loads((work/'RUN/checks.json').read_text(encoding='utf-8'))['checks']
+        failed=[c['check'] for c in checks if not c['passed']]
+        self.assertEqual(set(failed),{'pressed-'+label+'-state-offset' for label in ('START','LOOP','EXPORT MAP')})
+        self.run_recorder(work,*args,'--state-offset','pressed','0','1','--force')
+        self.run_recorder(work,'finish','--status','complete')
+        self.assertTrue((work/'submission-UI01.zip').exists())
+
+    def test_ui_followup_seals_candidate_and_refuses_bad_hash_or_reuse(self):
+        first=self.root/'ui-first';second=self.root/'ui-second'
+        build_ui(self.skill_zip,first,self.digest);build_ui(self.skill_zip,second,self.digest)
+        self.assertEqual((first/'UI-followup.zip').read_bytes(),(second/'UI-followup.zip').read_bytes())
+        with self.assertRaises(FileExistsError):build_ui(self.skill_zip,first,self.digest)
+        with self.assertRaisesRegex(ValueError,'SHA-256'):build_ui(self.skill_zip,self.root/'wrong-ui','0'*64)
+        self.assertFalse((self.root/'wrong-ui').exists())
 
 
 if __name__=='__main__':unittest.main()

@@ -92,11 +92,14 @@ def check():
         from PIL import Image, ImageDraw, ImageFont
         from pixelart import render, verify_edit, inspect_image, color
         from pixelart.metadata import merge_layout
-        spec=read(RUN/'final.json');rebuilt=render(spec)
-        with Image.open(RUN/'final.png') as source:
+        ui_followup=read(BASE/'task.json')['id']=='UI01'
+        asset_dir=RUN/'buttons' if ui_followup else RUN
+        consumer_dir=RUN/'consumer' if ui_followup else RUN
+        spec=read(asset_dir/('asset.json' if ui_followup else 'final.json'));rebuilt=render(spec)
+        with Image.open(asset_dir/('asset.png' if ui_followup else 'final.png')) as source:
             image=source.convert('RGBA')
         add('spec-rerenders',image.size==rebuilt.size and image.tobytes()==rebuilt.tobytes())
-        metadata=read(RUN/'final-layout.json');merge_layout(image,metadata=metadata)
+        metadata=read(asset_dir/('layout.json' if ui_followup else 'final-layout.json'));merge_layout(image,metadata=metadata)
         add('fresh-layout',metadata['atlas']==rebuilt.info.get('pixelart'))
         if read(BASE/'task.json')['id']=='LT01':
             with Image.open(BASE/'inputs/atlas.png') as opened:
@@ -109,7 +112,7 @@ def check():
             add('six-named-states',[c['name'] for c in cells]==names)
             add('uniform-even-width-18px',all(c['h']==18 and 24<=c['w']<=112 and c['w']%2==0
                                             and c['w']==cells[0]['w'] for c in cells))
-            context=read(RUN/'context.json');inspect_image(image,context,metadata=metadata)
+            context=read(asset_dir/'context.json');inspect_image(image,context,metadata=metadata)
             font=ImageFont.truetype(str(BASE/'inputs/Silkscreen-Regular.ttf'),8)
             boxes={text:list(font.getbbox(text)) for text in ['START','LOOP','EXPORT MAP']}
             for cell in cells:
@@ -121,8 +124,14 @@ def check():
                 fits=local_x>=23 and local_y>=4 and local_x+w<=cell['w']-2 and local_y+h<=14
                 fits=fits and all(box[2]-box[0]+4<=w and box[3]-box[1]+4<=h for box in boxes.values())
                 add(cell['name']+'-font-capacity',fits,font_size=8,label_bboxes=boxes,rect=[x,y,w,h])
-            fit=read(RUN/'text-fit.json');labels=['START','LOOP','EXPORT MAP']
-            add('font-size-record',fit.get('font_size')==8)
+            fit=read(consumer_dir/'text-fit.json');labels=['START','LOOP','EXPORT MAP']
+            add('font-size-record',(fit.get('font',{}).get('size') if ui_followup else fit.get('font_size'))==8)
+            if ui_followup:
+                from pixelart.metadata import rgba_digest
+                add('font-mode-record',fit['font']['mode']=='monochrome')
+                add('actual-font-record',fit['font']['sha256']==sha(BASE/'inputs/Silkscreen-Regular.ttf'))
+                add('source-pixels-record',fit['source_rgba_sha256']==rgba_digest(image))
+                add('actual-font-bounds',{i['label']:i['font_bbox'] for i in fit['labels']}==boxes)
             instances=fit['instances'];keys=[(item['state'],item['label']) for item in instances]
             required={(state,label) for state in names for label in labels}
             if len(keys)!=18 or set(keys)!=required:raise ValueError('text-fit.instances: expected each state/label exactly once')
@@ -130,7 +139,10 @@ def check():
             for row,cell in enumerate(cells):
                 for col,label in enumerate(labels):
                     consumer.paste(image.crop((cell['x'],cell['y'],cell['x']+width,cell['y']+18)),(col*width,row*18))
-            pen=ImageDraw.Draw(consumer)
+            layer=Image.new('RGBA',consumer.size) if ui_followup else consumer
+            pen=ImageDraw.Draw(layer)
+            if ui_followup:pen.fontmode='1'
+            local_origins={}
             for item in instances:
                 row=names.index(item['state']);col=labels.index(item['label']);cell=cells[row]
                 rect=next(r['rect'] for r in context['regions'] if r['name']==item['state']+'-text')
@@ -138,16 +150,25 @@ def check():
                 origin=item['origin']
                 if len(origin)!=2 or any(type(v) is not int for v in origin):raise ValueError('text origin: expected two integers')
                 tx,ty=origin;box=boxes[item['label']]
+                if ui_followup:
+                    local_origins[(item['state'],item['label'])]=(tx-col*width,ty-row*18)
                 add(item['state']+'-'+item['label']+'-placement',
                     tx+box[0]>=x+2 and ty+box[1]>=y+2 and tx+box[2]<=x+w-2 and ty+box[3]<=y+h-2)
                 ink=color(item.get('color','8997A5' if item['state']=='disabled' else 'E5ECEE'))
                 if ink[3]!=255:raise ValueError('consumer text: use an opaque color')
                 pen.text(origin,item['label'],font=font,fill=ink)
+            if ui_followup:
+                consumer=Image.alpha_composite(consumer,layer)
+                for state in names:
+                    for label in labels:
+                        base=local_origins[('normal',label)]
+                        add(state+'-'+label+'-state-offset',
+                            local_origins[(state,label)]==(base[0],base[1]+(state=='pressed')))
             for filename,expected in [('consumer.png',consumer),
                 ('consumer-3x.png',consumer.resize((consumer.width*3,consumer.height*3),Image.Resampling.NEAREST))]:
-                with Image.open(RUN/filename) as opened:actual=opened.convert('RGBA')
+                with Image.open(consumer_dir/filename) as opened:actual=opened.convert('RGBA')
                 add(filename+'-font-rebuild',actual.size==expected.size and actual.tobytes()==expected.tobytes())
-        add('initial-notes-present',(RUN/'initial-notes.md').is_file())
+        if not ui_followup:add('initial-notes-present',(RUN/'initial-notes.md').is_file())
         add('feedback-present',(RUN/'feedback.md').is_file())
     except (ImportError,OSError,ValueError,KeyError,TypeError,IndexError) as exc:
         add('required-artifacts',False,error=str(exc))
@@ -170,7 +191,8 @@ def main():
     if args.action=='start':
         if not args.platform.strip() or not args.model.strip():raise ValueError('Record actual platform/model')
         RUN.mkdir(exist_ok=False)
-        save(RUN/'session.json',dict(task=read(BASE/'task.json')['id'],cohort='long-term-rc5-wave1',
+        task=read(BASE/'task.json')['id']
+        save(RUN/'session.json',dict(task=task,cohort='ui-font-followup' if task=='UI01' else 'long-term-rc5-wave1',
             platform=args.platform,model=args.model,started_utc=now(),environment=environment(),tokens=None,
             task_sha256=sha(BASE/'task.json'),skill_zip_sha256=read(BASE/'task.json')['skill_zip_sha256']))
         (RUN/'commands.jsonl').touch();print('RUN ready');return 0

@@ -32,7 +32,8 @@ def make_files(*,width=32,hover='345D78',content=None):
             raise PixelArtError('content: expected x y width height in each cell')
         x,y,w,h=content
         if w<1 or h<1 or x<23 or y<4 or x+w>width-2 or y+h>14:
-            raise PixelArtError('content: must fit right of the icon (x>=23), inside x<width-2 and y=4..13; increase --width')
+            raise PixelArtError(f'content: [{x},{y},{w},{h}] must fit x>=23, x+w<={width-2}, '
+                                'y>=4, y+h<=14; rectangles use half-open [x,x+w), [y,y+h). Increase --width if needed')
         context['regions']=[dict(name=cell['name']+'-text',rect=[cell['x']+x,cell['y']+y,w,h],role='reserved_text')
             for cell in image.info['pixelart']['cells']]
     return asset_files(data,background='1D293D',context=context)

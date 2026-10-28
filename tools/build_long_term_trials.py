@@ -12,7 +12,7 @@ EXPECTED='2b9cb652fb9e4a50bd3e4d11e098003b86c6195a16c9b1730dbc6907839178a4'
 def encoded(value):
     return (json.dumps(value,ensure_ascii=False,indent=2)+'\n').encode('utf-8')
 
-def build(skill_zip,out,expected=EXPECTED):
+def frozen_files(skill_zip, expected):
     payload=skill_zip.read_bytes()
     if sha(payload)!=expected:raise ValueError('Frozen Skill ZIP SHA-256 mismatch')
     with zipfile.ZipFile(skill_zip) as bundle:
@@ -24,7 +24,11 @@ def build(skill_zip,out,expected=EXPECTED):
             if path.is_absolute() or '..' in path.parts or '\\' in entry.filename or ':' in entry.filename:
                 raise ValueError('Unsafe ZIP path')
             if not path.parts or path.parts[0]!='deterministic-pixel-art':raise ValueError('Unexpected Skill root')
-        frozen={e.filename:bundle.read(e.filename) for e in entries}
+        return {e.filename:bundle.read(e.filename) for e in entries}
+
+
+def build(skill_zip,out,expected=EXPECTED):
+    frozen=frozen_files(skill_zip,expected)
     out.mkdir(parents=True,exist_ok=False)
     trials=[]
     for task,model,filename in [('LT01','GLM-5.3-Flash','LT01-AtlasEdit.zip'),

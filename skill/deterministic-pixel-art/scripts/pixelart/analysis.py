@@ -105,11 +105,15 @@ def _facts(image,origin,excluded):
 def _grid(image,origin):
     w,h=image.size
     if w>64 or h>64:
-        raise PixelArtError('grid: limited to 64x64; select --region or --cell')
+        raise PixelArtError(f'grid: selected {w}x{h} at ({origin[0]},{origin[1]}); limit is 64x64. '
+                            'Use --region X Y W H in full-image coordinates with W,H<=64 '
+                            '(replace --cell if already selected); omit --grid for summary facts')
     raw=image.convert('RGBA').tobytes()
     colors=sorted({raw[i:i+4] for i in range(0,len(raw),4)})
     if len(colors)>62:
-        raise PixelArtError('grid: limited to 62 exact colors; select a smaller region (no quantization is applied)')
+        raise PixelArtError(f'grid: selected {w}x{h} at ({origin[0]},{origin[1]}) has {len(colors)} colors; '
+                            'limit is 62 exact colors. Use a smaller --region in full-image coordinates '
+                            '(replace --cell if selected), or omit --grid; no quantization is applied')
     symbols={c:SYMBOLS[i] for i,c in enumerate(colors)}
     return dict(origin=list(origin),palette={symbols[c]:c.hex().upper() for c in colors},
                 rows=[''.join(symbols[raw[(y*w+x)*4:(y*w+x+1)*4]] for x in range(w)) for y in range(h)])

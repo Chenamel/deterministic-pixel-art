@@ -63,7 +63,7 @@ The [editing and assembly guide](skill/deterministic-pixel-art/references/workfl
 
 The [format reference](skill/deterministic-pixel-art/references/formats.md) covers JSON v1, the compact GUI DSL, `render(spec)`, `Canvas`, validation rules, and atlas metadata. Invalid symbols, unknown commands, and implicit clipping produce errors. Rectangles use `x, y, width, height`.
 
-## Editable recipes (local rc.5)
+## Editable recipes (local rc.6)
 
 For repeated variants, use the shipped Python recipes instead of editing expanded point lists:
 
@@ -74,6 +74,15 @@ python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-l
 ```
 
 In an extracted Skill, resolve these at `<skill>/scripts/recipes/`. Defaults retain exact reference pixels at Pillow 12.3.0; changed outputs include independent JSON/PNG/layout. The earlier rc.3 recipe addition grew the ZIP by 4.3%; see [recipe results and costs](docs/recipe-workflows.md). The rc.4 additions below add a further 3.359%. See the actual-font consumer example below for text and interaction checks.
+
+For real-font UI previews, rc.6 adds an optional helper. Supply your font file; the atlas remains text-free:
+
+```sh
+python recipes/buttons.py --out-dir output/labels --width 88 --content 23 4 63 10
+python recipes/label_atlas.py --image output/labels/asset.png --metadata output/labels/layout.json --context output/labels/context.json --font Silkscreen-Regular.ttf --font-size 8 --font-mode monochrome --labels START LOOP "EXPORT MAP" --state-offset pressed 0 1 --out-dir output/consumer
+```
+
+It exports native/3x composites and measured placements, with explicit font mode and consistent state offsets. The dimensions above fit the supplied Silkscreen example, not every font. [Integration options](skill/deterministic-pixel-art/references/consumer-ui.md) and [local verification](docs/ui-font-followup.md). Wider cells retain bounded inspection: use summary facts or a smaller global `--region` when a cell exceeds64×64.
 
 The local rc.4 candidate also ships a small independently drawn two-owner bridge:
 

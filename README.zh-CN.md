@@ -58,7 +58,7 @@ python src/pixel_art.py assemble --project examples/workflows/scene-tiles.json -
 
 [格式说明](skill/deterministic-pixel-art/references/formats.md)包含 JSON v1、简短 GUI DSL、`render(spec)`、`Canvas`、校验规则与图集元数据。未知符号、未知指令、隐式裁切会明确报错。矩形坐标统一为 `x, y, width, height`。
 
-## 可读创作配方（本地rc.5）
+## 可读创作配方（本地rc.6）
 
 反复调整颜色、尺寸或部件时，可修改短配方参数，再生成完整JSON与PNG：
 
@@ -69,6 +69,15 @@ python recipes/courier128.py --out-dir output/courier --stripe E17B57 --stripe-l
 ```
 
 分发Skill中的位置是 `<skill>/scripts/recipes/`。128飞船常用编辑入口为49行配方（另有共享辅助），原展开JSON为33,744行；输出规格仍完整。此前rc.3配方使包体增加4.3%，本次rc.4相对rc.3再增加3.359%。[配方实测及限制](docs/recipe-workflows.zh-CN.md)；未据此宣称节省token或普遍提高审美。真实字体和消费端交互见下方示例。
+
+rc.6新增可选真实字体辅助入口，源贴图仍不含文字。自行提供字体文件：
+
+```sh
+python recipes/buttons.py --out-dir output/labels --width 88 --content 23 4 63 10
+python recipes/label_atlas.py --image output/labels/asset.png --metadata output/labels/layout.json --context output/labels/context.json --font Silkscreen-Regular.ttf --font-size 8 --font-mode monochrome --labels START LOOP "EXPORT MAP" --state-offset pressed 0 1 --out-dir output/consumer
+```
+
+输出原尺寸/3倍消费端图与实际字体定位报告；显式选择字体绘制模式，按状态统一偏移。上述尺寸对应Silkscreen示例，其他字体需重新测量。[接入说明](skill/deterministic-pixel-art/references/consumer-ui.md)；[本地验证](docs/ui-font-followup.zh-CN.md)。宽单元仍保留64×64网格上限，可直接看摘要，或改用全图坐标的小范围 `--region`。
 
 本地rc.4另附一个分别绘制的双块小桥，直接演练局部改色：
 

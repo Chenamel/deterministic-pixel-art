@@ -58,6 +58,15 @@ class AnalysisTests(unittest.TestCase):
             colors=Image.new('RGBA',(8,8));colors.putdata([(i,0,0,255) for i in range(64)])
             inspect_image(colors,grid=True)
 
+    def test_oversize_cell_grid_reports_selected_dimensions_and_global_crop(self):
+        atlas=render(dict(kind='atlas',columns=2,cells=[dict(name=name,spec=dict(kind='draw',
+            size=[88,18],operations=[])) for name in ('first','normal')]))
+        with self.assertRaisesRegex(PixelArtError,r'selected 88x18 at \(88,0\).*64x64.*full-image.*replace --cell'):
+            inspect_image(atlas,cell='normal',grid=True)
+        result=inspect_image(atlas,region=[88,0,64,18],grid=True)
+        self.assertEqual(result['grid']['origin'],[88,0])
+        self.assertEqual(len(result['grid']['rows'][0]),64)
+
     def test_named_cell_and_comparison_coordinates(self):
         atlas=render(dict(kind='atlas',columns=2,cells=[dict(name=name,spec=dict(kind='draw',size=[2,2],
             background=fill,operations=[])) for name,fill in [('a','123456'),('b','654321')]]))

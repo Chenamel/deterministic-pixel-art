@@ -215,6 +215,30 @@ def main(python, validator):
         run('packaged-recipe-context-review',[cli,'review','--image',recipe_work/'buttons-edited/asset.png',
             '--metadata',recipe_work/'buttons-edited/layout.json','--context',recipe_work/'buttons-edited/context.json',
             '--out-dir',recipe_work/'button-review'])
+
+        # A real font is a caller-provided input, never an installed host fallback.
+        font = folder/'字体 input.ttf'
+        font.write_bytes((ROOT/'demos/pixel-ui/fonts/Silkscreen-Regular.ttf').read_bytes())
+        run('packaged-label-buttons', [recipes/'buttons.py', '--out-dir', recipe_work/'label-buttons',
+            '--width', '88', '--content', '23', '4', '63', '10'])
+        label_args = [recipes/'label_atlas.py', '--image', recipe_work/'label-buttons/asset.png',
+            '--metadata', recipe_work/'label-buttons/layout.json', '--context', recipe_work/'label-buttons/context.json',
+            '--font', font, '--font-size', '8', '--labels', 'START', 'LOOP', 'EXPORT MAP',
+            '--state-offset', 'pressed', '0', '1']
+        for mode in ('monochrome', 'grayscale'):
+            run('packaged-font-'+mode, [*label_args, '--font-mode', mode, '--out-dir', recipe_work/mode])
+        fit=json.loads((recipe_work/'monochrome/text-fit.json').read_text(encoding='utf-8'))
+        assert len(fit['instances'])==18 and fit['font']['mode']=='monochrome'
+        assert fit['instances'][9]['origin'][1]-54==fit['instances'][0]['origin'][1]+1
+        with Image.open(recipe_work/'monochrome/consumer.png') as mono, Image.open(recipe_work/'grayscale/consumer.png') as gray:
+            assert mono.size==(264,108) and mono.tobytes()!=gray.tobytes()
+        run('packaged-label-no-clobber', [*label_args, '--font-mode', 'monochrome', '--out-dir', recipe_work/'monochrome'], expected=2)
+        run('packaged-label-bad-fit', [*label_args, '--font-mode', 'monochrome', '--padding', '3',
+            '--out-dir', recipe_work/'label-bad'], expected=2)
+        assert not (recipe_work/'label-bad').exists()
+        result=run('packaged-grid-wide-cell', [cli,'inspect','--image',recipe_work/'label-buttons/asset.png',
+            '--metadata',recipe_work/'label-buttons/layout.json','--cell','normal','--grid'], expected=2)
+        assert 'selected 88x18 at (0,0)' in result.stderr and 'replace --cell' in result.stderr
         before=(recipe_work/'icons-edited/asset.png').read_bytes()
         run('packaged-recipe-no-clobber',[recipes/'icons.py','--out-dir',recipe_work/'icons-edited'],expected=2)
         assert (recipe_work/'icons-edited/asset.png').read_bytes()==before

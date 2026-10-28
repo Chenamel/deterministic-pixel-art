@@ -14,7 +14,19 @@ The shipped button recipe can produce the revised dimensions and reservations:
 python <skill>/scripts/recipes/buttons.py --out-dir buttons --width 96 --content 28 4 62 10
 ```
 
-This generates PNG/JSON/layout/context, not an interactive widget or font. The receiving application still needs its own measurement and input checks. Do not claim Chinese, Minecraft or other font support from the Latin example.
+This generates PNG/JSON/layout/context. For an offline real-font measurement and composite, use the optional helper with your own font file:
+
+```text
+python <skill>/scripts/recipes/label_atlas.py --image buttons/asset.png --metadata buttons/layout.json --context buttons/context.json --font Silkscreen-Regular.ttf --font-size 8 --font-mode monochrome --labels START LOOP "EXPORT MAP" --color E5ECEE --state-color disabled 8997A5 --state-offset pressed 0 1 --out-dir consumer
+```
+
+Outputs are `consumer.png` (labels in columns, states in atlas order down rows), `consumer-3x.png` and `text-fit.json` with actual font bounds, global drawing origins and ink rectangles. Choose `monochrome` for binary glyph coverage or `grayscale` for antialiased coverage; neither is a universal pixel-art requirement. No font is bundled or silently substituted. This example was measured with Silkscreen Regular8px; another font may need different dimensions. Check the intended glyphs visually.
+
+The helper validates layout against the source pixels and reads one `reserved_text` rectangle per cell from Context. Pass both files: Context describes content/backgrounds, while `layout.json` provides cell names and positions. Embedded content-bound layout can replace `--metadata`. Rectangles are `[x,y,width,height]`, covering `[x,x+width)` and `[y,y+height)`; global Context coordinates are not cell-local coordinates.
+
+For each label the helper finds one shared cell-local origin that fits all reservations with the specified padding (default2), then applies explicit state offsets. `--state-offset pressed 0 1` moves the text down1px with this recipe's pressed icon. It refuses an impossible fit instead of shrinking, clipping or moving unrelated states independently. Adjust the reservation or component dimensions when necessary. The original atlas is unchanged; the report's `origin` values are for Pillow's default `ImageDraw.text` anchor, and composition is source-over.
+
+The receiving application still needs its own font and input checks. The helper is an offline composite, not an interactive widget. Do not claim Chinese, Minecraft or other font support from the Latin example.
 
 ## Preserve state combinations
 
@@ -28,4 +40,4 @@ A compact integration pass covers: actual pointer activation; Enter/Space where 
 
 Retain the editable source, output paths and consumer configuration. After one parameter change, rebuild and reload; confirm displayed dimensions, labels, cell order and metadata reflect the new files. Reject or replace stale sidecars deliberately. Inspect native-size content and enlarged edges; nearest-neighbor scaling does not establish arbitrary OS-DPI or browser-zoom behavior.
 
-Distinguish renderer checks, offline composites, actual runtime checks and game integration in the result. If the font or runtime is unavailable, deliver the reservations and state contract with those checks explicitly pending. This Skill does not bundle a browser, font engine or automatic text-fitting system.
+Distinguish renderer checks, offline composites, actual runtime checks and game integration in the result. If the font or runtime is unavailable, deliver the reservations and state contract with those checks explicitly pending. This Skill does not bundle a browser or application runtime.

@@ -2,7 +2,23 @@
 
 Updated: 2026-10-28 (Asia/Shanghai). Active branch: `codex/visual-quality`.
 
-## 当前恢复点：rc.6 UI辅助本地验收完成，下一步发一个定向包
+## 当前恢复点：UI01已回收并核验，下一步Gemini只看需求与图片
+
+2026-10-28用户交回submission-UI01.zip及制作端总结。原ZIP15149字节/12文件，SHA256 `aac9b6df56e1f8e26a6f3ef03a77818d86b7fe99ccb1cc2f2d95c35cbeb6f4c4`；原路径在忽略的evaluation/ui01-results-20261028/preservation-before.json。已安全快照，未执行提交者代码。冻结可信检查函数隔离重跑54项通过，检查事实与提交一致；288×36源图集（6×96×18）及288×108消费端、3倍图和文字报告全部精确重建。记录名义DeepSeek-V4.1-Flash/WorkBuddy、Python3.13.14/Pillow12.3.0。9次记录工具调用、0非零，不算未记录的安装/会话操作。
+
+已从相邻probe目录补收14个88/96候选文件，两版也精确重建，原尺寸/3倍图已查看。没有原始完整制作会话，不要求为此重跑。现有证据支持外部模型复用新helper完成任务，不做9对11/13的因果节省率或模型排名。
+
+有用反馈：当前只支持逐标签居中，START/LOOP/EXPORT MAP在图标后的实际空白为20/22/5列。符合当前任务，但可计划增加 `--align left|center|right`，默认center、保留边距/状态共同原点检查；暂不增加任意逐标签origin或自动缩字。先等独立看图决定优先级，**本轮未改运行时/Skill/候选，不产生rc.7**。纠正“唯一[23,4,62,10]”：高度受当前字体/边距/位移限制，但[24,4,62,10]、[23,4,64,10]实际同样可行；h9拒绝未出现在提交命令中，不记作实测失败。
+
+**现在只发给Gemini Pro任务模式的新对话：** `dist/ui-review-v1.2.0-rc.6-ui01/UI-review.zip`，21341字节，SHA256 `00ad3c6947003524c65ed61a4a9cfb965408e811793ea5db2522968ebeca56c2`。包内只有START_HERE.md、TASK.md和8张原尺寸/放大/背景/88px对照图；没有制作端反馈、核验报告、Skill或协调结论。上传后只用docs/test-handoff.zh-CN.md中Gemini那一句。回收review.md，再决定对齐修正，随后准备千问LT03-Linux包（仍未制作）。不要重复让DeepSeek/GLM/MiniMax重做。
+
+新增3项针对性打包测试通过；最终ZIP在中文空格目录解压，10文件摘要/8图尺寸、原图字节与背景合成均核验。223个既有保护文件和14个补收probe文件哈希不变，包括源码、维护/生成Skill、封存候选、稳定安装及用户原始提交。未重复不变运行时117源码/97ZIP全套，既有8组CI不当作本轮新执行。
+
+公开摘要 docs/ui01-results-20261028.zh-CN.md / .md 与 docs/measurements/ui01-results-20261028.json；原会话路径、日志、重检及协调失败留忽略的evaluation/ui01-results-20261028。首次重检碰到已finish会话的CLI拒绝，改直接调用冻结可信check函数，不改提交session；候选报告首次比较遇内存布局来源字段差异，按真实文件加载方式重建后精确一致。均不是产品新增缺陷。
+
+四主阶段P1/P2/P3/P4a完成、P4b512暂缓；当前位置候选外部验收，下一项Gemini图片复检。稳定/安装v1.1.1，候选rc.6封存不变；正式版原验收协议不变。
+
+## 历史检查点：rc.6 UI辅助本地验收完成，下一步发一个定向包
 
 从干净 `e726942` 实现可选 `recipes/label_atlas.py`：调用者提供真实字体，显式灰度/单色，验证内容绑定布局与每格文字区，统一局部原点并支持按下位移；只生成消费端图/定位报告，源图集不写文字。保留JSON v1、公开API与配方默认像素。网格超限包含已选尺寸/全局原点/局部操作；补齐矩形半开边界、标签容量和Context/metadata说明。
 
@@ -22,7 +38,7 @@ Updated: 2026-10-28 (Asia/Shanghai). Active branch: `codex/visual-quality`.
 
 2026-10-28用户指出任务说明夹带给协调端/用户的备注，要求有取舍、讲清步骤以及哪些资料发给哪个外部AI。**长期偏好：执行包只含任务、必要输入/Skill、运行方式与交付；看图包只含需求/图片；模型分配、历史评价、预期缺陷、发布门槛与统计留在协调端。** 不要求制作模型查询平台数据库、统计token或写冗长方法说明；会话可直接导出再提供。制作和看图模型不接收本页/开发日志/核验结论。
 
-操作入口 `docs/test-handoff.zh-CN.md`；原 `docs/long-term-testing.zh-CN.md` 收为简短入口，旧协议/八类队列保存在 `docs/testing-coordinator-notes.zh-CN.md`。当前先由本Codex完成UI字体/状态与提示改进，本地通过后DeepSeek定向任务→Gemini看图→千问Linux。UI-followup包现已生成并本地验证，另两个后续包尚未生成；每次只交付一个文件/链接和一句转发提示。GLM/MiniMax不重复整套。
+操作入口 `docs/test-handoff.zh-CN.md`；原 `docs/long-term-testing.zh-CN.md` 收为简短入口，旧协议/八类队列保存在 `docs/testing-coordinator-notes.zh-CN.md`。当前UI字体/状态改进和DeepSeek定向任务已完成，顺序进入Gemini看图→千问Linux。UI-review包已生成并验证，LT03-Linux尚未生成；每次只交付一个文件/链接和一句转发提示。GLM/MiniMax不重复整套。
 
 已精简未来使用的LT01/LT02任务源及看图源；构建器将推荐模型/manifest/哈希清单放ZIP外的coordinator目录，包内task.json只保留记录器必需的id与Skill摘要。新任务哈希不与历史运行混用，已完成的wave1/wave1b ZIP与rc.5/安装不改。旧prompts目录明确为模板，不能直接转发；审阅包须有TASK.md/images，不把制作包或参与者自评整份发给Gemini。原正式门槛没有变更。下方提示词整理属于前次完成记录；UI共性闭环已按顶部新恢复点实现。
 

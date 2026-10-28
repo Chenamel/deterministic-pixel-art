@@ -46,10 +46,17 @@ class LongTermTrialsTests(unittest.TestCase):
 
     def test_reproducible_frozen_inputs_font_license_and_refuse_reuse_or_wrong_digest(self):
         with redirect_stdout(StringIO()):build(self.skill_zip,self.root/'repeat',self.digest)
+        self.assertTrue((self.out/'coordinator/manifest.json').is_file())
+        self.assertTrue((self.out/'coordinator/SHA256SUMS.txt').is_file())
+        self.assertFalse((self.out/'Gemini-REVIEW.md').exists())
         for filename in ('LT01-AtlasEdit.zip','LT02-Buttons.zip'):
             self.assertEqual((self.out/filename).read_bytes(),(self.root/'repeat'/filename).read_bytes())
             with zipfile.ZipFile(self.out/filename) as bundle:
                 task=filename.split('-')[0]
+                config=json.loads(bundle.read(task+'/task.json'))
+                self.assertEqual(set(config),{'id','skill_zip_sha256'})
+                self.assertTrue(all(not name.startswith(task+'/'+prefix)
+                    for name in bundle.namelist() for prefix in ('coordinator/','docs/','evaluation/')))
                 for name,data in self.files.items():self.assertEqual(bundle.read(task+'/'+name),data)
                 if task=='LT02':
                     self.assertEqual(bundle.read(task+'/inputs/OFL.txt'),(ROOT/'demos/pixel-ui/fonts/OFL.txt').read_bytes())

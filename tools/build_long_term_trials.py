@@ -1,4 +1,4 @@
-"""Prepare two rc.5 usability trials; never call models or change a frozen Skill."""
+"""Build task-only rc.5 trial packages with separate coordinator records."""
 import argparse
 import json
 from pathlib import Path, PurePosixPath
@@ -32,10 +32,7 @@ def build(skill_zip,out,expected=EXPECTED):
         files=dict(frozen)
         files['run.py']=(ROOT/'benchmarks/long-term/runner.py').read_bytes()
         files['START_HERE.md']=(ROOT/'benchmarks/long-term'/f'{task}.md').read_bytes()
-        config=dict(id=task,recommended_platform='WorkBuddy',recommended_model=model,skill_zip_sha256=expected,
-                    cohort='long-term-rc5-wave1',distribution='20261027-model-neutral',
-                    kind='single-version usability; not paired benefit evidence',
-                    max_candidates=2,max_visual_revisions=2)
+        config=dict(id=task,skill_zip_sha256=expected)
         files['task.json']=encoded(config)
         if task=='LT01':
             files['inputs/atlas.png']=frozen['deterministic-pixel-art/assets/workflows/atlas-before.png']
@@ -48,10 +45,15 @@ def build(skill_zip,out,expected=EXPECTED):
         payload=archive_bytes({task+'/'+name:data for name,data in files.items()})
         (out/filename).write_bytes(payload)
         trials.append(dict(task=task,recommended_model=model,archive=filename,bytes=len(payload),sha256=sha(payload)))
-    (out/'manifest.json').write_bytes(encoded(dict(skill_zip_sha256=expected,trials=trials,external_runs=0)))
-    (out/'SHA256SUMS.txt').write_text(''.join(f"{t['sha256']}  {t['archive']}\n" for t in trials),encoding='ascii')
-    (out/'Gemini-REVIEW.md').write_bytes((ROOT/'benchmarks/long-term/REVIEW.md').read_bytes())
-    (out/'START_TESTING.zh-CN.md').write_bytes((ROOT/'benchmarks/long-term/START_TESTING.zh-CN.md').read_bytes())
+    coordinator=out/'coordinator'
+    coordinator.mkdir()
+    (coordinator/'manifest.json').write_bytes(encoded(dict(
+        distribution='20261028-task-only',skill_zip_sha256=expected,trials=trials,external_runs=0)))
+    (coordinator/'SHA256SUMS.txt').write_text(''.join(f"{t['sha256']}  {t['archive']}\n" for t in trials),encoding='ascii')
+    (coordinator/'README.md').write_text(
+        '# 分发记录（不发送给被测模型）\n\n'
+        '执行者只接收对应任务ZIP；模型分配与校验清单留在本目录。\n'
+        '收到产物后，另行整理仅含需求和图片的看图包，再交给审阅者。\n',encoding='utf-8')
     print(json.dumps(dict(prepared=len(trials),external_runs=0,trials=trials),indent=2))
     return trials
 

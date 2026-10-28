@@ -2,6 +2,16 @@
 
 Updated: 2026-10-28 (Asia/Shanghai). Active branch: `codex/visual-quality`.
 
+## 最新沟通与分发约定：外部任务只含操作信息
+
+2026-10-28用户指出任务说明夹带给协调端/用户的备注，要求有取舍、讲清步骤以及哪些资料发给哪个外部AI。**长期偏好：执行包只含任务、必要输入/Skill、运行方式与交付；看图包只含需求/图片；模型分配、历史评价、预期缺陷、发布门槛与统计留在协调端。** 不要求制作模型查询平台数据库、统计token或写冗长方法说明；会话可直接导出再提供。制作和看图模型不接收本页/开发日志/核验结论。
+
+操作入口 `docs/test-handoff.zh-CN.md`；原 `docs/long-term-testing.zh-CN.md` 收为简短入口，旧协议/八类队列保存在 `docs/testing-coordinator-notes.zh-CN.md`。当前先由本Codex完成UI字体/状态与提示改进，本地通过后DeepSeek定向任务→Gemini看图→千问Linux。三个后续包均未生成，不能提前让用户上传旧包；包准备后每次只交付一个文件/链接和一句转发提示。GLM/MiniMax不重复整套。
+
+已精简未来使用的LT01/LT02任务源及看图源；构建器将推荐模型/manifest/哈希清单放ZIP外的coordinator目录，包内task.json只保留记录器必需的id与Skill摘要。新任务哈希不与历史运行混用，已完成的wave1/wave1b ZIP与rc.5/安装不改。旧prompts目录明确为模板，不能直接转发；审阅包须有TASK.md/images，不把制作包或参与者自评整份发给Gemini。原正式门槛没有变更。功能实现的下一项仍为下方UI共性闭环，本轮只整理文档与封包边界。
+
+本次4项针对性封包/实际入口检查通过，含包内精简字段和协调材料隔离断言；19个本地链接有效，178个保护文件摘要不变。记录在忽略的evaluation/prompt-cleanup-20261028。新提示只在临时测试目录封包，未生成/分发新的UI复测包。
+
 ## 2026-10-28 当前恢复点：rc.5三份外部提交核验完成，下一项共性UI闭环
 
 用户结果目录 `D:\Users\philia093\Desktop\rc5测试` 共8个原始文件：2份输入ZIP、3份submission、GLM/DeepSeek外置原始JSONL和Gemini review.md。**MiniMax原始JSONL在其submission的RUN/session-export内，三位制作端会话均已收到；Gemini没有独立review.json或原始审阅会话，不要求用户因此重跑。** 原始快照/哈希与核验代码放忽略的 `evaluation/long-term-results-20261028/`，原会话、个人用量/配置不进Git/Skill。

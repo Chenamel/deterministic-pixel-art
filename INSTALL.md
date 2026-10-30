@@ -16,13 +16,13 @@ Prefer a project-local install unless the user requests an all-projects install.
 
 ## 2. Get a stable package
 
-Choose by the requested task. At present, stable **v1.1.1** offers `render`, `preview`, `validate` and `review`. `import`, `inspect`, `replace-cell`, `verify`, `assemble` and the bundled recipes require **v1.2.0**, currently prepared on `codex/visual-quality`. Do not report a stable install as ready for a task its command set cannot perform.
+Choose by the requested task. **v1.2.0** includes `render`, `preview`, `validate`, `review`, `import`, `inspect`, `replace-cell`, `verify`, `assemble` and editable recipes. Older **v1.1.1** installs offer only the first four commands. Do not report an install as ready for a task its command set cannot perform.
 
 Read https://api.github.com/repos/Chenamel/deterministic-pixel-art/releases/latest and select the `deterministic-pixel-art-<tag>.zip` and `SHA256SUMS.txt` assets from that same release. This endpoint selects a published stable release, not a prerelease or the repository checkout. Follow the returned download URLs; do not guess a versioned filename.
 
 Download to a temporary directory, check the ZIP SHA-256 against its exact entry in the manifest, then extract its single `deterministic-pixel-art` folder to the chosen destination. Reject a mismatch, unexpected paths outside that folder, or an existing destination. A same-release checksum detects corruption or mismatched downloads; it is not an independent publisher signature.
 
-Use a repository checkout or prerelease only when requested. For an explicitly requested v1.2.0 checkout before release, fetch `codex/visual-quality` and copy its complete `skill/deterministic-pixel-art` folder to the chosen destination, then follow steps 3–4. Do not copy `skill-content/`, which has no runtime. Record the resolved commit. Otherwise explain the stable version's capability limit instead of silently selecting a development version.
+Use a repository checkout or prerelease only when requested. Copy the chosen ref's complete `skill/deterministic-pixel-art` folder to the destination, then follow steps 3–4. Do not copy `skill-content/`, which has no runtime. Record the resolved commit. If stable lacks a requested capability, explain the limit instead of silently selecting a development version.
 
 ## 3. Prepare Python
 

@@ -1,8 +1,8 @@
-# 本轮自查引用明细
+# 正式发布自查：引用明细
 
-2026-10-30：AI文档收尾与PR执行审阅。未验证不计为成功，也不自动判为失效。
+2026-10-30（北京时间）。存在性与未验证分开记录。
 
-## 可定位失效清单
+## 失效清单
 
 0项。
 
@@ -403,6 +403,8 @@
 | docs/releases/v1.2.0-preparation.zh-CN.md:45 | 仅scripts/pixelart/__init__.py | 未验证：unverified-context |
 | docs/releases/v1.2.0-preparation.zh-CN.md:47 | verification.json及SHA256SUMS.txt | 未验证：unverified-context |
 | docs/releases/v1.2.0-preparation.zh-CN.md:47 | 本地checkpoint和随包verification.json | 未验证：unverified-context |
+| docs/releases/v1.2.0-publication.zh-CN.md:15 | verification.json和SHA256SUMS.txt | 未验证：unverified-context |
+| docs/releases/v1.2.0-publication.zh-CN.md:19 | ZIP摘要和准备来源记在Release附件verification.json | 未验证：unverified-context |
 | docs/releases/v1.2.0.md:22 | deterministic-pixel-art/scripts/pixel_art.py | 未验证：unverified-context |
 | docs/releases/v1.2.0.md:22 | deterministic-pixel-art/assets/gem-16.json | 未验证：unverified-context |
 | docs/releases/v1.2.0.md:22 | output/gem.png | 未验证：absent-generated-or-local-evidence |
@@ -479,10 +481,10 @@
 | docs/usage.zh-CN.md:44 | output/gem.png | 未验证：absent-generated-or-local-evidence |
 | docs/usage.zh-CN.md:5 | assets/ | 未验证：unverified-context |
 | docs/usage.zh-CN.md:5 | scripts/recipes/ | 未验证：unverified-context |
-| README.md:43 | output/gem.png | 未验证：absent-generated-or-local-evidence |
-| README.md:43 | output/gem-preview.png | 未验证：absent-generated-or-local-evidence |
-| README.zh-CN.md:43 | output/gem.png | 未验证：absent-generated-or-local-evidence |
-| README.zh-CN.md:43 | output/gem-preview.png | 未验证：absent-generated-or-local-evidence |
+| README.md:39 | output/gem.png | 未验证：absent-generated-or-local-evidence |
+| README.md:39 | output/gem-preview.png | 未验证：absent-generated-or-local-evidence |
+| README.zh-CN.md:39 | output/gem.png | 未验证：absent-generated-or-local-evidence |
+| README.zh-CN.md:39 | output/gem-preview.png | 未验证：absent-generated-or-local-evidence |
 | skill-content/references/chunking.md:18 | candidate/asset.png | 未验证：unverified-context |
 | skill-content/references/chunking.md:18 | baseline/asset.png | 未验证：unverified-context |
 | skill-content/references/chunking.md:23 | contract.json | 未验证：unverified-context |
@@ -706,5 +708,5 @@
 | docs/ui01-results-20261028.zh-CN.md:43 | evaluation/ui01-results-20261028/ | evaluation/ui01-results-20261028 |
 | docs/usability-20261029.zh-CN.md:45 | evaluation/usability-20261029/ | evaluation/usability-20261029 |
 | docs/workflow-report.zh-CN.md:83 | evaluation/ | evaluation |
-| README.md:46 | output/ | output |
-| README.zh-CN.md:46 | output/ | output |
+| README.md:42 | output/ | output |
+| README.zh-CN.md:42 | output/ | output |

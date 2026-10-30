@@ -10,28 +10,24 @@ Make PNG icons, sprites, UI components and named sprite atlases from text grids,
 
 [Icons and UI](demos/pixel-ui/README.md) · [128×128 sprite](examples/workflows/sprite-128.json) · [Four-chunk 256×256 scene](demos/chunk-scene/README.md). Existing original artwork, enlarged only by integer nearest-neighbor scaling.
 
-**Version:** this checkout prepares **v1.2.0**; the latest published stable release is **v1.1.1**. [What changes in v1.2.0](docs/releases/v1.2.0.md). Examples below use this checkout; released packages have their own capabilities.
-
-Stable v1.1.1 provides rendering, previews, validation and review. PNG import, named-cell replacement, exact change verification, assembly and recipes require this v1.2.0 checkout until the new stable package is published.
+**Version: v1.2.0.** [Download the stable Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0) · [What changed](docs/releases/v1.2.0.md). PNG import, named-cell replacement, exact change verification, assembly and recipes require v1.2.0; older v1.1.1 installs provide rendering, previews, validation and review.
 
 ## Use with an AI agent
 
 Give an agent with terminal and file access this request:
 
-> Read https://github.com/Chenamel/deterministic-pixel-art/blob/codex/visual-quality/INSTALL.md and install deterministic-pixel-art. Use the latest stable release unless I request the v1.2.0 checkout. Check that it supports my intended task, then generate a sample PNG to verify installation.
+> Read https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md and install deterministic-pixel-art from the latest stable release. Check that it supports my intended task, then generate a sample PNG to verify installation.
 
 [AI installation guide](INSTALL.md): select the environment, install the self-contained Skill and run a small render. It also includes an optional `npx skills` shortcut for supported agents. Agents without native Skill support can run the same tools from a task-local folder.
 
 Once installed, try: “Use deterministic-pixel-art to create four 16×16 directional icons in a named atlas, keep a transparent one-pixel margin, and check each direction at native size.”
-
-The guide link points to the review branch while its pull request is open; the default branch does not yet contain this guide.
 
 ## Use the Python CLI
 
 Requires Python 3.10+ and Pillow >=10.4,<13. The requirements file pins Pillow 12.3.0 for reproducibility.
 
 ```sh
-git clone --branch codex/visual-quality https://github.com/Chenamel/deterministic-pixel-art.git
+git clone https://github.com/Chenamel/deterministic-pixel-art.git
 cd deterministic-pixel-art
 python -m venv .venv
 ```

@@ -10,28 +10,24 @@
 
 [图标与 UI](demos/pixel-ui/README.md) · [128×128 精灵](examples/workflows/sprite-128.json) · [四块拼接的256×256场景](demos/chunk-scene/README.md)。展示使用已有原创素材，仅做整数倍最近邻放大。
 
-**版本：当前工作树正在准备 v1.2.0，最新已发布稳定版为 v1.1.1。** [v1.2.0 的变化](docs/releases/v1.2.0.zh-CN.md)。下方示例适用于本工作树，发布包以各自版本能力为准。
-
-稳定版 v1.1.1 提供渲染、预览、校验与审阅；PNG 导入、命名单格替换、精确差异核对、组合和配方，在新版稳定包发布前需要使用这份 v1.2.0 工作树。
+**版本：v1.2.0。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0) · [版本变化](docs/releases/v1.2.0.zh-CN.md)。PNG 导入、命名单格替换、精确差异核对、组合和配方需要 v1.2.0；旧 v1.1.1 安装提供渲染、预览、校验与审阅。
 
 ## 交给 AI 使用
 
 向具备终端和文件操作能力的 AI 发送：
 
-> 请读取 https://github.com/Chenamel/deterministic-pixel-art/blob/codex/visual-quality/INSTALL.md 并安装 deterministic-pixel-art。除非我要求 v1.2.0 工作树，否则选择最新稳定版；先确认它支持我要做的任务，再生成示例 PNG 验证安装。
+> 请读取 https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md，从最新稳定版安装 deterministic-pixel-art。先确认它支持我要做的任务，再生成示例 PNG 验证安装。
 
 [AI 安装指南](INSTALL.md)包含环境选择、独立 Skill 安装和最小渲染验证，也提供支持的 Agent 可选用的 `npx skills` 捷径。没有原生 Skill 支持的 Agent，也能在任务目录直接运行同一套工具。
 
 安装后可以说：“使用 deterministic-pixel-art 制作四个16×16方向图标，组成命名图集，保留1px透明边距，并在原尺寸核对各方向。”
-
-PR 尚未合并期间，指南链接指向审阅分支；默认主分支目前还没有这份指南。
 
 ## 直接使用 Python 工具
 
 需要 Python 3.10+、Pillow >=10.4,<13。依赖文件锁定 Pillow 12.3.0，便于复现。
 
 ```sh
-git clone --branch codex/visual-quality https://github.com/Chenamel/deterministic-pixel-art.git
+git clone https://github.com/Chenamel/deterministic-pixel-art.git
 cd deterministic-pixel-art
 python -m venv .venv
 ```

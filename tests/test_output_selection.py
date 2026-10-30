@@ -135,7 +135,8 @@ class OutputSelectionTests(unittest.TestCase):
         real_open = os.open
 
         def fail_second(path, flags, *args, **kwargs):
-            if Path(path) == b:
+            # Publication resolves paths; Windows temp roots may use an 8.3 alias.
+            if Path(path).resolve() == b.resolve():
                 raise OSError(errno.EIO, 'injected portable commit failure')
             return real_open(path, flags, *args, **kwargs)
 
@@ -182,7 +183,7 @@ sys.path.insert(0, sys.argv[1])
 from pixelart.cli import main
 real_open = os.open
 def hold(path, flags, *args, **kwargs):
-    if Path(path) == Path(sys.argv[2]):
+    if Path(path).resolve() == Path(sys.argv[2]).resolve():
         Path(sys.argv[3]).touch()
         sys.stdin.readline()
     return real_open(path, flags, *args, **kwargs)
@@ -207,7 +208,8 @@ raise SystemExit(main(sys.argv[4:]))
         finally:
             if first.poll() is None:
                 first.kill()
-                first.communicate()
+            # Drain and close the pipes even when the child exited before the barrier.
+            first.communicate()
         with Image.open(out) as image:
             self.assertEqual(image.getpixel((0, 0)), (18, 52, 86, 120))
 

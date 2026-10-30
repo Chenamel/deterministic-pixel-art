@@ -6,7 +6,7 @@
 
 ![原创原生128像素精灵，最近邻放大展示](docs/workflows/sprite-128-preview.png)
 
-**最新稳定版为 v1.1.1。** 当前开发分支包含冻结 v1.2.0-rc.6 之后的改动，尚未形成新编号版本。下面的用法适用于本工作树及其配套生成 Skill；历史发布包以各自版本说明为准。
+**当前工作树正在准备 v1.2.0，最新已发布稳定版仍为 v1.1.1。** 本次范围见 [v1.2.0 版本说明](docs/releases/v1.2.0.zh-CN.md)。下面的用法适用于本工作树及其配套生成 Skill；历史发布包以各自版本说明为准。
 
 ## 快速上手
 
@@ -64,7 +64,7 @@ python recipes/chunk_pair.py --out-dir output/bridge
 
 配方输出可编辑规格与 PNG。[真实字体辅助](skill/deterministic-pixel-art/references/consumer-ui.md)可检查文字位置，[浏览器演示](demos/pixel-ui/README.md)另行检查交互与缩放；这些结果不代表游戏内或任意字体适配已经通过。
 
-文件系统拒绝硬链接时使用 `--portable-output`。当前开发版可在任务 shell 一次设置：PowerShell 用 `$env:PIXELART_PORTABLE_OUTPUT = '1'`，POSIX shell 用 `export PIXELART_PORTABLE_OUTPUT=1`。CLI 与配方继承，单次 `--no-portable-output` 可覆盖。拒绝覆盖规则保持；便携模式的新文件在写入过程中可能可见。[环境恢复步骤](skill/deterministic-pixel-art/references/workflows.md)。
+文件系统拒绝硬链接时使用 `--portable-output`。从 v1.2.0 起，可在任务 shell 一次设置：PowerShell 用 `$env:PIXELART_PORTABLE_OUTPUT = '1'`，POSIX shell 用 `export PIXELART_PORTABLE_OUTPUT=1`。CLI 与配方继承，单次 `--no-portable-output` 可覆盖。拒绝覆盖规则保持；便携模式的新文件在写入过程中可能可见。[环境恢复步骤](skill/deterministic-pixel-art/references/workflows.md)。
 
 ## 安装 Skill
 
@@ -76,7 +76,7 @@ python recipes/chunk_pair.py --out-dir output/bridge
 
 - **兼容性：** 43张 v1.0.0 稳定迁移产物保持像素兼容。无损导入与局改比较解码 RGBA，不要求 PNG 压缩字节相同。
 - **外部使用：** 已收集八类任务材料，涉及图标、精灵、材质、UI、环境恢复和分块。LT04 原始方向失败与 LT08 早期过程缺口继续保留；收齐八类不等于八项完整通过。
-- **本轮收口：** 源码、生成 Skill 与98文件开发 ZIP 一致。新检查结果及仓库校验器修正见[收口报告](docs/candidate-consolidation-20261030.zh-CN.md)。
+- **准备的版本包：** 源码与98文件 v1.2.0 Skill 一致，相对已验收开发包只有版本模块变化。检查与保留边界见[准备记录](docs/releases/v1.2.0-preparation.zh-CN.md)。
 - **尚未证明：** 单版本使用不能证明普遍画质、token 或任务耗时收益；新旧受控比较、真实 Minecraft 游戏内表现另行验收。[当前发布条件](docs/release-readiness.zh-CN.md)。
 
 历史性能、作者视觉自评和外部反馈分别见[初始优化报告](docs/optimization-report.zh-CN.md)、[视觉研究](docs/quality-report.zh-CN.md)、[工作流报告](docs/workflow-report.zh-CN.md)、[易用性成本](docs/usability-20261029.zh-CN.md)。纯渲染提速不含启动与磁盘；历史完整命令测量未显示提速。工具不提供自动审美评分。

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 (prepared; not yet published)
+
+- Add bounded image inspection and lossless static 8-bit PNG import, including hidden RGB and named-cell editing through validated layouts.
+- Add single-cell replacement, exact RGBA edit-boundary checks and bounded component assembly with coverage and seam views. Preserve JSON v1, previous API defaults and existing drawing/compositing semantics.
+- Ship editable recipes for icons, button states, a native128 sprite, component scenes and a two-owner bridge with global material phase. Include concise routes for small edits, text inspection, visual review and consumer checks.
+- Add task-shell portable-output selection and explicit command overrides; improve dependency recovery and practical grid/visual-fact guidance. Keep Python/Pillow as the runtime dependencies.
+- Prepare versioned artifacts with SHA-256 and per-file manifests. Retain external-task failures and evidence limits; tool-usability acceptance does not establish general aesthetic, time or token improvements.
+
 ## 1.2.0-rc.5 (local candidate)
 
 - Independently audit all three external P1 submissions against frozen task inputs, exact RGBA, layouts and command records; retain the distinction between external logs, coordinator reproduction and visual judgment.

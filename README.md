@@ -6,7 +6,7 @@ An AI-oriented tool and Skill for editable pixel-art PNGs: icons, sprites, UI co
 
 ![Original native-128 sprite, enlarged with nearest-neighbor scaling](docs/workflows/sprite-128-preview.png)
 
-**Version status:** the latest stable release is **v1.1.1**. This development branch contains changes after frozen **v1.2.0-rc.6**, not a new numbered release. The commands below require this checkout or its matching generated Skill; older packages have their own pinned capabilities.
+**Version status:** this checkout prepares **v1.2.0**; the latest published stable release remains **v1.1.1**. See the [v1.2.0 notes](docs/releases/v1.2.0.md) for the prepared scope. The commands below require this checkout or its matching generated Skill; older packages have their own pinned capabilities.
 
 ## Quick start
 
@@ -64,7 +64,7 @@ python recipes/chunk_pair.py --out-dir output/bridge
 
 Recipes export editable specs and PNGs. The optional [actual-font helper](skill/deterministic-pixel-art/references/consumer-ui.md) checks text placement; the [browser demo](demos/pixel-ui/README.md) tests controls and scaling separately. Neither establishes Minecraft game integration or arbitrary font support.
 
-On a filesystem that rejects hard links, choose `--portable-output`. In this development version, set it once per task shell: `$env:PIXELART_PORTABLE_OUTPUT = '1'` in PowerShell or `export PIXELART_PORTABLE_OUTPUT=1` in POSIX shells. CLI and recipes inherit it; `--no-portable-output` overrides one command. No-overwrite still applies; new portable files can be visible while writing. [Environment recovery](skill/deterministic-pixel-art/references/workflows.md).
+On a filesystem that rejects hard links, choose `--portable-output`. Since v1.2.0, set it once per task shell: `$env:PIXELART_PORTABLE_OUTPUT = '1'` in PowerShell or `export PIXELART_PORTABLE_OUTPUT=1` in POSIX shells. CLI and recipes inherit it; `--no-portable-output` overrides one command. No-overwrite still applies; new portable files can be visible while writing. [Environment recovery](skill/deterministic-pixel-art/references/workflows.md).
 
 ## Install as a Skill
 
@@ -76,7 +76,7 @@ The checkout's [generated Skill](skill/deterministic-pixel-art/SKILL.md) is self
 
 - **Compatibility:** 43 stable v1.0.0 migration outputs remain pixel-compatible. Import and scoped-edit checks compare decoded RGBA, not PNG compression bytes.
 - **External use:** eight task categories supplied evidence across icons, sprites, materials, UI, environment recovery and chunks. LT04's original direction failure and LT08's incomplete early history remain recorded; collected categories do not mean complete passes.
-- **Current consolidation:** source, generated Skill and the 98-file development ZIP match. Fresh checks and the repository-only link-checker fix are in the [consolidation report](docs/candidate-consolidation-20261030.zh-CN.md).
+- **Prepared package:** source and the 98-file v1.2.0 Skill match; only the version module differs from the accepted development package. Checks and remaining limits are in the [preparation record](docs/releases/v1.2.0-preparation.zh-CN.md).
 - **Unproven benefits:** single-version sessions do not establish general art-quality, token or workflow-time gains. Controlled old/new comparisons and Minecraft integration remain separate. [Current release gates](docs/release-readiness.zh-CN.md).
 
 Historical results are separate reports: [initial optimization](docs/optimization-report.zh-CN.md), [authored visual study](docs/quality-report.md), [workflow report](docs/workflow-report.md), [usability costs](docs/usability-20261029.md). Pure-rendering speedups exclude startup and disk I/O; historical full-command measurements did not show a speedup. No automatic aesthetic scoring is provided.

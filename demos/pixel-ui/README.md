@@ -16,7 +16,7 @@ Open `http://127.0.0.1:8765/` in a browser. The static demo has no npm build ste
 
 Sources are `recipes/buttons.py`, `courier128.py`, `icons.py` and `_common.py`. `assets/manifest.json` records recipe hashes, parameters and generated asset hashes. The consumer uses `layout.json` and reserved rectangles in `context.json`; it does not hand-copy atlas UV/state order into CSS.
 
-The renderer/Skill still depends only on Python/Pillow. This browser example is repository-only, separate from the frozen rc.3 Skill ZIP, three external rc.2 trials, mod resources and installed stable Skill. No Minecraft font or in-game acceptance is claimed. The bundled font supports the Latin demo labels, not a Chinese-font acceptance claim.
+The renderer/Skill depends only on Python/Pillow. This browser example is part of the repository, not the standalone Skill ZIP. The bundled font covers the Latin demo labels; Chinese text and Minecraft game integration need their own consumer checks.
 
 Project code/art are MIT. Unmodified Silkscreen Regular is copyright The Silkscreen Project Authors and is distributed under **SIL Open Font License1.1**, retained at [fonts/OFL.txt](fonts/OFL.txt). [fonts/source.json](fonts/source.json) records the original Google Fonts files, Git blob IDs and SHA-256. The font retains its original name; do not relicense it as MIT.
 

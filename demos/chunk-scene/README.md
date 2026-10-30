@@ -31,4 +31,4 @@ The 40px canal and 56×32 bridge cross the center. The 24px deck connects the tw
 
 [Direction and acceptance brief (Chinese)](BRIEF.zh-CN.md) · [Detailed results](../../docs/chunk-scene-report.zh-CN.md) · [English results](../../docs/chunk-scene-report.md).
 
-This repository-only example adds no renderer/Skill dependency and leaves the frozen Skill package unchanged. It does not establish 512px, multi-agent, game, collision/navigation or universal style quality. Code/art are MIT.
+This repository example uses the existing Python/Pillow tools; it is not included in the standalone Skill ZIP. Its checks cover offline assembly and seams. Test game integration, collision/navigation and larger or multi-agent projects separately. Code/art are MIT.

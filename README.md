@@ -12,22 +12,26 @@ Make PNG icons, sprites, UI components and named sprite atlases from text grids,
 
 **Version:** this checkout prepares **v1.2.0**; the latest published stable release is **v1.1.1**. [What changes in v1.2.0](docs/releases/v1.2.0.md). Examples below use this checkout; released packages have their own capabilities.
 
+Stable v1.1.1 provides rendering, previews, validation and review. PNG import, named-cell replacement, exact change verification, assembly and recipes require this v1.2.0 checkout until the new stable package is published.
+
 ## Use with an AI agent
 
 Give an agent with terminal and file access this request:
 
-> Install deterministic-pixel-art from https://github.com/Chenamel/deterministic-pixel-art. Follow the repository's INSTALL.md, use the latest stable release, and verify a sample PNG before reporting success.
+> Read https://github.com/Chenamel/deterministic-pixel-art/blob/codex/visual-quality/INSTALL.md and install deterministic-pixel-art. Use the latest stable release unless I request the v1.2.0 checkout. Check that it supports my intended task, then generate a sample PNG to verify installation.
 
 [AI installation guide](INSTALL.md): select the environment, install the self-contained Skill and run a small render. It also includes an optional `npx skills` shortcut for supported agents. Agents without native Skill support can run the same tools from a task-local folder.
 
 Once installed, try: “Use deterministic-pixel-art to create four 16×16 directional icons in a named atlas, keep a transparent one-pixel margin, and check each direction at native size.”
+
+The guide link points to the review branch while its pull request is open; the default branch does not yet contain this guide.
 
 ## Use the Python CLI
 
 Requires Python 3.10+ and Pillow >=10.4,<13. The requirements file pins Pillow 12.3.0 for reproducibility.
 
 ```sh
-git clone https://github.com/Chenamel/deterministic-pixel-art.git
+git clone --branch codex/visual-quality https://github.com/Chenamel/deterministic-pixel-art.git
 cd deterministic-pixel-art
 python -m venv .venv
 ```
@@ -54,6 +58,10 @@ Expected output: a **16×16 PNG** and a **128×128 nearest-neighbor preview** in
 | Minecraft-style UI | [Optional guidance](skill/deterministic-pixel-art/references/minecraft.md) |
 
 [More command examples](docs/usage.md) cover scoped edits, recipes and environment recovery. The [JSON v1 and Python API](skill/deterministic-pixel-art/references/formats.md) are available for custom generators. The [browser UI demo](demos/pixel-ui/README.md) includes actual-font and interaction checks.
+
+![Before, after replacing only the transfer cell, and the exact changed-pixel mask](docs/images/scoped-edit.png)
+
+This example changes **66 RGBA pixels inside one named cell, zero outside**. [Run the same edit and verification](docs/usage.md#edit-a-named-atlas-cell), or start with the [tiny grid recolor](docs/usage.md#change-one-grid-color).
 
 ## Evidence and limits
 

@@ -1,12 +1,12 @@
 # 本轮自查引用明细
 
-2026-10-30，README与AI安装入口改进。扫描原要求的目录，并额外检查根目录INSTALL.md和CONTRIBUTING.md。未验证不计作成功或自动判作失效。
+2026-10-30：AI文档收尾与PR执行审阅。未验证不计为成功，也不自动判为失效。
 
 ## 可定位失效清单
 
 0项。
 
-## 未定位、模板或未生成输出
+## 上下文、模板和未生成输出
 
 | 文件:行号 | 引用 | 结论 |
 |---|---|---|
@@ -388,6 +388,7 @@
 | docs/p1-results.zh-CN.md:51 | candidate.png | 未验证：unverified-context |
 | docs/p1-results.zh-CN.md:51 | candidate-layout.json | 未验证：unverified-context |
 | docs/p1-results.zh-CN.md:66 | p1-results-ci.json | 未验证：unverified-context |
+| docs/pr-review-20261030.zh-CN.md:37 | 表中省略.py | 未验证：unverified-context |
 | docs/PROVENANCE.md:13 | first-pass-metrics.json | 未验证：unverified-context |
 | docs/readme-onboarding-20261030.zh-CN.md:11 | 要求Node.js | 未验证：unverified-context |
 | docs/readme-onboarding-20261030.zh-CN.md:15 | 下载ZIP与同版SHA256SUMS.txt | 未验证：unverified-context |
@@ -445,31 +446,43 @@
 | docs/usage.md:5 | scripts/pixel_art.py | 未验证：unverified-context |
 | docs/usage.md:12 | output/transfer.json | 未验证：absent-generated-or-local-evidence |
 | docs/usage.md:15 | output/transfer.json | 未验证：absent-generated-or-local-evidence |
-| docs/usage.md:18 | output/transfer.json | 未验证：absent-generated-or-local-evidence |
 | docs/usage.md:18 | output/candidate.json | 未验证：absent-generated-or-local-evidence |
 | docs/usage.md:18 | output/candidate.png | 未验证：absent-generated-or-local-evidence |
 | docs/usage.md:18 | output/candidate-layout.json | 未验证：absent-generated-or-local-evidence |
 | docs/usage.md:19 | output/candidate.png | 未验证：absent-generated-or-local-evidence |
-| docs/usage.md:27 | output/gem.png | 未验证：absent-generated-or-local-evidence |
-| docs/usage.md:28 | output/gem.png | 未验证：absent-generated-or-local-evidence |
+| docs/usage.md:19 | output/change.json | 未验证：absent-generated-or-local-evidence |
+| docs/usage.md:22 | output/transfer.json | 未验证：absent-generated-or-local-evidence |
+| docs/usage.md:26 | output/recolor.json | 未验证：absent-generated-or-local-evidence |
+| docs/usage.md:35 | output/recolor.json | 未验证：absent-generated-or-local-evidence |
+| docs/usage.md:35 | output/recolor.png | 未验证：absent-generated-or-local-evidence |
+| docs/usage.md:35 | output/recolor-preview.png | 未验证：absent-generated-or-local-evidence |
+| docs/usage.md:38 | transparent-grid.json | 未验证：unverified-context |
+| docs/usage.md:43 | output/gem.png | 未验证：absent-generated-or-local-evidence |
+| docs/usage.md:44 | output/gem.png | 未验证：absent-generated-or-local-evidence |
 | docs/usage.md:5 | assets/ | 未验证：unverified-context |
 | docs/usage.md:5 | scripts/recipes/ | 未验证：unverified-context |
 | docs/usage.zh-CN.md:5 | scripts/pixel_art.py | 未验证：unverified-context |
 | docs/usage.zh-CN.md:12 | output/transfer.json | 未验证：absent-generated-or-local-evidence |
 | docs/usage.zh-CN.md:15 | output/transfer.json | 未验证：absent-generated-or-local-evidence |
-| docs/usage.zh-CN.md:18 | output/transfer.json | 未验证：absent-generated-or-local-evidence |
 | docs/usage.zh-CN.md:18 | output/candidate.json | 未验证：absent-generated-or-local-evidence |
 | docs/usage.zh-CN.md:18 | output/candidate.png | 未验证：absent-generated-or-local-evidence |
 | docs/usage.zh-CN.md:18 | output/candidate-layout.json | 未验证：absent-generated-or-local-evidence |
 | docs/usage.zh-CN.md:19 | output/candidate.png | 未验证：absent-generated-or-local-evidence |
-| docs/usage.zh-CN.md:27 | output/gem.png | 未验证：absent-generated-or-local-evidence |
-| docs/usage.zh-CN.md:28 | output/gem.png | 未验证：absent-generated-or-local-evidence |
+| docs/usage.zh-CN.md:19 | output/change.json | 未验证：absent-generated-or-local-evidence |
+| docs/usage.zh-CN.md:22 | output/transfer.json | 未验证：absent-generated-or-local-evidence |
+| docs/usage.zh-CN.md:26 | output/recolor.json | 未验证：absent-generated-or-local-evidence |
+| docs/usage.zh-CN.md:35 | output/recolor.json | 未验证：absent-generated-or-local-evidence |
+| docs/usage.zh-CN.md:35 | output/recolor.png | 未验证：absent-generated-or-local-evidence |
+| docs/usage.zh-CN.md:35 | output/recolor-preview.png | 未验证：absent-generated-or-local-evidence |
+| docs/usage.zh-CN.md:38 | transparent-grid.json | 未验证：unverified-context |
+| docs/usage.zh-CN.md:43 | output/gem.png | 未验证：absent-generated-or-local-evidence |
+| docs/usage.zh-CN.md:44 | output/gem.png | 未验证：absent-generated-or-local-evidence |
 | docs/usage.zh-CN.md:5 | assets/ | 未验证：unverified-context |
 | docs/usage.zh-CN.md:5 | scripts/recipes/ | 未验证：unverified-context |
-| README.md:39 | output/gem.png | 未验证：absent-generated-or-local-evidence |
-| README.md:39 | output/gem-preview.png | 未验证：absent-generated-or-local-evidence |
-| README.zh-CN.md:39 | output/gem.png | 未验证：absent-generated-or-local-evidence |
-| README.zh-CN.md:39 | output/gem-preview.png | 未验证：absent-generated-or-local-evidence |
+| README.md:43 | output/gem.png | 未验证：absent-generated-or-local-evidence |
+| README.md:43 | output/gem-preview.png | 未验证：absent-generated-or-local-evidence |
+| README.zh-CN.md:43 | output/gem.png | 未验证：absent-generated-or-local-evidence |
+| README.zh-CN.md:43 | output/gem-preview.png | 未验证：absent-generated-or-local-evidence |
 | skill-content/references/chunking.md:18 | candidate/asset.png | 未验证：unverified-context |
 | skill-content/references/chunking.md:18 | baseline/asset.png | 未验证：unverified-context |
 | skill-content/references/chunking.md:23 | contract.json | 未验证：unverified-context |
@@ -588,12 +601,12 @@
 | skill-content/SKILL.md:56 | consumer-ui.md | 未验证：unverified-context |
 | skill-content/SKILL.md:56 | sources.md | 未验证：unverified-context |
 | INSTALL.md:13 | SKILL.md | 未验证：unverified-context |
-| INSTALL.md:19 | SHA256SUMS.txt | 未验证：unverified-context |
-| INSTALL.md:42 | SKILL.md | 未验证：unverified-context |
-| INSTALL.md:46 | output/pixel-art-install-check/gem.png | 未验证：absent-generated-or-local-evidence |
-| INSTALL.md:46 | output/pixel-art-install-check/gem-preview.png | 未验证：absent-generated-or-local-evidence |
-| INSTALL.md:53 | Node.js | 未验证：unverified-context |
+| INSTALL.md:21 | SHA256SUMS.txt | 未验证：unverified-context |
+| INSTALL.md:44 | SKILL.md | 未验证：unverified-context |
+| INSTALL.md:48 | output/pixel-art-install-check/gem.png | 未验证：absent-generated-or-local-evidence |
+| INSTALL.md:48 | output/pixel-art-install-check/gem-preview.png | 未验证：absent-generated-or-local-evidence |
 | INSTALL.md:57 | Node.js | 未验证：unverified-context |
+| INSTALL.md:61 | Node.js | 未验证：unverified-context |
 
 ## 本地存在但不保证随公开克隆分发
 
@@ -693,5 +706,5 @@
 | docs/ui01-results-20261028.zh-CN.md:43 | evaluation/ui01-results-20261028/ | evaluation/ui01-results-20261028 |
 | docs/usability-20261029.zh-CN.md:45 | evaluation/usability-20261029/ | evaluation/usability-20261029 |
 | docs/workflow-report.zh-CN.md:83 | evaluation/ | evaluation |
-| README.md:42 | output/ | output |
-| README.zh-CN.md:42 | output/ | output |
+| README.md:46 | output/ | output |
+| README.zh-CN.md:46 | output/ | output |

@@ -12,14 +12,30 @@
 python src/pixel_art.py import --image examples/workflows/atlas-before.png --metadata examples/workflows/atlas-before-layout.json --cell transfer --out output/transfer.json
 ```
 
-编辑 `output/transfer.json` 后替换该格，并核对允许修改的范围：
+编辑 `output/transfer.json` 后替换该格，并核对允许修改的范围。想直接复跑完整示例，可先用下方提供的替换规格：
 
 ```sh
-python src/pixel_art.py replace-cell --spec examples/workflows/atlas-editable.json --cell transfer --replacement output/transfer.json --out output/candidate.json --image-out output/candidate.png --metadata output/candidate-layout.json
-python src/pixel_art.py verify --image output/candidate.png --compare examples/workflows/atlas-before.png --allow-region 32 0 16 16
+python src/pixel_art.py replace-cell --spec examples/workflows/atlas-editable.json --cell transfer --replacement examples/workflows/atlas-replacement.json --out output/candidate.json --image-out output/candidate.png --metadata output/candidate-layout.json
+python src/pixel_art.py verify --image output/candidate.png --compare examples/workflows/atlas-before.png --allow-region 32 0 16 16 --out output/change.json
 ```
 
-如果不修改导出的单元，替换应为零像素变化。也支持整图导入，保留解码8位 RGBA，包括全透明像素里的 RGB；不恢复原图层或原始绘制指令。
+预期得到 `valid: true`、`changed_inside: 66`、`changed_outside: 0`，允许矩形就是原有 transfer 单元。自己的修改使用 `--replacement output/transfer.json`；若未改动，预期为零像素变化。也支持整图导入，保留解码8位 RGBA，包括全透明像素里的 RGB；不恢复原图层或原始绘制指令。
+
+## 修改网格的一种颜色
+
+创建输出目录，将这份完整规格保存为 `output/recolor.json`（当前工作树的 `examples/transparent-grid.json` 也提供同一规格）：
+
+```json
+{"version":1,"kind":"grid","rows":["....",".xx.",".xx.","...."],"palette":{".":null,"x":"F5C26B"}}
+```
+
+把调色板的 `"x": "F5C26B"` 改成 `"x": "62D8E8"`，保留 `".": null` 和各行网格，然后渲染：
+
+```sh
+python src/pixel_art.py render --spec output/recolor.json --out output/recolor.png --preview output/recolor-preview.png
+```
+
+预期得到4×4图像，中间4个像素变成青色，边缘透明；32×32预览为8倍最近邻放大。保留JSON即可继续修改。稳定版v1.1.1使用自己的脚本路径，也能渲染这份内联规格；它的包内没有 `transparent-grid.json`。
 
 ## 分析或审阅
 

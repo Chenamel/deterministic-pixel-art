@@ -16,11 +16,13 @@ Prefer a project-local install unless the user requests an all-projects install.
 
 ## 2. Get a stable package
 
+Choose by the requested task. At present, stable **v1.1.1** offers `render`, `preview`, `validate` and `review`. `import`, `inspect`, `replace-cell`, `verify`, `assemble` and the bundled recipes require **v1.2.0**, currently prepared on `codex/visual-quality`. Do not report a stable install as ready for a task its command set cannot perform.
+
 Read https://api.github.com/repos/Chenamel/deterministic-pixel-art/releases/latest and select the `deterministic-pixel-art-<tag>.zip` and `SHA256SUMS.txt` assets from that same release. This endpoint selects a published stable release, not a prerelease or the repository checkout. Follow the returned download URLs; do not guess a versioned filename.
 
 Download to a temporary directory, check the ZIP SHA-256 against its exact entry in the manifest, then extract its single `deterministic-pixel-art` folder to the chosen destination. Reject a mismatch, unexpected paths outside that folder, or an existing destination. A same-release checksum detects corruption or mismatched downloads; it is not an independent publisher signature.
 
-Use a repository checkout or prerelease only when requested. Record which release or commit you used; capabilities described on a development branch may be absent in stable packages.
+Use a repository checkout or prerelease only when requested. For an explicitly requested v1.2.0 checkout before release, fetch `codex/visual-quality` and copy its complete `skill/deterministic-pixel-art` folder to the chosen destination, then follow steps 3–4. Do not copy `skill-content/`, which has no runtime. Record the resolved commit. Otherwise explain the stable version's capability limit instead of silently selecting a development version.
 
 ## 3. Prepare Python
 
@@ -49,6 +51,8 @@ Read the installed SKILL.md, then run from the task directory, using a fresh out
 Use Pillow to open and decode both outputs. Expect a 16×16 image and a 128×128 nearest-neighbor preview. If a mount rejects hard-link publication and the installed version offers `--portable-output`, retry with that option; otherwise render to a local temporary directory. `--force` does not fix mount support. Use a new output directory on repeated checks.
 
 Report the version/source, Skill folder, Python executable and verified PNG paths. Distinguish successful script execution from native Skill discovery: check the agent's Skill list when available; otherwise say discovery is unverified. Codex may need a restart if the Skill does not appear.
+
+Also check `--help` for any commands required by the user's task. A successful sample render alone does not verify import, scoped editing or assembly support.
 
 ## Optional: existing Node.js users
 

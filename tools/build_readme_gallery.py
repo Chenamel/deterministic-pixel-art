@@ -50,10 +50,57 @@ def build():
     return sheet
 
 
+def build_scoped_edit():
+    """Show the existing atlas edit and its exact RGBA difference at 4x."""
+    images = []
+    for name in ('atlas-before.png', 'atlas-final.png'):
+        with Image.open(ROOT / 'examples/workflows' / name) as source:
+            images.append(source.convert('RGBA'))
+    before, after = images
+    layout = json.loads((ROOT / 'examples/workflows/atlas-before-layout.json').read_text(encoding='utf-8'))
+    labels = [cell['name'] for cell in layout['atlas']['cells']]
+    if before.size != (64, 16) or after.size != before.size:
+        raise ValueError('Expected matching four-cell 16px atlases')
+    mask = Image.new('RGB', before.size, '#33445A')
+    changed = []
+    for y in range(before.height):
+        for x in range(before.width):
+            if before.getpixel((x, y)) != after.getpixel((x, y)):
+                changed.append((x, y))
+                mask.putpixel((x, y), (255, 186, 86))
+    if not changed or any(not (32 <= x < 48 and 0 <= y < 16) for x, y in changed):
+        raise ValueError('Expected a nonempty change confined to the transfer cell')
+    sheet = Image.new('RGB', (880, 200), '#111A28')
+    draw = ImageDraw.Draw(sheet)
+    font = ImageFont.load_default(size=14)
+    small = ImageFont.load_default(size=11)
+    for index, (title, image) in enumerate(zip(
+            ('Before', 'After / transfer replaced', 'Changed RGBA pixels'),
+            (before, after, mask))):
+        x = 16 + index * 288
+        draw.rounded_rectangle((x, 12, x + 271, 157), radius=6,
+                               fill='#182637', outline='#33445A')
+        draw.text((x + 8, 22), title, font=font, fill='#E9EDF2')
+        for cell, label in enumerate(labels):
+            draw.text((x + 10 + cell * 64, 48), label, font=small, fill='#9AAFC5')
+        enlarged = image.resize((256, 64), Image.Resampling.NEAREST)
+        if image.mode == 'RGBA':
+            sheet.paste(enlarged, (x + 8, 72), enlarged)
+        else:
+            sheet.paste(enlarged, (x + 8, 72))
+        draw.rectangle((x + 135, 70, x + 200, 137), outline='#FFBA56')
+    draw.text((24, 174), f'4x nearest-neighbor | {len(changed)} changed pixels inside transfer | 0 outside',
+              font=font, fill='#E9EDF2')
+    return sheet
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--out', type=Path, default=ROOT / 'docs/images/overview.png')
+    parser.add_argument('--view', choices=('overview', 'scoped-edit'), default='overview')
+    parser.add_argument('--out', type=Path)
     args = parser.parse_args()
+    if args.out is None:
+        args.out = ROOT / 'docs/images' / f'{args.view}.png'
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    build().save(args.out)
+    (build() if args.view == 'overview' else build_scoped_edit()).save(args.out)
     print(args.out)

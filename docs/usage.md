@@ -12,14 +12,30 @@ Export one named cell without hand-copying layout coordinates:
 python src/pixel_art.py import --image examples/workflows/atlas-before.png --metadata examples/workflows/atlas-before-layout.json --cell transfer --out output/transfer.json
 ```
 
-Edit `output/transfer.json`, then replace that cell and verify the allowed change region:
+Edit `output/transfer.json`, then replace that cell and verify the allowed change region. For a complete ready-to-run example, use the supplied replacement below:
 
 ```sh
-python src/pixel_art.py replace-cell --spec examples/workflows/atlas-editable.json --cell transfer --replacement output/transfer.json --out output/candidate.json --image-out output/candidate.png --metadata output/candidate-layout.json
-python src/pixel_art.py verify --image output/candidate.png --compare examples/workflows/atlas-before.png --allow-region 32 0 16 16
+python src/pixel_art.py replace-cell --spec examples/workflows/atlas-editable.json --cell transfer --replacement examples/workflows/atlas-replacement.json --out output/candidate.json --image-out output/candidate.png --metadata output/candidate-layout.json
+python src/pixel_art.py verify --image output/candidate.png --compare examples/workflows/atlas-before.png --allow-region 32 0 16 16 --out output/change.json
 ```
 
-Without editing the exported cell, replacement should change zero pixels. Full-image import is also available. Decoded 8-bit RGBA is preserved, including hidden RGB; original layers and drawing instructions are not recovered.
+Expect `valid: true`, `changed_inside: 66` and `changed_outside: 0`. The allowed rectangle is the existing transfer cell. For your own edit use `--replacement output/transfer.json`; if unchanged, it should produce zero changed pixels. Full-image import is also available. Decoded 8-bit RGBA is preserved, including hidden RGB; original layers and drawing instructions are not recovered.
+
+## Change one grid color
+
+Create the output directory and save this complete spec as `output/recolor.json` (also available as `examples/transparent-grid.json` in this checkout):
+
+```json
+{"version":1,"kind":"grid","rows":["....",".xx.",".xx.","...."],"palette":{".":null,"x":"F5C26B"}}
+```
+
+Change palette entry `"x": "F5C26B"` to `"x": "62D8E8"`; leave `".": null` and the rows unchanged. Then render:
+
+```sh
+python src/pixel_art.py render --spec output/recolor.json --out output/recolor.png --preview output/recolor-preview.png
+```
+
+Expect a 4×4 image with four cyan center pixels and a transparent border; the 32×32 preview uses 8× nearest-neighbor scaling. Keep the JSON to make further edits. The inline spec also works with the stable v1.1.1 package by using its script path; that package does not include `transparent-grid.json`.
 
 ## Inspect or review
 

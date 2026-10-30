@@ -1,85 +1,71 @@
 # Deterministic Pixel Art
 
-[简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases)
+[简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases) · [AI install](INSTALL.md)
 
-An AI-oriented tool and Skill for editable pixel-art PNGs: icons, sprites, UI components, named atlases and component scenes. Create from grids, integer drawing commands or Python masks; import PNGs without quantization, make scoped edits and check exactly which pixels changed. Minecraft styling is optional.
+**Create editable pixel art with AI agents, then verify exactly what changed.**
 
-![Original native-128 sprite, enlarged with nearest-neighbor scaling](docs/workflows/sprite-128-preview.png)
+Make PNG icons, sprites, UI components and named sprite atlases from text grids, integer drawing commands or Python masks. Import existing PNGs without quantization, edit a selected region and assemble separately drawn components. Built for AI-assisted game assets and pixel UI; Minecraft styling is optional.
 
-**Version status:** this checkout prepares **v1.2.0**; the latest published stable release remains **v1.1.1**. See the [v1.2.0 notes](docs/releases/v1.2.0.md) for the prepared scope. The commands below require this checkout or its matching generated Skill; older packages have their own pinned capabilities.
+![Original examples: icons, a native-128 sprite, UI states and a four-chunk scene](docs/images/overview.png)
 
-## Quick start
+[Icons and UI](demos/pixel-ui/README.md) · [128×128 sprite](examples/workflows/sprite-128.json) · [Four-chunk 256×256 scene](demos/chunk-scene/README.md). Existing original artwork, enlarged only by integer nearest-neighbor scaling.
 
-Use Python 3.10+ and Pillow >=10.4,<13. The reproducibility baseline is Python 3.14.2 / Pillow 12.3.0; `requirements.txt` pins that Pillow version.
+**Version:** this checkout prepares **v1.2.0**; the latest published stable release is **v1.1.1**. [What changes in v1.2.0](docs/releases/v1.2.0.md). Examples below use this checkout; released packages have their own capabilities.
+
+## Use with an AI agent
+
+Give an agent with terminal and file access this request:
+
+> Install deterministic-pixel-art from https://github.com/Chenamel/deterministic-pixel-art. Follow the repository's INSTALL.md, use the latest stable release, and verify a sample PNG before reporting success.
+
+[AI installation guide](INSTALL.md): select the environment, install the self-contained Skill and run a small render. It also includes an optional `npx skills` shortcut for supported agents. Agents without native Skill support can run the same tools from a task-local folder.
+
+Once installed, try: “Use deterministic-pixel-art to create four 16×16 directional icons in a named atlas, keep a transparent one-pixel margin, and check each direction at native size.”
+
+## Use the Python CLI
+
+Requires Python 3.10+ and Pillow >=10.4,<13. The requirements file pins Pillow 12.3.0 for reproducibility.
 
 ```sh
+git clone https://github.com/Chenamel/deterministic-pixel-art.git
+cd deterministic-pixel-art
 python -m venv .venv
 ```
 
-Activate with `.\.venv\Scripts\Activate.ps1` in PowerShell, or `source .venv/bin/activate` in a POSIX shell, then:
+Activate with `.\.venv\Scripts\Activate.ps1` in PowerShell, or `source .venv/bin/activate` on macOS/Linux, then:
 
 ```sh
 python -m pip install -r requirements.txt
 python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png --preview output/gem-preview.png
-python src/pixel_art.py inspect --image output/gem.png --grid
-python src/pixel_art.py review --image output/gem.png --out-dir output/gem-review
 ```
 
-Keep the spec with the PNG. Check native size and an integer enlargement on the intended background. Existing files require explicit `--force` to overwrite; use absolute paths when running from another directory.
+Expected output: a **16×16 PNG** and a **128×128 nearest-neighbor preview** in `output/`. Without Git, download and extract the checkout ZIP, then open a terminal in its top-level folder. Keep the editable spec with the PNG; existing outputs require explicit `--force` to overwrite.
 
 ## Choose a workflow
 
 | Task | Start here |
 |---|---|
-| Grid sprite | [Transparent grid](examples/transparent-grid.json), [mirrored gem](examples/gem-16.json) |
+| Small grid sprite | [Transparent grid](examples/transparent-grid.json), [mirrored gem](examples/gem-16.json) |
 | Asymmetric sprite | [32×32 ship](examples/asymmetric-ship-32.json), [pixel-art guidance](skill/deterministic-pixel-art/references/pixel-art.md) |
 | UI or button states | [Generic panel](examples/generic-panel-96x40.json), [UI guidance](skill/deterministic-pixel-art/references/ui.md), [recipes](skill/deterministic-pixel-art/references/recipes.md) |
-| Existing PNG / named atlas edit | [Import, replace-cell and verify](skill/deterministic-pixel-art/references/workflows.md) |
+| Existing PNG / named atlas edit | [Import, replace-cell and verify](docs/usage.md#edit-a-named-atlas-cell) |
 | Image facts or review | [Text inspection](skill/deterministic-pixel-art/references/text-workflow.md), [review context](skill/deterministic-pixel-art/references/review.md) |
-| Separate chunks | [Chunk contracts](skill/deterministic-pixel-art/references/chunking.md), [four-source 256×256 demo](demos/chunk-scene/README.md) |
+| Separate chunks | [Chunk contracts](skill/deterministic-pixel-art/references/chunking.md), [four-source scene](demos/chunk-scene/README.md) |
 | Minecraft-style UI | [Optional guidance](skill/deterministic-pixel-art/references/minecraft.md) |
 
-Import an existing named cell:
-
-```sh
-python src/pixel_art.py import --image examples/workflows/atlas-before.png --metadata examples/workflows/atlas-before-layout.json --cell transfer --out output/transfer.json
-```
-
-Edit `transfer.json`, then use it as `--replacement`:
-
-```sh
-python src/pixel_art.py replace-cell --spec examples/workflows/atlas-editable.json --cell transfer --replacement output/transfer.json --out output/candidate.json --image-out output/candidate.png --metadata output/candidate-layout.json
-python src/pixel_art.py verify --image output/candidate.png --compare examples/workflows/atlas-before.png --allow-region 32 0 16 16
-```
-
-Full-image `import` is also available. Decoded 8-bit RGBA, including hidden RGB, is preserved. [JSON v1 and Python API](skill/deterministic-pixel-art/references/formats.md).
-
-For repeated variants, start with a short recipe:
-
-```sh
-python recipes/icons.py --out-dir output/icons --ink F5C26B
-python recipes/buttons.py --out-dir output/buttons --width 96 --content 23 4 70 10
-python recipes/chunk_pair.py --out-dir output/bridge
-```
-
-Recipes export editable specs and PNGs. The optional [actual-font helper](skill/deterministic-pixel-art/references/consumer-ui.md) checks text placement; the [browser demo](demos/pixel-ui/README.md) tests controls and scaling separately. Neither establishes Minecraft game integration or arbitrary font support.
-
-On a filesystem that rejects hard links, choose `--portable-output`. Since v1.2.0, set it once per task shell: `$env:PIXELART_PORTABLE_OUTPUT = '1'` in PowerShell or `export PIXELART_PORTABLE_OUTPUT=1` in POSIX shells. CLI and recipes inherit it; `--no-portable-output` overrides one command. No-overwrite still applies; new portable files can be visible while writing. [Environment recovery](skill/deterministic-pixel-art/references/workflows.md).
-
-## Install as a Skill
-
-Download a versioned ZIP and SHA-256 manifest from [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases), verify the checksum, then extract its `deterministic-pixel-art` folder into `$CODEX_HOME/skills` (default `~/.codex/skills`). Install that folder's `requirements.txt` into the Python environment used by the task. Keep old backups outside the skills discovery directory.
-
-The checkout's [generated Skill](skill/deterministic-pixel-art/SKILL.md) is self-contained; its renderer and recipes are under `scripts/`. Example request: “Use `$deterministic-pixel-art` to create four 16×16 directional icons in a named atlas, keep a transparent one-pixel margin, and check each direction at native size.”
+[More command examples](docs/usage.md) cover scoped edits, recipes and environment recovery. The [JSON v1 and Python API](skill/deterministic-pixel-art/references/formats.md) are available for custom generators. The [browser UI demo](demos/pixel-ui/README.md) includes actual-font and interaction checks.
 
 ## Evidence and limits
 
-- **Compatibility:** 43 stable v1.0.0 migration outputs remain pixel-compatible. Import and scoped-edit checks compare decoded RGBA, not PNG compression bytes.
-- **External use:** eight task categories supplied evidence across icons, sprites, materials, UI, environment recovery and chunks. LT04's original direction failure and LT08's incomplete early history remain recorded; collected categories do not mean complete passes.
-- **Prepared package:** source and the 98-file v1.2.0 Skill match; only the version module differs from the accepted development package. Checks and remaining limits are in the [preparation record](docs/releases/v1.2.0-preparation.zh-CN.md).
-- **Unproven benefits:** single-version sessions do not establish general art-quality, token or workflow-time gains. Controlled old/new comparisons and Minecraft integration remain separate. [Current release gates](docs/release-readiness.zh-CN.md).
+- **Reproducible assets:** 43 stable migration outputs remain pixel-compatible. Lossless import and scoped edits compare decoded RGBA, including hidden RGB under zero alpha.
+- **Tested workflows:** source/package checks and Windows/Ubuntu CI cover rendering, inspection, import, editing and assembly. External agents have exercised eight task categories; original failures and incomplete records remain documented.
+- **Art direction stays contextual:** inspect native-size assets on their intended backgrounds. Automated checks do not establish recognizability, general aesthetic gains, token savings or Minecraft game integration.
 
-Historical results are separate reports: [initial optimization](docs/optimization-report.zh-CN.md), [authored visual study](docs/quality-report.md), [workflow report](docs/workflow-report.md), [usability costs](docs/usability-20261029.md). Pure-rendering speedups exclude startup and disk I/O; historical full-command measurements did not show a speedup. No automatic aesthetic scoring is provided.
+[Verification details and remaining limits](docs/verification.md) distinguish engineering checks, external use and visual judgment.
+
+## Help and contribute
+
+[Open an issue](https://github.com/Chenamel/deterministic-pixel-art/issues) for a bug, installation problem or a useful missing workflow. Include the command, error, Python/Pillow versions and a small input when possible. [Contribution guide](CONTRIBUTING.md).
 
 ## Development
 
@@ -88,10 +74,8 @@ python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
-Checks cover source tests, stable images, preserved fixtures, import/edit/assembly workflows, reproducible packaging and execution from an unrelated Chinese/space path. They generate local artifacts and do not install a Skill globally. After packaging, optionally run `tools/test_skill.py --python /path/to/python --validator /path/to/quick_validate.py` for official Skill validation.
-
-Maintain runtime code in `src/`, recipes in `recipes/`, and guidance in `skill-content/`. `tools/package_skill.py` generates `skill/` and the local ZIP. Completed CI runs establish platform results; the Windows/Ubuntu workflow configuration alone does not. [Fixture provenance](docs/PROVENANCE.md).
+Maintain runtime code in `src/`, recipes in `recipes/`, and guidance in `skill-content/`. `tools/package_skill.py` generates the standalone Skill under `skill/`. Full checks create local artifacts without globally installing a Skill. [Fixture provenance](docs/PROVENANCE.md).
 
 ## License
 
-[MIT](LICENSE) covers the code, original artwork and standalone Skill. The repository-only demo includes unmodified Silkscreen Regular under [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt); the font is not in the Skill ZIP. Pillow and development-only PyYAML are installed dependencies, not vendored files.
+[MIT](LICENSE) covers the code, original artwork and standalone Skill. The repository-only UI demo includes unmodified Silkscreen Regular under [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt); the font is not in the Skill ZIP. Pillow and development-only PyYAML are installed dependencies, not vendored files.

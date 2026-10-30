@@ -16,7 +16,7 @@ Make PNG icons, sprites, UI components and named sprite atlases from text grids,
 
 [Icons and UI](demos/pixel-ui/README.md) · [128×128 sprite](examples/workflows/sprite-128.json) · [Four-chunk 256×256 scene](demos/chunk-scene/README.md). Existing original artwork, enlarged only by integer nearest-neighbor scaling.
 
-**Version: v1.2.0.** [Download the stable Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0) · [What changed](docs/releases/v1.2.0.md). PNG import, named-cell replacement, exact change verification, assembly and recipes require v1.2.0; older v1.1.1 installs provide rendering, previews, validation and review.
+**Version: v1.2.1.** [Download the stable Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.1) · [What changed](docs/releases/v1.2.1.md). This maintenance release includes clearer guidance and Skill icons. PNG import, named-cell replacement, exact change verification, assembly and recipes have been available since v1.2.0; older v1.1.1 installs provide rendering, previews, validation and review.
 
 ## Use with an AI agent
 

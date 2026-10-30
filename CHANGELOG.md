@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 (2026-10-31)
+
+- Include the previously reviewed Chinese and English wording corrections in the downloadable Skill, including concrete explanations of output files, report limits and application checks.
+- Include the Pixel Anchor 32px/128px icons and the Skill display metadata already present in the repository. README headers and fonts remain repository-only.
+- Keep runtime behavior, commands, JSON v1, Python APIs and example pixels unchanged. The only runtime-source change from v1.2.0 is the version constant.
+- Retain v1.2.0 as published. Release notes are readable online; download attachments contain the ZIP, per-file manifest, verification record and checksums.
+
 ## 1.2.0 (2026-10-30)
 
 - Add image analysis with limits on report size and lossless static 8-bit PNG import. Preserve hidden RGB values and select named atlas cells using a checked layout.

@@ -2,6 +2,12 @@
 
 [简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases) · [AI install](INSTALL.md)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/brand/header-en-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/images/brand/header-en-light.png">
+  <img alt="Deterministic Pixel Art — editable pixels, exact changes" src="docs/images/brand/header-en-light.png" width="1152">
+</picture>
+
 **Create editable pixel art with AI agents, then verify exactly what changed.**
 
 Make PNG icons, sprites, UI components and named sprite atlases from text grids, integer drawing commands or Python masks. Import existing PNGs without quantization, edit a selected region and assemble separately drawn components. Built for AI-assisted game assets and pixel UI; Minecraft styling is optional.
@@ -82,4 +88,4 @@ Maintain runtime code in `src/`, recipes in `recipes/`, and guidance in `skill-c
 
 ## License
 
-[MIT](LICENSE) covers the code, original artwork and standalone Skill. The repository-only UI demo includes unmodified Silkscreen Regular under [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt); the font is not in the Skill ZIP. Pillow and development-only PyYAML are installed dependencies, not vendored files.
+[MIT](LICENSE) covers the code, original artwork and standalone Skill. Repository visuals use Silkscreen Regular under [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt) and Fusion Pixel Font under [SIL OFL 1.1](assets/brand/font-notices/README.md). Fonts are not included in the Skill ZIP. Pillow and development-only PyYAML are installed dependencies, not vendored files.

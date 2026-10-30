@@ -10,4 +10,6 @@ The new examples demonstrate generic palettes and geometry plus optional Minecra
 
 The repository-only `demos/pixel-ui/fonts/` bundles unmodified Silkscreen Regular from Google Fonts, copyright The Silkscreen Project Authors, under SIL Open Font License 1.1. Its license, upstream URLs, Git blob IDs and SHA-256 values are retained beside the font. This font is an exception to the root MIT license and is not included in the standalone Skill. Consumer screenshots use that font with original project art; no Minecraft font or game artwork is bundled.
 
+The original Pixel Anchor brand mark and header geometry are project artwork rendered with the released Pixel Art Skill. Chinese header lettering uses Fusion Pixel Font, copyright TakWolf, under SIL Open Font License 1.1; [the pinned font provenance and license](../assets/brand/font-notices/README.md) are retained. The full Fusion font is not vendored. Editable header point specifications preserve the rendered glyphs; only two small PNG brand icons enter the standalone Skill, without fonts, headers or design-history instructions.
+
 `measurements/metrics.json` and `first-pass-metrics.json` preserve the original local optimization measurements. They are historical evidence, not CI performance thresholds. The Chinese report describes that original run; fresh runs write their own evidence to ignored `evaluation/`.

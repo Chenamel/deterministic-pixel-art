@@ -1,6 +1,12 @@
-# 确定性像素资产
+# Deterministic Pixel Art
 
 [English](README.md) · [MIT](LICENSE) · [版本下载](https://github.com/Chenamel/deterministic-pixel-art/releases) · [交给AI安装](INSTALL.md)
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/brand/header-zh-CN-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/images/brand/header-zh-CN-light.png">
+  <img alt="Deterministic Pixel Art — 面向 AI 的像素绘图与精确编辑" src="docs/images/brand/header-zh-CN-light.png" width="1152">
+</picture>
 
 **让 AI 创作可编辑的像素素材，并精确核对每次修改。**
 
@@ -82,4 +88,4 @@ python -B tools/check.py
 
 ## 协议
 
-代码、原创图像和独立 Skill 使用 [MIT](LICENSE)。仅仓库 UI 演示附带的未修改 Silkscreen Regular 遵循 [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt)，字体不进入 Skill ZIP。Pillow 与仅开发使用的 PyYAML 通过依赖安装，不随包捆绑。
+代码、原创图像和独立 Skill 使用 [MIT](LICENSE)。仓库展示使用的 Silkscreen Regular 遵循 [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt)，Fusion Pixel Font 遵循 [SIL OFL 1.1](assets/brand/font-notices/README.md)。字体不进入 Skill ZIP。Pillow 与仅开发使用的 PyYAML 通过依赖安装，不随包捆绑。

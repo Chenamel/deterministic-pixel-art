@@ -1,0 +1,230 @@
+[
+  {
+    "language": "en",
+    "theme": "dark",
+    "native_size": [
+      384,
+      112
+    ],
+    "exported_size": [
+      1152,
+      336
+    ],
+    "text": [
+      {
+        "text": "DETERMINISTIC",
+        "ink": [
+          114,
+          25,
+          130,
+          10
+        ],
+        "mask_origin": [
+          112,
+          25
+        ],
+        "font_size": 16
+      },
+      {
+        "text": "PIXEL ART",
+        "ink": [
+          113,
+          46,
+          135,
+          15
+        ],
+        "mask_origin": [
+          110,
+          46
+        ],
+        "font_size": 24
+      },
+      {
+        "text": "EDITABLE PIXELS. EXACT CHANGES.",
+        "ink": [
+          113,
+          81,
+          160,
+          5
+        ],
+        "mask_origin": [
+          112,
+          81
+        ],
+        "font_size": 8
+      }
+    ]
+  },
+  {
+    "language": "en",
+    "theme": "light",
+    "native_size": [
+      384,
+      112
+    ],
+    "exported_size": [
+      1152,
+      336
+    ],
+    "text": [
+      {
+        "text": "DETERMINISTIC",
+        "ink": [
+          114,
+          25,
+          130,
+          10
+        ],
+        "mask_origin": [
+          112,
+          25
+        ],
+        "font_size": 16
+      },
+      {
+        "text": "PIXEL ART",
+        "ink": [
+          113,
+          46,
+          135,
+          15
+        ],
+        "mask_origin": [
+          110,
+          46
+        ],
+        "font_size": 24
+      },
+      {
+        "text": "EDITABLE PIXELS. EXACT CHANGES.",
+        "ink": [
+          113,
+          81,
+          160,
+          5
+        ],
+        "mask_origin": [
+          112,
+          81
+        ],
+        "font_size": 8
+      }
+    ]
+  },
+  {
+    "language": "zh-CN",
+    "theme": "dark",
+    "native_size": [
+      384,
+      112
+    ],
+    "exported_size": [
+      1152,
+      336
+    ],
+    "text": [
+      {
+        "text": "DETERMINISTIC",
+        "ink": [
+          114,
+          25,
+          130,
+          10
+        ],
+        "mask_origin": [
+          112,
+          25
+        ],
+        "font_size": 16
+      },
+      {
+        "text": "PIXEL ART",
+        "ink": [
+          113,
+          46,
+          135,
+          15
+        ],
+        "mask_origin": [
+          110,
+          46
+        ],
+        "font_size": 24
+      },
+      {
+        "text": "面向 AI 的像素绘图与精确编辑",
+        "ink": [
+          112,
+          79,
+          167,
+          11
+        ],
+        "mask_origin": [
+          112,
+          79
+        ],
+        "font_size": 12,
+        "font": "Fusion Pixel Font / zh_hans",
+        "font_sha256": "2e63342fd51ba29831406c8ad8fc919868de0c9dc9277d3a11614a5bc7a26907"
+      }
+    ]
+  },
+  {
+    "language": "zh-CN",
+    "theme": "light",
+    "native_size": [
+      384,
+      112
+    ],
+    "exported_size": [
+      1152,
+      336
+    ],
+    "text": [
+      {
+        "text": "DETERMINISTIC",
+        "ink": [
+          114,
+          25,
+          130,
+          10
+        ],
+        "mask_origin": [
+          112,
+          25
+        ],
+        "font_size": 16
+      },
+      {
+        "text": "PIXEL ART",
+        "ink": [
+          113,
+          46,
+          135,
+          15
+        ],
+        "mask_origin": [
+          110,
+          46
+        ],
+        "font_size": 24
+      },
+      {
+        "text": "面向 AI 的像素绘图与精确编辑",
+        "ink": [
+          112,
+          79,
+          167,
+          11
+        ],
+        "mask_origin": [
+          112,
+          79
+        ],
+        "font_size": 12,
+        "font": "Fusion Pixel Font / zh_hans",
+        "font_sha256": "2e63342fd51ba29831406c8ad8fc919868de0c9dc9277d3a11614a5bc7a26907"
+      }
+    ]
+  }
+]

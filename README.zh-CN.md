@@ -22,7 +22,7 @@
 
 向具备终端和文件操作能力的 AI 发送：
 
-> 请读取 https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md，从最新稳定版安装 deterministic-pixel-art。先确认它支持我要做的任务，再生成示例 PNG 验证安装。
+> 请读取 <https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md>，从最新稳定版安装 deterministic-pixel-art。先确认它支持我要做的任务，再生成示例 PNG 验证安装。
 
 [AI 安装指南](INSTALL.md)包含环境选择、独立 Skill 安装和最小渲染验证，也提供支持的 Agent 可选用的 `npx skills` 捷径。没有原生 Skill 支持的 Agent，也能在任务目录直接运行同一套工具。
 

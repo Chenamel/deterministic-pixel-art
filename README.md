@@ -22,7 +22,7 @@ Make PNG icons, sprites, UI components and named sprite atlases from text grids,
 
 Give an agent with terminal and file access this request:
 
-> Read https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md and install deterministic-pixel-art from the latest stable release. Check that it supports my intended task, then generate a sample PNG to verify installation.
+> Read <https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md> and install deterministic-pixel-art from the latest stable release. Check that it supports my intended task, then generate a sample PNG to verify installation.
 
 [AI installation guide](INSTALL.md): select the environment, install the self-contained Skill and run a small render. It also includes an optional `npx skills` shortcut for supported agents. Agents without native Skill support can run the same tools from a task-local folder.
 

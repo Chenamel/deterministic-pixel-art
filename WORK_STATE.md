@@ -1,6 +1,26 @@
 # Resume this work here
 
-Updated: 2026-10-30 (Asia/Shanghai). Active branch: `codex/visual-quality`.
+Updated: 2026-10-31 (continuation). Active branch: `codex/brand-identity`.
+
+## 当前恢复点：品牌审阅通过，提交与CI以检查点为准
+
+用户授权“开始审阅并同步吧”：已选A品牌审阅、修正、推送codex/brand-identity、建PR并检查精确提交CI；不合并main、不发布新Release、不替换安装。基线33d983f916d48dc4af32e71ee8273d4aba75def8。继续先读evaluation/brand-review-sync-20261030/checkpoint.json；本段是提交前快照，实际提交／PR／CI结果由该检查点更新，不据此重做已完成动作。
+
+本地审阅已修生成器候选脚本依赖和首次创建记录目录问题、收敛公开说明、补入两图标规格。只取tracked+28项公开清单，671文件干净副本重建10调用／4标题2图标逐字节一致及2拒绝覆盖通过。自查448明确链接失效0、1334上下文引用未验证（含4历史辅助源码未分发）、双语与11参考完整。报告写后193.144秒完整流程165/106/43/86通过，100包官方校验、逐成员与实际解压入口通过，ZIP仍47aa6b26...。509保护文件不变。详见docs/brand-review-20261030.zh-CN.md和docs/self-check-brand-20261030.md。
+
+下一步按检查点完成推送、PR和精确提交8+8组CI／远端文件检查；公开只含已选素材，不暂存整个assets目录。草稿／旧报告／缓存／私有证据完整保留本地。正式Release与安装不变；不重做设计或LT。共4主阶段，P1–P3/P4a完成，P4b原生512暂缓；当前是发布后品牌任务。下段为此前已完成记录。
+
+## 历史恢复点：A 方向已选，中英标题图与展示源接入完成
+
+用户认可A，随后授权“现在补一张独立中文标题图，图标保持纯图形；英文项目名保留，中文副文案为面向AI的像素绘图与精确编辑；接入双语README与Skill展示”。本轮现已本地完成：中英深浅4标题图1152×336已接双语README picture；Skill源/生成目录指向32/128px固定徽章、英文展示名及品牌色。Fusion12px中文字体有SIL OFL1.1授权及cmap/实际着色框验证，不进入仓库或Skill；A原图形和英文标题PNG保持。证据 `evaluation/brand-integration-20261030/checkpoint.json`=complete、FINAL.zh-CN.md，说明 `docs/brand-integration-20261030.zh-CN.md` 和 `docs/self-check-brand-20261030.md`。此前20261031候选路径保留不重命名。
+
+完整检查：942文件中文空格隔离副本195.051秒，165源码/106整包/43稳定图/86夹具/重复同包通过。实际解出100文件包，100摘要和图标尺寸路径、官方校验与真实render通过；相对正式98包仅2图标新增、1 agents/openai.yaml修改。503保护文件保持（包含原已安装98与正式6），源/生成展示元数据2处变化及图标4处新增单列。预览包239,528字节，SHA47aa6b26...，留本轮证据目录；不是新Release。源运行时、指导正文、默认调用策略、正式包/旧候选/安装原样。460明确链接0失效；1193上下文引用未验证。未提交、推送、发布、替换安装；远端CI及实际Codex/GitHub主题/移动端展示未验证。下一步审阅本轮展示差异后按仓库流程同步，不重跑LT或扩展新功能。共4主阶段已到P4a，P4b512暂缓。下段为已完成候选背景。
+
+正式 v1.2.0 已合并发布、实际下载校验并备份更新本地 Skill，完成证据见 `evaluation/stable-release-20261030/checkpoint.json`（complete）和 `FINAL.zh-CN.md`。不要重做发布／安装／LT。旧版本及备份完整保留。
+
+用户新授权制作项目 Logo 和标题图，并查找相关设计指导；已选择“精密像素工具：网格、编辑与定位感”。本地候选已完成，最新 `assets/brand/candidates/v03/`：A 选中像素、B 像素笔，16/32px主题／单色标记、16/32/128px固定深底通用图标、1152×336深浅标题图；`comparison.png` 一次比较。协调端推荐A表达精确局改，用户尚未选型。实际使用正式v1.2.0 ZIP内工具；外部Design/VS Code指导仅查阅参考，未安装执行。v02添加固定徽章解决单入口背景适配；v03仅修字体实际着色框元数据，v02所有PNG字节不变，旧稿保留。
+
+设计与复现见 `docs/brand-design-20261031.zh-CN.md`、`docs/self-check-20261031.md`；证据 `evaluation/brand-identity-20261031/checkpoint.json`（local-candidates-complete-awaiting-choice）与verification.json。75规格重渲染一致、105PNG解码、26整数缩放、12主题Alpha组/12真实文字框、260历史条目及202保护文件通过；170成功CLI调用和1次制作端误用--version失败保留。427明确相对链接0失效；1184上下文引用未验证，历史表格两处短路径按同一行完整证据补核，未改通用检查器。没有改运行时、Skill／正式包／安装或首页，未提交推送发布。下一步用户选A/B后再精修及接入首页／Skill展示，实际平台图标显示、商标检索与独立受众测试未验证。共四主阶段，P1–P3/P4a完成，P4b512暂缓；当前是发布后的品牌素材任务。
 
 ## 当前恢复点：正式发布与安装更新已获授权，进行中
 

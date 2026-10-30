@@ -67,7 +67,7 @@ This example changes **66 RGBA pixels inside one named cell, zero outside**. [Ru
 
 ## Evidence and limits
 
-- **Reproducible assets:** 43 stable migration outputs remain pixel-compatible. Lossless import and scoped edits compare decoded RGBA, including hidden RGB under zero alpha.
+- **Reproducible assets:** 43 reference images retain the same decoded pixels. Lossless import and scoped edits compare decoded RGBA, including hidden RGB under zero alpha.
 - **Tested workflows:** source/package checks and Windows/Ubuntu CI cover rendering, inspection, import, editing and assembly. External agents have exercised eight task categories; original failures and incomplete records remain documented.
 - **Art direction stays contextual:** inspect native-size assets on their intended backgrounds. Automated checks do not establish recognizability, general aesthetic gains, token savings or Minecraft game integration.
 

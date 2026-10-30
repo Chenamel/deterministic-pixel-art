@@ -12,7 +12,7 @@ Prefer a project-local install unless the user requests an all-projects install.
 | Another agent with Skill support | Its documented Skill directory; do not assume Codex paths |
 | Cloud task or agent without Skill discovery | `<task>/tools/deterministic-pixel-art`; read its SKILL.md explicitly and invoke its scripts |
 
-[Current Codex locations](https://developers.openai.com/codex/skills/) differ from older installations under `~/.codex/skills` or `$CODEX_HOME/skills`. If an existing copy is already discovered, reuse it or report its version; do not create a duplicate or overwrite it silently. Keep update backups outside Skill discovery folders.
+[Current Codex locations](https://developers.openai.com/codex/skills/) differ from older installations under `~/.codex/skills` or `$CODEX_HOME/skills`. If an existing copy is already discovered, reuse it or report its version; do not create a duplicate or overwrite it silently. Keep update backups outside the folders the agent scans for Skills, so it does not load both versions.
 
 ## 2. Get a stable package
 
@@ -48,7 +48,7 @@ Read the installed SKILL.md, then run from the task directory, using a fresh out
 <python> <skill>/scripts/pixel_art.py render --spec <skill>/assets/gem-16.json --out output/pixel-art-install-check/gem.png --preview output/pixel-art-install-check/gem-preview.png
 ```
 
-Use Pillow to open and decode both outputs. Expect a 16×16 image and a 128×128 nearest-neighbor preview. If a mount rejects hard-link publication and the installed version offers `--portable-output`, retry with that option; otherwise render to a local temporary directory. `--force` does not fix mount support. Use a new output directory on repeated checks.
+Use Pillow to open and decode both outputs. Expect a 16×16 image and a 128×128 nearest-neighbor preview. If the mounted filesystem rejects hard links when creating output files and the installed version offers `--portable-output`, retry with that option; otherwise render to a local temporary directory. `--force` does not fix mount support. Use a new output directory on repeated checks.
 
 Report the version/source, Skill folder, Python executable and verified PNG paths. Distinguish successful script execution from native Skill discovery: check the agent's Skill list when available; otherwise say discovery is unverified. Codex may need a restart if the Skill does not appear.
 

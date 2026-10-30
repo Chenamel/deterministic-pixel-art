@@ -12,7 +12,7 @@ See the original [UI paired study](../assets/studies/ui.png), including native-s
 
 ## State vocabulary
 
-`assets/quality/ui-states.json` contains normal, hover, focus, pressed, selected and disabled cells. Preserve a consumer's own state names/order if different.
+`assets/quality/ui-states.json` contains normal, hover, focus, pressed, selected and disabled cells. Preserve the application's own state names/order if different.
 
 - Hover attracts attention temporarily; focus identifies keyboard/controller position. Do not silently merge them.
 - Pressed reads as an action in progress; a displacement or reversed bevel can reinforce it.
@@ -25,7 +25,7 @@ Color alone may be insufficient. Inspect shape, marker and value cues in graysca
 
 Keep corners and border thickness stable across sizes. Produce alternate sizes through geometry or existing blit composition rather than stretching a finished border indiscriminately. This release has no nine-slice theme/component engine.
 
-Composite icons into their button/panel at 1:1; inspect seams, padding, clipping and competing emphasis. Avoid baking text into reusable textures unless requested. Use the consumer's actual font and line metrics for text checks.
+Composite icons into their button/panel at 1:1; inspect seams, padding, clipping and competing emphasis. Avoid baking text into reusable textures unless requested. Use the application's actual font and line metrics for text checks.
 
 For explicitly identified functional indicators, a 3:1 adjacent-color ratio is a starting reference from WCAG non-text contrast. It is not a condition for every highlight, decorative edge, disabled control or pair of nonadjacent states. Declare relevant pairs in review context and interpret results in the real layout. See [sources.md](sources.md).
 

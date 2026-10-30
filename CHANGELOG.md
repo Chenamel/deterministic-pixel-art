@@ -2,11 +2,11 @@
 
 ## 1.2.0 (2026-10-30)
 
-- Add bounded image inspection and lossless static 8-bit PNG import, including hidden RGB and named-cell editing through validated layouts.
-- Add single-cell replacement, exact RGBA edit-boundary checks and bounded component assembly with coverage and seam views. Preserve JSON v1, previous API defaults and existing drawing/compositing semantics.
-- Ship editable recipes for icons, button states, a native128 sprite, component scenes and a two-owner bridge with global material phase. Include concise routes for small edits, text inspection, visual review and consumer checks.
-- Add task-shell portable-output selection and explicit command overrides; improve dependency recovery and practical grid/visual-fact guidance. Keep Python/Pillow as the runtime dependencies.
-- Publish versioned artifacts with SHA-256 and per-file manifests. Retain external-task failures and evidence limits; tool-usability acceptance does not establish general aesthetic, time or token improvements.
+- Add image analysis with limits on report size and lossless static 8-bit PNG import. Preserve hidden RGB values and select named atlas cells using a checked layout.
+- Add single-cell replacement, exact RGBA change checks and PNG component assembly with coverage checks and seam previews. Keep JSON v1, existing API defaults and drawing/compositing behavior unchanged.
+- Ship editable Python examples for icons, button states, a 128×128 sprite and component scenes. A two-chunk bridge example aligns repeating textures across the join. Guides cover small edits, text inspection, visual review and checks in the target application.
+- Allow portable output to be selected once per terminal session or overridden for one command. Improve Python environment recovery and guidance for inspecting pixels and reviewing images. Runtime dependencies remain Python and Pillow.
+- Publish versioned packages with SHA-256 checksums and per-file manifests. Keep external trial failures and incomplete records documented. Passing usability checks does not establish general improvements in image quality, task time or token use.
 
 ## 1.2.0-rc.5 (local candidate)
 

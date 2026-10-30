@@ -25,13 +25,13 @@ Try `assets/workflows/atlas-before.png`, `atlas-before-layout.json` and `atlas-r
 
 When exploring variants, give each a directory such as `candidates/v01/` containing its spec, PNG, fresh layout and optional review. Use `v02/` for another candidate; keep paths meaningful rather than repeatedly occupying a shared `final.*`. After selecting a result, write the delivery paths. This is a useful convention, not a requirement to produce alternatives for every small edit.
 
-A later revision can use another candidate directory, or an explicit `--force` rebuild when replacement is authorized. If the task requires revision history, preserve each reviewed version's spec, PNG, fresh layout and generator source together before a rebuild; editing one shared generator later does not retain its earlier source. Deleting occupied outputs to render again loses the same evidence as replacing them. A refusal is not a reason to add `--force` automatically. Do not select a visually weaker version just because it was written to a path called `final`. The renderer does not infer candidate lineage or an approved final choice from filenames.
+A later revision can use another candidate directory, or an explicit `--force` rebuild when replacement is authorized. If the task requires revision history, preserve each reviewed version's spec, PNG, fresh layout and generator source together before a rebuild; editing one shared generator later does not retain its earlier source. Deleting occupied outputs to render again loses the same evidence as replacing them. A refusal is not a reason to add `--force` automatically. Do not select a visually weaker version just because it was written to a path called `final`. The renderer does not track revision history or mark a version as approved based on its filename.
 
 ## Prove a precise edit boundary
 
 `verify` compares all decoded RGBA, including RGB under alpha zero. Repeat `--allow-region X Y W H` for multiple rectangles. `--allow-mask allowed.png` accepts nonzero L/1 intensity or RGBA/LA alpha; RGB-only masks are rejected. Regions/mask combine by union. Mask size must match. A hollow border needs a hollow mask, not its enclosing rectangle.
 
-Exit codes: 0 valid boundary; 1 outside changes; 2 input/output error. `--out verification.json` saves counts, outside xywh bbox, up to 64 coordinates and omitted count. This does not judge appearance or state meaning. `validate` still checks image contracts.
+Exit codes: 0 valid boundary; 1 outside changes; 2 input/output error. `--out verification.json` saves counts, outside xywh bbox, up to 64 coordinates and omitted count. This does not judge appearance or state meaning. `validate` checks the image against its specified rules.
 
 ## Native artwork and assembly
 
@@ -55,7 +55,7 @@ Assembly uses a separate PNG project. JSON v1 rendering stays embedded data with
 python <skill>/scripts/pixel_art.py assemble --project <skill>/assets/workflows/scene-tiles.json --out scene.png --report assembly.json --seams seams.png --preview scene-2x.png
 ```
 
-`scene-components.json` assembles editable terrain, mill, bridge and decoration PNGs. Matching component JSON remains editable: rerender changed components before assembling. `scene-control.json` is the whole-scene embedded-spec control. `scene-tiles.json` is a crop/reassemble control, not evidence that independent agents painted seamless chunks. For separately drawn owners and global texture phase, use [chunking.md](chunking.md) and its small executable recipe.
+`scene-components.json` assembles editable terrain, mill, bridge and decoration PNGs. Matching component JSON remains editable: rerender changed components before assembling. `scene-control.json` is the whole-scene embedded-spec control. `scene-tiles.json` is a crop/reassemble control, not evidence that independent agents painted seamless chunks. For separately drawn chunks with repeating textures aligned across their seams, use [chunking.md](chunking.md) and its small executable recipe.
 
 Each part declares `mode:"copy"` (raw RGBA replacement) or `"over"` (source-over once). Later layers explicitly set `allow_overlap:true` when intended. `crop:[x,y,w,h]` selects the owned interior of a context-padded source. Placement is never resized/clipped; padding is not silently discarded.
 
@@ -80,7 +80,7 @@ python3 -m pip --python "$pixel_env/bin/python" install -r "<skill>/requirements
 
 Use that venv's Python for every tool command; activation is optional. If no usable pip or compatible installed interpreter is available, report the missing prerequisite. Do not replace global packages. A fresh task-local `pip install --target ./deps` plus process-local `PYTHONPATH` is another option when venv creation is unavailable.
 
-Default publication stages artifacts and uses exclusive hard links for new targets. If rejected, choose a local output directory or explicitly use `--portable-output`. This exclusively creates NEW files, which readers may observe while writing. Existing outputs still require `--force`; forced writes use the existing atomic replacement path. Cooperating writers reserve outputs; ordinary errors attempt rollback and report remaining outputs/errors. No mode promises a crash-safe multi-file transaction.
+By default, the tool prepares temporary files, then saves new outputs using hard links. If the filesystem rejects hard links, choose a local output directory or use `--portable-output`. Portable mode still refuses to overwrite an existing file, but another program may read a new file before writing has finished. With explicit `--force`, the tool prepares each replacement before swapping it into place. Lock files prevent simultaneous tool processes from writing to the same paths. On ordinary write errors, the tool attempts to restore earlier files and reports what remains. In any mode, a crash or power loss can leave only some files updated; check all outputs after an interruption.
 
 For repeated commands in one task, choose portable output once in the shell that launches them:
 

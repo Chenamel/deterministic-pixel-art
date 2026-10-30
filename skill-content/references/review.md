@@ -6,7 +6,7 @@ python <skill>/scripts/pixel_art.py review --image asset.png --out-dir review --
 
 `--context` and `--compare` are optional. Valid input exits 0 even with warnings; malformed input, mismatched comparison dimensions or I/O errors exit 2. Existing managed outputs require `--force`; inputs cannot be replaced. Source pixels remain unchanged. Use a separate output directory per review; `report.json` identifies the current comparison, not a leftover file from a previous invocation.
 
-Outputs: `report.json`, `review.png`, plus `difference.png` when comparing. Each declared background has native 1:1 and nearest-neighbor views, alongside checkerboard, grayscale and annotations. Sprite context adds an alpha silhouette whose black/white foreground is chosen for contrast with the primary background; `facts.silhouette_color` records the choice. Atlas cells get separate cards. Integer enlargement is at most 8. Columns adapt to the sheet budget; oversized views use explicitly labeled native crops and a nearest-neighbor overview. `facts.review_views` records displayed rectangles, scales and each card's `sheet_rect` in contact-sheet coordinates. Unicode names remain in JSON; diagnostic labels do not use the consumer's font.
+Outputs: `report.json`, `review.png`, plus `difference.png` when comparing. Each declared background has native 1:1 and nearest-neighbor views, alongside checkerboard, grayscale and annotations. Sprite context adds an alpha silhouette whose black/white foreground is chosen for contrast with the primary background; `facts.silhouette_color` records the choice. Atlas cells get separate cards. Integer enlargement is at most 8. The number of columns adjusts to the sheet's size limit; oversized views use explicitly labeled native crops and a nearest-neighbor overview. `facts.review_views` records displayed rectangles, scales and each card's `sheet_rect` in contact-sheet coordinates. Unicode names remain in JSON; diagnostic labels do not use the application's font.
 
 ## Context v1
 
@@ -37,9 +37,9 @@ All fields are optional. Unknown fields are errors. Coordinates are native; rect
 
 ### When a visual description conflicts
 
-Use `inspect --image asset.png --metadata layout.json --cell name --grid` to check the disputed colors and coordinates; for a flat image use `--region X Y W H --grid` instead. Keep the region within the documented grid budget. Pixel facts can refute a claimed color or location, but cannot establish object meaning or visual quality.
+Use `inspect --image asset.png --metadata layout.json --cell name --grid` to check the disputed colors and coordinates; for a flat image use `--region X Y W H --grid` instead. Keep the region within the documented grid-size limit. Pixel facts can refute a claimed color or location, but cannot establish object meaning or visual quality.
 
-Return to the brief and actually view the selected cell or region at native size and integer enlargement. Review on the target background: for `182637`, for example, set `"backgrounds":[{"name":"target_dark","color":"182637"}],"primary_background":"target_dark"` in context. Built-in `dark` remains `172033`; a custom name avoids a conflicting redeclaration. If visual interpretation remains uncertain, report it rather than treating the grid or zero warnings as semantic acceptance.
+Return to the brief and actually view the selected cell or region at native size and integer enlargement. Review on the target background: for `182637`, for example, set `"backgrounds":[{"name":"target_dark","color":"182637"}],"primary_background":"target_dark"` in context. Built-in `dark` remains `172033`; a custom name avoids a conflicting redeclaration. If visual interpretation remains uncertain, report it rather than treating the grid or zero warnings as proof that the image conveys the intended meaning.
 
 Warnings identify isolated pixels, visually identical named cells and declared pairs below target. Particles may be isolated; states may share a texture; decoration has no general 3:1 requirement. Isolated warnings are capped at 256 entries; the full count and omitted count remain in facts.
 

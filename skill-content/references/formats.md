@@ -51,13 +51,13 @@ Commands: `CANVAS w h`, `BG color`, `RECT x y w h color`, `BEVEL x y w h tl br t
 
 ## Validation
 
-`validate(image, rules)` returns `{valid, errors: [{rule,message}], facts: {size,mode,colors,alpha}}`. Invalid rule syntax raises `PixelArtError`; image contract violations set valid=false. The CLI exits 0 for success, 1 for a contract violation and 2 for input/I/O errors. All artifacts are encoded and staged before publication. Each file is published atomically; cooperating writers reserve targets. No-force publication uses exclusive hard links and fails on filesystems without that support. Normal commit failures attempt rollback and report actual paths; this is not a crash-safe multi-file transaction. A crash may leave sibling `.pixelart.lock`/temporary files; inspect the owning process before removing them.
+`validate(image, rules)` returns `{valid, errors: [{rule,message}], facts: {size,mode,colors,alpha}}`. Invalid rule syntax raises `PixelArtError`; images that fail the specified rules set valid=false. The CLI exits 0 for success, 1 when an image fails a rule and 2 for input/I/O errors. By default, all output files are prepared in temporary files before being saved to their final paths. Each final file becomes visible only when its contents are complete. Lock files prevent simultaneous tool processes from writing to the same paths. Creating a new output uses a hard link and fails if the filesystem does not support it. On ordinary write errors, the tool attempts to restore earlier files and reports any files it could not restore. A crash or power loss can still leave a group of files only partly updated, along with `.pixelart.lock` or temporary files. Check that no process is still using them before removing them.
 
 Drawing primitives replace RGBA bytes, including partial alpha. `blit`/`Canvas.composite` use source-over compositing. For an overlay, draw onto a transparent nested `draw` source and `blit` it onto the destination. `mask` with omitted or null outline has no edge; an explicit `00000000` outline paints transparent pixels.
 
-Default publication above is unchanged. Explicit `--portable-output` uses exclusive creation for NEW files without hard links: it preserves no-overwrite but new files are visible while writing. It does not automatically enable force. See [workflows.md](workflows.md) for recovery and the separate PNG assembly project format.
+With `--portable-output`, new files are created without hard links. Existing files still require explicit `--force` to overwrite, but another program may read a new file before writing has finished. See [workflows.md](workflows.md) for recovery and the separate PNG assembly project format.
 
-Rules (all optional): `size: [w,h]`, `mode: RGBA`, `alpha: [0,255]`, `palette: [colors...]`, positive `max_colors`, boolean `nonempty`, `cell_size: [w,h]`, integer `transparent_margin`, and `expected_pixels: [{at:[x,y],color:...}]`. Cell size must divide the canvas; margins apply to every cell, not only the outer image border. Palette checks count complete RGBA values, including transparent pixels. State meaning/order comes from atlas metadata and the consumer's contract, not image-only validation.
+Rules (all optional): `size: [w,h]`, `mode: RGBA`, `alpha: [0,255]`, `palette: [colors...]`, positive `max_colors`, boolean `nonempty`, `cell_size: [w,h]`, integer `transparent_margin`, and `expected_pixels: [{at:[x,y],color:...}]`. Cell size must divide the canvas; margins apply to every cell, not only the outer image border. Palette checks count complete RGBA values, including transparent pixels. State meaning/order comes from atlas metadata and the application's requirements, not image-only validation.
 
 ```json
 {"size":[80,16],"mode":"RGBA","alpha":[0,255],"nonempty":true,"cell_size":[16,16],"transparent_margin":1}
@@ -65,7 +65,7 @@ Rules (all optional): `size: [w,h]`, `mode: RGBA`, `alpha: [0,255]`, `palette: [
 
 ## Custom Python
 
-For `inspect_image`, `image_to_spec`, bounded local grids and optional content-bound layout records, read [text-workflow.md](text-workflow.md). These additions retain JSON v1 and the existing draw/validate APIs. `render --metadata` retains size/mode/atlas and adds version plus an RGBA digest; PNG embedding requires `--embed-metadata`.
+For `inspect_image`, `image_to_spec`, size-limited local grids and optional layout records that include a source-pixel hash, read [text-workflow.md](text-workflow.md). These additions retain JSON v1 and the existing draw/validate APIs. `render --metadata` retains size/mode/atlas and adds version plus an RGBA digest; PNG embedding requires `--embed-metadata`.
 
 Add the skill's `scripts/` directory to sys.path, then:
 

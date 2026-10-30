@@ -27,7 +27,7 @@ Keep changed chunks in a separate candidate project, then reassemble and run `ve
 
 `contract.json` was frozen before drawing. `chunk_common.py` provides local primitives, repeating material patterns and small props; it never returns a full scene. Each `chunks/name.json` is independently renderable JSON v1, with its PNG and layout. `project.json` uses exact non-overlapping `copy` placements. `manifest.json` records source/contract/artifact hashes.
 
-The 40px canal and 56×32 bridge cross the center. The 24px deck connects the two paved approaches; rails are north/south. Global slab/plank phase is explicit. `edges.json` checks material roles and frozen anchors, `assembly.json` checks geometry. These do not establish semantic or aesthetic quality; inspect `scene.png`, `preview.png`, `grayscale.png`, `seams.png` and `center.png` yourself.
+The 40px canal and 56×32 bridge cross the center. The 24px deck connects the two paved approaches; rails are north/south. Stone slabs and planks use shared pattern origins, so the textures line up across chunk boundaries. `edges.json` checks material roles and frozen anchors, `assembly.json` checks geometry. These do not establish semantic or aesthetic quality; inspect `scene.png`, `preview.png`, `grayscale.png`, `seams.png` and `center.png` yourself.
 
 [Direction and acceptance brief (Chinese)](BRIEF.zh-CN.md) · [Detailed results](../../docs/chunk-scene-report.zh-CN.md) · [English results](../../docs/chunk-scene-report.md).
 

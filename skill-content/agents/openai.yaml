@@ -1,9 +1,9 @@
 interface:
   display_name: "Deterministic Pixel Art"
-  short_description: "通过网格、整数绘图和可选 Minecraft 预设生成并校验像素资产"
+  short_description: "用网格和绘图指令制作、修改像素图，支持 Minecraft 风格"
   icon_small: "./assets/brand/pixel-anchor-32.png"
   icon_large: "./assets/brand/pixel-anchor-128.png"
   brand_color: "#146F80"
-  default_prompt: "使用 $deterministic-pixel-art 生成可编辑、可复现的像素资产并检查原尺寸预览。"
+  default_prompt: "使用 $deterministic-pixel-art 制作可编辑的像素图，并查看原尺寸预览、核对修改范围。"
 policy:
   allow_implicit_invocation: true

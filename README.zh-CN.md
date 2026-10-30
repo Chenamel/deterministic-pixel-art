@@ -10,13 +10,13 @@
 
 **让 AI 创作可编辑的像素素材，并精确核对每次修改。**
 
-用字符网格、整数绘图指令或 Python 蒙版制作 PNG 图标、精灵、UI 和命名图集。可以无损导入已有 PNG、修改指定区域，并组合独立绘制的组件。面向 AI 辅助游戏素材与像素 UI 创作，Minecraft 风格按需选用。
+用字符网格、整数绘图指令或 Python 蒙版制作 PNG 图标、精灵和 UI，也可以给多张小图命名后组成图集。支持无损导入已有 PNG、修改指定区域，以及拼接独立绘制的组件。适合用 AI 辅助制作游戏素材和像素 UI，Minecraft 风格可按需选用。
 
-![原创示例：图标、原生128像素精灵、UI状态及四块拼接场景](docs/images/overview.png)
+![原创示例：图标、128×128像素精灵、UI状态及四块拼接场景](docs/images/overview.png)
 
-[图标与 UI](demos/pixel-ui/README.md) · [128×128 精灵](examples/workflows/sprite-128.json) · [四块拼接的256×256场景](demos/chunk-scene/README.md)。展示使用已有原创素材，仅做整数倍最近邻放大。
+[图标与 UI](demos/pixel-ui/README.md) · [128×128 精灵](examples/workflows/sprite-128.json) · [四块拼接的 256×256 场景](demos/chunk-scene/README.md)。展示使用项目已有的原创素材，放大时仅使用整数倍最近邻缩放，保持像素边缘清晰。
 
-**版本：v1.2.0。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0) · [版本变化](docs/releases/v1.2.0.zh-CN.md)。PNG 导入、命名单格替换、精确差异核对、组合和配方需要 v1.2.0；旧 v1.1.1 安装提供渲染、预览、校验与审阅。
+**版本：v1.2.0。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0) · [版本变化](docs/releases/v1.2.0.zh-CN.md)。PNG 导入、按名称替换图集中的一格、逐像素核对修改、组件拼接和示例脚本需要 v1.2.0；v1.1.1 仅提供渲染、预览、校验和图片检查。
 
 ## 交给 AI 使用
 
@@ -24,7 +24,7 @@
 
 > 请读取 <https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md>，从最新稳定版安装 deterministic-pixel-art。先确认它支持我要做的任务，再生成示例 PNG 验证安装。
 
-[AI 安装指南](INSTALL.md)包含环境选择、独立 Skill 安装和最小渲染验证，也提供支持的 Agent 可选用的 `npx skills` 捷径。没有原生 Skill 支持的 Agent，也能在任务目录直接运行同一套工具。
+[AI 安装指南](INSTALL.md)说明如何选择 Python 环境、安装 Skill，并生成一张示例图确认安装成功；部分 AI 工具也可选用 `npx skills` 安装。不支持自动加载 Skill 的 AI，也能在任务目录直接运行同一套脚本。
 
 安装后可以说：“使用 deterministic-pixel-art 制作四个16×16方向图标，组成命名图集，保留1px透明边距，并在原尺寸核对各方向。”
 
@@ -53,25 +53,25 @@ python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png 
 |---|---|
 | 小型网格精灵 | [透明网格](examples/transparent-grid.json)、[镜像宝石](examples/gem-16.json) |
 | 新建非对称精灵 | [32×32飞船](examples/asymmetric-ship-32.json)、[像素画指导](skill/deterministic-pixel-art/references/pixel-art.md) |
-| UI 与按钮状态 | [通用面板](examples/generic-panel-96x40.json)、[UI指导](skill/deterministic-pixel-art/references/ui.md)、[短配方](skill/deterministic-pixel-art/references/recipes.md) |
-| 已有 PNG / 命名图集局改 | [导入、单格替换与差异核对](docs/usage.zh-CN.md#修改命名图集的单格) |
-| 图片事实与审阅 | [文本分析](skill/deterministic-pixel-art/references/text-workflow.md)、[审阅上下文](skill/deterministic-pixel-art/references/review.md) |
-| 独立分块绘制 | [边界约定](skill/deterministic-pixel-art/references/chunking.md)、[四入口场景](demos/chunk-scene/README.md) |
+| UI 与按钮状态 | [通用面板](examples/generic-panel-96x40.json)、[UI 指导](skill/deterministic-pixel-art/references/ui.md)、[Python 示例脚本](skill/deterministic-pixel-art/references/recipes.md) |
+| 已有 PNG / 图集的局部修改 | [导入、单格替换与差异核对](docs/usage.zh-CN.md#修改命名图集的单格) |
+| 分析图片、检查效果 | [文本分析](skill/deterministic-pixel-art/references/text-workflow.md)、[背景、布局和检查选项](skill/deterministic-pixel-art/references/review.md) |
+| 独立分块绘制 | [分块与接缝约定](skill/deterministic-pixel-art/references/chunking.md)、[四块拼接场景](demos/chunk-scene/README.md) |
 | Minecraft 风格 UI | [专项指导](skill/deterministic-pixel-art/references/minecraft.md) |
 
-[更多命令示例](docs/usage.zh-CN.md)包含局改、配方和环境恢复。自定义生成器可参考 [JSON v1 与 Python API](skill/deterministic-pixel-art/references/formats.md)。[浏览器 UI 演示](demos/pixel-ui/README.md)另含真实字体和交互检查。
+[更多命令示例](docs/usage.zh-CN.md)介绍局部修改、Python 示例脚本和环境问题处理。编写自己的绘图脚本时，可参考 [JSON v1 与 Python API](skill/deterministic-pixel-art/references/formats.md)。[浏览器 UI 演示](demos/pixel-ui/README.md)还展示如何检查真实字体和按钮交互。
 
 ![修改前、仅替换transfer单格后，以及准确的变更像素蒙版](docs/images/scoped-edit.png)
 
-此例只改变命名单格内 **66 个 RGBA 像素，格外变化 0**。可以[执行同一次局改与核对](docs/usage.zh-CN.md#修改命名图集的单格)，或从[微型网格改色](docs/usage.zh-CN.md#修改网格的一种颜色)开始。
+此例只改变 transfer 这一格内的 **66 个 RGBA 像素，这一格以外没有变化**。可以[运行同一个局部修改示例](docs/usage.zh-CN.md#修改命名图集的单格)，或从[小网格改色](docs/usage.zh-CN.md#修改网格的一种颜色)开始。
 
-## 实测依据与边界
+## 测试结果与使用限制
 
-- **可复现素材：** 43张稳定迁移产物保持像素兼容。无损导入和局改比较解码 RGBA，包括全透明像素里的 RGB。
-- **已测工作流：** 源码、整包检查和 Windows/Ubuntu CI 覆盖渲染、分析、导入、编辑与组合。外部 Agent 已使用八类任务，原始失败和过程记录缺口继续保留。
-- **视觉判断结合用途：** 在目标背景检查原尺寸。自动检查不能证明语义辨识度、普遍审美收益、token 节省或 Minecraft 游戏内适配。
+- **像素一致性：** 43 张基准图片保持像素一致。无损导入和局部修改会比较解码后的 RGBA 值，包括全透明像素里的 RGB。
+- **已测功能：** 源码测试、安装包测试和 Windows/Ubuntu CI 覆盖渲染、分析、导入、编辑和拼接。外部 AI 试用覆盖八类任务；记录中保留了原始失败和缺失的操作过程。
+- **实际效果仍需看图：** 请按原尺寸、在实际使用的背景上检查图片。自动检查不能判断图标是否容易辨认，也不能证明工具能普遍改善视觉效果、节省 token，或保证 Minecraft 游戏内显示正确。
 
-[验证详情与保留限制](docs/verification.zh-CN.md)区分工程检查、外部使用和视觉判断。
+[验证详情](docs/verification.zh-CN.md)分别说明功能测试、外部试用和图片效果检查的结果及限制。
 
 ## 帮助与贡献
 
@@ -84,7 +84,7 @@ python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
-运行时维护在 `src/`，配方在 `recipes/`，指导源在 `skill-content/`；`tools/package_skill.py` 在 `skill/` 生成独立 Skill。完整检查生成本地产物，不自动安装全局 Skill。[夹具来源](docs/PROVENANCE.md)。
+工具代码位于 `src/`，Python 示例脚本位于 `recipes/`，Skill 说明的源文件位于 `skill-content/`；`tools/package_skill.py` 在 `skill/` 生成独立 Skill。完整检查会生成本地文件，不会自动安装到用户的 Skill 目录。[测试样本来源](docs/PROVENANCE.md)。
 
 ## 协议
 

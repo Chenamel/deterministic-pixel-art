@@ -20,7 +20,7 @@ context file or full contact sheet is needed. Output to a separate candidate.
 For larger images, use `--region X Y W H`; for named atlases, use `--metadata
 layout.json --cell NAME`. `--region` and `--cell` are mutually exclusive. A grid
 requires at most 64×64 pixels and 62 exact colors. It is never silently reduced.
-`--out report.json` saves the bounded report instead of printing it; overwriting
+`--out report.json` saves the report with the same item limits instead of printing it; overwriting
 requires `--force`. `--compare previous.png` requires equal source dimensions.
 
 ## Interpret the report
@@ -90,7 +90,7 @@ Embedded, sidecar and context layouts must agree. Pixel digests include dimensio
 and all decoded RGBA, including hidden RGB; stale records are rejected. Legacy
 sidecars are accepted and listed as unverified. A digest cannot prove a cell named
 "hover" actually depicts the intended hover state. Keep the editable spec and
-consumer's state contract separately; imported pixels do not recover them.
+application's expected state behavior separately; imported pixels do not recover them.
 
 Python APIs: `inspect_image(image, context=None, *, region=None, cell=None,
 grid=False, comparison=None, metadata=None)` and `image_to_spec(image, *,

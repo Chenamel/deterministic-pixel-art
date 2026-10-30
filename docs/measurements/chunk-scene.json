@@ -1,0 +1,173 @@
+{
+  "stage": "P4a",
+  "date": "2026-10-23",
+  "base_commit": "2ac193a",
+  "contract_commit": "7506d55",
+  "contract_sha256": "f2bf1e01d6d466f83dbaa62465808cde7c55494abe799875099e85973889745a",
+  "brief_sha256": "edcdf9bbe88237ff67847ca65c522f614875b25d25fa297ccc871db1f5cee23f",
+  "environment": {
+    "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "pillow": "12.3.0",
+    "os": "Windows-11-10.0.22631-SP0"
+  },
+  "evidence": "One author-agent, separately authored local sources; no finished scene input; not independent blind/multi-agent aesthetic evidence",
+  "implementation_commit": "a6d84936618b5176c5eecffcea6accd8ec4b745e",
+  "ci_record": "chunk-scene-ci.json",
+  "final_batch_flag_cli_verified": true,
+  "stage_plan": {
+    "total_main_stages": 4,
+    "P1": "distributed; external submissions pending",
+    "P2": "complete",
+    "P3": "complete",
+    "current": "P4a native256",
+    "next": "P4b native512 usefulness/requirements gate; conditional, not yet implemented"
+  },
+  "chunks": {
+    "nw": {
+      "recipe_bytes": 1630,
+      "recipe_lines": 32,
+      "spec_bytes": 46188,
+      "spec_lines": 3253,
+      "recipe_sha256": "5bba365519f5aa7bf367ba6d240f16fe36b435e1767da788cc6a6ed938e6987b",
+      "png_sha256": "65680270543b72d9bb374e472b98f217832a166f8e5d0bbbd69937c27286a5c8",
+      "first_and_isolated_exact": true
+    },
+    "ne": {
+      "recipe_bytes": 1527,
+      "recipe_lines": 32,
+      "spec_bytes": 44703,
+      "spec_lines": 3145,
+      "recipe_sha256": "7ed4e56d0452001e27d0c03c53796eefdf4dba1bb22d4d85d2adb1ab9c4671fa",
+      "png_sha256": "8c56044b39304915bf27d35724529f1aeece7280c3149a23b5686b34dd32422e",
+      "first_and_isolated_exact": true
+    },
+    "sw": {
+      "recipe_bytes": 1601,
+      "recipe_lines": 31,
+      "spec_bytes": 43481,
+      "spec_lines": 3057,
+      "recipe_sha256": "9422fa2a5637a514f215265e3b0b5ac6eecc2f8acab5319f23abf880b7c37125",
+      "png_sha256": "005d63fd5bed41b9d314be4c01d7e92cf87ebcb4d855dafaa8557c020367870e",
+      "first_and_isolated_exact": true
+    },
+    "se": {
+      "recipe_bytes": 1437,
+      "recipe_lines": 30,
+      "spec_bytes": 42899,
+      "spec_lines": 3031,
+      "recipe_sha256": "4b1d53f8a341b18d5b7eac006d92ddbd352e813ce3e2de686ed2f5f1e7b12837",
+      "png_sha256": "4388f15ff3bd97002ac91ff399417d004709827aa709d74f98d013dcfd44c737",
+      "first_and_isolated_exact": true
+    }
+  },
+  "shared_helper_bytes": 4718,
+  "geometric": {
+    "size": [
+      256,
+      256
+    ],
+    "covered_pixels": 65536,
+    "uncovered_pixels": 0,
+    "overlaps": 0,
+    "seams": 4,
+    "seam_views": 8
+  },
+  "edge_contract": {
+    "passed": true,
+    "pixel_assertions": 1140,
+    "includes_anchor_rechecks": true,
+    "error_injections_detected": [
+      "NE pixel shift",
+      "same-palette slab phase",
+      "NE ownership x=129"
+    ]
+  },
+  "visual_review": {
+    "native": true,
+    "nearest_2x": true,
+    "grayscale": true,
+    "seams": true,
+    "center": true,
+    "revision_rounds": 0,
+    "assessment": "Author saw continuous canal/bridge/slabs and consistent lighting/material roles; no critical break identified.",
+    "limits": "Regular controlled layout, no complex cross-chunk building, navigation or game acceptance"
+  },
+  "checker_correction": {
+    "count": 1,
+    "coordinates": [
+      [
+        134,
+        160
+      ],
+      [
+        135,
+        160
+      ],
+      [
+        136,
+        160
+      ],
+      [
+        137,
+        160
+      ],
+      [
+        138,
+        160
+      ],
+      [
+        139,
+        160
+      ]
+    ],
+    "reason": "Valid water highlights falsely rejected by overly strict base-color check; contract and artwork unchanged"
+  },
+  "edit": {
+    "version": 1,
+    "valid": true,
+    "changed_rgba_pixels": 84,
+    "changed_inside": 84,
+    "changed_outside": 0,
+    "allowed_pixels": 144,
+    "outside_bbox": null,
+    "outside_samples": [],
+    "omitted_outside_samples": 0,
+    "note": "Exact edit boundary only; does not judge appearance, object identity or state meaning."
+  },
+  "trial": {
+    "commands": 14,
+    "unexpected_failures": 0,
+    "expected_refusals": 3,
+    "isolated_sources": 4,
+    "unicode_space_path": true,
+    "script_execution_ms": 2601.9282998749986,
+    "creative_time_ms": null,
+    "model_tokens": null
+  },
+  "verification": {
+    "full_source_tests": 94,
+    "final_targeted_tests": 5,
+    "stable_pngs": 43,
+    "zip_cases": 77,
+    "external_final_pngs": 10,
+    "external_layouts_exact": true,
+    "protected_files_unchanged": 138,
+    "official_validator_rerun": false
+  },
+  "skill": {
+    "bytes": 222984,
+    "files": 91,
+    "sha256": "b680e73c966eb6557ed94bfc2e843dd4fca2c74c8aaf5f279caa2eeece6f308d",
+    "unchanged": true,
+    "installed_stable": "1.1.1",
+    "published_candidate": "1.2.0-rc.2"
+  },
+  "new_external_submissions": 0,
+  "artifact_manifest_sha256": "41c64fdeaa2a0f487ff6905cd25c14830d0e7a06b172391ab7cc648c3555cedd",
+  "limitations": [
+    "No general aesthetic or productivity improvement claim",
+    "No native512 result",
+    "No independent multi-agent authorship",
+    "Material checks are frozen to this example, not universal seam or scene semantics"
+  ]
+}

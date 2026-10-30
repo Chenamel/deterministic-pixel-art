@@ -1,0 +1,33 @@
+{
+  "prepared": true,
+  "external_runs": 0,
+  "engineering_rehearsal_only": true,
+  "packet": {
+    "task": "LT04",
+    "archive": "LT04-Icons.zip",
+    "bytes": 253341,
+    "sha256": "cc60bad749f06bab310aead75dc8f02b0e0dd7271dfcdb28daa2523b993c0de1",
+    "skill_zip_sha256": "f02be7f650df703b6935666988780154ede02851db014b903e6cae0c6cabd7ba",
+    "skill_build": "unversioned development snapshot, not frozen rc.6",
+    "skill_files": 98,
+    "packet_files": 104,
+    "external_runs": 0,
+    "recommended_environment": "WorkBuddy, new session",
+    "recommended_model": "Hy3",
+    "fallback_model": "Space-Bunny"
+  },
+  "source_test_groups": 3,
+  "engineering_checks": 55,
+  "recorded_rehearsal_commands": 15,
+  "expected_rejections": 1,
+  "submission_files": 23,
+  "portable_choice_inherited": true,
+  "unicode_space_path": true,
+  "unrelated_working_directory": true,
+  "protected_files": 496,
+  "protected_files_unchanged": true,
+  "runtime_or_installed_stable_or_frozen_candidates_changed": false,
+  "new_candidate_or_release": false,
+  "github_uploaded": false,
+  "next": "User runs LT04 once in a fresh WorkBuddy Hy3 session, Space-Bunny fallback; then coordinator audits actual returned artifacts."
+}

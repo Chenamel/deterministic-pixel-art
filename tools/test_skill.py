@@ -26,8 +26,17 @@ def nonportable_host_path(text):
     return re.search(r'(?<![A-Za-z0-9])[A-Za-z]:[\\/]|/Users/|/home/', without_urls) is not None
 
 
+def validate_local_references(skill):
+    """Check referenced files; Markdown fragments identify sections, not files."""
+    for target in re.findall(r'\]\(([^)]+)\)', (skill / 'SKILL.md').read_text(encoding='utf-8')):
+        filename = target.partition('#')[0]
+        if filename and '://' not in target and not (skill / filename).is_file():
+            raise RuntimeError(f'Broken skill reference {target}')
+
+
 def main(python, validator):
-    env = {k: v for k, v in os.environ.items() if k not in ('PYTHONPATH', 'PYTHONHOME')}
+    env = {k: v for k, v in os.environ.items()
+           if k not in ('PYTHONPATH', 'PYTHONHOME', 'PIXELART_PORTABLE_OUTPUT')}
     env.update(PYTHONIOENCODING='utf-8', PYTHONUTF8='1')
     results = []
     with tempfile.TemporaryDirectory(prefix='独立 skill space ') as directory:
@@ -50,13 +59,11 @@ def main(python, validator):
                 continue
             if nonportable_host_path((skill / relative).read_text(encoding='utf-8')):
                 raise RuntimeError(f'Nonportable host path in skill file {relative}')
-        for target in re.findall(r'\]\(([^)]+)\)', (skill / 'SKILL.md').read_text(encoding='utf-8')):
-            if not (skill / target).is_file():
-                raise RuntimeError(f'Broken skill reference {target}')
+        validate_local_references(skill)
 
-        def run(label, arguments, expected=0):
+        def run(label, arguments, expected=0, extra_env=None):
             result = subprocess.run([str(python), '-B', *map(str, arguments)], cwd=folder,
-                env=env, capture_output=True, text=True, encoding='utf-8', timeout=30)
+                env={**env, **(extra_env or {})}, capture_output=True, text=True, encoding='utf-8', timeout=30)
             record = dict(case=label, passed=result.returncode == expected,
                           exit_code=result.returncode, stdout=result.stdout.strip(), stderr=result.stderr.strip())
             results.append(record)
@@ -102,6 +109,205 @@ def main(python, validator):
             particle.save(warning_image)
         run('packaged-advisory-warning-exit-zero', [cli, 'review', '--image', warning_image,
             '--out-dir', folder / 'warning-review'])
+        inspection=folder/'pixel-facts.json'
+        run('packaged-inspect-grid', [cli,'inspect','--image',warning_image,'--grid','--out',inspection])
+        assert json.loads(inspection.read_text(encoding='utf-8'))['facts']['bbox']==[1,1,1,1]
+        imported=folder/'imported.json';roundtrip=folder/'roundtrip.png'
+        run('packaged-lossless-import',[cli,'import','--image',warning_image,'--out',imported])
+        run('packaged-import-render',[cli,'render','--spec',imported,'--out',roundtrip])
+        with Image.open(warning_image) as a,Image.open(roundtrip) as b:
+            assert a.convert('RGBA').tobytes()==b.convert('RGBA').tobytes()
+        run('packaged-import-no-clobber',[cli,'import','--image',warning_image,'--out',imported],expected=2)
+        run('packaged-inspect-input-alias',[cli,'inspect','--image',warning_image,'--out',warning_image,'--force'],expected=2)
+        embedded=folder/'embedded-atlas.png'
+        run('packaged-embed-layout',[cli,'render','--spec',skill/'assets/minecraft-button-states.json',
+            '--out',embedded,'--embed-metadata'])
+        run('packaged-auto-layout-cell',[cli,'inspect','--image',embedded,'--cell','selected','--grid'])
+        run('packaged-sidecar-layout-review',[cli,'review','--image',folder/'输出 results/minecraft-button-states.png',
+            '--metadata',folder/'输出 results/minecraft-button-states.json','--out-dir',folder/'sidecar-review'])
+
+        # Exercise the distributed workflow assets, not the source checkout.
+        workflows=skill/'assets/workflows';work=folder/'新工作流 outputs';work.mkdir()
+        run('packaged-preview-target-background',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'transparent.png','--preview',work/'target.png','--preview-background','E9EDF2','--scale','3'])
+        with Image.open(work/'target.png') as preview:
+            assert preview.size==(12,12) and preview.convert('RGB').getpixel((0,0))==(233,237,242)
+        imported=work/'named-editable.json';candidate=work/'named-candidate.png';layout=work/'named-layout.json'
+        run('packaged-named-import',[cli,'import','--image',workflows/'atlas-before.png',
+            '--metadata',workflows/'atlas-before-layout.json','--out',imported])
+        data=json.loads(imported.read_text(encoding='utf-8'))
+        assert data['assembly']=='copy' and [cell['name'] for cell in data['cells']]==['add','refresh','transfer','lock']
+        run('packaged-replace-named-cell',[cli,'replace-cell','--spec',imported,'--cell','transfer',
+            '--replacement',workflows/'atlas-replacement.json','--out',work/'named-candidate.json',
+            '--image-out',candidate,'--metadata',layout])
+        run('packaged-verify-cell-boundary',[cli,'verify','--image',candidate,'--compare',workflows/'atlas-before.png',
+            '--allow-region','32','0','16','16','--out',work/'verification.json'])
+        verified=json.loads((work/'verification.json').read_text(encoding='utf-8'))
+        assert verified['changed_rgba_pixels']==66 and verified['changed_outside']==0
+        run('packaged-named-cell-import',[cli,'import','--image',workflows/'atlas-before.png',
+            '--metadata',workflows/'atlas-before-layout.json','--cell','transfer','--out',work/'transfer-only.json'])
+        selected=json.loads((work/'transfer-only.json').read_text(encoding='utf-8'))
+        assert selected['kind']=='grid' and selected['size']==[16,16]
+        run('packaged-named-cell-render',[cli,'render','--spec',work/'transfer-only.json','--out',work/'transfer-only.png'])
+        with Image.open(workflows/'atlas-before.png') as atlas,Image.open(work/'transfer-only.png') as cell:
+            assert cell.convert('RGBA').tobytes()==atlas.convert('RGBA').crop((32,0,48,16)).tobytes()
+        run('packaged-named-cell-unknown',[cli,'import','--image',workflows/'atlas-before.png',
+            '--metadata',workflows/'atlas-before-layout.json','--cell','missing','--out',work/'missing-cell.json'],expected=2)
+        assert not (work/'missing-cell.json').exists()
+        run('packaged-named-cell-stale-layout',[cli,'import','--image',candidate,
+            '--metadata',workflows/'atlas-before-layout.json','--cell','transfer','--out',work/'stale-cell.json'],expected=2)
+        assert not (work/'stale-cell.json').exists()
+        run('packaged-named-cell-embedded',[cli,'import','--image',embedded,'--cell','selected',
+            '--out',work/'embedded-cell.json'])
+        run('packaged-verify-reject-wrong-region',[cli,'verify','--image',candidate,'--compare',workflows/'atlas-before.png',
+            '--allow-region','0','0','16','16'],expected=1)
+        run('packaged-named-candidate-inspect',[cli,'inspect','--image',candidate,'--metadata',layout,'--cell','transfer','--grid'])
+        run('packaged-named-stale-layout',[cli,'inspect','--image',candidate,
+            '--metadata',workflows/'atlas-before-layout.json','--cell','transfer'],expected=2)
+        run('packaged-replace-input-alias',[cli,'replace-cell','--spec',imported,'--cell','transfer',
+            '--replacement',workflows/'atlas-replacement.json','--out',imported,'--force'],expected=2)
+        run('packaged-native-128-render',[cli,'render','--spec',workflows/'sprite-128.json','--out',work/'sprite.png'])
+        light=work/'light-context.json';light.write_text(json.dumps(dict(asset_type='sprite',
+            backgrounds=[dict(name='light',color='E9EDF2')],primary_background='light')),encoding='utf-8')
+        run('packaged-light-silhouette',[cli,'review','--image',work/'sprite.png','--context',light,'--out-dir',work/'review'])
+        report=json.loads((work/'review/report.json').read_text(encoding='utf-8'))
+        assert report['facts']['silhouette_color']==[0,0,0,255]
+        silhouette=next(v for v in report['facts']['review_views'] if v['label']=='alpha silhouette')
+        x,y,w,h=silhouette['sheet_rect']
+        with Image.open(work/'review/review.png') as sheet:
+            assert len(sheet.crop((x,y,x+w,y+h)).getcolors(w*h))>1
+        run('packaged-component-assembly',[cli,'assemble','--project',workflows/'scene-components.json',
+            '--out',work/'components.png','--report',work/'components.json'])
+        run('packaged-tile-assembly',[cli,'assemble','--project',workflows/'scene-tiles.json',
+            '--out',work/'tiles.png','--report',work/'tiles.json','--seams',work/'seams.png',
+            '--preview',work/'scene-preview.png','--scale','2'])
+        run('packaged-whole-scene-control',[cli,'render','--spec',workflows/'scene-control.json','--out',work/'control.png'])
+        with Image.open(work/'control.png') as control:
+            for name in ('components.png','tiles.png'):
+                with Image.open(work/name) as assembled:
+                    assert assembled.size==(256,256) and assembled.convert('RGBA').tobytes()==control.convert('RGBA').tobytes()
+        tiles=json.loads((work/'tiles.json').read_text(encoding='utf-8'))
+        assert tiles['uncovered_pixels']==0 and tiles['seam_count']==4 and len(tiles['seam_views'])==8
+        run('packaged-assembly-input-alias',[cli,'assemble','--project',workflows/'scene-tiles.json',
+            '--out',workflows/'tiles/nw.png','--force'],expected=2)
+        run('packaged-portable-output',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'portable.png','--portable-output'])
+        original=(work/'portable.png').read_bytes()
+        run('packaged-portable-no-clobber',[cli,'render','--spec',skill/'assets/gem-16.json',
+            '--out',work/'portable.png','--portable-output'],expected=2)
+        assert (work/'portable.png').read_bytes()==original
+
+        inherited={'PIXELART_PORTABLE_OUTPUT':'1'}
+        invalid={'PIXELART_PORTABLE_OUTPUT':'invalid'}
+        run('packaged-task-portable-render',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'task-portable.png'],extra_env=inherited)
+        run('packaged-task-portable-import',[cli,'import','--image',work/'task-portable.png',
+            '--out',work/'task-editable.json'],extra_env=inherited)
+        run('packaged-task-portable-recipe',[skill/'scripts/recipes/icons.py',
+            '--out-dir',work/'task-icons'],extra_env=inherited)
+        run('packaged-task-portable-no-clobber',[cli,'render','--spec',skill/'assets/gem-16.json',
+            '--out',work/'task-portable.png'],expected=2,extra_env=inherited)
+        assert (work/'task-portable.png').read_bytes()==original
+        run('packaged-task-invalid-output-setting',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'invalid-setting.png'],expected=2,extra_env=invalid)
+        assert not (work/'invalid-setting.png').exists()
+        run('packaged-task-cli-override',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'override.png','--portable-output'],extra_env=invalid)
+        run('packaged-task-recipe-override',[skill/'scripts/recipes/icons.py',
+            '--out-dir',work/'override-icons','--no-portable-output'],extra_env=invalid)
+        run('packaged-task-readonly-independent',[cli,'inspect','--image',work/'task-portable.png'],extra_env=invalid)
+        run('packaged-task-zero-keeps-default',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'default-setting.png'],extra_env={'PIXELART_PORTABLE_OUTPUT':'0'})
+
+        # Authoring recipes must work from the ZIP with PYTHONPATH cleared.
+        recipes=skill/'scripts/recipes';recipe_work=folder/'可读 recipes'
+        for name in ('icons','buttons','courier128','scene256'):
+            run('packaged-recipe-default-'+name,[recipes/(name+'.py'),'--out-dir',recipe_work/name])
+        for name,reference in [('icons',workflows/'atlas-before.png'),('courier128',workflows/'sprite-128.png'),
+                               ('scene256',workflows/'scene-256.png')]:
+            with Image.open(recipe_work/name/'asset.png') as produced,Image.open(reference) as frozen:
+                assert produced.size==frozen.size and produced.convert('RGBA').tobytes()==frozen.convert('RGBA').tobytes()
+        with Image.open(recipe_work/'buttons/asset.png') as produced,Image.open(folder/'quality 输出/ui-states.png') as frozen:
+            assert produced.convert('RGBA').tobytes()==frozen.convert('RGBA').tobytes()
+        run('packaged-recipe-icons-edit',[recipes/'icons.py','--out-dir',recipe_work/'icons-edited','--ink','F5C26B'])
+        run('packaged-recipe-ui-edit',[recipes/'buttons.py','--out-dir',recipe_work/'buttons-edited',
+            '--width','64','--content','28','4','30','10','--hover','426B83'])
+        run('packaged-recipe-sprite-edit',[recipes/'courier128.py','--out-dir',recipe_work/'courier-edited',
+            '--stripe','E17B57','--stripe-light','F9D5A0'])
+        run('packaged-recipe-sprite-scope',[cli,'verify','--image',recipe_work/'courier-edited/asset.png',
+            '--compare',recipe_work/'courier128/asset.png','--allow-region','42','68','48','10'])
+        for name in ('icons-edited','buttons-edited','courier-edited'):
+            rebuilt=recipe_work/(name+'-rebuilt.png')
+            run('packaged-recipe-rerender-'+name,[cli,'render','--spec',recipe_work/name/'asset.json','--out',rebuilt])
+            with Image.open(rebuilt) as image,Image.open(recipe_work/name/'asset.png') as expected:
+                assert image.convert('RGBA').tobytes()==expected.convert('RGBA').tobytes()
+        run('packaged-recipe-context-review',[cli,'review','--image',recipe_work/'buttons-edited/asset.png',
+            '--metadata',recipe_work/'buttons-edited/layout.json','--context',recipe_work/'buttons-edited/context.json',
+            '--out-dir',recipe_work/'button-review'])
+
+        # A real font is a caller-provided input, never an installed host fallback.
+        font = folder/'字体 input.ttf'
+        font.write_bytes((ROOT/'demos/pixel-ui/fonts/Silkscreen-Regular.ttf').read_bytes())
+        run('packaged-label-buttons', [recipes/'buttons.py', '--out-dir', recipe_work/'label-buttons',
+            '--width', '88', '--content', '23', '4', '63', '10'])
+        label_args = [recipes/'label_atlas.py', '--image', recipe_work/'label-buttons/asset.png',
+            '--metadata', recipe_work/'label-buttons/layout.json', '--context', recipe_work/'label-buttons/context.json',
+            '--font', font, '--font-size', '8', '--labels', 'START', 'LOOP', 'EXPORT MAP',
+            '--state-offset', 'pressed', '0', '1']
+        for mode in ('monochrome', 'grayscale'):
+            run('packaged-font-'+mode, [*label_args, '--font-mode', mode, '--out-dir', recipe_work/mode])
+        fit=json.loads((recipe_work/'monochrome/text-fit.json').read_text(encoding='utf-8'))
+        assert len(fit['instances'])==18 and fit['font']['mode']=='monochrome'
+        assert fit['instances'][9]['origin'][1]-54==fit['instances'][0]['origin'][1]+1
+        with Image.open(recipe_work/'monochrome/consumer.png') as mono, Image.open(recipe_work/'grayscale/consumer.png') as gray:
+            assert mono.size==(264,108) and mono.tobytes()!=gray.tobytes()
+        run('packaged-label-no-clobber', [*label_args, '--font-mode', 'monochrome', '--out-dir', recipe_work/'monochrome'], expected=2)
+        run('packaged-label-bad-fit', [*label_args, '--font-mode', 'monochrome', '--padding', '3',
+            '--out-dir', recipe_work/'label-bad'], expected=2)
+        assert not (recipe_work/'label-bad').exists()
+        result=run('packaged-grid-wide-cell', [cli,'inspect','--image',recipe_work/'label-buttons/asset.png',
+            '--metadata',recipe_work/'label-buttons/layout.json','--cell','normal','--grid'], expected=2)
+        assert 'selected 88x18 at (0,0)' in result.stderr and 'replace --cell' in result.stderr
+        before=(recipe_work/'icons-edited/asset.png').read_bytes()
+        run('packaged-recipe-no-clobber',[recipes/'icons.py','--out-dir',recipe_work/'icons-edited'],expected=2)
+        assert (recipe_work/'icons-edited/asset.png').read_bytes()==before
+        run('packaged-recipe-bad-content-no-output',[recipes/'buttons.py','--out-dir',recipe_work/'bad',
+            '--content','0','0','30','18'],expected=2)
+        assert not (recipe_work/'bad').exists()
+        run('packaged-recipe-scene-edit',[recipes/'scene256.py','--out-dir',recipe_work/'scene-edited',
+            '--roof','684C6A','--roof-light','A07A89'])
+        run('packaged-recipe-rebuilt-component-assembly',[cli,'assemble','--project',recipe_work/'scene-edited/project.json',
+            '--out',recipe_work/'scene-reassembled.png'])
+        with Image.open(recipe_work/'scene-reassembled.png') as image,Image.open(recipe_work/'scene-edited/asset.png') as expected:
+            assert image.convert('RGBA').tobytes()==expected.convert('RGBA').tobytes()
+
+        # The minimal independently drawn owners must be usable from the ZIP alone.
+        pair = recipe_work / 'chunk-pair'
+        edited_pair = recipe_work / 'chunk-pair-edited'
+        run('packaged-chunk-pair', [recipes/'chunk_pair.py', '--out-dir', pair])
+        run('packaged-chunk-pair-edit', [recipes/'chunk_pair.py', '--out-dir', edited_pair, '--flag', '73A5AA'])
+        run('packaged-chunk-pair-scope', [cli, 'verify', '--image', edited_pair/'asset.png',
+            '--compare', pair/'asset.png', '--allow-region', '51', '5', '6', '4', '--out', edited_pair/'verified.json'])
+        assert json.loads((edited_pair/'verified.json').read_text(encoding='utf-8'))['changed_rgba_pixels']==24
+        assert (pair/'left/asset.png').read_bytes()==(edited_pair/'left/asset.png').read_bytes()
+        previous = (edited_pair/'asset.png').read_bytes()
+        run('packaged-one-owner-rebuild', [recipes/'chunk_right.py', '--out-dir', edited_pair/'right',
+            '--flag', 'C47763', '--force'])
+        run('packaged-owner-reassembly', [cli, 'assemble', '--project', edited_pair/'project.json',
+            '--out', edited_pair/'reassembled.png', '--report', edited_pair/'reassembled-report.json',
+            '--seams', edited_pair/'reassembled-seams.png'])
+        run('packaged-owner-reassembly-scope', [cli, 'verify', '--image', edited_pair/'reassembled.png',
+            '--compare', pair/'asset.png', '--allow-region', '51', '5', '6', '4'])
+        assert (edited_pair/'asset.png').read_bytes()==previous
+        with Image.open(edited_pair/'reassembled.png') as image:
+            assert image.convert('RGBA').getpixel((51,5))==(196,119,99,255)
+        run('packaged-owner-stale-merge-layout', [cli, 'inspect', '--image', edited_pair/'reassembled.png',
+            '--metadata', edited_pair/'layout.json'], expected=2)
+        run('packaged-chunk-no-clobber', [recipes/'chunk_pair.py', '--out-dir', pair], expected=2)
+        run('packaged-chunk-invalid-flag', [recipes/'chunk_pair.py', '--out-dir', recipe_work/'bad-chunks',
+            '--flag', 'invalid'], expected=2)
+        assert not (recipe_work/'bad-chunks').exists()
+
         bad_context = folder / 'bad-context.json'
         bad_context.write_text('{"atlas":{}}', encoding='utf-8')
         run('packaged-bad-context-no-output', [cli, 'review', '--image', warning_image,

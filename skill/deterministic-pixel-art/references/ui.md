@@ -28,3 +28,5 @@ Keep corners and border thickness stable across sizes. Produce alternate sizes t
 Composite icons into their button/panel at 1:1; inspect seams, padding, clipping and competing emphasis. Avoid baking text into reusable textures unless requested. Use the consumer's actual font and line metrics for text checks.
 
 For explicitly identified functional indicators, a 3:1 adjacent-color ratio is a starting reference from WCAG non-text contrast. It is not a condition for every highlight, decorative edge, disabled control or pair of nonadjacent states. Declare relevant pairs in review context and interpret results in the real layout. See [sources.md](sources.md).
+
+For actual font fit, selected+focused rendering, input and a regenerate/reload loop, read [consumer-ui.md](consumer-ui.md). A correct PNG alone does not establish a usable interactive component.

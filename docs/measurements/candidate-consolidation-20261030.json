@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-30",
+  "technical_consolidation_passed": true,
+  "stable_release_gate_passed": false,
+  "environment": {
+    "os": "Windows",
+    "python": "3.14.2",
+    "pillow": "12.3.0"
+  },
+  "source_tests": {
+    "count": 160,
+    "passed": true,
+    "seconds": 162.504,
+    "log": "evaluation/candidate-consolidation-20261030/source-tests.log"
+  },
+  "artifact_cases": {
+    "count": 106,
+    "passed": true,
+    "official_skill_validator": true
+  },
+  "portable_local_validator_passed": true,
+  "readme_commands": 9,
+  "stable_images": 43,
+  "package": {
+    "files": 98,
+    "changed_since_rc6": [
+      "SKILL.md",
+      "references/review.md",
+      "references/workflows.md",
+      "scripts/pixelart/cli.py",
+      "scripts/pixelart/output.py",
+      "scripts/recipes/_common.py"
+    ],
+    "unchanged": 92,
+    "bytes": 238396,
+    "rc6_bytes": 236584,
+    "sha256": "184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6",
+    "reproducible": true,
+    "matches_root_zip": true,
+    "public_api_module_identical": true
+  },
+  "repository_checker_fix": {
+    "problem": "Local Markdown section fragment was treated as part of a filename",
+    "scope": "repository-only checkers and regression tests; no packaged content changes",
+    "changed": [
+      "tools/test_skill.py",
+      "tools/validate_skill.py",
+      "tests/test_packaging.py"
+    ],
+    "original_failure": "initial-verification/standalone-zip.log",
+    "product_zip_sha256": "184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6"
+  },
+  "preservation": {
+    "passed": true,
+    "protected_checked": 421,
+    "protected_changed": [
+      "tests/test_packaging.py",
+      "tools/test_skill.py",
+      "tools/validate_skill.py"
+    ],
+    "protected_unchanged": 418,
+    "allowed_checker_and_test_changes": [
+      "tests/test_packaging.py",
+      "tools/test_skill.py",
+      "tools/validate_skill.py"
+    ],
+    "installed_checked": 44,
+    "installed_changed": [],
+    "installed_added": [],
+    "frozen_rc6_sha256": "5c206399714545f445e9e93fd5c1b227a6f1cab677cc8a45a43b86c19a313768",
+    "development_zip_sha256": "184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6"
+  },
+  "limits": [
+    "Windows-only fresh local checks; no new remote CI or Pillow matrix",
+    "No full tools/check.py run; explicit checks are enumerated in the report",
+    "Eight task categories collected are not eight complete passes or controlled old/new benefit evidence",
+    "LT04 original failure and LT08 early-history limitation preserved",
+    "No general art-quality, task-time or token benefit claim"
+  ],
+  "acceptance_route": {
+    "date": "2026-10-30",
+    "source": "direct user answer to acceptance-route multiple-choice question",
+    "selected": "tool usability first",
+    "requirements": [
+      "correctness",
+      "compatibility",
+      "external task completion"
+    ],
+    "benefit_research_separate": true,
+    "original32_runs_required_for_stable": false,
+    "release_executed": false,
+    "next": "review and freeze deliverable commit, then run matching CI"
+  },
+  "candidate_created": false,
+  "version_changed": false,
+  "committed": false,
+  "pushed": false,
+  "released": false,
+  "installed_skill_changed": false,
+  "stages": {
+    "total": 4,
+    "completed": [
+      "P1",
+      "P2",
+      "P3",
+      "P4a"
+    ],
+    "deferred": "P4b native512",
+    "current": "technical consolidation complete",
+    "next": "review and freeze deliverable commit, then run matching CI"
+  },
+  "evidence_directory": "evaluation/candidate-consolidation-20261030",
+  "remaining_delivery_steps": [
+    "review deliverable scope/commit",
+    "commit-specific Windows/Ubuntu and Pillow CI",
+    "final version package/hash validation",
+    "release download verification",
+    "backup and update local Skill"
+  ],
+  "document_checks": {
+    "passed": true,
+    "documents": 10,
+    "current_section_local_links": 92,
+    "git_diff_check_passed": true
+  }
+}

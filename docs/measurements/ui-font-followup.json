@@ -1,0 +1,67 @@
+{
+  "version": "1.2.0-rc.6",
+  "base_commit": "e726942",
+  "evidence": "Local engineering checks and author visual inspection; no new external result",
+  "source_tests": 117,
+  "packaged_cases": 97,
+  "official_skill_validator_passed": true,
+  "stable_rgba_outputs_unchanged": 43,
+  "immutable_files_unchanged": 81,
+  "candidate_existing_files_changed": 6,
+  "package": {
+    "files": 98,
+    "bytes": 236584,
+    "sha256": "5c206399714545f445e9e93fd5c1b227a6f1cab677cc8a45a43b86c19a313768",
+    "previous_candidate_bytes": 231561,
+    "growth_percent": 2.169
+  },
+  "actual_font": {
+    "file": "Silkscreen-Regular.ttf",
+    "size": 8,
+    "sha256": "c845473330b94c2079ce9af01c51ac8ba2d99c24f4d14c039843bbb8e642ebd8",
+    "labels": 3,
+    "states": 6,
+    "instances": 18,
+    "pressed_offset": [
+      0,
+      1
+    ],
+    "padding": 2,
+    "cell_size": [
+      88,
+      18
+    ],
+    "modes": [
+      "monochrome",
+      "grayscale"
+    ]
+  },
+  "visual_review": {
+    "native": true,
+    "nearest_3x": true,
+    "author_review": true,
+    "observation": "Labels intact; pressed text and triangle move down one pixel; state artwork unchanged.",
+    "limitation": "Offline composite, not independent review, font-engine portability or game integration"
+  },
+  "defects_detected": {
+    "no_pressed_text_motion": "exactly three state-offset checks fail even when image/report reconstruction is consistent",
+    "oversized_grid": "88x18 selected cell reports origin and full-image region guidance"
+  },
+  "external_runs": 0,
+  "stable_installed": "1.1.1",
+  "release_gate_changed": false,
+  "limits": [
+    "No universal aesthetic gain, token savings or external command-count improvement established",
+    "No new cross-platform CI result at this checkpoint"
+  ],
+  "final_task_package": {
+    "path": "dist/ui-followup-v1.2.0-rc.6/UI-followup.zip",
+    "bytes": 263359,
+    "sha256": "8e538ccf2da329fa4d2570529c6a861212ddf31d3f748f7627fb6981a91951f6",
+    "skill_files_match": 98,
+    "local_engineering_checks": 54,
+    "recorder_invocations": 6,
+    "expected_grid_failure": 1,
+    "external_runs": 0
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-24",
+  "version": "1.2.0-rc.4",
+  "status": "local sealed candidate; not published or installed",
+  "base_commit": "ebac2a0",
+  "phase": {
+    "total": 4,
+    "P1": "distributed; zero new external returns",
+    "P2": "complete",
+    "P3": "complete",
+    "P4a": "complete; implementation CI passed",
+    "P4b": "evaluated; drawing deferred for lack of concrete requirement",
+    "current": "candidate closeout; not a fifth feature phase"
+  },
+  "environment": {
+    "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "pillow": "12.3.0",
+    "os": "Windows-11-10.0.22631-SP0"
+  },
+  "source_tests": 98,
+  "zip_cases": 86,
+  "official_validator": {
+    "passed": true,
+    "output": "Skill is valid!",
+    "extracted_unicode_space_path": true
+  },
+  "stable_images_unchanged": 43,
+  "external_final_pngs_and_layouts_exact": 10,
+  "protected_files_unchanged": 138,
+  "package": {
+    "files": 97,
+    "bytes": 230474,
+    "sha256": "cb3472769754dbd9b5d56397e2620f6be12c253a8162a1642acd71225b4e69c1",
+    "reproducible": true,
+    "rc3_delta_bytes": 7490,
+    "rc3_delta_percent": 3.359
+  },
+  "old_packages_unchanged": {
+    "rc.2": {
+      "bytes": 213762,
+      "sha256": "a34e5c58e420fd43702fe9b892fbbae2a32a57a47311e58f242dad140e9ded22"
+    },
+    "rc.3": {
+      "bytes": 222984,
+      "sha256": "b680e73c966eb6557ed94bfc2e843dd4fca2c74c8aaf5f279caa2eeece6f308d"
+    }
+  },
+  "installed_stable_version": "1.1.1",
+  "minimal_example": {
+    "size": [
+      64,
+      32
+    ],
+    "owners": 2,
+    "outputs": 15,
+    "native_review": true,
+    "zoom_review": true,
+    "seam_review": true,
+    "visual_revision_rounds": 0,
+    "changed_rgba_pixels": 24,
+    "changed_outside_allowed_region": 0,
+    "isolated_sources_rebuild_exact": true,
+    "texture_period": 6,
+    "block_width": 32,
+    "stale_metadata_rejected": true
+  },
+  "ci": {
+    "implementation_commit": "c0330223114288a0790a4af9c3f2019e0f5bbeb7",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39985591333",
+    "passed_jobs": 8
+  },
+  "limitations": [
+    "Author inspection, not independent aesthetic evidence or in-game acceptance.",
+    "No native512 drawing; no concrete requirement yet.",
+    "P1 has zero new returns; controlled external stable-release gate remains pending.",
+    "No new token, model correction-round or creator-time measurement.",
+    "Minimal example is deliberately simple; not a substitute for complex scene validation."
+  ]
+}

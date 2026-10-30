@@ -1,0 +1,42 @@
+# P1定向复测包：准备与核验记录
+
+日期：2026-10-23。运行时基点 `e0ed738`；开始本轮时仓库HEAD `a79b1af`。本报告是本地准备的历史快照，**当时外部平台执行数为0**。
+
+2026-10-25后续：三份真实提交已全部收到并完成工程核验，见 [P1结果与改进](p1-results.zh-CN.md)。下面的准备、当时限制和分发包保留原义，不将本地演练改写成平台结果。
+
+## 已完成的本地执行
+
+- 新增三个固定输入任务、独立记录器、确定性打包器及4项端到端测试。测试在中文和空格路径调用真实包内CLI，覆盖错误哈希、命名编辑、空心蒙版、隐藏RGB误改、拒绝覆盖、视觉任务的工程契约、缺失依赖后归档失败材料。
+- 三份最终ZIP在独立中文/空格目录脚本演练，22次调用的退出码全部符合预期，三份 `checks.json` 工程契约通过，三份submission成功归档。故意重复输出的退出2属于通过条件。
+- 首次演练脚本把 `verify --allow-region/--allow-mask` 误写成 `--region/--mask`，CLI明确拒绝。修正演练脚本后在新目录完整重跑；保留失败记录，不改动Skill或冻结包。这是协调端脚本错误，不是外部Agent结果。
+- 演练中的metal修改只有一个像素，用来验证边界、重渲染、浅背景和剪影报告；不把它称作金属画质改善。实际视觉修改任务交给Gemini。
+
+本地证据：`evaluation/focused-20261023/`。最终演练位于 `中文 rehearsal space attempt2/`，有完整脚本、命令、检查结果和submission；详细记录留在被Git忽略的目录，不进入Skill上下文。
+
+## 冻结分发内容
+
+Skill ZIP保持原有213,762字节、85文件，SHA-256：
+
+`a34e5c58e420fd43702fe9b892fbbae2a32a57a47311e58f242dad140e9ded22`
+
+任务包位于 `dist/focused-v1.2.0-rc.2-final/`：
+
+| 包 | 字节 | SHA-256 |
+|---|---:|---|
+| P1-W-DeepSeek.zip | 225,898 | `298e003a4242e1869565f77920c7b1e35070b485020344bc1b038f1679772d95` |
+| P1-C-Qwen.zip | 224,326 | `87ad990089142e94393e065c71b7481398291d4bd6cf2d25ec7b927fa04d6c2a` |
+| P1-V-Gemini.zip | 225,583 | `f7296dbb42ed5165765a2fcba20e23ff50285519ac6f5928b6ace43333224f39` |
+
+每个任务内有输入、Skill、记录器、提示词的文件哈希。记录器使用调用它的解释器，收集实际模型显示名、Python/Pillow位置、命令、输出/错误、耗时和目标哈希；检查只判工程契约，不自动判断箭头方向或审美。缺依赖时仍可归档失败。
+
+较早的 `dist/focused-v1.2.0-rc.2/` 是未分发的中间构建，**不要使用或上传**。发布使用 `-final` 目录；冻结Skill包未覆盖。
+
+## 工程检查与发布核验
+
+完整工程流水线已通过80个源码测试、43张稳定产物、8项精确分析/导入任务和61项独立ZIP场景；连续两次打包哈希与冻结rc.2完全相同。官方skill-creator校验及另一轮61项ZIP场景通过。
+
+提交 `8932e7a95424cebfbc55dd047b18fe6acc8f46fb` 的[实际CI](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39916354346)已完成，8组全部成功：Windows/Ubuntu主流程，以及各自Python3.10/Pillow10.4、Python3.12/Pillow11.3、Python3.13/Pillow12.1的兼容测试。原OSS/FUSE挂载仍未复现。
+
+[rc.2预发布](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0-rc.2)已上线，重新下载9份附件，8份内容哈希和校验清单全部与本地一致；千问任务ZIP另外通过无登录的公开URL实际下载，SHA-256一致。机器记录见 [focused-release.json](measurements/focused-release.json)。发布附件中的本准备报告是上传前快照；本页追加了下载结果，不覆盖冻结ZIP。此后开发中的rc.3配方不会改变本轮三个任务包。
+
+未验证：实际千问OSS/FUSE挂载、外部Agent本轮修改成功率和耗时、普遍审美/Token收益、独立盲评及游戏内效果。稳定发布和本地已安装Skill维持v1.1.1。下一步等待三份真实反馈期间推进P2可读配方。

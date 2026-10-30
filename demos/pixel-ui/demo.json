@@ -1,0 +1,6 @@
+{
+  "baseline_width": 64,
+  "button_width": 96,
+  "hover": "426B83",
+  "labels": {"run": "RUN", "loop": "LOOP", "export": "EXPORT MAP"}
+}

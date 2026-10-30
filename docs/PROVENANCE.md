@@ -8,4 +8,6 @@ The repository includes 86 frozen fixture files: 18 original Python scripts, 25 
 
 The new examples demonstrate generic palettes and geometry plus optional Minecraft-inspired GUI conventions. There are no bundled game executables or third-party Python packages. Project code and fixtures are distributed under the root MIT license, selected by the repository owner. Pillow and PyYAML retain their own licenses as separately installed dependencies.
 
+The repository-only `demos/pixel-ui/fonts/` bundles unmodified Silkscreen Regular from Google Fonts, copyright The Silkscreen Project Authors, under SIL Open Font License 1.1. Its license, upstream URLs, Git blob IDs and SHA-256 values are retained beside the font. This font is an exception to the root MIT license and is not included in the standalone Skill. Consumer screenshots use that font with original project art; no Minecraft font or game artwork is bundled.
+
 `measurements/metrics.json` and `first-pass-metrics.json` preserve the original local optimization measurements. They are historical evidence, not CI performance thresholds. The Chinese report describes that original run; fresh runs write their own evidence to ignored `evaluation/`.

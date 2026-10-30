@@ -1,0 +1,137 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "task": "LT03",
+  "candidate": "1.2.0-rc.6",
+  "acceptance": "engineering/usability accepted; no resubmission needed",
+  "submission": {
+    "bytes": 33372,
+    "files": 15,
+    "sha256": "474412b7e7d56df3da4ebd21cf2b10d3fc637b8b8e038250f8c7c83bc2371a94"
+  },
+  "reported_platform": "Qwen office assistant, Linux",
+  "reported_model": "qwen3.8-max",
+  "recorded_python": "3.12.3",
+  "recorded_pillow": "12.3.0",
+  "recorded_interpreter_consistent": true,
+  "trusted_checks": 21,
+  "submitted_check_facts_match": true,
+  "local_rehearsal_checks": 22,
+  "check_count_explanation": "native-panel-rgba check runs only when native render succeeds; here it failed as recorded",
+  "roundtrips": [
+    {
+      "name": "rgba",
+      "source_mode": "RGBA",
+      "size": [
+        16,
+        16
+      ],
+      "kind": "grid",
+      "color_count": 3,
+      "rgba_pixels_exact": true,
+      "import_spec_exact": true,
+      "changed_pixels": 0,
+      "semi_transparent": 8,
+      "transparent": 202,
+      "raw_rgba_sha256": "c0d7d834c07db4ac39baf19bc017fa050973ec6a675bdfc6a71156e37bd862bb",
+      "pixelart_rgba_sha256": "42d00204974fafb7668d325e00373b7e145dae99050c7104eb6018e671475a66"
+    },
+    {
+      "name": "rgb",
+      "source_mode": "RGB",
+      "size": [
+        20,
+        16
+      ],
+      "kind": "draw",
+      "color_count": 320,
+      "rgba_pixels_exact": true,
+      "import_spec_exact": true,
+      "changed_pixels": 0,
+      "semi_transparent": 0,
+      "transparent": 0,
+      "raw_rgba_sha256": "e9efe6836bd168b1dc715c91d12155462f2014a0391eb565056e35279f9dc286",
+      "pixelart_rgba_sha256": "b96254d0fb2925ab11a8609e34a659d9747939238d157b40c9033d330b41789b"
+    },
+    {
+      "name": "indexed",
+      "source_mode": "P",
+      "size": [
+        12,
+        12
+      ],
+      "kind": "grid",
+      "color_count": 4,
+      "rgba_pixels_exact": true,
+      "import_spec_exact": true,
+      "changed_pixels": 0,
+      "semi_transparent": 33,
+      "transparent": 44,
+      "raw_rgba_sha256": "873f1be22b52e4c417a539df3ec21a6113330da2777e55524fc1c8e22335b1a0",
+      "pixelart_rgba_sha256": "f5e01c8eb8a6cc1b13e42610f279bd16ec87e2adaf1f35fdb4c04f7a3df1ea42"
+    }
+  ],
+  "panel_size": [
+    96,
+    64
+  ],
+  "panel_rgba_sha256": "58bf7961f117038335fc5c954bfd55e988cd3a505acd84dd90b1d1243a461f13",
+  "panel_fully_opaque": true,
+  "exact_preview_and_review_reconstruction": true,
+  "commands": 12,
+  "tool_commands": 11,
+  "helper_commands": 1,
+  "nonzero_commands": 3,
+  "hard_link_failures": 2,
+  "expected_overwrite_rejection": 1,
+  "portable_flag_commands": 9,
+  "force_used": false,
+  "recorded_snapshot_chain_and_final_hashes_match": true,
+  "reconstructed_conversation_not_raw": true,
+  "original_environment_probe_and_install_logs_received": false,
+  "producer_helper_source_received": false,
+  "helper_stdout_independently_verified": true,
+  "remote_frozen_files_independently_proven_unchanged": false,
+  "feedback_disposition": {
+    "portable_task_choice": "useful opt-in workflow candidate; do not silently change atomic visibility or overwrite policy",
+    "missing_ensurepip_recovery": "useful guidance gap; verify and document as conditional recovery",
+    "blanket_fuse_failure": "overstated; observed two failures in this reported environment, not all FUSE mounts",
+    "symlink_guidance_missing": "incorrect; frozen workflows.md already includes temporary-filesystem recovery",
+    "universal_automatic_preflight": "not adopted; permission/link support depends on target and may race",
+    "visual_claims": "native panel is fully opaque; supplied image interpretation is not sufficient aesthetic proof"
+  },
+  "cleanup": {
+    "completed": true,
+    "finished_utc": "2026-10-28T18:06:04.8198940Z",
+    "repository": "Chenamel/deterministic-pixel-art",
+    "tag": "tmp-lt03-rc6-20261029",
+    "release_id": 426977499,
+    "asset_id": 685775801,
+    "release_removed": true,
+    "temporary_tag_removed": true,
+    "download_http_status": 404,
+    "other_releases_assets_unchanged": true,
+    "latest_stable_tag": "v1.1.1",
+    "main_and_development_branch_unchanged": true,
+    "local_packet_preserved": true,
+    "raw_submission_preserved": true
+  },
+  "protected_files": 285,
+  "protected_files_unchanged": true,
+  "runtime_or_frozen_candidate_or_installation_changed": false,
+  "new_full_suite_or_ci_run": false,
+  "source_committed_or_pushed_this_turn": false,
+  "release_gate_changed": false,
+  "total_main_stages": 4,
+  "complete": [
+    "P1",
+    "P2",
+    "P3",
+    "P4a"
+  ],
+  "deferred": [
+    "P4b native512"
+  ],
+  "current": "candidate external acceptance; LT03 closed",
+  "next": "Recommended small usability batch: explicit task/process portable output choice and concise dependency recovery; not implemented by this receipt task."
+}

@@ -1,0 +1,13 @@
+{
+  "purpose": "Exploration-game side-view courier spacecraft, transparent background, no baked text",
+  "size": [32, 32],
+  "meaning": "Nose faces right, engine/tail left; identifiable cockpit and engine; asymmetric form",
+  "backgrounds": {"dark": "182637", "light": "E9EDF2"},
+  "view_scales": [1, 8],
+  "revision": {
+    "allowed_region": [12, 2, 8, 6],
+    "request": "Change only the indicator base color in this rectangle; retain housing, highlights and all other RGBA",
+    "base_before": "F5C26BFF",
+    "base_after": "62D8E8FF"
+  }
+}

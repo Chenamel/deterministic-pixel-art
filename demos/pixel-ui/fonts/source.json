@@ -1,0 +1,20 @@
+{
+  "family": "Silkscreen",
+  "license": "SIL Open Font License 1.1",
+  "files": [
+    {
+      "file": "Silkscreen-Regular.ttf",
+      "source": "https://github.com/google/fonts/blob/main/ofl/silkscreen/Silkscreen-Regular.ttf",
+      "git_blob": "8caff819d666217fe8240ede768ef86d086b453b",
+      "sha256": "c845473330b94c2079ce9af01c51ac8ba2d99c24f4d14c039843bbb8e642ebd8",
+      "bytes": 32220
+    },
+    {
+      "file": "OFL.txt",
+      "source": "https://github.com/google/fonts/blob/main/ofl/silkscreen/OFL.txt",
+      "git_blob": "3dd7cfb722960e05a39c20cc0f0c9a4f43f55848",
+      "sha256": "86c5e9c9382cdcc5948704fdfe60f2aa164a719746931219a42736ecd9cefbd3",
+      "bytes": 4394
+    }
+  ]
+}

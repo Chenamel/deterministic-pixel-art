@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "task": "LT04",
+  "candidate": "unversioned development snapshot after rc.6; not rc.7",
+  "skill_zip_sha256": "f02be7f650df703b6935666988780154ede02851db014b903e6cae0c6cabd7ba",
+  "packet_sha256": "cc60bad749f06bab310aead75dc8f02b0e0dd7271dfcdb28daa2523b993c0de1",
+  "submission": {
+    "bytes": 22216,
+    "files": 23,
+    "sha256": "0bcce7782bc4ecea44250e136d29efdcd91d86273b61e79ce258fd3ab2f2f402"
+  },
+  "platform": "WorkBuddy",
+  "user_confirmed_model": "Hy3",
+  "original_model_field": "deterministic-pixel-art 1.2.0-rc.6 + Pillow 12.3.0",
+  "original_model_field_is_tool_version": true,
+  "original_session_preserved": true,
+  "backend_identity_independently_verified": false,
+  "engineering_acceptance": true,
+  "full_task_acceptance": false,
+  "trusted_checks": 55,
+  "submitted_check_facts_match": true,
+  "exact_spec_png_layout_reconstructions": 3,
+  "exact_preview_reconstructions": 8,
+  "shared_visible_colors": 6,
+  "binary_alpha_and_transparent_borders_pass": true,
+  "map_edit": {
+    "allowed_region": [
+      16,
+      0,
+      16,
+      16
+    ],
+    "changed_rgba_pixels": 25,
+    "changed_outside": 0,
+    "other_cells_and_layout_unchanged_between_final_v1_v2": true
+  },
+  "direction_semantics": {
+    "up": "correct",
+    "down": "correct",
+    "left": "incorrect; points right",
+    "right": "incorrect; points left",
+    "cause": "authored geometry rotation mapping; layout names/order correct",
+    "independent_shape_rotation_check": true
+  },
+  "recorded_environment": {
+    "os": "Windows 11",
+    "python": "3.13.14",
+    "pillow": "12.3.0"
+  },
+  "same_recorded_environment": true,
+  "commands": 26,
+  "tool_commands": 23,
+  "helper_commands": 3,
+  "nonzero_tool_commands": 0,
+  "nonzero_helper_commands": 1,
+  "helper_failure": "KeyError:12; custom argument ordering, subsequently corrected",
+  "all_recorded_commands_portable_env_1": true,
+  "per_command_portable_flags": 0,
+  "force_used": false,
+  "native_hard_link_failure_record_received": false,
+  "original_installation_logs_received": false,
+  "earlier_revision_images_and_helper_versions_preserved": false,
+  "deleted_and_recreated_artifact_paths": 14,
+  "v1_v2_json_written_by_same_generator_invocation": true,
+  "sequential_review_then_edit_independently_proven": false,
+  "claimed_visual_revision_improvement_independently_proven": false,
+  "review_scope": "coordinator viewed native and 8x previews; not independent blind review",
+  "functional_contrast_diagnostic": {
+    "teal_light": 1.6347754200038604,
+    "dark_outline_light": 13.425865819682379,
+    "highlight_light": 1.296263025221479,
+    "teal_dark": 7.967467102467749
+  },
+  "feedback_disposition": {
+    "horizontal_direction_error": "targeted authoring correction recommended; not renderer regression",
+    "missing_candidates": "preserve separate versions; future narrow recorder/check coverage improvement",
+    "portable_setting": "successful external use; no measured general efficiency or quality benefit",
+    "light_background_contour": "useful local design feedback; do not require every color to meet 3:1",
+    "thicker_outline": "not automatically adopted; inspect gear hole, silhouette, borders and weight",
+    "shared_palette": "does not require identical fill for every icon",
+    "model_field": "record user correction separately without rewriting raw session"
+  },
+  "token_usage": null,
+  "full_task_elapsed": null,
+  "controlled_version_comparison": false,
+  "protected_files": 501,
+  "protected_files_unchanged": true,
+  "producer_current_frozen_files_match": 104,
+  "producer_historical_immutability_proven": false,
+  "submitted_source_executed": false,
+  "runtime_or_skill_or_frozen_candidate_or_installation_changed": false,
+  "source_committed_or_pushed_this_task": false,
+  "new_candidate_or_release_or_installation": false,
+  "new_full_suite_or_ci_run": false,
+  "new_correction_or_trial_packet_prepared": false,
+  "release_gate_changed": false,
+  "total_main_stages": 4,
+  "complete": [
+    "P1",
+    "P2",
+    "P3",
+    "P4a"
+  ],
+  "deferred": [
+    "P4b native512"
+  ],
+  "current": "external acceptance; LT04 audited, critical authoring correction pending",
+  "next": "Recommend one horizontal-direction correction with preserved versions, then independent image review before LT05."
+}

@@ -36,7 +36,13 @@ def main():
     shutil.copyfile(ROOT / 'src/pixel_art.py', skill / 'scripts/pixel_art.py')
     for path in sorted((ROOT / 'src/pixelart').glob('*.py')):
         shutil.copyfile(path, skill / 'scripts/pixelart' / path.name)
-    for path in sorted((ROOT / 'examples').rglob('*.json')):
+    for path in sorted((ROOT / 'recipes').glob('*.py')):
+        target = skill / 'scripts/recipes' / path.name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, target)
+    for path in sorted((ROOT / 'examples').rglob('*')):
+        if path.suffix not in ('.json','.png') or not path.is_file():
+            continue
         target = skill / 'assets' / path.relative_to(ROOT / 'examples')
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(path, target)

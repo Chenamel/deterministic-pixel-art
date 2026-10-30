@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "kind": "grid",
+  "rows": ["....", ".xx.", ".xx.", "...."],
+  "palette": {".": null, "x": "F5C26B"}
+}

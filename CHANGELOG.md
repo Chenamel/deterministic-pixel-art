@@ -1,5 +1,61 @@
 # Changelog
 
+## 1.2.0 (2026-10-30)
+
+- Add bounded image inspection and lossless static 8-bit PNG import, including hidden RGB and named-cell editing through validated layouts.
+- Add single-cell replacement, exact RGBA edit-boundary checks and bounded component assembly with coverage and seam views. Preserve JSON v1, previous API defaults and existing drawing/compositing semantics.
+- Ship editable recipes for icons, button states, a native128 sprite, component scenes and a two-owner bridge with global material phase. Include concise routes for small edits, text inspection, visual review and consumer checks.
+- Add task-shell portable-output selection and explicit command overrides; improve dependency recovery and practical grid/visual-fact guidance. Keep Python/Pillow as the runtime dependencies.
+- Publish versioned artifacts with SHA-256 and per-file manifests. Retain external-task failures and evidence limits; tool-usability acceptance does not establish general aesthetic, time or token improvements.
+
+## 1.2.0-rc.5 (local candidate)
+
+- Independently audit all three external P1 submissions against frozen task inputs, exact RGBA, layouts and command records; retain the distinction between external logs, coordinator reproduction and visual judgment.
+- Add optional `import --cell NAME` and `image_to_spec(..., cell=NAME)` to export one exact named grid/draw through a verified sidecar, embedded or in-memory atlas layout. Preserve existing full-atlas/flat import defaults.
+- Clarify candidate directories, atlas replacement metadata, grid symbol remapping and future task direction/recorder instructions. Keep published task packages and earlier candidate ZIPs intact; do not promote stable from three uncontrolled follow-ups.
+
+## 1.2.0-rc.4 (local candidate)
+
+- Add on-demand guidance for real-font content fitting, combined UI states and consumer checks, drawing on the repository's actual browser study.
+- Ship a minimal two-owner native64x32 bridge recipe with separately runnable local sources, a global six-pixel material phase and exact24-pixel flag edits. Keep the native256 repository demonstration unchanged.
+- Defer native512 artwork until an actual consumer/detail/editing requirement warrants it. No new core commands or rendering semantics; keep stable/local v1.1.1 and frozen rc.2/rc.3 packages intact.
+
+## Repository independent-chunk example (no Skill version change)
+
+- Freeze a shared edge/style contract before four separately runnable 128px drawings; assemble a native256 scene without a finished-image input or post-assembly painting.
+- Check explicit material/phase anchors alongside geometric ownership; retain coordinate seam/native/grayscale views and a precise84-pixel single-chunk edit rehearsal.
+- Add isolated-source and drift/no-overwrite regression checks; keep frozen Skill contents and installed stable unchanged. Native512 remains conditional and untested.
+
+## Repository consumer demonstration (no Skill version change)
+
+- Load actual named PNG atlas cells and a separately OFL-licensed local font in a dependency-free browser demo; implement native mouse/keyboard controls, six states and integer scaling.
+- Retain the 64px text-overflow baseline and a 96px recipe/layout correction, with actual-font bounds, screenshots and a further parameter-edit rehearsal. Do not claim general aesthetic or in-game gains.
+- Rebuild the demo in portable checks; retain the frozen rc.3 Skill ZIP and stable/local v1.1.1 unchanged.
+
+## 1.2.0-rc.3 (local candidate)
+
+- Ship standalone editable Python recipes for named icons, six-state buttons with text reservations, the native128 courier and256 component scene. Defaults match frozen rc.2 pixels at Pillow12.3.0.
+- Reuse recipe geometry in the repository generator; re-render components before scene assembly. Keep JSONv1 and all prior command/API semantics.
+- Verify scoped color/state edits, standalone spec reproduction, grouped no-overwrite and fresh component assembly from the extracted Skill. No model-token, timing or general aesthetic gains are claimed.
+
+## 1.2.0-rc.2
+
+- Fix invisible silhouettes on light primary backgrounds; expose native views for each background and existing per-cell geometry summaries.
+- Add explicit preview backgrounds and opt-in no-hard-link output; preserve no-overwrite and disclose weaker new-file visibility.
+- Preserve named PNG atlas cells through lossless import; add `replace-cell` and raw-RGBA `verify` with allowed rectangles or masks.
+- Add opt-in copy/sparse atlas assembly while retaining old source-over defaults.
+- Add bounded file-based `assemble`, explicit component crops/overlaps/coverage and coordinate-labeled seam views.
+- Include original native 128×128 and 256×256 examples, editable sources and executable exact-copy controls.
+- Keep stable v1.1.1 and the existing local installation; exploratory external feedback is not the controlled release gate or proof of general aesthetic gains.
+
+## 1.2.0-rc.1
+
+- Add bounded `inspect` facts: geometry, alpha locations, palette frequencies, 4/8-neighbor components, symmetry and exact local grids.
+- Add lossless static 8-bit PNG `import` into JSON v1 grids or row-run rectangles, preserving hidden RGBA bytes without quantization.
+- Share analysis with `review`; reuse sidecar layouts and optionally embed deterministic, content-bound layout records in PNGs.
+- Route small edits, text-only inspection and visual review separately; provide paired external-agent evaluation packages.
+- Remains a candidate until the agreed external workflow gate passes. No general aesthetic or token-saving claim is made.
+
 ## 1.1.1
 
 - Fix null mask outlines, contextual background selection and bounded wide-image review sheets.

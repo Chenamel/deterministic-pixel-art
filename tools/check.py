@@ -13,9 +13,13 @@ def run(name, *arguments):
 
 
 if __name__ == '__main__':
+    run('build_workflow_examples.py')
+    run('build_consumer_demo.py', '--force')
+    run('build_chunk_scene.py', '--force')
     run('migrate_assets.py')
     run('evaluate.py')
     run('evaluate_quality.py')
+    run('evaluate_feedback.py')
     run('package_skill.py')
     archive = ROOT / 'deterministic-pixel-art.zip'
     before = hashlib.sha256(archive.read_bytes()).hexdigest()

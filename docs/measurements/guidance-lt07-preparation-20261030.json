@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-30",
+  "status": "ready_for_user_handoff",
+  "scope": [
+    "two focused Skill guidance edits",
+    "LT07 packet/checker/builder/tests"
+  ],
+  "skill": {
+    "old_sha256": "b2dcbe96443b278e2b93ef6a9e28d250d025d4c5eb4a36f7395c747086b31086",
+    "sha256": "184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6",
+    "old_bytes": 237868,
+    "bytes": 238396,
+    "files": 98,
+    "changed_files": [
+      "deterministic-pixel-art/references/review.md",
+      "deterministic-pixel-art/SKILL.md"
+    ],
+    "reproducible": true
+  },
+  "packet": {
+    "task": "LT07",
+    "archive": "LT07-Minecraft.zip",
+    "bytes": 254392,
+    "sha256": "eff7645c5acf7b8b3b03b1b0a4e17f8223dffe1498b8ca41c0af5df7d6fc2335",
+    "skill_zip_sha256": "184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6",
+    "skill_build": "unversioned guidance development snapshot; not a new RC",
+    "skill_files": 98,
+    "packet_files": 104,
+    "external_runs": 0,
+    "recommended_environment": "Doubao office tasks, new session",
+    "recommended_model": "current platform-selected model; record actual displayed name or undisclosed"
+  },
+  "tests": {
+    "guidance_cli_calls": 9,
+    "expected_guidance_errors": 2,
+    "primary_background_cards_verified": 3,
+    "targeted_test_cases": 4,
+    "official_skill_validations": 2,
+    "final_zip_rehearsal": {
+      "passed": true,
+      "checks": 35,
+      "default_output": true,
+      "expected_refusal_preserved": true,
+      "recorder_commands": 14,
+      "submission_files": 24,
+      "submission_sha256": "175912524817eae9531492c8cdb9b53aa282c3d8706d602eef75b715478bb06f",
+      "official_validator": true,
+      "external_runs": 0,
+      "scope": "Local Windows final-ZIP fixture; no external model or in-game acceptance."
+    },
+    "reproducible_packet": true
+  },
+  "protection": {
+    "passed": true,
+    "protected_files": 389,
+    "intentional_changes": [
+      "skill-content/references/review.md",
+      "skill-content/SKILL.md",
+      "skill/deterministic-pixel-art/references/review.md",
+      "skill/deterministic-pixel-art/SKILL.md",
+      "deterministic-pixel-art.zip"
+    ],
+    "unchanged": 384,
+    "installed_files": 44,
+    "installed_unchanged": true,
+    "old_development_zip_preserved": "b2dcbe96443b278e2b93ef6a9e28d250d025d4c5eb4a36f7395c747086b31086",
+    "runtime_and_frozen_packets_unchanged": true
+  },
+  "environment": {
+    "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "pillow": "12.3.0",
+    "platform": "win32"
+  },
+  "actual_views": {
+    "guidance_contact_sheet": true,
+    "lt07_previews": 8,
+    "lt07_distinct_previews": 4,
+    "seam_sheet": true
+  },
+  "limits": [
+    "Local Windows checks only, no new Linux or CI run.",
+    "No fresh full runtime/43-asset suite: all runtime/example ZIP bytes are unchanged.",
+    "No external behavioral, efficiency, semantic or aesthetic improvement measured.",
+    "Offline fixture not an external submission or game/font integration test."
+  ],
+  "next": "User sends LT07-Minecraft.zip to Doubao office tasks in a new session; record actual model or undisclosed.",
+  "stages": {
+    "total": 4,
+    "current": "P1-P3/P4a complete; external LT07 prepared",
+    "deferred": "P4b native512",
+    "next": "receive and audit LT07, then decide LT08"
+  },
+  "final_document_checks": {
+    "passed": true,
+    "local_links": 95,
+    "syntax_files": 3,
+    "generated_manifest_entries": 98,
+    "git_diff_check": true,
+    "skill_links_checked_in": "generated installed-shaped tree; example assets are copied from examples during packaging"
+  }
+}

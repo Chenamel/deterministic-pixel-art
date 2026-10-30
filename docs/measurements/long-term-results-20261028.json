@@ -1,0 +1,164 @@
+{
+  "date": "2026-10-28",
+  "timezone": "Asia/Shanghai",
+  "base_commit": "155dbc3",
+  "skill_version": "1.2.0-rc.5",
+  "track": "Single-version external usability and independent artifact review; not paired benefit evidence",
+  "received_submissions": 3,
+  "distinct_tasks": 2,
+  "producer_platforms": [
+    "WorkBuddy / Windows"
+  ],
+  "trusted_engineering_rechecks_passed": 3,
+  "recorded_commands": 35,
+  "nonzero_commands": 3,
+  "exact_spec_png_pairs": 6,
+  "additional_import_crop_rebuilds": 3,
+  "reviewer_image_hash_rows_matched": 21,
+  "reviewer_raw_transcript_available": false,
+  "reviewer_json_available": false,
+  "cases": [
+    {
+      "task": "LT01",
+      "model": "GLM-5.3-Flash",
+      "commands": 11,
+      "nonzero_commands": 0,
+      "spec_png_pairs": 2,
+      "engineering_checks": 6,
+      "final_size": [
+        64,
+        16
+      ],
+      "changed_rgba_pixels": 70,
+      "changed_outside": 0,
+      "visual_status": "offline direction/boundary accepted",
+      "producer_transcript_available": true,
+      "producer_image_calls_observed": true,
+      "response_usage_fields_present": true,
+      "complete_task_billing_tokens": null
+    },
+    {
+      "task": "LT02",
+      "model": "DeepSeek-V4.1-Flash",
+      "commands": 11,
+      "nonzero_commands": 1,
+      "spec_png_pairs": 2,
+      "engineering_checks": 33,
+      "final_size": [
+        264,
+        36
+      ],
+      "changed_rgba_pixels": null,
+      "changed_outside": null,
+      "visual_status": "consumer motion follow-up recommended",
+      "producer_transcript_available": true,
+      "producer_image_calls_observed": true,
+      "response_usage_fields_present": true,
+      "complete_task_billing_tokens": null
+    },
+    {
+      "task": "LT02",
+      "model": "MiniMax-M3.1-Flash",
+      "commands": 13,
+      "nonzero_commands": 2,
+      "spec_png_pairs": 2,
+      "engineering_checks": 33,
+      "final_size": [
+        264,
+        36
+      ],
+      "changed_rgba_pixels": null,
+      "changed_outside": null,
+      "visual_status": "consumer motion follow-up recommended",
+      "producer_transcript_available": true,
+      "producer_image_calls_observed": true,
+      "response_usage_fields_present": true,
+      "complete_task_billing_tokens": null
+    }
+  ],
+  "coordinator_probes": {
+    "relative_motion": {
+      "name": "relative-motion",
+      "checker_exit": 0,
+      "changed_consumer_pixels": 1285,
+      "failed_checks": []
+    },
+    "pressed_from_original_baseline": {
+      "name": "pressed-from-original-baseline",
+      "checker_exit": 1,
+      "changed_consumer_pixels": 257,
+      "failed_checks": [
+        "pressed-START-placement",
+        "pressed-LOOP-placement",
+        "pressed-EXPORT MAP-placement"
+      ]
+    },
+    "monochrome_text": {
+      "name": "monochrome-text",
+      "checker_exit": 1,
+      "changed_consumer_pixels": 642,
+      "failed_checks": [
+        "consumer.png-font-rebuild",
+        "consumer-3x.png-font-rebuild"
+      ]
+    },
+    "font_mask": {
+      "gray_values": [
+        0,
+        12,
+        16,
+        23,
+        28,
+        40,
+        228,
+        240,
+        244,
+        255
+      ],
+      "intermediate_gray_values": [
+        12,
+        16,
+        23,
+        28,
+        40,
+        228,
+        240,
+        244
+      ],
+      "monochrome_values": [
+        0,
+        255
+      ]
+    },
+    "grid": {
+      "selected_cell_size": [
+        88,
+        18
+      ],
+      "error": "grid: limited to 64x64; select --region or --cell",
+      "region_60x18_succeeds": true
+    },
+    "disabled_color_contrast": 3.489433742925152,
+    "brighter_example_contrast": 4.761867858143381,
+    "notes": [
+      "Probes are isolated coordinator examples, not changes to external results or new model trials.",
+      "Relative motion can be made consistent; this alone does not prove optimal optical alignment.",
+      "Monochrome is a style option, not a universal font requirement.",
+      "Inactive UI contrast and label whitespace are not automatic failures of the frozen task."
+    ]
+  },
+  "preservation": {
+    "original_user_files": 8,
+    "protected_files": 170,
+    "all_unchanged": true
+  },
+  "runtime_changed": false,
+  "candidate_created": false,
+  "installed_skill_changed": false,
+  "paired_release_gate_changed": false,
+  "next_work": [
+    "Optional reusable real-font consumer helper with explicit font rasterization and state offsets.",
+    "Clarify bounded grid errors, short-label examples, rectangle bounds and context/metadata pairing.",
+    "Locally verify, then one focused external follow-up; prepare LT03 Linux package afterwards."
+  ]
+}

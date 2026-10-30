@@ -26,7 +26,8 @@ def validate(folder):
     if not isinstance(description, str) or not description.strip() or len(description) > 1024:
         raise ValueError('Description must be nonempty and at most 1024 characters')
     for target in re.findall(r'\]\(([^)]+)\)', text[match.end():]):
-        if '://' not in target and not (folder / target).is_file():
+        filename = target.partition('#')[0]
+        if filename and '://' not in target and not (folder / filename).is_file():
             raise ValueError(f'Broken skill reference: {target}')
     print('Portable skill metadata and references valid')
 

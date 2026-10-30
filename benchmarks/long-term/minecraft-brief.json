@@ -1,0 +1,18 @@
+{
+  "consumer": {"edition": "Minecraft Java", "loader": "Forge", "version": "1.20.1", "scope": "offline custom storage organizer textures"},
+  "body_size": [176, 80],
+  "footer_size": [176, 32],
+  "scene_size": [176, 112],
+  "slots": {"origin": [8, 22], "cell_size": [18, 18], "columns": 3, "rows": 3, "step": [18, 18]},
+  "reserved_content": {"body": [8, 6, 160, 10], "footer": [8, 8, 160, 16]},
+  "button_size": [40, 16],
+  "states": ["normal", "hover", "pressed", "disabled"],
+  "parts": [
+    {"name": "body", "image": "panel/body.png", "at": [0, 0], "mode": "copy"},
+    {"name": "footer", "image": "panel/footer.png", "at": [0, 80], "mode": "copy"},
+    {"name": "control", "image": "buttons.png", "at": [120, 38], "crop": [0, 0, 40, 16], "mode": "copy", "allow_overlap": true}
+  ],
+  "backgrounds": {"dark": "182637", "light": "E9EDF2"},
+  "view_scales": [1, 4],
+  "max_revision_rounds": 2
+}

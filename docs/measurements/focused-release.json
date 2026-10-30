@@ -1,0 +1,55 @@
+{
+  "version": "1.2.0-rc.2",
+  "ci_run": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39916354346",
+  "ci_jobs_passed": 8,
+  "release": "https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0-rc.2",
+  "downloaded_assets": [
+    {
+      "asset": "deterministic-pixel-art-v1.2.0-rc.2.zip",
+      "sha256": "a34e5c58e420fd43702fe9b892fbbae2a32a57a47311e58f242dad140e9ded22",
+      "verified": true
+    },
+    {
+      "asset": "focused-trials-report.zh-CN.md",
+      "sha256": "c5f90e0b2b953a591778ef85e206a196bf0f255867ee33b422f4175088f5437c",
+      "verified": true
+    },
+    {
+      "asset": "P1-C-Qwen.zip",
+      "sha256": "87ad990089142e94393e065c71b7481398291d4bd6cf2d25ec7b927fa04d6c2a",
+      "verified": true
+    },
+    {
+      "asset": "P1-V-Gemini.zip",
+      "sha256": "f7296dbb42ed5165765a2fcba20e23ff50285519ac6f5928b6ace43333224f39",
+      "verified": true
+    },
+    {
+      "asset": "P1-W-DeepSeek.zip",
+      "sha256": "298e003a4242e1869565f77920c7b1e35070b485020344bc1b038f1679772d95",
+      "verified": true
+    },
+    {
+      "asset": "release-manifest.json",
+      "sha256": "7766db62667e0337e6c41b2a9d0d82826c6d518ae68e1c581e6565f4d2f60edb",
+      "verified": true
+    },
+    {
+      "asset": "workflow-report.md",
+      "sha256": "770a85d614596131d9c84ddf21b03f69af7001879d41d3af3b618f7e86f7bd19",
+      "verified": true
+    },
+    {
+      "asset": "workflow-report.zh-CN.md",
+      "sha256": "df0478b1b37472c9908f1115ef112a8a8011a560e3c79f27acca981bcbeb8d62",
+      "verified": true
+    }
+  ],
+  "checksum_file_matches_local": true,
+  "qwen_anonymous_public_download": {
+    "url": "https://github.com/Chenamel/deterministic-pixel-art/releases/download/v1.2.0-rc.2/P1-C-Qwen.zip",
+    "sha256": "87ad990089142e94393e065c71b7481398291d4bd6cf2d25ec7b927fa04d6c2a",
+    "verified": true
+  },
+  "external_focused_runs": 0
+}

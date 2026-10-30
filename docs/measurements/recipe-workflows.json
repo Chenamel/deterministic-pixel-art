@@ -1,0 +1,89 @@
+{
+  "version": "1.2.0-rc.3",
+  "evidence": "Local scripted authoring-path rehearsal, not an independent model or token/time productivity study",
+  "package_sha256": "b680e73c966eb6557ed94bfc2e843dd4fca2c74c8aaf5f279caa2eeece6f308d",
+  "commands": 17,
+  "unexpected_failures": 0,
+  "expected_no_clobber_failures": 1,
+  "task_revisions": null,
+  "token_usage": null,
+  "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+  "pillow": "12.3.0",
+  "pythonpath_cleared": true,
+  "unicode_space_path": true,
+  "source_costs": {
+    "icons": {
+      "recipe_bytes": 1654,
+      "recipe_lines": 35,
+      "expanded_reference_bytes": 3228,
+      "expanded_reference_lines": 139
+    },
+    "buttons": {
+      "recipe_bytes": 2777,
+      "recipe_lines": 49,
+      "expanded_reference_bytes": 9618,
+      "expanded_reference_lines": 481
+    },
+    "courier128": {
+      "recipe_bytes": 2535,
+      "recipe_lines": 49,
+      "expanded_reference_bytes": 439756,
+      "expanded_reference_lines": 33744
+    },
+    "scene256": {
+      "recipe_bytes": 5243,
+      "recipe_lines": 91,
+      "expanded_reference_bytes": 260496,
+      "expanded_reference_lines": 19889
+    }
+  },
+  "shared_helper_bytes": 2613,
+  "stripe_verification": {
+    "version": 1,
+    "valid": true,
+    "changed_rgba_pixels": 328,
+    "changed_inside": 328,
+    "changed_outside": 0,
+    "allowed_pixels": 480,
+    "outside_bbox": null,
+    "outside_samples": [],
+    "omitted_outside_samples": 0,
+    "note": "Exact edit boundary only; does not judge appearance, object identity or state meaning."
+  },
+  "hover_verification": {
+    "version": 1,
+    "valid": true,
+    "changed_rgba_pixels": 832,
+    "changed_inside": 832,
+    "changed_outside": 0,
+    "allowed_pixels": 1152,
+    "outside_bbox": null,
+    "outside_samples": [],
+    "omitted_outside_samples": 0,
+    "note": "Exact edit boundary only; does not judge appearance, object identity or state meaning."
+  },
+  "rerendered_edited_specs": 3,
+  "component_reassembly_exact": true,
+  "visual_review": "Author viewed the before/after sheet, native/background/grayscale UI review and the edited scene preview. Icon silhouette and courier direction preserved; only declared colors/hover changed. Reserved text avoids glyph/state marks; actual font fit and interaction remain for P3. Not independent preference evidence.",
+  "unit_tests": 86,
+  "zip_cases": 77,
+  "official_skill_validator": true,
+  "package_files": 91,
+  "package_bytes": 222984,
+  "stable_images_unchanged": 43,
+  "external_final_pngs_unchanged": 10,
+  "protected_originals_and_inputs_unchanged": 138,
+  "source_commit": "5f700d977a05e3e50dd1ae6de9fab7a7b0ee3917",
+  "ci_run": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/39919655914",
+  "ci_jobs_passed": 8,
+  "ci_platforms": [
+    "windows-latest",
+    "ubuntu-latest"
+  ],
+  "compatibility_pillow": [
+    "10.4.0",
+    "11.3.0",
+    "12.1.0"
+  ],
+  "candidate_status": "local sealed; not published or installed"
+}

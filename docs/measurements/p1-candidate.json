@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-25",
+  "version": "1.2.0-rc.5",
+  "base_commit": "e66d87d",
+  "status": "local sealed candidate; not released or installed",
+  "phase": {
+    "total": 4,
+    "P1": "all three received and engineering-audited",
+    "P2": "complete",
+    "P3": "complete",
+    "P4a": "independent native256 complete",
+    "P4b": "deferred until concrete consumer/detail/edit need",
+    "current": "P1 feedback processing and candidate closeout; not a fifth feature phase"
+  },
+  "source_tests": 103,
+  "zip_cases": 91,
+  "stable_images_unchanged": 43,
+  "historical_external_pngs_and_layouts_exact": 10,
+  "protected_historical_files": 138,
+  "protected_new_submission_files": 10,
+  "old_packages_unchanged": {
+    "rc.2": {
+      "bytes": 213762,
+      "sha256": "a34e5c58e420fd43702fe9b892fbbae2a32a57a47311e58f242dad140e9ded22"
+    },
+    "rc.3": {
+      "bytes": 222984,
+      "sha256": "b680e73c966eb6557ed94bfc2e843dd4fca2c74c8aaf5f279caa2eeece6f308d"
+    },
+    "rc.4": {
+      "bytes": 230474,
+      "sha256": "cb3472769754dbd9b5d56397e2620f6be12c253a8162a1642acd71225b4e69c1"
+    }
+  },
+  "installed_stable_version": "1.1.1",
+  "official_validator": {
+    "passed": true,
+    "output": "Skill is valid!",
+    "extracted_unicode_space_path": true,
+    "actual_commands": [
+      {
+        "command": "import",
+        "exit_code": 0
+      },
+      {
+        "command": "render",
+        "exit_code": 0
+      }
+    ],
+    "exact_named_cell": true
+  },
+  "package": {
+    "files": 97,
+    "bytes": 231561,
+    "sha256": "2b9cb652fb9e4a50bd3e4d11e098003b86c6195a16c9b1730dbc6907839178a4",
+    "reproducible": true,
+    "rc4_delta_bytes": 1087,
+    "rc4_delta_percent": 0.472
+  },
+  "named_cell_rehearsal": {
+    "coordinator_cli_rehearsal": true,
+    "commands": 5,
+    "unexpected_failures": 0,
+    "exact_participant_final": true,
+    "changed_rgba_pixels": 195,
+    "changed_outside": 0,
+    "same_selected_spec_as_prior_manual_extraction": true,
+    "whole_spec_bytes": 5857,
+    "selected_spec_bytes": 1551,
+    "benefit": "One explicit named import replaces locating and copying a cell object from the complete atlas. No new model task, token or time saving was measured."
+  },
+  "ci": {
+    "implementation_commit": "6f685f4ceea4078bed4445d88e658739382d579c",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/Chenamel/deterministic-pixel-art/actions/runs/40113419219",
+    "passed_jobs": 8
+  },
+  "limitations": [
+    "Three uncontrolled follow-ups do not replace the existing eight-task paired release gate.",
+    "Remote runtime hashes were declared; remote runtime files were not submitted.",
+    "Original cloud mount identity is unknown; /tmp native success is self-report only.",
+    "Visual author review is not independent blind or game acceptance.",
+    "No measured token, model-time or correction-round improvement; no universal art-quality claim."
+  ]
+}

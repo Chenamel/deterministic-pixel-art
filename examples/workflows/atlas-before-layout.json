@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "size": [
+    64,
+    16
+  ],
+  "mode": "RGBA",
+  "atlas": {
+    "cell_size": [
+      16,
+      16
+    ],
+    "columns": 4,
+    "rows": 1,
+    "cells": [
+      {
+        "name": "add",
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "refresh",
+        "x": 16,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "transfer",
+        "x": 32,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      {
+        "name": "lock",
+        "x": 48,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      }
+    ]
+  },
+  "rgba_sha256": "bca4b33183e3ebe9ca0cf194b2056c694009a6960f52dd6c4cd72244b8b4b842"
+}

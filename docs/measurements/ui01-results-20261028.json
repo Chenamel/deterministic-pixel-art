@@ -1,0 +1,100 @@
+{
+  "submission_sha256": "aac9b6df56e1f8e26a6f3ef03a77818d86b7fe99ccb1cc2f2d95c35cbeb6f4c4",
+  "archive_bytes": 15149,
+  "reported_model": "DeepSeek-V4.1-Flash",
+  "reported_platform": "WorkBuddy Desktop (Windows 11)",
+  "reported_pillow": "12.3.0",
+  "reported_python": "3.13.14",
+  "trusted_recheck_passed": true,
+  "checks": 54,
+  "submitted_check_facts_match": true,
+  "commands": 9,
+  "nonzero_commands": 0,
+  "dimensions": [
+    288,
+    36
+  ],
+  "cell_size": [
+    96,
+    18
+  ],
+  "exact_recipe_pixels": true,
+  "exact_consumer_reconstruction": true,
+  "report_reconstruction": true,
+  "final_snapshot_matches": true,
+  "producer_probes_recovered_and_reconstructed": [
+    88,
+    96
+  ],
+  "other_reservations_proven_valid_at_96": [
+    [
+      24,
+      4,
+      62,
+      10
+    ],
+    [
+      23,
+      4,
+      64,
+      10
+    ]
+  ],
+  "normal_local_ink_rectangles": [
+    {
+      "label": "START",
+      "rect": [
+        41,
+        6,
+        26,
+        5
+      ],
+      "blank_columns_after_icon": 20
+    },
+    {
+      "label": "LOOP",
+      "rect": [
+        43,
+        6,
+        21,
+        5
+      ],
+      "blank_columns_after_icon": 22
+    },
+    {
+      "label": "EXPORT MAP",
+      "rect": [
+        26,
+        6,
+        56,
+        5
+      ],
+      "blank_columns_after_icon": 5
+    }
+  ],
+  "limitations": [
+    "No raw producer conversation supplied in the archive",
+    "Same model/environment and old/new task protocol are not controlled paired evidence"
+  ],
+  "task": "UI01",
+  "candidate": "1.2.0-rc.6",
+  "external_submission_count": 1,
+  "raw_conversation_received": false,
+  "candidate_or_installed_skill_changed": false,
+  "review_packet": {
+    "archive": "UI-review.zip",
+    "bytes": 21341,
+    "sha256": "00ad3c6947003524c65ed61a4a9cfb965408e811793ea5db2522968ebeca56c2",
+    "image_count": 8
+  },
+  "feedback_disposition": {
+    "shared_helper": "Used successfully in the recorded authoring commands",
+    "horizontal_alignment": "Objective optional capability gap; centered layout meets current task",
+    "unique_rectangle": "Overstated: alternative horizontal positions/widths pass",
+    "height_9": "No height-9 CLI attempt in the supplied command log; minimum10 follows from the declared font, padding and motion",
+    "dependency_setup": "Reported recovery; final recorded runtime has Pillow12.3.0",
+    "next": "Independent image review before deciding alignment work"
+  },
+  "local_packet_tests": 3,
+  "release_gate_changed": false
+}

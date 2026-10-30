@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "size": [
+    256,
+    256
+  ],
+  "require_coverage": true,
+  "parts": [
+    {
+      "name": "terrain",
+      "image": "scene/terrain.png",
+      "at": [
+        0,
+        0
+      ],
+      "mode": "copy",
+      "allow_overlap": false
+    },
+    {
+      "name": "mill",
+      "image": "scene/mill.png",
+      "at": [
+        104,
+        18
+      ],
+      "mode": "over",
+      "allow_overlap": true
+    },
+    {
+      "name": "bridge",
+      "image": "scene/bridge.png",
+      "at": [
+        80,
+        140
+      ],
+      "mode": "over",
+      "allow_overlap": true
+    },
+    {
+      "name": "details",
+      "image": "scene/details.png",
+      "at": [
+        0,
+        0
+      ],
+      "mode": "over",
+      "allow_overlap": true
+    }
+  ]
+}

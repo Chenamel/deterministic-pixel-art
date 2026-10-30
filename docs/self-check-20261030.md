@@ -83,7 +83,7 @@ skill-content/SKILL.md和生成的skill/deterministic-pixel-art/SKILL.md分别�
 
 重新生成的98文件ZIP与原开发包逐字节相同，SHA-256为184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6。产品运行时、封存候选和稳定安装没有因测试夹具修正而变化。
 
-远端CI：**报告生成时未验证**。下一步将本次明确范围提交到开发分支并检查该提交的Windows/Ubuntu/Pillow矩阵，历史CI不替代新提交结果。
+远端首次CI（提交b5f3dff，run41030987831）失败：新自查工具对含`..`路径的存在性检查依赖平台对未规范化路径的处理，已有资源引用回归失败。已在检查存在性前规范化候选路径，保留测试和失败；5项本地针对性检查通过。修正后的完整检查和新提交CI均待执行，不能用之前的本地通过代替。此修正不进入Skill包。
 
 原始证据目录：evaluation/delivery-self-check-20261030/。该目录不进入Skill上下文或公开原始材料。
 

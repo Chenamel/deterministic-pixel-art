@@ -88,8 +88,11 @@ def resolve_reference(root, source, target, kind):
     if source.name in ('lt06-results-20261030.zh-CN.md', 'lt06-results-20261030.json') and filename == 'src/gen_chest.py':
         candidates.append(root / 'evaluation/lt06-results-20261030/submission/RUN' / filename)
     for candidate in candidates:
+        # Normalize '..' before existence checks, including when an intermediate
+        # directory is absent. OS/pathlib versions differ on unnormalized stat.
+        candidate = candidate.resolve()
         if candidate.exists():
-            resolved = candidate.resolve()
+            resolved = candidate
             relative = resolved.relative_to(root.resolve()).as_posix() if resolved.is_relative_to(root.resolve()) else str(resolved)
             return dict(status='exists', target=raw, exists=True, resolved=relative,
                         basis='distributed-skill' if relative.startswith('skill/') else 'document-or-repository')

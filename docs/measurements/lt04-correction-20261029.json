@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "task": "LT04 coordinator correction",
+  "scope": "Local correction, concise Skill guidance and a read-only coordinator audit; independent review packet prepared",
+  "attribution": "Coordinator correction of Hy3 final submission; not model self-correction",
+  "original_submission_sha256": "0bcce7782bc4ecea44250e136d29efdcd91d86273b61e79ce258fd3ab2f2f402",
+  "direction_change": {
+    "changed_rgba_pixels": 78,
+    "changed_outside": 0,
+    "allowed_regions": [
+      [
+        24,
+        0,
+        12,
+        12
+      ],
+      [
+        36,
+        0,
+        12,
+        12
+      ]
+    ],
+    "up_down_unchanged": true,
+    "directions_match_names": true
+  },
+  "all_action_specs_pixels_and_layouts_unchanged": true,
+  "existing_map_revision": {
+    "changed_rgba_pixels": 25,
+    "changed_outside": 0
+  },
+  "exact_spec_png_layout_reconstructions": 3,
+  "exact_previews": 8,
+  "baseline_and_corrected_sources_and_artifacts_preserved": true,
+  "missing_old_hy3_candidates_recovered": false,
+  "frozen_renderer_used": true,
+  "renderer_modified": false,
+  "history_audit": {
+    "commands": 26,
+    "mutations": 18,
+    "removed_paths": 14,
+    "between_commands": 16,
+    "within_command": 2,
+    "scope": "Read-only coordinator tool; not a new rule applied to the frozen recorder"
+  },
+  "frozen_recorder_or_original_checks_modified": false,
+  "changed_skill_guidance": [
+    "Named-cell meaning check",
+    "Retain reviewed versions with their generator source"
+  ],
+  "development_skill": {
+    "bytes": 237868,
+    "sha256": "b2dcbe96443b278e2b93ef6a9e28d250d025d4c5eb4a36f7395c747086b31086",
+    "files": 98,
+    "changed_entries": [
+      "deterministic-pixel-art/SKILL.md",
+      "deterministic-pixel-art/references/workflows.md"
+    ]
+  },
+  "skill_format_valid": true,
+  "skill_source_and_generated_copy_synchronized": true,
+  "prior_development_archive_retained": true,
+  "tests": {
+    "new_icon_review": 3,
+    "new_history_audit": 4,
+    "existing_ui_review": 3,
+    "total_targeted": 10
+  },
+  "independent_chinese_space_path_actual_commands": true,
+  "skill_and_review_archives_reproducible": true,
+  "review_packet": {
+    "path": "dist/lt04-review-corrected-20261029/LT04-review.zip",
+    "bytes": 8404,
+    "sha256": "3537aadd3103b89b416bb76f78c8768148cc66eab5022bd98430a84b18394794",
+    "files": 12,
+    "images": 10,
+    "contents": "Requirements and source/background/native/enlarged images only",
+    "actual_extraction_and_member_hashes_verified": true
+  },
+  "independent_image_review_completed": false,
+  "full_task_visual_acceptance": false,
+  "original_protected_files": 526,
+  "authorized_changed_files": 5,
+  "protected_files_unchanged": 521,
+  "stable_installation": "1.1.1; unchanged",
+  "frozen_rc6_unchanged": true,
+  "new_numbered_candidate_or_release_or_installation": false,
+  "committed_or_pushed": false,
+  "new_full_suite_or_ci": false,
+  "release_gate_changed": false,
+  "total_main_stages": 4,
+  "complete": [
+    "P1",
+    "P2",
+    "P3",
+    "P4a"
+  ],
+  "deferred": [
+    "P4b native512"
+  ],
+  "current": "LT04 local correction complete; independent review pending",
+  "next": "User sends one LT04-review ZIP to a fresh Gemini Pro task session; return review.md, then assess before LT05"
+}

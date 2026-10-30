@@ -1,0 +1,227 @@
+{
+  "date": "2026-10-30",
+  "timezone": "Asia/Shanghai",
+  "task": "LT05",
+  "platform": "WorkBuddy",
+  "model": "GLM-5.3-Flash",
+  "candidate": "unversioned development snapshot after rc.6; not rc.7",
+  "skill_zip_sha256": "b2dcbe96443b278e2b93ef6a9e28d250d025d4c5eb4a36f7395c747086b31086",
+  "packet_sha256": "2bcedff87fe6f89f6bdae3ced1adc0d30ef9d190f641682a7d492b7ea09a768b",
+  "submission": {
+    "bytes": 16981,
+    "files": 20,
+    "sha256": "22954b3bc11d34b09f9a401664fe923e9d3febdb40fa29cd8dbd9f3c2d0b83fb"
+  },
+  "recorded_environment": {
+    "os": "Windows 11",
+    "python": "3.13.14",
+    "pillow": "12.3.0",
+    "same_recorded_executable": true,
+    "portable_output_setting": null
+  },
+  "engineering_acceptance": true,
+  "full_observed_task_acceptance": true,
+  "acceptance_scope": "Returned artifact contracts, observed stage preservation and coordinator visual review; not blind review or runtime integration.",
+  "trusted_checks": 22,
+  "submitted_check_facts_match": true,
+  "frozen_checksums_verified": 103,
+  "packet_files_verified": 104,
+  "exact_spec_png_reconstructions": 3,
+  "exact_preview_reconstructions": 8,
+  "rebuilt_png_bytes_equal_at_pillow_12_3": true,
+  "edit": {
+    "report": {
+      "version": 1,
+      "valid": true,
+      "changed_rgba_pixels": 5,
+      "changed_inside": 5,
+      "changed_outside": 0,
+      "allowed_pixels": 48,
+      "outside_bbox": null,
+      "outside_samples": [],
+      "omitted_outside_samples": 0,
+      "note": "Exact edit boundary only; does not judge appearance, object identity or state meaning."
+    },
+    "exact_changed_pixels": [
+      {
+        "x": 15,
+        "y": 3,
+        "before": [
+          245,
+          194,
+          107,
+          255
+        ],
+        "after": [
+          98,
+          216,
+          232,
+          255
+        ]
+      },
+      {
+        "x": 16,
+        "y": 3,
+        "before": [
+          245,
+          194,
+          107,
+          255
+        ],
+        "after": [
+          98,
+          216,
+          232,
+          255
+        ]
+      },
+      {
+        "x": 14,
+        "y": 4,
+        "before": [
+          245,
+          194,
+          107,
+          255
+        ],
+        "after": [
+          98,
+          216,
+          232,
+          255
+        ]
+      },
+      {
+        "x": 16,
+        "y": 4,
+        "before": [
+          245,
+          194,
+          107,
+          255
+        ],
+        "after": [
+          98,
+          216,
+          232,
+          255
+        ]
+      },
+      {
+        "x": 17,
+        "y": 4,
+        "before": [
+          245,
+          194,
+          107,
+          255
+        ],
+        "after": [
+          98,
+          216,
+          232,
+          255
+        ]
+      }
+    ],
+    "all_other_rgba_unchanged": true
+  },
+  "render_digests": [
+    {
+      "record": 4,
+      "path": "explore/a/sprite.png",
+      "rgba_sha256": "f08ace00391dbbbd1041df3c5685247fff21eebf21308ca2b091be4b4b9fa464",
+      "matched": true
+    },
+    {
+      "record": 8,
+      "path": "v1/sprite.png",
+      "rgba_sha256": "f08ace00391dbbbd1041df3c5685247fff21eebf21308ca2b091be4b4b9fa464",
+      "matched": true
+    },
+    {
+      "record": 12,
+      "path": "v2/sprite.png",
+      "rgba_sha256": "55a6f74fff39e3e0f4eb3eb392754faf5dd68853200aa5a0eaf72c3ac12039c5",
+      "matched": true
+    }
+  ],
+  "commands": {
+    "total": 17,
+    "tool": 13,
+    "helper": 4,
+    "successful": 16,
+    "nonzero": 1,
+    "failure": "rows[0][0]: unknown symbol '.'",
+    "failure_outputs_unchanged": true,
+    "tool_force_used": false,
+    "custom_generator_force_used_before_first_valid_image": true
+  },
+  "history": {
+    "path_mutations": 2,
+    "removed_paths": [],
+    "replaced_before_first_valid_exploration_image": [
+      "make_sprite.py",
+      "explore/a/sprite.json"
+    ],
+    "accepted_v1_preserved": true,
+    "shared_helper_unchanged_across_v1_v2": true,
+    "initial_invalid_source_bytes_not_submitted": true
+  },
+  "visual_review": {
+    "reviewer": "coordinator",
+    "png_files": 11,
+    "unique_decoded_images_viewed": 8,
+    "native_and_two_background_8x_viewed": true,
+    "nose_right_engine_left_cockpit_beacon_asymmetry_observed": true,
+    "critical_task_regression_found": false,
+    "independent_blind_review": false
+  },
+  "feedback": {
+    "confirmed_product_defects": [],
+    "recovered_input_error": "Missing explicit transparent-symbol palette entry",
+    "inline_mapping_hint_already_in_frozen_skill": true,
+    "v1_v2_preservation_order_already_in_start_here": true,
+    "low_priority_signal": "Existing hints may be overlooked; a single report does not justify duplicate guidance.",
+    "new_feature_or_documentation_change_implemented": false
+  },
+  "protection": {
+    "protected_files": 380,
+    "protected_files_unchanged": true,
+    "installed_files": 44,
+    "installed_tree_unchanged": true,
+    "original_submission_and_extracted_files_unchanged": true,
+    "all_104_trusted_packet_files_match_archive": true,
+    "development_zip_sha256": "b2dcbe96443b278e2b93ef6a9e28d250d025d4c5eb4a36f7395c747086b31086"
+  },
+  "limitations": [
+    "No original platform tool transcript for file/image reads or dependency installation.",
+    "Recorded snapshots cannot prove uncaptured activity.",
+    "No controlled version comparison, causal guidance benefit, total-task timing, token savings or general art-quality gain."
+  ],
+  "original_tool_directory_modified": false,
+  "product_modified": false,
+  "skill_package_rebuilt": false,
+  "new_candidate": false,
+  "release_created": false,
+  "pushed": false,
+  "installation_updated": false,
+  "next": {
+    "task": "LT06",
+    "focus": "Geometry reuse, material expression and preview workflow; not sample polishing",
+    "tentative_executor": "WorkBuddy / MiMo-V2.6-Pro",
+    "packet_prepared": false
+  },
+  "stages": {
+    "total": 4,
+    "complete": [
+      "P1",
+      "P2",
+      "P3",
+      "P4a"
+    ],
+    "deferred": "P4b native512",
+    "current": "External tool coverage: LT05 accepted",
+    "next": "Prepare LT06"
+  }
+}

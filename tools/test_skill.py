@@ -26,8 +26,17 @@ def nonportable_host_path(text):
     return re.search(r'(?<![A-Za-z0-9])[A-Za-z]:[\\/]|/Users/|/home/', without_urls) is not None
 
 
+def validate_local_references(skill):
+    """Check referenced files; Markdown fragments identify sections, not files."""
+    for target in re.findall(r'\]\(([^)]+)\)', (skill / 'SKILL.md').read_text(encoding='utf-8')):
+        filename = target.partition('#')[0]
+        if filename and '://' not in target and not (skill / filename).is_file():
+            raise RuntimeError(f'Broken skill reference {target}')
+
+
 def main(python, validator):
-    env = {k: v for k, v in os.environ.items() if k not in ('PYTHONPATH', 'PYTHONHOME')}
+    env = {k: v for k, v in os.environ.items()
+           if k not in ('PYTHONPATH', 'PYTHONHOME', 'PIXELART_PORTABLE_OUTPUT')}
     env.update(PYTHONIOENCODING='utf-8', PYTHONUTF8='1')
     results = []
     with tempfile.TemporaryDirectory(prefix='独立 skill space ') as directory:
@@ -50,13 +59,11 @@ def main(python, validator):
                 continue
             if nonportable_host_path((skill / relative).read_text(encoding='utf-8')):
                 raise RuntimeError(f'Nonportable host path in skill file {relative}')
-        for target in re.findall(r'\]\(([^)]+)\)', (skill / 'SKILL.md').read_text(encoding='utf-8')):
-            if not (skill / target).is_file():
-                raise RuntimeError(f'Broken skill reference {target}')
+        validate_local_references(skill)
 
-        def run(label, arguments, expected=0):
+        def run(label, arguments, expected=0, extra_env=None):
             result = subprocess.run([str(python), '-B', *map(str, arguments)], cwd=folder,
-                env=env, capture_output=True, text=True, encoding='utf-8', timeout=30)
+                env={**env, **(extra_env or {})}, capture_output=True, text=True, encoding='utf-8', timeout=30)
             record = dict(case=label, passed=result.returncode == expected,
                           exit_code=result.returncode, stdout=result.stdout.strip(), stderr=result.stderr.strip())
             results.append(record)
@@ -189,6 +196,28 @@ def main(python, validator):
         run('packaged-portable-no-clobber',[cli,'render','--spec',skill/'assets/gem-16.json',
             '--out',work/'portable.png','--portable-output'],expected=2)
         assert (work/'portable.png').read_bytes()==original
+
+        inherited={'PIXELART_PORTABLE_OUTPUT':'1'}
+        invalid={'PIXELART_PORTABLE_OUTPUT':'invalid'}
+        run('packaged-task-portable-render',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'task-portable.png'],extra_env=inherited)
+        run('packaged-task-portable-import',[cli,'import','--image',work/'task-portable.png',
+            '--out',work/'task-editable.json'],extra_env=inherited)
+        run('packaged-task-portable-recipe',[skill/'scripts/recipes/icons.py',
+            '--out-dir',work/'task-icons'],extra_env=inherited)
+        run('packaged-task-portable-no-clobber',[cli,'render','--spec',skill/'assets/gem-16.json',
+            '--out',work/'task-portable.png'],expected=2,extra_env=inherited)
+        assert (work/'task-portable.png').read_bytes()==original
+        run('packaged-task-invalid-output-setting',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'invalid-setting.png'],expected=2,extra_env=invalid)
+        assert not (work/'invalid-setting.png').exists()
+        run('packaged-task-cli-override',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'override.png','--portable-output'],extra_env=invalid)
+        run('packaged-task-recipe-override',[skill/'scripts/recipes/icons.py',
+            '--out-dir',work/'override-icons','--no-portable-output'],extra_env=invalid)
+        run('packaged-task-readonly-independent',[cli,'inspect','--image',work/'task-portable.png'],extra_env=invalid)
+        run('packaged-task-zero-keeps-default',[cli,'render','--spec',skill/'assets/transparent-grid.json',
+            '--out',work/'default-setting.png'],extra_env={'PIXELART_PORTABLE_OUTPUT':'0'})
 
         # Authoring recipes must work from the ZIP with PYTHONPATH cleared.
         recipes=skill/'scripts/recipes';recipe_work=folder/'可读 recipes'

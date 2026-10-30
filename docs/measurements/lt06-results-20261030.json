@@ -1,0 +1,262 @@
+{
+  "date": "2026-10-30",
+  "timezone": "Asia/Shanghai",
+  "task": "LT06",
+  "platform": "WorkBuddy",
+  "model": "Xiaomi MiMo-V2.6-Pro",
+  "candidate": "unversioned development snapshot after rc.6; not rc.7",
+  "skill_zip_sha256": "b2dcbe96443b278e2b93ef6a9e28d250d025d4c5eb4a36f7395c747086b31086",
+  "packet_sha256": "9bf1080a22041d98f891b1e8e46a95763ffe74c39d01befb168875cfaf81d9b9",
+  "submission": {
+    "bytes": 87539,
+    "files": 38,
+    "sha256": "537dcd5030ce7cee44112715590152e1fa82ebd8906cc18f3a41f81fec037f5d"
+  },
+  "engineering_acceptance": true,
+  "full_observed_task_acceptance": true,
+  "acceptance_scope": "Returned contracts, observed source/version preservation and coordinator offline image review; not blind review or runtime integration.",
+  "trusted_checks": 19,
+  "submitted_check_facts_match": true,
+  "exact_spec_png_layout_reconstructions": 4,
+  "exact_preview_reconstructions": 16,
+  "exact_inspect_reports": 2,
+  "exact_review_reports_and_sheets": 1,
+  "exact_validate_reports": 1,
+  "shared_geometry": {
+    "alpha_equal": true,
+    "structural_roles": {
+      "O": {
+        "pixels": 100,
+        "shared_positions": true
+      },
+      "S": {
+        "pixels": 14,
+        "shared_positions": true
+      },
+      "K": {
+        "pixels": 6,
+        "shared_positions": true
+      },
+      "k": {
+        "pixels": 4,
+        "shared_positions": true
+      },
+      "H": {
+        "pixels": 2,
+        "shared_positions": true
+      }
+    },
+    "cells": [
+      {
+        "name": "wood",
+        "bbox": [
+          4,
+          5,
+          28,
+          28
+        ],
+        "visible_pixels": 516,
+        "visible_colors": 17,
+        "alpha_counts": {
+          "0": 508,
+          "255": 516
+        }
+      },
+      {
+        "name": "metal",
+        "bbox": [
+          4,
+          5,
+          28,
+          28
+        ],
+        "visible_pixels": 516,
+        "visible_colors": 18,
+        "alpha_counts": {
+          "0": 508,
+          "255": 516
+        }
+      },
+      {
+        "name": "stone",
+        "bbox": [
+          4,
+          5,
+          28,
+          28
+        ],
+        "visible_pixels": 516,
+        "visible_colors": 17,
+        "alpha_counts": {
+          "0": 508,
+          "255": 516
+        }
+      }
+    ],
+    "all_stages": [
+      {
+        "stage": "explorations/v01",
+        "shared_alpha": true,
+        "visible_per_cell": 544
+      },
+      {
+        "stage": "explorations/v02",
+        "shared_alpha": true,
+        "visible_per_cell": 544
+      },
+      {
+        "stage": "explorations/v03",
+        "shared_alpha": true,
+        "visible_per_cell": 516
+      },
+      {
+        "stage": ".",
+        "shared_alpha": true,
+        "visible_per_cell": 516
+      }
+    ]
+  },
+  "all_three_color_partitions_differ": true,
+  "final_matches_selected_v03": true,
+  "commands": {
+    "total": 29,
+    "kinds": {
+      "script": 5,
+      "tool": 24
+    },
+    "exits": {
+      "1": 1,
+      "0": 28
+    },
+    "tool_types": {
+      "render": 4,
+      "preview": 16,
+      "inspect": 2,
+      "review": 1,
+      "validate": 1
+    },
+    "failed": [
+      {
+        "record": 1,
+        "kind": "script",
+        "exit_code": 1,
+        "stderr": "palette missing symbols: ['.']\r\n",
+        "outputs_unchanged": true
+      }
+    ]
+  },
+  "history": {
+    "path_mutations": 3,
+    "removed_paths": [],
+    "only_replaced_path": "src/gen_chest.py",
+    "valid_revision_sources_preserved": true,
+    "successful_reviewed_outputs_preserved": true,
+    "initial_invalid_source_bytes_not_submitted": true
+  },
+  "revisions": [
+    {
+      "before": "explorations/v01",
+      "after": "explorations/v02",
+      "changed_rgba": 343,
+      "changed_alpha": 0,
+      "per_cell": {
+        "wood": 118,
+        "metal": 112,
+        "stone": 113
+      }
+    },
+    {
+      "before": "explorations/v02",
+      "after": "explorations/v03",
+      "changed_rgba": 616,
+      "changed_alpha": 84,
+      "per_cell": {
+        "wood": 200,
+        "metal": 164,
+        "stone": 252
+      }
+    }
+  ],
+  "visual_review": {
+    "reviewer": "coordinator",
+    "png_files": 21,
+    "distinct_images_viewed": 16,
+    "all_three_stages_native_and_both_background_scales_viewed": true,
+    "grayscale_and_per_cell_review_viewed": true,
+    "same_chest_and_material_cues_observed": true,
+    "critical_task_regression_found": false,
+    "independent_blind_review": false
+  },
+  "review_background": {
+    "actual_default_dark": "172033",
+    "task_dark": "182637",
+    "final_previews_use_task_background": true,
+    "review_not_evidence_of_exact_target_dark": true,
+    "warnings": 0
+  },
+  "feedback": {
+    "confirmed_runtime_defects": [],
+    "repeated_transparent_mapping_oversight": true,
+    "current_skill_already_has_hint": true,
+    "failure_raised_by_submitted_helper_not_renderer": true,
+    "inspect_review_use_independently_verified": true,
+    "original_vision_tool_outputs_received": false,
+    "caption_error_rate_or_sheet_reliability_gain_not_proven": true,
+    "automated_semantic_classifier_or_aesthetic_scoring_not_planned": true,
+    "suggested_batch": [
+      "Move existing hint next to representation choice and show a minimal complete transparent grid.",
+      "Add a short visual-description conflict path with region/cell inspection and explicit target-background review."
+    ],
+    "suggested_batch_implemented": false
+  },
+  "recorded_environment": {
+    "os": "Windows 11",
+    "python": "3.13.14",
+    "pillow": "12.3.0",
+    "consistent_recorded_interpreter": true,
+    "portable_output_setting": null,
+    "dependency_installation_transcript_received": false
+  },
+  "evidence": {
+    "submitted_helpers_executed": false,
+    "surface_notes_not_original_transcript": true,
+    "feedback_valid_utf8": true,
+    "feedback_replacement_characters": 0
+  },
+  "protection": {
+    "preexisting_files_unchanged": 389,
+    "installed_files_unchanged": 44,
+    "original_zip_and_extracted_evidence_unchanged": true,
+    "all_trusted_packet_files_match_archive": true,
+    "source_current_frozen_input_files": 104,
+    "source_current_frozen_input_mismatches": []
+  },
+  "product_modified": false,
+  "skill_rebuilt": false,
+  "new_candidate": false,
+  "pushed": false,
+  "release_created": false,
+  "installation_updated": false,
+  "limits": [
+    "Single-version exploratory run, no controlled version benefit.",
+    "No independent blind review, actual game validation, whole-task timing or token-saving evidence.",
+    "Snapshots cannot prove uncaptured activity; missing original vision responses cannot be reconstructed from narration."
+  ],
+  "next": {
+    "task": "Small guidance-entry batch, then LT07",
+    "status": "proposed only; not implemented",
+    "packet_prepared": false
+  },
+  "stages": {
+    "total": 4,
+    "complete": [
+      "P1",
+      "P2",
+      "P3",
+      "P4a"
+    ],
+    "deferred": "P4b native512",
+    "current": "External tool coverage: LT06 accepted",
+    "next": "Guidance-entry consolidation, then LT07"
+  }
+}

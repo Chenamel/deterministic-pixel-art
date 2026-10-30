@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "task": "UI01 image review",
+  "candidate": "1.2.0-rc.6",
+  "reported_reviewer_assignment": "Gemini Pro task mode",
+  "exact_model_backend_supplied": false,
+  "raw_review_tool_session_supplied": false,
+  "independent_review_count": 1,
+  "platform_text_repeats_same_review": true,
+  "review_bytes": 10368,
+  "review_sha256": "e62f56da77c4f8e30c7275f20bd214d1f43b0290f414a484233c39fb4bf1d617",
+  "review_input_zip_sha256": "00ad3c6947003524c65ed61a4a9cfb965408e811793ea5db2522968ebeca56c2",
+  "verified_packet_members": 10,
+  "decoded_images": 8,
+  "coordinator_viewed_images": 8,
+  "background_and_nearest_neighbor_views_match": true,
+  "baseline_96_reconstructed_exactly": true,
+  "baseline_88_and_96_local_ink_identical": true,
+  "same_explicit_reservation_explains_text_positions": true,
+  "recenter_existing_api": {
+    "reservation": [23, 4, 70, 10],
+    "shift": [4, 0],
+    "valid_instances": 18,
+    "source_pixels_unchanged": true,
+    "runtime_change_needed": false
+  },
+  "naive_shift_padding_failures": {
+    "right_4_without_reservation_update": 6,
+    "down_1_without_reservation_update": 3
+  },
+  "arrow_marker_adjacency_confirmed": ["focus", "selected"],
+  "arrow_marker_overlap": false,
+  "contrast_ratios": {
+    "focus_gold_vs_light": 1.6573722993318065,
+    "outer_border_vs_target": 1.1474004394360384,
+    "pressed_fill_vs_target": 1.0424114259933437,
+    "normal_vs_disabled_fill": 1.0576415834942197,
+    "disabled_ink_vs_disabled_fill": 3.489433742925152,
+    "suggested_border_vs_target": 1.3069468688437318,
+    "focus_gold_vs_inner_fill": 5.654425359062576
+  },
+  "eleven_character_font_bbox_widths": {
+    "IIIIIIIIIII": 33,
+    "LLLLLLLLLLL": 55,
+    "WWWWWWWWWWW": 77
+  },
+  "feedback_disposition": {
+    "renderer_width_bug": "not reproduced; explicit identical reservations explain the result",
+    "text_recenter": "valid optional layout candidate using existing APIs",
+    "state_decoration_density": "confirmed observation; separate future visual candidate",
+    "remove_selection_mark": "not adopted; preserve inherited non-color state semantics",
+    "global_border_darkening": "not validated as a solution",
+    "text_down_one": "violates pressed padding under current contract",
+    "ten_character_limit_and_localization": "unsupported",
+    "optional_left_center_right_alignment": "retained as future convenience, not required for this recentering"
+  },
+  "protected_file_count": 280,
+  "protected_file_hashes_unchanged": true,
+  "runtime_or_skill_or_candidate_or_installation_changed": false,
+  "new_full_suite_or_ci_run": false,
+  "release_gate_changed": false,
+  "coordinator_error": "Audit script bracket typo failed before execution; corrected attempt passed. No product defect inferred.",
+  "stages": {
+    "total_main_stages": 4,
+    "complete": ["P1", "P2", "P3", "P4a"],
+    "deferred": ["P4b native512"],
+    "current": "candidate external acceptance",
+    "next": "prepare Qwen LT03-Linux; packet not yet built"
+  },
+  "limitations": [
+    "One external review plus coordinator checks, not controlled old/new paired evidence",
+    "No exact backend or raw reviewer tool session supplied",
+    "No human blind review or actual application/in-game acceptance",
+    "No general aesthetic, accessibility or efficiency improvement claim"
+  ]
+}

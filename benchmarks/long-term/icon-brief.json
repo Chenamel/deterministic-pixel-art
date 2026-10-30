@@ -1,0 +1,12 @@
+{
+  "purpose": "Small exploration-game toolbar, no baked-in labels",
+  "directions": {"cell_size": 12, "names": ["up", "down", "left", "right"]},
+  "actions": {"cell_size": 16, "names": ["bag", "map", "settings", "close"]},
+  "columns": 4,
+  "transparent_border": 1,
+  "visible_color_limit": 8,
+  "allowed_alpha": [0, 255],
+  "backgrounds": {"dark": "182637", "light": "E9EDF2"},
+  "view_scales": [1, 8],
+  "revision": {"cell": "map", "request": "Add a clear location marker while retaining the map meaning", "allowed_region": [16, 0, 16, 16]}
+}

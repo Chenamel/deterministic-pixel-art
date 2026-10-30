@@ -1,0 +1,11 @@
+{
+  "purpose": "Three material variants of one lidded storage chest for a small exploration game; no baked text",
+  "cell_size": [32, 32],
+  "names": ["wood", "metal", "stone"],
+  "columns": 3,
+  "meaning": "Same chest seen from the front with a little of its top visible; lid boundary and latch or handle",
+  "shared_geometry": "Identical per-pixel alpha and silhouette, orientation and main structural positions; material texture, shading and reflections may differ",
+  "materials": "Wood, metal and stone should use material cues beyond only recoloring; style and palette are free",
+  "backgrounds": {"dark": "182637", "light": "E9EDF2"},
+  "view_scales": [1, 8]
+}

@@ -1,0 +1,611 @@
+{
+  "date": "2026-10-30",
+  "task": "LT07",
+  "status": "accepted_within_artifact_history_and_offline_review_scope",
+  "platform": "Doubao office tasks (tool paths support; session platform field says Linux)",
+  "model": "undisclosed",
+  "submission": {
+    "sha256": "879792a25fb42b5a8b9004817bbad82d247f18903dbffcc8936a43134307db35",
+    "bytes": 28797,
+    "files": 25,
+    "uncompressed_bytes": 106454
+  },
+  "task_packet": {
+    "path": "dist/lt07-minecraft-dev-20261030/LT07-Minecraft.zip",
+    "sha256": "eff7645c5acf7b8b3b03b1b0a4e17f8223dffe1498b8ca41c0af5df7d6fc2335",
+    "skill_sha256": "184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6",
+    "task_hash_matches": true
+  },
+  "engineering": {
+    "passed": true,
+    "count": 35,
+    "submitted_count": 35,
+    "surface_claimed_count": 36,
+    "check_facts_match": true,
+    "component_specs_rerendered": 3,
+    "assembly_project_rerendered": 1,
+    "png_decoded_rebuilds": 13,
+    "layout_and_assembly_reports_exact": true
+  },
+  "independent_audit": {
+    "passed": true,
+    "environment": {
+      "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+      "pillow": "12.3.0",
+      "platform": "win32"
+    },
+    "trusted_checks": 35,
+    "submitted_check_count": 35,
+    "rebuilt": [
+      {
+        "file": "panel/body.png",
+        "size": [
+          176,
+          80
+        ],
+        "rgba_sha256": "0ca07b5d88f5c7e6cabadc688dd41011add3154da32ca89f219241a7d1a797fa",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "panel/footer.png",
+        "size": [
+          176,
+          32
+        ],
+        "rgba_sha256": "452f84f4a96a698822626659291fa446875e9a2746773a89fa211c3cf1992fa5",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "buttons.png",
+        "size": [
+          160,
+          16
+        ],
+        "rgba_sha256": "c6481cd90080c3a45e999c8c509fa39f9804e26abb79375ad51f1f0a5d20d818",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "scene.png",
+        "size": [
+          176,
+          112
+        ],
+        "rgba_sha256": "580fc6a970e4e1c7125a078c868952b446ecbc80c39e3c26467156d17bc8c3ff",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "seams.png",
+        "size": [
+          560,
+          648
+        ],
+        "rgba_sha256": "10f5a7658ffacb33be58f6644b1cd6d07190b8ff54f8659232ed4a0bac9d7bda",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "views/scene-dark-1x.png",
+        "size": [
+          176,
+          112
+        ],
+        "rgba_sha256": "580fc6a970e4e1c7125a078c868952b446ecbc80c39e3c26467156d17bc8c3ff",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "views/scene-dark-4x.png",
+        "size": [
+          704,
+          448
+        ],
+        "rgba_sha256": "4427f4006db2bc5588768f76953fc49498d3719da12e8175ea7708731274fcb0",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "views/scene-light-1x.png",
+        "size": [
+          176,
+          112
+        ],
+        "rgba_sha256": "580fc6a970e4e1c7125a078c868952b446ecbc80c39e3c26467156d17bc8c3ff",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "views/scene-light-4x.png",
+        "size": [
+          704,
+          448
+        ],
+        "rgba_sha256": "4427f4006db2bc5588768f76953fc49498d3719da12e8175ea7708731274fcb0",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "views/buttons-dark-1x.png",
+        "size": [
+          160,
+          16
+        ],
+        "rgba_sha256": "c6481cd90080c3a45e999c8c509fa39f9804e26abb79375ad51f1f0a5d20d818",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "views/buttons-dark-4x.png",
+        "size": [
+          640,
+          64
+        ],
+        "rgba_sha256": "7ec2f7d6aaceb6ea63f5404dca877586f12465c1900734ca728972e55cb84696",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "views/buttons-light-1x.png",
+        "size": [
+          160,
+          16
+        ],
+        "rgba_sha256": "c6481cd90080c3a45e999c8c509fa39f9804e26abb79375ad51f1f0a5d20d818",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      },
+      {
+        "file": "views/buttons-light-4x.png",
+        "size": [
+          640,
+          64
+        ],
+        "rgba_sha256": "7ec2f7d6aaceb6ea63f5404dca877586f12465c1900734ca728972e55cb84696",
+        "decoded_exact": true,
+        "png_bytes_equal": false
+      }
+    ],
+    "layout_exact": true,
+    "assembly_report_exact": true,
+    "slots": [
+      {
+        "rect": [
+          8,
+          22,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      },
+      {
+        "rect": [
+          26,
+          22,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      },
+      {
+        "rect": [
+          44,
+          22,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      },
+      {
+        "rect": [
+          8,
+          40,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      },
+      {
+        "rect": [
+          26,
+          40,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      },
+      {
+        "rect": [
+          44,
+          40,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      },
+      {
+        "rect": [
+          8,
+          58,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      },
+      {
+        "rect": [
+          26,
+          58,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      },
+      {
+        "rect": [
+          44,
+          58,
+          18,
+          18
+        ],
+        "all_pixels_match_recessed_preset": true
+      }
+    ],
+    "reserved_regions": [
+      {
+        "name": "title",
+        "rect": [
+          8,
+          6,
+          160,
+          10
+        ],
+        "uniform_panel_fill": true
+      },
+      {
+        "name": "footer",
+        "rect": [
+          8,
+          8,
+          160,
+          16
+        ],
+        "uniform_panel_fill": true
+      }
+    ],
+    "seam_interior_exact": true,
+    "continuous_side_edges": true,
+    "control_normal_crop_exact": true,
+    "states": [
+      {
+        "name": "normal",
+        "icon_pixels": 49,
+        "alpha_values": [
+          255
+        ],
+        "rgba_sha256": "afe5a6cf9bbc7af08d71bee75e9c674737a248d69eb2243d5c590e1cf1712eed"
+      },
+      {
+        "name": "hover",
+        "icon_pixels": 49,
+        "alpha_values": [
+          255
+        ],
+        "rgba_sha256": "ad2a193555c4941b4252da51c64dd8e63806dfbefbeda5ca8811fbe717f6706f"
+      },
+      {
+        "name": "pressed",
+        "icon_pixels": 49,
+        "alpha_values": [
+          255
+        ],
+        "rgba_sha256": "617d0255f42cf2ed523de2782e3f61fda95d64f8bbd20bbcd4ec9aa3169058ef"
+      },
+      {
+        "name": "disabled",
+        "icon_pixels": 49,
+        "alpha_values": [
+          255
+        ],
+        "rgba_sha256": "e27a8b6bcd921688cc41e87c49470999b26d9611a0210e060ec1f65632da82d6"
+      }
+    ],
+    "pressed_icon_shift": [
+      0,
+      1
+    ],
+    "same_icon_in_other_states": true,
+    "helper_coordinate_explanation_supported": {
+      "old_fill_sample": [
+        [
+          32,
+          32,
+          32,
+          255
+        ],
+        [
+          27,
+          27,
+          27,
+          255
+        ],
+        [
+          95,
+          95,
+          95,
+          255
+        ],
+        [
+          74,
+          74,
+          74,
+          255
+        ]
+      ],
+      "new_fill_sample": [
+        [
+          139,
+          139,
+          139,
+          255
+        ],
+        [
+          143,
+          162,
+          224,
+          255
+        ],
+        [
+          95,
+          95,
+          95,
+          255
+        ],
+        [
+          112,
+          112,
+          112,
+          255
+        ]
+      ],
+      "old_pressed_sample": [
+        [
+          32,
+          32,
+          32,
+          255
+        ],
+        [
+          139,
+          139,
+          139,
+          255
+        ]
+      ],
+      "corrected_pressed_sample": [
+        [
+          95,
+          95,
+          95,
+          255
+        ],
+        [
+          32,
+          32,
+          32,
+          255
+        ]
+      ]
+    },
+    "commands": {
+      "total": 15,
+      "tools": 12,
+      "helper_calls": 3,
+      "tool_failures": 0,
+      "helper_failures": 1,
+      "command_types": {
+        "render": 3,
+        "assemble": 1,
+        "preview": 8
+      },
+      "explicit_portable_commands": 12,
+      "helper_failure_unchanged_outputs": true,
+      "final_snapshot_matches": true,
+      "after_last_added": [
+        "feedback.md"
+      ]
+    },
+    "history": {
+      "mutations": 1,
+      "removed_paths": [],
+      "replaced_paths": [
+        "verify_pixels.py"
+      ]
+    },
+    "original_generator_hash_retained": true,
+    "final_verifier_hash_retained": true,
+    "initial_failed_verifier_source_retained": false,
+    "recorded_environment": {
+      "python": "3.12.11 (main, Jul 23 2025, 00:34:44) [Clang 20.1.4 ]",
+      "executable": "/opt/python3.12/bin/python3",
+      "platform": "Linux-6.6.95.bck.4-rc2-amd64-x86_64-with-glibc2.35",
+      "pillow": "10.4.0",
+      "pillow_file": "/opt/python3.12/lib/python3.12/site-packages/PIL/__init__.py",
+      "prefix": "/opt/python3.12",
+      "base_prefix": "/opt/python3.12",
+      "portable_output_setting": null
+    },
+    "recorded_model": "未披露",
+    "recorded_platform": "Linux",
+    "platform_evidence": "Tool paths contain .doubao/agent_mode; session platform says Linux, not an exact model identity.",
+    "image_groups": [
+      {
+        "size": [
+          160,
+          16
+        ],
+        "rgba_sha256": "c6481cd90080c3a45e999c8c509fa39f9804e26abb79375ad51f1f0a5d20d818",
+        "files": [
+          "buttons.png",
+          "views/buttons-dark-1x.png",
+          "views/buttons-light-1x.png"
+        ]
+      },
+      {
+        "size": [
+          176,
+          112
+        ],
+        "rgba_sha256": "580fc6a970e4e1c7125a078c868952b446ecbc80c39e3c26467156d17bc8c3ff",
+        "files": [
+          "scene.png",
+          "views/scene-dark-1x.png",
+          "views/scene-light-1x.png"
+        ]
+      },
+      {
+        "size": [
+          560,
+          648
+        ],
+        "rgba_sha256": "10f5a7658ffacb33be58f6644b1cd6d07190b8ff54f8659232ed4a0bac9d7bda",
+        "files": [
+          "seams.png"
+        ]
+      },
+      {
+        "size": [
+          176,
+          80
+        ],
+        "rgba_sha256": "0ca07b5d88f5c7e6cabadc688dd41011add3154da32ca89f219241a7d1a797fa",
+        "files": [
+          "panel/body.png"
+        ]
+      },
+      {
+        "size": [
+          176,
+          32
+        ],
+        "rgba_sha256": "452f84f4a96a698822626659291fa446875e9a2746773a89fa211c3cf1992fa5",
+        "files": [
+          "panel/footer.png"
+        ]
+      },
+      {
+        "size": [
+          640,
+          64
+        ],
+        "rgba_sha256": "7ec2f7d6aaceb6ea63f5404dca877586f12465c1900734ca728972e55cb84696",
+        "files": [
+          "views/buttons-dark-4x.png",
+          "views/buttons-light-4x.png"
+        ]
+      },
+      {
+        "size": [
+          704,
+          448
+        ],
+        "rgba_sha256": "4427f4006db2bc5588768f76953fc49498d3719da12e8175ea7708731274fcb0",
+        "files": [
+          "views/scene-dark-4x.png",
+          "views/scene-light-4x.png"
+        ]
+      }
+    ],
+    "png_files": 13,
+    "unique_decoded_images": 7,
+    "limits": [
+      "No submitted helper was executed.",
+      "Original visual tool returns not supplied.",
+      "No independent blind, game or font validation.",
+      "No causal before/after tool benefit established."
+    ]
+  },
+  "visual": {
+    "review_type": "coordinator offline self-review, not independent blind evaluation",
+    "viewed_distinct_files": [
+      "panel/body.png",
+      "panel/footer.png",
+      "buttons.png",
+      "scene.png",
+      "seams.png",
+      "views/scene-dark-4x.png",
+      "views/buttons-dark-4x.png"
+    ],
+    "distinct_images": 7,
+    "png_files_covered_by_exact_duplicates": 13,
+    "observations": [
+      "Nine recessed slots in the required 3x3 positions.",
+      "Normal gray raised, hover blue, pressed recessed plus icon down one pixel, disabled lower emphasis.",
+      "Crate-like small rectangle and right arrow visible at native size; intended transfer meaning plausible but not user-tested.",
+      "Left/right outer edges continue across the body/footer boundary; no extra horizontal line at y79/80.",
+      "Title/footer reserved areas are uniform panel gray; no text rasterized.",
+      "All assets opaque; light and dark preview backgrounds do not alter pixels."
+    ],
+    "limitations": [
+      "Original model visual tool returns not provided.",
+      "Feedback explicitly lists six preview filenames; surface summary says all eight; do not infer exact original viewing sequence.",
+      "No game, real font/text-fit, UV, focus/hitbox or GUI-scale validation."
+    ]
+  },
+  "protection": {
+    "passed": true,
+    "protected_files": 398,
+    "changed_files": [],
+    "installed_files": 44,
+    "installed_unchanged": true,
+    "source_zip_unchanged": true,
+    "raw_submission_files": 25,
+    "raw_submission_unchanged": true
+  },
+  "feedback_disposition": [
+    {
+      "feedback": "Two self-check FAIL results",
+      "classification": "submitted helper coordinate errors",
+      "action": "Pixel values and before/after hashes support the explanation; no product repair."
+    },
+    {
+      "feedback": "One-pixel inner frame shadow requested",
+      "classification": "optional local art choice already expressible with rect/line operations",
+      "action": "No new preset requirement, runtime feature or sustained sample polishing."
+    },
+    {
+      "feedback": "Bevel corner/attached-edge reasoning",
+      "classification": "existing supported painting convention; normal construction work",
+      "action": "Existing Minecraft guidance covers edge ownership; no evidenced missing API."
+    },
+    {
+      "feedback": "No substantive Skill difficulty",
+      "classification": "one supported-environment task success",
+      "action": "Adds Linux/Pillow10.4 and Minecraft assembly evidence; does not establish general usability, efficiency or art-quality gains."
+    }
+  ],
+  "next": "Prepare LT08 external 256x256 chunk workflow; shared boundary/material phase/single-owned-region edit; no packet built in this receipt.",
+  "product_changes": false,
+  "new_package": false,
+  "release": false,
+  "push": false,
+  "install": false,
+  "stages": {
+    "total": 4,
+    "current": "P1-P3/P4a complete; LT07 receipt accepted",
+    "deferred": "P4b native512",
+    "next": "LT08 preparation"
+  },
+  "final_checks": {
+    "passed": true,
+    "protected_files": 398,
+    "installed_files": 44,
+    "raw_files": 25,
+    "local_links": 65,
+    "git_diff_check": true,
+    "original_zip_unchanged": true,
+    "product_changes": false
+  }
+}

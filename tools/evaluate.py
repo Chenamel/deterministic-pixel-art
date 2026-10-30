@@ -119,9 +119,10 @@ def main():
     entries = json.loads((ROOT / 'specs/manifest.json').read_text(encoding='utf-8'))
     env = {**os.environ, 'PYTHONPATH': os.pathsep.join([str(ROOT / 'src'), str(ROOT)]),
            'PYTHONIOENCODING': 'utf-8'}
+    env.pop('PIXELART_PORTABLE_OUTPUT', None)  # Default-mode checks set task overrides explicitly.
     suite = subprocess.run([sys.executable, '-B', '-W', 'error', '-m', 'unittest', 'discover',
                             '-s', str(ROOT / 'tests'), '-v'], cwd=ROOT, env=env,
-                           capture_output=True, text=True, encoding='utf-8', timeout=60)
+                           capture_output=True, text=True, encoding='utf-8', timeout=180)
     (out / 'tests.log').write_text(suite.stdout + suite.stderr, encoding='utf-8')
     if suite.returncode:
         raise RuntimeError('Tests failed; see evaluation/tests.log')

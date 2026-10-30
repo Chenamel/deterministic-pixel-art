@@ -29,6 +29,12 @@ When a new shape is uncertain, compare two silhouette ideas. For a UI set, estab
 
 Read [formats.md](references/formats.md) for the chosen representation or Python API. Prefer grid/palette for small sprites, integer draw operations for geometric components, masks for irregular shapes and named atlases for equal-size states. Mirror only symmetric forms. Rectangles use `x,y,width,height`; unknown symbols and implicit clipping are errors. Primitives replace RGBA; `blit` composites source-over.
 
+Grid transparency needs an explicit palette entry, such as `".":null`. This complete 3×3 spec renders one opaque center pixel; [transparent-grid.json](assets/transparent-grid.json) is a larger example:
+
+```json
+{"version":1,"kind":"grid","rows":["...",".X.","..."],"palette":{".":null,"X":"62D8E8"}}
+```
+
 Resolve `scripts/pixel_art.py` relative to this skill, not the working directory. Use Python 3.10+ with Pillow >=10.4,<13; the fixed reproduction baseline is Pillow 12.3.0. Install `requirements.txt` in a task-local virtual environment when needed.
 
 ```text
@@ -37,14 +43,14 @@ python <skill>/scripts/pixel_art.py inspect --image candidate.png --metadata lay
 python <skill>/scripts/pixel_art.py validate --image candidate.png --rules rules.json
 ```
 
-Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores layout for later automatic reuse. Keep the editable spec alongside the PNG. Existing outputs require `--force`; revise accepted art into a separate candidate unless replacement is requested. Python APIs include `Canvas`, `render`, `outline`, `make_preview`, `validate`, `inspect_image` and `image_to_spec`; keep task-specific writes behind an entrypoint.
+Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores layout for later automatic reuse. Keep the editable spec alongside the PNG. Existing outputs require `--force`; revise accepted art into a separate candidate unless replacement is requested. When revision history is required, retain each reviewed candidate's spec, PNG, layout and generator source before rebuilding. Python APIs include `Canvas`, `render`, `outline`, `make_preview`, `validate`, `inspect_image` and `image_to_spec`; keep task-specific writes behind an entrypoint.
 
 ## Check against intent
 
-Use `preview --image candidate.png --out native.png --scale 1 --background 172033` for a native target-background view; `review` makes diagnostic sheets. `import` creates editable pixels, `replace-cell` updates one atlas member, `verify` checks allowed RGBA changes, and `assemble` places PNG components. See `assets/transparent-grid.json` for a complete grid including `".":null`; unknown symbols remain errors.
+Use `preview --image candidate.png --out native.png --scale 1 --background 172033` for a native target-background view; `review` makes diagnostic sheets. `import` creates editable pixels, `replace-cell` updates one atlas member, `verify` checks allowed RGBA changes, and `assemble` places PNG components. If a visual description conflicts with the pixels, follow the [local fact check](references/review.md#when-a-visual-description-conflicts) before revising artwork.
 
-If hard-link publication is rejected, choose a local output directory or explicitly use `--portable-output`: exclusive creation preserves no-overwrite, but new files can be visible while writing. Never add `--force` automatically. Task-local dependency recovery is in [workflows.md](references/workflows.md). Supported Pillow versions can differ in polygon fill; exact reproduction uses the fixed baseline or a frozen imported pixel spec.
+If hard-link publication is rejected, choose a local output directory, use `--portable-output`, or explicitly set `PIXELART_PORTABLE_OUTPUT=1` once in the task shell. CLI and recipes inherit it; `--no-portable-output` overrides it for one command. Exclusive creation preserves no-overwrite, but new files can be visible while writing. Never add `--force` automatically. Task-local environment setup and dependency recovery are in [workflows.md](references/workflows.md). Supported Pillow versions can differ in polygon fill; exact reproduction uses the fixed baseline or a frozen imported pixel spec.
 
-Validate the consumer's size, alpha, palette and atlas contracts. Transparent margins, binary alpha, symmetry and palette limits apply only when required. Preserve UVs, state order, reserved content and attached opaque edges. Check direction and silhouette before detail, then lighting/material, set consistency, state meaning and seams.
+Validate the consumer's size, alpha, palette and atlas contracts. Transparent margins, binary alpha, symmetry and palette limits apply only when required. Preserve UVs, state order, reserved content and attached opaque edges. Check each named cell's actual direction, function or state against the brief before detail; correct names and layout do not prove the pictured meaning. Then inspect silhouette, lighting/material, set consistency and seams.
 
 UI scenes need real content and the consumer font to establish text fit; [consumer-ui.md](references/consumer-ui.md) includes the optional `label_atlas.py` helper for actual-font composites, explicit raster mode and state offsets, plus application input checks. State what remains unchecked when unavailable. Hand-placed antialiasing, dithering and isolated pixels may be intentional. A warning prompts inspection; a clean report is not visual acceptance. Report concrete changes and tradeoffs, distinguishing author review, independent review and actual in-game tests. [sources.md](references/sources.md) records the external methods and their limits; bundled examples are original artwork.

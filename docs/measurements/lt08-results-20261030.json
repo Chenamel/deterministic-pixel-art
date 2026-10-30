@@ -1,0 +1,785 @@
+{
+  "date": "2026-10-30",
+  "status": "final_artifacts_and_observed_workflow_accepted_early_process_incomplete",
+  "receipt": {
+    "source": "D:\\deterministic-pixel-art\\dist\\lt08-chunks-dev-20261030\\LT08\\submission-LT08.zip",
+    "bytes": 268354,
+    "sha256": "c3d4da9890254be86c464a9d332f0228cef48452d4d7aaea451847e5d6e6a0b6",
+    "files": 66,
+    "uncompressed_bytes": 2128799,
+    "protected_files": 419,
+    "installed_files": 44,
+    "trusted_packet_sha256": "67b72cfdd69fa1c6742da5c60632251d85ece10f953461391214cf119287931b"
+  },
+  "audit": {
+    "passed": true,
+    "coordinator_environment": {
+      "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+      "pillow": "12.3.0"
+    },
+    "submitted_checks": 63,
+    "trusted_checks": 63,
+    "claimed_checks": 74,
+    "rebuilt": [
+      {
+        "file": "rounds/r1/chunks/nw.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "a0beefc9d56a30718324d42ed72c4024096be1760029d78dd1a9dba1e5837174",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "rounds/r1/chunks/ne.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "324ad27cfb1da3637893c9c8e75e8f68d60d271dc2e0198c299110fe2f08ac4f",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "rounds/r1/chunks/sw.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "3e0ea8ba2beefa84faba0b5a3617fa77326471928a0e240a80636545465c143e",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "rounds/r1/chunks/se.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "360f969166908fc0b1bda5f32fe4e2ddf6ea8d2d7b28ef674cb3662913dc97f9",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "rounds/r1/scene.png",
+        "size": [
+          256,
+          256
+        ],
+        "rgba_sha256": "c000d6724232227be54ebf995cb706535e5a087a4a08c311a2de2c9cd890badf",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "rounds/r1/seams.png",
+        "size": [
+          560,
+          1256
+        ],
+        "rgba_sha256": "72a3ea224ffb8efc72d172681607e961f7657d851c506139c0b4dac73bb4f682",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "rounds/r1/scene-2x.png",
+        "size": [
+          512,
+          512
+        ],
+        "rgba_sha256": "fd5a4f1109b79d30a6ada39e6f86947d574f5ae59104bc465715399b3aeb5584",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v1/chunks/nw.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "a0beefc9d56a30718324d42ed72c4024096be1760029d78dd1a9dba1e5837174",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v1/chunks/ne.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "324ad27cfb1da3637893c9c8e75e8f68d60d271dc2e0198c299110fe2f08ac4f",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v1/chunks/sw.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "3e0ea8ba2beefa84faba0b5a3617fa77326471928a0e240a80636545465c143e",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v1/chunks/se.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "360f969166908fc0b1bda5f32fe4e2ddf6ea8d2d7b28ef674cb3662913dc97f9",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v1/scene.png",
+        "size": [
+          256,
+          256
+        ],
+        "rgba_sha256": "c000d6724232227be54ebf995cb706535e5a087a4a08c311a2de2c9cd890badf",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v1/seams.png",
+        "size": [
+          560,
+          1256
+        ],
+        "rgba_sha256": "72a3ea224ffb8efc72d172681607e961f7657d851c506139c0b4dac73bb4f682",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v1/scene-2x.png",
+        "size": [
+          512,
+          512
+        ],
+        "rgba_sha256": "fd5a4f1109b79d30a6ada39e6f86947d574f5ae59104bc465715399b3aeb5584",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v2/chunks/nw.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "a0beefc9d56a30718324d42ed72c4024096be1760029d78dd1a9dba1e5837174",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v2/chunks/ne.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "324ad27cfb1da3637893c9c8e75e8f68d60d271dc2e0198c299110fe2f08ac4f",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v2/chunks/sw.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "3e0ea8ba2beefa84faba0b5a3617fa77326471928a0e240a80636545465c143e",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v2/chunks/se.png",
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "0a1b205c6370ed122821e4cc1398bac528bc1cf386e4fac0a62f8c156c1b80dd",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v2/scene.png",
+        "size": [
+          256,
+          256
+        ],
+        "rgba_sha256": "065451713226397b27431b21f1c06f978c7dad2790161ce176e2d6008220fe8b",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v2/seams.png",
+        "size": [
+          560,
+          1256
+        ],
+        "rgba_sha256": "72a3ea224ffb8efc72d172681607e961f7657d851c506139c0b4dac73bb4f682",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      },
+      {
+        "file": "v2/scene-2x.png",
+        "size": [
+          512,
+          512
+        ],
+        "rgba_sha256": "d68826b8f1becb544326d0164785d2edf20ff77d49eedb071f74ec9c0bb3402d",
+        "decoded_exact": true,
+        "png_bytes_equal": true
+      }
+    ],
+    "png_files": 21,
+    "unique_decoded_images": 10,
+    "stages": [
+      {
+        "stage": "rounds/r1",
+        "rgba_sha256": "c000d6724232227be54ebf995cb706535e5a087a4a08c311a2de2c9cd890badf",
+        "seam_pairs": 4,
+        "seam_views": 8,
+        "omitted_seams": 0,
+        "omitted_seam_views": 0,
+        "covered_pixels": 65536,
+        "phase_samples_exact": true
+      },
+      {
+        "stage": "v1",
+        "rgba_sha256": "c000d6724232227be54ebf995cb706535e5a087a4a08c311a2de2c9cd890badf",
+        "seam_pairs": 4,
+        "seam_views": 8,
+        "omitted_seams": 0,
+        "omitted_seam_views": 0,
+        "covered_pixels": 65536,
+        "phase_samples_exact": true
+      },
+      {
+        "stage": "v2",
+        "rgba_sha256": "065451713226397b27431b21f1c06f978c7dad2790161ce176e2d6008220fe8b",
+        "seam_pairs": 4,
+        "seam_views": 8,
+        "omitted_seams": 0,
+        "omitted_seam_views": 0,
+        "covered_pixels": 65536,
+        "phase_samples_exact": true
+      }
+    ],
+    "chunks": [
+      {
+        "stage": "rounds/r1",
+        "owner": "nw",
+        "operations": 1219,
+        "opaque": true
+      },
+      {
+        "stage": "rounds/r1",
+        "owner": "ne",
+        "operations": 1176,
+        "opaque": true
+      },
+      {
+        "stage": "rounds/r1",
+        "owner": "sw",
+        "operations": 1246,
+        "opaque": true
+      },
+      {
+        "stage": "rounds/r1",
+        "owner": "se",
+        "operations": 1011,
+        "opaque": true
+      },
+      {
+        "stage": "v1",
+        "owner": "nw",
+        "operations": 1219,
+        "opaque": true
+      },
+      {
+        "stage": "v1",
+        "owner": "ne",
+        "operations": 1176,
+        "opaque": true
+      },
+      {
+        "stage": "v1",
+        "owner": "sw",
+        "operations": 1246,
+        "opaque": true
+      },
+      {
+        "stage": "v1",
+        "owner": "se",
+        "operations": 1011,
+        "opaque": true
+      },
+      {
+        "stage": "v2",
+        "owner": "nw",
+        "operations": 1219,
+        "opaque": true
+      },
+      {
+        "stage": "v2",
+        "owner": "ne",
+        "operations": 1176,
+        "opaque": true
+      },
+      {
+        "stage": "v2",
+        "owner": "sw",
+        "operations": 1246,
+        "opaque": true
+      },
+      {
+        "stage": "v2",
+        "owner": "se",
+        "operations": 1011,
+        "opaque": true
+      }
+    ],
+    "difference": {
+      "version": 1,
+      "valid": true,
+      "changed_rgba_pixels": 40,
+      "changed_inside": 40,
+      "changed_outside": 0,
+      "allowed_pixels": 40,
+      "outside_bbox": null,
+      "outside_samples": [],
+      "omitted_outside_samples": 0,
+      "note": "Exact edit boundary only; does not judge appearance, object identity or state meaning."
+    },
+    "flag": {
+      "before": [
+        [
+          245,
+          194,
+          107,
+          255
+        ]
+      ],
+      "after": [
+        [
+          98,
+          216,
+          232,
+          255
+        ]
+      ]
+    },
+    "unchanged_files": [
+      "chunks/nw.json",
+      "chunks/nw.png",
+      "chunks/ne.json",
+      "chunks/ne.png",
+      "chunks/sw.json",
+      "chunks/sw.png"
+    ],
+    "v1_v2_seams_byte_identical": true,
+    "round_r1_v1_files": 20,
+    "round_r1_v1_byte_identical": true,
+    "source_files": [
+      {
+        "name": "_scene.py",
+        "sha256": "bf286fa837359a4e773b4ced331a7ccb0486dbbae915da7ec53785465a18fe99",
+        "copies_identical": true,
+        "imports": [
+          "math"
+        ]
+      },
+      {
+        "name": "build.py",
+        "sha256": "d0a9a1fad33ca316352d8c983b8bd311a13fd5dc57dd9c990a82a4d0720da657",
+        "copies_identical": true,
+        "imports": [
+          "json",
+          "pathlib",
+          "sys",
+          "_scene"
+        ]
+      },
+      {
+        "name": "contract.py",
+        "sha256": "16ac5c63b0afdf9cc18cb55676c0663a011adaf68ab97f05f85fe56b88e9d33f",
+        "copies_identical": true,
+        "imports": [
+          "json",
+          "pathlib",
+          "sys",
+          "_scene"
+        ]
+      },
+      {
+        "name": "ne.py",
+        "sha256": "91e6c636df29f597a7d26be9ec7cf0cefd5b4991b2756786a60e3626150684d2",
+        "copies_identical": true,
+        "imports": [
+          "json",
+          "pathlib",
+          "sys",
+          "_scene"
+        ]
+      },
+      {
+        "name": "nw.py",
+        "sha256": "add9f8c2e2ffaa15c1bf9390ff5f506c17fa214c4e23db9379fbe9a4cc080c57",
+        "copies_identical": true,
+        "imports": [
+          "json",
+          "pathlib",
+          "sys",
+          "_scene"
+        ]
+      },
+      {
+        "name": "se.py",
+        "sha256": "a45cd094038030f1ad7ac4adff975a4cf21082f05ff915684bbc9292b6537f39",
+        "copies_identical": true,
+        "imports": [
+          "json",
+          "pathlib",
+          "sys",
+          "_scene"
+        ]
+      },
+      {
+        "name": "sw.py",
+        "sha256": "9fdb7180c7b1812d307237664df6001976bf88f3b66144181d047d28836ada81",
+        "copies_identical": true,
+        "imports": [
+          "json",
+          "pathlib",
+          "sys",
+          "_scene"
+        ]
+      }
+    ],
+    "source_review": "Read-only: 128x128 local Painter, global material coordinates, no image reads/whole-scene crop; owner-specific props in four entries. Shared base also places globally agreed terrain, lanes and yard. No submitted helper executed.",
+    "commands": {
+      "total": 26,
+      "tools": 13,
+      "helpers": 13,
+      "failures": 0,
+      "tool_types": {
+        "render": 9,
+        "assemble": 3,
+        "verify": 1
+      },
+      "source_unchanged_from_first_record": true,
+      "observed_frozen_from_record": 22,
+      "recorded_command_seconds": 11.27959890011698,
+      "session_span_seconds": 136.754593,
+      "full_task_time_known": false,
+      "added_after_last": [
+        "feedback.md"
+      ],
+      "environments_consistent": true,
+      "portable_env": null,
+      "portable_options": 0,
+      "force_options": 0
+    },
+    "history": {
+      "mutations": 0,
+      "removed": [],
+      "replaced": []
+    },
+    "recorded_environment": {
+      "python": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+      "executable": "D:\\Program Files\\Python\\python.exe",
+      "platform": "Windows-11-10.0.22631-SP0",
+      "pillow": "12.3.0",
+      "pillow_file": "D:\\Program Files\\Python\\Lib\\site-packages\\PIL\\__init__.py",
+      "prefix": "D:\\Program Files\\Python",
+      "base_prefix": "D:\\Program Files\\Python",
+      "portable_output_setting": null
+    },
+    "recorded_model": "MiniMax-M3.1-Flash",
+    "recorded_platform": "Windows 11 (win32)",
+    "local_expanded_task": {
+      "frozen_files": 104,
+      "changed": [],
+      "run_differences": []
+    },
+    "image_groups": [
+      {
+        "size": [
+          512,
+          512
+        ],
+        "rgba_sha256": "fd5a4f1109b79d30a6ada39e6f86947d574f5ae59104bc465715399b3aeb5584",
+        "files": [
+          "v1/scene-2x.png",
+          "rounds/r1/scene-2x.png"
+        ]
+      },
+      {
+        "size": [
+          256,
+          256
+        ],
+        "rgba_sha256": "c000d6724232227be54ebf995cb706535e5a087a4a08c311a2de2c9cd890badf",
+        "files": [
+          "v1/scene.png",
+          "rounds/r1/scene.png"
+        ]
+      },
+      {
+        "size": [
+          560,
+          1256
+        ],
+        "rgba_sha256": "72a3ea224ffb8efc72d172681607e961f7657d851c506139c0b4dac73bb4f682",
+        "files": [
+          "v1/seams.png",
+          "v2/seams.png",
+          "rounds/r1/seams.png"
+        ]
+      },
+      {
+        "size": [
+          512,
+          512
+        ],
+        "rgba_sha256": "d68826b8f1becb544326d0164785d2edf20ff77d49eedb071f74ec9c0bb3402d",
+        "files": [
+          "v2/scene-2x.png"
+        ]
+      },
+      {
+        "size": [
+          256,
+          256
+        ],
+        "rgba_sha256": "065451713226397b27431b21f1c06f978c7dad2790161ce176e2d6008220fe8b",
+        "files": [
+          "v2/scene.png"
+        ]
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "324ad27cfb1da3637893c9c8e75e8f68d60d271dc2e0198c299110fe2f08ac4f",
+        "files": [
+          "v2/chunks/ne.png",
+          "v1/chunks/ne.png",
+          "rounds/r1/chunks/ne.png"
+        ]
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "a0beefc9d56a30718324d42ed72c4024096be1760029d78dd1a9dba1e5837174",
+        "files": [
+          "v2/chunks/nw.png",
+          "v1/chunks/nw.png",
+          "rounds/r1/chunks/nw.png"
+        ]
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "0a1b205c6370ed122821e4cc1398bac528bc1cf386e4fac0a62f8c156c1b80dd",
+        "files": [
+          "v2/chunks/se.png"
+        ]
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "3e0ea8ba2beefa84faba0b5a3617fa77326471928a0e240a80636545465c143e",
+        "files": [
+          "v2/chunks/sw.png",
+          "v1/chunks/sw.png",
+          "rounds/r1/chunks/sw.png"
+        ]
+      },
+      {
+        "size": [
+          128,
+          128
+        ],
+        "rgba_sha256": "360f969166908fc0b1bda5f32fe4e2ddf6ea8d2d7b28ef674cb3662913dc97f9",
+        "files": [
+          "v1/chunks/se.png",
+          "rounds/r1/chunks/se.png"
+        ]
+      }
+    ],
+    "limitations": [
+      "No submitted helper executed.",
+      "Scratch NameError/revisions/earliest artwork not present in returned records or original picture tool outputs.",
+      "r1 is byte-identical to v1, not proof of visual improvement.",
+      "Recorded session span excludes unrecorded preparation.",
+      "Single-agent chunk workflow, not independent multi-agent collaboration or native512 proof.",
+      "No blind, game/consumer or controlled before/after efficiency/aesthetic benefit acceptance."
+    ]
+  },
+  "visual_review": {
+    "files_viewed": [
+      "v1/scene.png",
+      "v2/scene.png",
+      "v1/scene-2x.png",
+      "v2/scene-2x.png",
+      "v1/seams.png",
+      "v1/chunks/nw.png",
+      "v1/chunks/ne.png",
+      "v1/chunks/sw.png",
+      "v1/chunks/se.png",
+      "v2/chunks/se.png"
+    ],
+    "additional_contact_sheet": "analysis/detail-crops.png",
+    "regions": [
+      {
+        "name": "bridge-left",
+        "rect": [
+          0,
+          108,
+          24,
+          40
+        ],
+        "stage": "v1",
+        "scale": 4
+      },
+      {
+        "name": "bridge-right",
+        "rect": [
+          232,
+          108,
+          24,
+          40
+        ],
+        "stage": "v1",
+        "scale": 4
+      },
+      {
+        "name": "west-path",
+        "rect": [
+          34,
+          108,
+          30,
+          40
+        ],
+        "stage": "v1",
+        "scale": 4
+      },
+      {
+        "name": "east-path",
+        "rect": [
+          207,
+          108,
+          32,
+          40
+        ],
+        "stage": "v1",
+        "scale": 4
+      },
+      {
+        "name": "flag-v1",
+        "rect": [
+          188,
+          148,
+          28,
+          48
+        ],
+        "stage": "v1",
+        "scale": 4
+      },
+      {
+        "name": "flag-v2",
+        "rect": [
+          188,
+          148,
+          28,
+          48
+        ],
+        "stage": "v2",
+        "scale": 4
+      }
+    ],
+    "scope": "Coordinator offline inspection, not original agent image-tool evidence or blind/consumer acceptance.",
+    "observations": [
+      "Native and 2x images show canal, timber bridge, hut, vegetation and ground props; flag color change readable at native size.",
+      "All four adjacency boundaries shown in eight seam segments; no gap, double outline or material-phase jump seen.",
+      "Additional coordinator crops cover both canvas-edge boardwalk ends, two road/shadow transitions and both flag versions.",
+      "Chunk-local art uses one-pixel planks, waves and detail; source and image do not show enlargement of a completed smaller whole scene."
+    ],
+    "not_asserted": [
+      "Aesthetic optimality",
+      "All object silhouettes optimal",
+      "Color-blind accessibility",
+      "Blind/human/in-game or consumer acceptance",
+      "External early revision improvement"
+    ]
+  },
+  "protection": {
+    "protected": {
+      "count": 419,
+      "missing": [],
+      "changed": [],
+      "passed": true
+    },
+    "installed": {
+      "count": 44,
+      "missing": [],
+      "changed": [],
+      "passed": true
+    },
+    "original_zip_unchanged": true,
+    "submission_files_unchanged": true,
+    "original_files": 66
+  },
+  "feedback": [
+    {
+      "item": "Exact-color sampling lines interfere with natural details",
+      "classification": "test_contract_friction",
+      "action": "No runtime change; START_HERE and brief already declare anchors. Only those rows/columns are restricted; off-anchor highlights remain in final source. Consider sparse/nonuniform anchors in a future test, not a general art rule."
+    },
+    {
+      "item": "Flat8x5 flag and trees/field style",
+      "classification": "controlled_edit_requirement_and_local_art_choices",
+      "action": "Not a missing tool. Earliest versions absent; do not claim a measured visual gain or polish this sample."
+    },
+    {
+      "item": "NameError/import recovery",
+      "classification": "unverified_scratch_narration",
+      "action": "No failed command in26 returned records; preserve narration but do not count a recorded failure or error-recovery success."
+    },
+    {
+      "item": "74 checks",
+      "classification": "surface_summary_error",
+      "action": "Submitted checks and frozen checker both63; neither changed."
+    },
+    {
+      "item": "Official replay after unrecorded rehearsal",
+      "classification": "incomplete_process_evidence",
+      "action": "Final workflow and observed freeze supported; r1=v1. No rerun requested and no causal efficiency/art improvement claimed."
+    }
+  ],
+  "product_changed": false,
+  "not_performed": [
+    "Submitted helper execution",
+    "Runtime/Skill edits",
+    "Repackaging",
+    "New candidate/tag/release",
+    "Push",
+    "Stable installation update",
+    "Full unchanged runtime/43-asset suite",
+    "New Linux/CI run",
+    "External platform invocation"
+  ],
+  "main_stages": 4,
+  "current_position": "P1-P3/P4a complete, LT08 final workflow verified with early-process limitation; P4b512 deferred",
+  "next_step": "Candidate consolidation and remaining release acceptance planning; no external packet pending and no automatic release",
+  "formal_release_gates_changed": false
+}

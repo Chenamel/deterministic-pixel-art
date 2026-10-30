@@ -1,0 +1,24 @@
+{
+  "size": [256, 256],
+  "owners": [
+    {"name": "nw", "rect": [0, 0, 128, 128]},
+    {"name": "ne", "rect": [128, 0, 128, 128]},
+    {"name": "sw", "rect": [0, 128, 128, 128]},
+    {"name": "se", "rect": [128, 128, 128, 128]}
+  ],
+  "palette_roles": ["water", "wave", "plank", "joint", "rail"],
+  "water_rect": [104, 0, 48, 256],
+  "water_probe_x": [120, 136],
+  "water_exclude_y": [112, 136],
+  "wave_period": 10,
+  "bridge_rect": [0, 112, 256, 24],
+  "plank_probe_y": [127, 128],
+  "plank_period": 6,
+  "rail_probe_x": [124, 125, 126, 127, 128, 129, 130, 131],
+  "rail_probe_y": [112, 135],
+  "flag_rect": [196, 168, 8, 5],
+  "flag_before": "F5C26B",
+  "flag_after": "62D8E8",
+  "preview_scale": 2,
+  "max_revision_rounds": 2
+}

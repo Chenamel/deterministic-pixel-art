@@ -12,6 +12,30 @@ import tempfile
 from .core import PixelArtError
 
 
+def add_output_options(parser):
+    """Shared command-line selection; Python publish() remains environment-free."""
+    options = parser.add_mutually_exclusive_group()
+    options.add_argument('--portable-output', dest='portable_output', action='store_true',
+        help='Exclusive new files without hard links; files may be visible while writing. '
+             'Overrides PIXELART_PORTABLE_OUTPUT (1=portable, 0=default). Never implies --force.')
+    options.add_argument('--no-portable-output', dest='portable_output', action='store_false',
+        help='Use default hard-link publication even when PIXELART_PORTABLE_OUTPUT=1.')
+    parser.set_defaults(portable_output=None)
+
+
+def resolve_portable_output(explicit=None):
+    """Resolve CLI flag > task process environment > unchanged hard-link default."""
+    if explicit is not None:
+        return explicit
+    value = os.environ.get('PIXELART_PORTABLE_OUTPUT')
+    if value is None:
+        return False
+    if value not in ('0', '1'):
+        raise PixelArtError('PIXELART_PORTABLE_OUTPUT must be 1 (portable) or 0 (default); '
+                            'unset it or override with --portable-output / --no-portable-output')
+    return value == '1'
+
+
 def encoded(artifact):
     if isinstance(artifact, bytes):
         return artifact
@@ -104,7 +128,7 @@ def publish(artifacts, *, force=False, portable=False):
                   'rollback_errors': rollback_errors,
                   'remaining_outputs': [str(p) for p in committed if p.exists()]}
         if step=='hard_link' and isinstance(exc,OSError) and exc.errno in (errno.EPERM,errno.EXDEV,errno.ENOTSUP,errno.EACCES):
-            detail['hint']='Hard-link publication was rejected (filesystem or permissions). Choose a local output directory or explicitly use --portable-output; it preserves no-overwrite but NEW files are not atomically visible. Do not use --force as an automatic workaround.'
+            detail['hint']='Hard-link publication was rejected (filesystem or permissions). Choose a local output directory, use --portable-output, or explicitly set PIXELART_PORTABLE_OUTPUT=1 for this task process. Portable output preserves no-overwrite but NEW files are not atomically visible. Do not use --force as an automatic workaround.'
         raise PixelArtError('output publication failed: ' + json.dumps(detail, ensure_ascii=False)) from exc
     finally:
         for path in [*staged.values(), *backups.values(), *locks]:

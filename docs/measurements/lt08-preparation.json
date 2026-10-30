@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-30",
+  "status": "ready_for_user_handoff",
+  "scope": [
+    "LT08 task/checker/builder/tests",
+    "coordinator reports and recovery notes"
+  ],
+  "product_changed": false,
+  "packet": {
+    "task": "LT08",
+    "archive": "LT08-Chunks.zip",
+    "bytes": 254969,
+    "sha256": "67b72cfdd69fa1c6742da5c60632251d85ece10f953461391214cf119287931b",
+    "skill_zip_sha256": "184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6",
+    "skill_files": 98,
+    "packet_files": 104,
+    "external_runs": 0,
+    "skill_build": "unchanged unversioned development snapshot, not a new candidate",
+    "recommended_environment": "WorkBuddy, new session",
+    "recommended_model": "MiniMax-M3.1-Flash"
+  },
+  "tests": {
+    "targeted": {
+      "passed": true,
+      "tests": 4,
+      "elapsed_seconds": 27.609,
+      "command": "python -B -m unittest discover -s tests -p test_chunk_trial.py -v",
+      "source": "Actual exec session22186 console result, not a second run"
+    },
+    "final_zip_rehearsal": {
+      "passed": true,
+      "engineering_checks": 63,
+      "recorded_commands": 16,
+      "tool_calls": 9,
+      "helper_calls": 7,
+      "expected_refusal": 1,
+      "other_failures": 0,
+      "submission_files": 44,
+      "submission_sha256": "9185c79f438bc179c8d4baf0c23be50ff27b7f111477fcc5c68cdc6796d6dd1d",
+      "official_skill_validator": true,
+      "packet_reproducible": true,
+      "default_output": true,
+      "history_mutations": 0,
+      "changed_rgba_pixels": 40,
+      "changed_outside": 0,
+      "external_runs": 0
+    }
+  },
+  "preservation_and_visual": {
+    "protected": {
+      "count": 412,
+      "missing": [],
+      "changed": []
+    },
+    "installed": {
+      "count": 44,
+      "missing": [],
+      "changed": []
+    },
+    "packet_bytes": 254969,
+    "packet_sha256": "67b72cfdd69fa1c6742da5c60632251d85ece10f953461391214cf119287931b",
+    "skill_sha256": "184e2c6ef44a0a3f3ec755a2a8c8a450787ac1944ae3a5b412ca1896ddefc0c6",
+    "python": "3.14.2",
+    "pillow": "12.3.0",
+    "seam_coverage": [
+      {
+        "version": "v1",
+        "seams": 4,
+        "seam_views": 8,
+        "omitted_seams": 0,
+        "omitted_seam_views": 0,
+        "coverage": 65536,
+        "uncovered": 0
+      },
+      {
+        "version": "v2",
+        "seams": 4,
+        "seam_views": 8,
+        "omitted_seams": 0,
+        "omitted_seam_views": 0,
+        "coverage": 65536,
+        "uncovered": 0
+      }
+    ],
+    "viewed": [
+      "v1/scene.png",
+      "v2/scene.png",
+      "v1/scene-2x.png",
+      "v2/scene-2x.png",
+      "v1/seams.png",
+      "v2/seams.png"
+    ],
+    "visual_observation": "Native and 2x fixtures show continuous canal/boardwalk crossings. Eight seam segments cover all four neighbor pairs without omissions; v1/v2 seam pixels identical. Local engineering fixture only; no external/aesthetic acceptance."
+  },
+  "unchanged": {
+    "runtime": true,
+    "api": true,
+    "json_v1": true,
+    "skill_guidance": true,
+    "root_skill_zip": true,
+    "old_packets": true,
+    "frozen_candidates": true,
+    "installed_stable": "v1.1.1"
+  },
+  "not_performed": [
+    "new Linux run",
+    "CI",
+    "unchanged full runtime and 43-asset regression",
+    "external AI run",
+    "push",
+    "release",
+    "installation"
+  ],
+  "limitations": [
+    "Local engineering fixture, not external art acceptance",
+    "Phase samples do not prove all visual continuity",
+    "Four owner entries do not prove multi-agent collaboration",
+    "Original controlled release gates unchanged"
+  ],
+  "main_stages": 4,
+  "position": "P1-P3/P4a complete; LT08 ready for external use; P4b512 deferred",
+  "next_step": "WorkBuddy/MiniMax-M3.1-Flash new session; receive and independently audit submission-LT08.zip"
+}

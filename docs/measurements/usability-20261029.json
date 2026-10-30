@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-29",
+  "task": "post-LT03 usability batch",
+  "status": "local development verified",
+  "total_main_stages": 4,
+  "completed": [
+    "P1",
+    "P2",
+    "P3",
+    "P4a"
+  ],
+  "deferred": [
+    "P4b native512"
+  ],
+  "source_tests": 131,
+  "focused_test_groups": 7,
+  "zip_checks": 106,
+  "official_skill_validator_passed": true,
+  "exact_stable_images": 43,
+  "protected_files": 357,
+  "protected_files_unchanged": true,
+  "tested_python": "3.14.2",
+  "tested_pillow": "12.3.0",
+  "tested_os": "win32",
+  "source_and_generated_skill_synchronized": true,
+  "archive_reproducible": true,
+  "archive_files": 98,
+  "development_archive": {
+    "path": "deterministic-pixel-art.zip",
+    "sha256": "f02be7f650df703b6935666988780154ede02851db014b903e6cae0c6cabd7ba",
+    "bytes": 237664
+  },
+  "frozen_rc6": {
+    "sha256": "5c206399714545f445e9e93fd5c1b227a6f1cab677cc8a45a43b86c19a313768",
+    "bytes": 236584
+  },
+  "zip_growth_bytes": 1080,
+  "zip_growth_percent": 0.4564974808102029,
+  "selection": "explicit flag > PIXELART_PORTABLE_OUTPUT (1/0) > unchanged default",
+  "python_publish_default_unchanged": true,
+  "automatic_force_or_fallback": false,
+  "no_overwrite_concurrency_and_rollback_verified": true,
+  "all_eight_cli_writers_verified": true,
+  "pip_free_venv_recovery_verified": true,
+  "actual_missing_ensurepip_or_fuse_retested": false,
+  "performance": {
+    "before_default": {
+      "samples": 12,
+      "median_ms": 243.2245999807492,
+      "min_ms": 226.86859988607466,
+      "max_ms": 310.1200999226421,
+      "raw_ms": [
+        293.9563998952508,
+        251.18159991689026,
+        271.71300002373755,
+        251.51450000703335,
+        235.26760004460812,
+        226.86859988607466,
+        235.02070014365017,
+        234.98150007799268,
+        232.72940004244447,
+        231.28680000081658,
+        266.74879994243383,
+        310.1200999226421
+      ]
+    },
+    "after_default": {
+      "samples": 12,
+      "median_ms": 253.51445004343987,
+      "min_ms": 221.6448998078704,
+      "max_ms": 283.947299933061,
+      "raw_ms": [
+        249.60429989732802,
+        257.7462999615818,
+        247.97839997336268,
+        259.8627000115812,
+        278.6787000950426,
+        221.6448998078704,
+        235.65779998898506,
+        237.5123999081552,
+        257.4246001895517,
+        244.9150998145342,
+        263.62490002065897,
+        283.947299933061
+      ]
+    },
+    "after_process_portable": {
+      "samples": 12,
+      "median_ms": 263.27810005750507,
+      "min_ms": 229.7972000669688,
+      "max_ms": 294.8898000176996,
+      "raw_ms": [
+        274.9646999873221,
+        250.33239996992052,
+        260.5244000442326,
+        272.78449991717935,
+        284.3889999203384,
+        229.7972000669688,
+        243.2528999634087,
+        266.03180007077754,
+        248.0404998641461,
+        247.09510011598468,
+        267.2552999574691,
+        294.8898000176996
+      ]
+    }
+  },
+  "performance_scope": "12 interleaved end-to-end Windows subprocesses per arm; includes startup/IO, no statistical claim",
+  "usability_gain": "one process-scoped choice replaces repeated flags when commands share a launcher environment; actual agent time/token benefit unmeasured",
+  "remaining": [
+    "fresh Linux and original FUSE environment not rerun",
+    "independent shell sessions must receive the process environment",
+    "new-file visibility in portable mode remains weaker",
+    "original formal release gate remains"
+  ],
+  "new_candidate_tag_or_release": false,
+  "installed_stable_updated": false,
+  "committed_or_pushed": false,
+  "next": "Prepare a scoped LT04 creative-use trial after selecting its target; no external packet created here."
+}

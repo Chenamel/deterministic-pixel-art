@@ -11,7 +11,7 @@ try:
     from pixelart import PixelArtError,render,make_preview
     from pixelart.core import color
     from pixelart.metadata import layout_record
-    from pixelart.output import publish
+    from pixelart.output import add_output_options, publish, resolve_portable_output
 except ImportError as exc:
     raise SystemExit('Recipes need Python 3.10+ and Pillow>=10.4,<13. Install the Skill requirements.txt in your task environment.') from exc
 
@@ -35,7 +35,7 @@ def parser(description):
     result=argparse.ArgumentParser(description=description)
     result.add_argument('--out-dir',type=Path,required=True)
     result.add_argument('--force',action='store_true',help='Explicitly replace this recipe\'s existing outputs.')
-    result.add_argument('--portable-output',action='store_true',help='Exclusive new files without hard links; weaker visibility while writing.')
+    add_output_options(result)
     return result
 
 
@@ -48,7 +48,8 @@ def asset_files(data,*,background='243449',context=None):
 
 
 def emit(args,files):
-    publish({args.out_dir/name:value for name,value in files.items()},force=args.force,portable=args.portable_output)
+    publish({args.out_dir/name:value for name,value in files.items()},force=args.force,
+            portable=resolve_portable_output(args.portable_output))
     print(json.dumps(dict(out_dir=str(args.out_dir),files=sorted(files),
         note='Editable recipe output; inspect at native size. No automatic aesthetic acceptance.')))
 

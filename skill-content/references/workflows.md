@@ -25,7 +25,7 @@ Try `assets/workflows/atlas-before.png`, `atlas-before-layout.json` and `atlas-r
 
 When exploring variants, give each a directory such as `candidates/v01/` containing its spec, PNG, fresh layout and optional review. Use `v02/` for another candidate; keep paths meaningful rather than repeatedly occupying a shared `final.*`. After selecting a result, write the delivery paths. This is a useful convention, not a requirement to produce alternatives for every small edit.
 
-A later revision can use another candidate directory, or an explicit `--force` rebuild when replacement is authorized. A refusal is not a reason to add `--force` automatically. Do not select a visually weaker version just because it was written to a path called `final`. The renderer does not infer candidate lineage or an approved final choice from filenames.
+A later revision can use another candidate directory, or an explicit `--force` rebuild when replacement is authorized. If the task requires revision history, preserve each reviewed version's spec, PNG, fresh layout and generator source together before a rebuild; editing one shared generator later does not retain its earlier source. Deleting occupied outputs to render again loses the same evidence as replacing them. A refusal is not a reason to add `--force` automatically. Do not select a visually weaker version just because it was written to a path called `final`. The renderer does not infer candidate lineage or an approved final choice from filenames.
 
 ## Prove a precise edit boundary
 
@@ -69,6 +69,25 @@ Python `assemble(project,sources)` takes a filename-to-Pillow-image mapping and 
 
 Use compatible installed Pillow when offline. Exact reproduction pins Pillow 12.3.0; supported 10.4–12.x can fill some polygons differently. Record the actual version. Frozen imported grid/row-run specs retain accepted pixels; keep editable geometry too.
 
-Prefer a task-local venv. If the mount rejects venv symlinks, create it on a local temporary filesystem, or run `python -m pip install --target ./deps -r <skill>/requirements.txt` in a fresh task-local directory and add that directory to the task process's `PYTHONPATH`. Confirm `PIL.__version__` and `PIL.__file__` with the actual CLI interpreter; do not replace global packages.
+Prefer a task-local venv. If the mount rejects venv symlinks, create the venv on a local temporary filesystem and keep the task files at their original location. If `venv` fails because `ensurepip` is missing, an existing pip 22.3+ can install into a pip-free venv. On Linux/macOS:
+
+```sh
+pixel_env="$(mktemp -d)"
+python3 -m venv --without-pip "$pixel_env"
+python3 -m pip --python "$pixel_env/bin/python" install -r "<skill>/requirements.txt"
+"$pixel_env/bin/python" -c "import sys, PIL; print(sys.executable, PIL.__version__, PIL.__file__)"
+```
+
+Use that venv's Python for every tool command; activation is optional. If no usable pip or compatible installed interpreter is available, report the missing prerequisite. Do not replace global packages. A fresh task-local `pip install --target ./deps` plus process-local `PYTHONPATH` is another option when venv creation is unavailable.
 
 Default publication stages artifacts and uses exclusive hard links for new targets. If rejected, choose a local output directory or explicitly use `--portable-output`. This exclusively creates NEW files, which readers may observe while writing. Existing outputs still require `--force`; forced writes use the existing atomic replacement path. Cooperating writers reserve outputs; ordinary errors attempt rollback and report remaining outputs/errors. No mode promises a crash-safe multi-file transaction.
+
+For repeated commands in one task, choose portable output once in the shell that launches them:
+
+```sh
+export PIXELART_PORTABLE_OUTPUT=1
+# Run pixel_art.py or scripts/recipes/*.py normally; child processes inherit this choice.
+# Later: unset PIXELART_PORTABLE_OUTPUT
+```
+
+PowerShell: `$env:PIXELART_PORTABLE_OUTPUT = '1'`; later remove it with `Remove-Item Env:PIXELART_PORTABLE_OUTPUT`. Separate agent shell sessions may need the same process environment supplied by their launcher. This is not a saved project/global setting. Per-command `--portable-output` or `--no-portable-output` overrides the environment; unset or `0` keeps the default, other values are errors before writing. Read-only commands and Python `publish(..., portable=False)` do not consult this setting. Output visibility and overwrite rules are unchanged.

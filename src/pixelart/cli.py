@@ -7,7 +7,7 @@ import sys
 from PIL import Image, UnidentifiedImageError
 from . import PixelArtError, make_preview, render, validate
 from .compat import require_pillow
-from .output import publish
+from .output import add_output_options, publish, resolve_portable_output
 from .jsonio import read_json
 
 
@@ -102,11 +102,13 @@ def main(argv=None):
     assemble_cmd.add_argument('--preview-background',default='checker')
     assemble_cmd.add_argument('--force',action='store_true')
     for writer in (draw,preview,review_cmd,inspect_cmd,ingest_cmd,replace_cmd,verify_cmd,assemble_cmd):
-        writer.add_argument('--portable-output',action='store_true',
-            help='Exclusive creation without hard links; new files may be visible while writing. No automatic overwrite.')
+        add_output_options(writer)
     args = parser.parse_args(argv)
     try:
         require_pillow()
+        # Read-only commands do not depend on an output environment setting.
+        if args.command != 'validate' and (args.command not in ('inspect', 'verify') or args.out):
+            args.portable_output = resolve_portable_output(args.portable_output)
         if args.command=='assemble':
             from .assembly import load_project,assemble,seam_sheet
             project,sources,paths=load_project(args.project)

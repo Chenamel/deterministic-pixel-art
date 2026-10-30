@@ -1,0 +1,196 @@
+{
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "task": "LT04 independent image review receipt",
+  "review": {
+    "bytes": 5867,
+    "sha256": "1dad203ab9dac9690493733dd0cf48b45c3f5d59475b2c47bf3361026bb0df01"
+  },
+  "packet_sha256": "3537aadd3103b89b416bb76f78c8768148cc66eab5022bd98430a84b18394794",
+  "packet_members_exact": 12,
+  "images": 10,
+  "previews_exact": 8,
+  "returned_markdown_and_user_summary_preserved": true,
+  "assigned_platform": "Gemini Pro task mode",
+  "exact_backend_independently_verified": false,
+  "raw_image_opening_transcript_received": false,
+  "reviewer_reported_opening_ten_images": true,
+  "coordinator_viewed_all_ten_images": true,
+  "sources_not_treated_as_execution_instructions": true,
+  "directions_correct_and_independent_feedback_supports_local_correction": true,
+  "visible_palette": [
+    "#16223D",
+    "#36CFC9",
+    "#5BBF6A",
+    "#C9D2E0",
+    "#E5484D",
+    "#F2A65A"
+  ],
+  "visible_colors": 6,
+  "binary_alpha_and_one_pixel_borders": true,
+  "visible_pixels": {
+    "up": 72,
+    "down": 72,
+    "left": 72,
+    "right": 72,
+    "bag": 108,
+    "map": 136,
+    "settings": 152,
+    "close": 108
+  },
+  "measured_contrast": {
+    "outline": {
+      "dark": 1.0307751128210254,
+      "light": 13.42586581968238
+    },
+    "highlight": {
+      "dark": 10.048129990113853,
+      "light": 1.2962630252214793
+    },
+    "teal": {
+      "dark": 7.967467102467749,
+      "light": 1.6347754200038607
+    },
+    "amber": {
+      "dark": 7.567963711109376,
+      "light": 1.7210731811099476
+    },
+    "green": {
+      "dark": 6.640123014633228,
+      "light": 1.9615629635324012
+    },
+    "red": {
+      "dark": 3.913007373187004,
+      "light": 3.3286467764039114
+    }
+  },
+  "gear_tooth_check": {
+    "teal_top": {
+      "y": 2,
+      "xs": [
+        6,
+        7,
+        8
+      ],
+      "width": 3
+    },
+    "teal_bottom": {
+      "y": 13,
+      "xs": [
+        7,
+        8,
+        9
+      ],
+      "width": 3
+    },
+    "alpha_top": {
+      "y": 1,
+      "xs": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "width": 5
+    },
+    "alpha_bottom": {
+      "y": 14,
+      "xs": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "width": 5
+    },
+    "horizontal_shift": 1,
+    "claim_three_vs_five": "Not reproduced under the same fill/outline measurement; both fills3, both outer rows5."
+  },
+  "gear_hole": {
+    "enclosed_transparent_pixels": 12,
+    "alpha_topology_closed": true,
+    "right_inner_rim_highlight_positions": [
+      [
+        42,
+        7
+      ],
+      [
+        42,
+        8
+      ]
+    ],
+    "interpretation": "Weak local light-background contrast; not an open transparent hole"
+  },
+  "bag_handle_highlight_positions": [
+    [
+      6,
+      5
+    ],
+    [
+      7,
+      5
+    ],
+    [
+      8,
+      5
+    ]
+  ],
+  "map_route_highlight_positions": [
+    [
+      21,
+      10
+    ],
+    [
+      22,
+      10
+    ],
+    [
+      23,
+      10
+    ]
+  ],
+  "feedback_disposition": {
+    "directions": "Meaning correction supported; shapes now up/down/left/right as named.",
+    "contrast": "Ratios confirmed; weak individual edges are real, global disappearance and mandatory redesign are overstated.",
+    "map": "Contextual semantic concern accepted as highest-priority local candidate; folds are one option, not a universal map requirement.",
+    "map_route": "Three highlight pixels exist but are original route marks, not automatically accidental isolated pixels.",
+    "gear_weight": "152 vs108 confirmed; pixel count alone does not set optical weight or a valid110-125 target.",
+    "gear_teeth": "One-pixel position/asymmetry confirmed; alleged3-vs5 width mixes fill and outline measurements.",
+    "gear_hole": "12 enclosed transparent pixels; right inner rim uses highlight, so local contrast is weak but alpha topology is closed.",
+    "bag": "Three stated highlight pixels confirmed; transparent-handle variant is useful, not mandatory.",
+    "right_tail": "Coordinates correct; left-side highlight follows same light convention as other arrows, not a distinct structure failure."
+  },
+  "neutral_contrast_example": {
+    "hex": "7A7A7A",
+    "dark": 3.5678068227283304,
+    "light": 3.650707570776862,
+    "scope": "Numeric feasibility only; no rendering or visual improvement demonstrated."
+  },
+  "universal_outline_or_pixel_count_rule_adopted": false,
+  "full_visual_task_acceptance": false,
+  "new_renderer_bug_identified": false,
+  "new_artwork_or_skill_or_runtime_or_installation_change": false,
+  "local_visual_candidate_or_packet_prepared": false,
+  "protected_files": 737,
+  "protected_files_unchanged": true,
+  "source_committed_or_pushed": false,
+  "new_release_or_ci_or_full_suite": false,
+  "release_gate_changed": false,
+  "same_downloads_path_user_replaced_before_receipt": true,
+  "prior_ui_review_snapshot_preserved": true,
+  "current_handoff": "None; review received and checked, do not resend",
+  "total_main_stages": 4,
+  "complete": [
+    "P1",
+    "P2",
+    "P3",
+    "P4a"
+  ],
+  "deferred": [
+    "P4b native512"
+  ],
+  "current": "LT04 independent image feedback audited; scoped local visual candidate recommended",
+  "next": "Recommend one scoped actions-atlas candidate for map meaning, gear contour and bag handle; keep direction atlas unchanged. Not implemented by this receipt."
+}

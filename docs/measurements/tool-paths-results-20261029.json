@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-29",
+  "scope": "local coordinator public-interface diagnostic; not an independent agent or A/B",
+  "python": "3.14.2",
+  "pillow": "12.3.0",
+  "development_zip_sha256": "b2dcbe96443b278e2b93ef6a9e28d250d025d4c5eb4a36f7395c747086b31086",
+  "atlas": {
+    "size": [
+      48,
+      24
+    ],
+    "cell_size": [
+      24,
+      24
+    ],
+    "names": [
+      "camera",
+      "ticket"
+    ],
+    "layout_valid": true,
+    "exact_previews": 4
+  },
+  "edit": {
+    "size": [
+      32,
+      32
+    ],
+    "allowed_region": [
+      23,
+      10,
+      4,
+      4
+    ],
+    "roundtrip_rgba_equal": true,
+    "changed_rgba_pixels": 14,
+    "changed_outside": 0,
+    "same_color_elsewhere_preserved": true,
+    "hidden_rgb_preserved": true,
+    "partial_alpha_preserved": true
+  },
+  "commands": {
+    "help": 2,
+    "operations": 13,
+    "nonzero": 0
+  },
+  "task_authoring": {
+    "atlas_source": "author_atlas.py",
+    "grid_edit_source": "edit_indicator.py",
+    "classification": "normal shape/spec editing, not evidence of avoidable generic glue"
+  },
+  "internal_runtime_reads_needed": 0,
+  "manual_layout_transcription_needed": 0,
+  "new_actionable_product_obstacles": [],
+  "product_changes": [],
+  "protected_files_unchanged": 346,
+  "installed_files_unchanged": 44,
+  "input_hashes_unchanged": true,
+  "next": "LT05 asymmetric sprite creation/edit workflow; prepare a small public-interface task only if needed",
+  "limits": [
+    "coordinator has prior project knowledge",
+    "two small paths only",
+    "no external user trial or controlled version benefit",
+    "no task-time/token savings claim"
+  ]
+}

@@ -16,7 +16,7 @@
 
 [图标与 UI](demos/pixel-ui/README.md) · [128×128 精灵](examples/workflows/sprite-128.json) · [四块拼接的 256×256 场景](demos/chunk-scene/README.md)。展示使用项目已有的原创素材，放大时仅使用整数倍最近邻缩放，保持像素边缘清晰。
 
-**版本：v1.2.0。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.0) · [版本变化](docs/releases/v1.2.0.zh-CN.md)。PNG 导入、按名称替换图集中的一格、逐像素核对修改、组件拼接和示例脚本需要 v1.2.0；v1.1.1 仅提供渲染、预览、校验和图片检查。
+**版本：v1.2.1。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.1) · [版本变化](docs/releases/v1.2.1.zh-CN.md)。本次维护版纳入说明文案修正和 Skill 图标。PNG 导入、按名称替换图集中的一格、逐像素核对修改、组件拼接和示例脚本从 v1.2.0 起提供；v1.1.1 仅提供渲染、预览、校验和图片检查。
 
 ## 交给 AI 使用
 

@@ -6,7 +6,7 @@
 
 ## 发给谁、发什么
 
-在 **WorkBuddy 新建对话，选择 MiniMax-M3.1-Flash**，上传唯一附件 [LT08-Chunks.zip](../dist/lt08-chunks-dev-20261030/LT08-Chunks.zip)，发送：
+在 **WorkBuddy 新建对话，选择 MiniMax-M3.1-Flash**，上传唯一附件 LT08-Chunks.zip（本地归档，不随仓库分发：`dist/lt08-chunks-dev-20261030/LT08-Chunks.zip`），发送：
 
 > 请解压附件，读取LT08/START_HERE.md，使用包内Skill完成任务，最后返回submission-LT08.zip；保留失败与辅助源码，反馈具体困难即可。
 

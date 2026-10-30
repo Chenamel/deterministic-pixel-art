@@ -6,15 +6,30 @@
 
 遍历 docs/、skill-content/、README.md、README.zh-CN.md 的全部文件：源清单141个，另有2个审计输出文件单独检查，文本按Markdown链接/引用定义、HTML href/src、可识别文件名和反引号目录扫描；二进制图片记录在清单但没有文本链接可解析。审计报告与附录属于输出，避免把输出中的引用清单再次递归计数；它们的明确链接另外检查。
 
-**明确的相对链接共检查 362 个，失效 0。** 范围含1个同文档章节链接；这里只验证文件存在，所有章节名对应的锚点是否有效为**未验证**。
+**明确的相对链接共检查 354 个，失效 0：源文件353个，两个审计输出文件另1个。** 范围含1个同文档章节链接；这里只验证文件存在，所有章节名对应的锚点是否有效为**未验证**。诊断清单中的来源路径是源清单的镜像，不递归重复计数。
 
-扩展到裸文件名/目录/代码块和JSON里的文件引用，共检查 1338 个相对候选：存在 796 个、同文档片段 1 个、可定位失效 0 个，另有 541 个**未验证**。具体构成为缺上下文 465、模板 8、当前目录下未生成或未找到的输出/本地证据 68。不能把这 541 项写成“已确认有效”，也不能把示例输出不存在都判作产品缺陷。
+扩展源文件的裸文件名/目录/代码块和JSON里的文件引用，共检查 1339 个相对候选：存在 797 个、同文档片段 1 个、可定位失效 0 个，另有 541 个**未验证**。具体构成为缺上下文 465、模板 8、当前目录下未生成或未找到的输出/本地证据 68。不能把这 541 项写成“已确认有效”，也不能把示例输出不存在都判作产品缺陷。
 
 失效清单：明确链接及可定位文件引用未发现失效。未验证与本地忽略证据的**逐项文件:行号清单**见[引用明细](self-check-references-20261030.md)。成功项及各次尝试路径保存在本地 evaluation/delivery-self-check-20261030/reference-inventory.json。
 
 解析依据：Skill指导源的资源链接按打包后的同目录解析；metrics/first-pass-metrics里的旧模组路径按baselines/manifest.json声明的历史根解析；LT06的src/gen_chest.py明确指返回包RUN内源码，当前证据副本存在。不修改历史测量JSON。仅凭裸同名文件不能猜测目标；这类保留未验证。
 
 外部URL另记录 60 项，本轮不做逐站可达性检测；本机绝对路径不算可移植相对链接。自然语言中不含可识别路径的暗示性文件引用为**未验证**。本地存在不代表GitHub克隆后可得，附录单列位于忽略目录的 94 项（包括output目录中的4项）。
+
+额外区分了本地与仓库分发：发现以下10处Markdown下载样式链接指向未跟踪的历史ZIP，文件本地存在，但干净克隆不含它们。已改为明确标注“不随仓库分发”的本地归档位置，保留包与历史摘要，不上传原始材料、不重建临时发布。位置为修正后的同一行。
+
+| 文件:行号 | 历史包 |
+|---|---|
+| docs/guidance-lt07-preparation.zh-CN.md:19 | LT07-Minecraft.zip |
+| docs/lt04-correction-20261029.zh-CN.md:43 | LT04-review.zip |
+| docs/lt04-preparation.zh-CN.md:11 | LT04-Icons.zip |
+| docs/lt04-results-20261029.zh-CN.md:13 | LT04-Icons.zip |
+| docs/lt05-preparation.zh-CN.md:9 | LT05-Sprite.zip |
+| docs/lt05-results-20261030.zh-CN.md:11 | LT05-Sprite.zip |
+| docs/lt06-preparation.zh-CN.md:9 | LT06-Materials.zip |
+| docs/lt06-results-20261030.zh-CN.md:9 | LT06-Materials.zip |
+| docs/lt07-results-20261030.zh-CN.md:11 | LT07-Minecraft.zip |
+| docs/lt08-preparation.zh-CN.md:9 | LT08-Chunks.zip |
 
 ## 2. README双语结构
 
@@ -49,7 +64,7 @@ skill-content/SKILL.md和生成的skill/deterministic-pixel-art/SKILL.md分别�
 | recipes/_common.py | test_output_selection.py；test_recipes.py | 子进程继承/单次覆盖、配方像素契约；没有为薄参数转发再造逐行镜像测试 |
 | skill/.../scripts/pixelart/{cli,output}.py；skill/.../scripts/recipes/_common.py | 源模块测试＋tools/test_skill.py独立包 | 生成副本不重复维护单元测试；校验源码/副本/ZIP一致，并执行CLI/API；不是自动发现模型能力测试 |
 | tools/test_skill.py；tools/validate_skill.py | test_packaging.py；test_reliability.py | 有效章节链接、缺文件拒绝、同文档片段、虚拟环境解释器路径；完整包检查覆盖整体编排，未单独模拟每种子进程故障 |
-| tools/evaluate.py | tests/无直接测试；完整tools/check.py调用 | 评估编排器以真实端到端运行为依据，不写重复自身实现的包装测试；跨平台超时适用性需新CI，当前未验证 |
+| tools/evaluate.py | tests/无直接测试；完整tools/check.py调用 | 评估编排器以真实端到端运行为依据，不写重复自身实现的包装测试；本次Windows/Ubuntu完整CI通过，任意机器性能与超时适用性未验证 |
 | tools/audit_trial_history.py | test_trial_history.py | 命令内/间删除重建、源码替换、非法快照和只读磁盘审计 |
 | tools/build_linux_trial.py；benchmarks/long-term/linux_runner.py | test_linux_trial.py | 真实解压入口、无损往返、输出/拒绝覆盖、包摘要与协调信息隔离；不是Linux/FUSE挂载模拟全覆盖 |
 | tools/build_icon_trial.py；benchmarks/long-term/icons_runner.py | test_icon_trial.py | 图集/像素/布局工程约束及真实打包；图标语义靠图片审阅，不能由工程检查证明 |
@@ -73,7 +88,7 @@ skill-content/SKILL.md和生成的skill/deterministic-pixel-art/SKILL.md分别�
 - 真实Minecraft运行、任意字体/中文排版、原生512、多代理协作和一般画质/耗时/token收益：未验证，不作为新功能扩展。
 - 本地原始提交、完整会话、迁移记录、凭据与虚拟环境不上传；本地证据存在不等于公开分发。
 - 当前同摘要Skill的外测材料按覆盖范围沿用；最终若有行为变更需补对应检查，不能将单版本任务回填受控收益。
-- 正式版本号、main/tag/Release、本地稳定Skill更新尚未执行；先完成开发分支提交及对应CI。
+- 正式版本号、main/tag/Release、本地稳定Skill更新尚未执行；本轮完成开发分支提交和对应CI，下一步才是最终编号与发布准备。
 
 ## 报告完成后的完整检查
 
@@ -87,8 +102,16 @@ skill-content/SKILL.md和生成的skill/deterministic-pixel-art/SKILL.md分别�
 
 第二次CI（提交58486e4，run41031679670）四组Ubuntu成功、四组Windows失败。Windows日志均为同两项测试失败：输出发布器规范化路径，而故障注入/并发等待钩子比较未经解析的临时目录；日志显示RUNNER~1与runneradmin路径别名。已让两处钩子双方resolve，并确保子进程即使提前结束也关闭管道，不降低断言、不跳过用例。7项本地输出测试通过；本机没有可用的不同短路径别名，短路径故障的本地直接重现为**未验证**，需以新提交Windows CI检验。原始日志及此次本地重现尝试均保留。
 
-测试钩子修正后，另建不含根ZIP/私有证据的634文件中文空格副本，从报告已写入的源码执行完整检查：165源码测试、106独立包场景、43稳定图及两次一致打包全部通过，完整流水线196.350秒；官方Skill校验器另行通过。新提交CI待完成，不能将本地通过写成远端通过。此次仅改测试，不改产品运行时或ZIP。
+测试钩子修正后，另建不含根ZIP/私有证据的634文件中文空格副本，从报告已写入的源码执行完整检查：165源码测试、106独立包场景、43稳定图及两次一致打包全部通过，完整流水线196.350秒；官方Skill校验器另行通过。此次仅改测试，不改产品运行时或ZIP。
+
+**对应代码提交32e98a74d5c4cf3bb5ad6e585f16f28bb4f86499的[GitHub检查](https://github.com/Chenamel/deterministic-pixel-art/actions/runs/41033059467)已完成，8/8成功。** Windows与Ubuntu各执行一组Python3.14完整流水线，以及Python3.10/Pillow10.4、Python3.12/Pillow11.3、Python3.13/Pillow12.1的三组源码兼容检查。Windows路径钩子在四组真实CI环境中通过；本机缺短别名的限制仍如实保留。此次CI不是历史提交的结果。随后只收尾文档，运行时/测试/Skill与此提交一致；文档提交自身检查另以该提交GitHub状态与本地检查点为准，不借用这次CI的提交身份。
+
+复跑引用清单：在仓库根运行以下命令，审计输出另行验证其明确链接，避免递归统计输出中的诊断列表。
+
+```text
+python -B tools/self_check.py --out evaluation/reference-inventory.json --exclude docs/self-check-20261030.md --exclude docs/self-check-references-20261030.md
+```
 
 原始证据目录：evaluation/delivery-self-check-20261030/。该目录不进入Skill上下文或公开原始材料。
 
-共4主阶段：P1–P3/P4a完成，P4b原生512暂缓。当前位置交付前自查与完整检查，下一步固定开发分支提交并验证对应CI。
+共4主阶段：P1–P3/P4a完成，P4b原生512暂缓。当前位置交付自查及代码提交平台检查完成，下一步正式编号、最终包与版本说明准备。

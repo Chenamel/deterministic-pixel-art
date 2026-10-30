@@ -8,7 +8,7 @@
 
 WorkBuddy中新建对话，选择 **Hy3**；若当前不可用，改用 **Space-Bunny** 的全新对话，只运行其中一个。
 
-上传 [LT04-Icons.zip](../dist/lt04-icons-dev-20261029/LT04-Icons.zip)，复制一句：
+上传 LT04-Icons.zip（本地归档，不随仓库分发：`dist/lt04-icons-dev-20261029/LT04-Icons.zip`），复制一句：
 
 > 请解压附件，读取LT04/START_HERE.md，使用包内Skill实际完成任务，最后返回submission-LT04.zip；保留失败与辅助源码，反馈具体困难即可。
 

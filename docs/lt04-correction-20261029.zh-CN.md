@@ -40,7 +40,7 @@ Skill主入口补充逐个按名称检查方向、功能与状态；需要修改
 
 ## 现在只发送这个包
 
-给 **Gemini Pro任务模式的全新对话** 上传 [LT04-review.zip](../dist/lt04-review-corrected-20261029/LT04-review.zip)，复制：
+给 **Gemini Pro任务模式的全新对话** 上传 LT04-review.zip（本地归档，不随仓库分发：`dist/lt04-review-corrected-20261029/LT04-review.zip`），复制：
 
 > 请解压附件，读取LT04-review/START_HERE.md和TASK.md，实际查看包内图片，将具体审阅意见保存为review.md交回。
 

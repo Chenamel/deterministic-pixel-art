@@ -6,7 +6,7 @@
 
 ## 发给谁、发什么
 
-WorkBuddy新建对话，选择 **GLM-5.3-Flash**。上传 [LT05-Sprite.zip](../dist/lt05-sprite-dev-20261029/LT05-Sprite.zip)，只复制：
+WorkBuddy新建对话，选择 **GLM-5.3-Flash**。上传 LT05-Sprite.zip（本地归档，不随仓库分发：`dist/lt05-sprite-dev-20261029/LT05-Sprite.zip`），只复制：
 
 > 请解压附件，读取LT05/START_HERE.md，使用包内Skill完成任务，最后返回submission-LT05.zip；保留失败与辅助源码，反馈具体困难即可。
 

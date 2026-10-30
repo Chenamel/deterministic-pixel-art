@@ -16,7 +16,7 @@
 
 ## 发给谁、发什么
 
-**豆包「办公任务」，新建对话，使用该模式当前默认模型。** 记录实际显示的模型名；未显示就写未披露，不猜底层版本。上传唯一附件 [LT07-Minecraft.zip](../dist/lt07-minecraft-dev-20261030/LT07-Minecraft.zip)，只发：
+**豆包「办公任务」，新建对话，使用该模式当前默认模型。** 记录实际显示的模型名；未显示就写未披露，不猜底层版本。上传唯一附件 LT07-Minecraft.zip（本地归档，不随仓库分发：`dist/lt07-minecraft-dev-20261030/LT07-Minecraft.zip`），只发：
 
 > 请解压附件，读取LT07/START_HERE.md，使用包内Skill完成任务，最后返回submission-LT07.zip；保留失败与辅助源码，反馈具体困难即可。
 

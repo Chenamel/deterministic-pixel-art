@@ -9,6 +9,9 @@ project name; the Chinese subtitle reads “面向 AI 的像素绘图与精确�
 - [中文标题图，深色](../../docs/images/brand/header-zh-CN-dark.png) / [浅色](../../docs/images/brand/header-zh-CN-light.png).
 - [Editable header specifications](identity/) and [identity generator](build_identity.py).
 - [Font provenance and licensing](font-notices/README.md).
+- [Full-size logo kit](logo-kit/README.md) / [全尺寸素材说明](logo-kit/README.zh-CN.md):
+  32/64/128px simple badges, enhanced 256/512px badges, plus transparent and monochrome marks.
+  The complete set is a separate Release attachment; [future release checklist](../../docs/releases/README.md).
 
 The source Skill metadata now points to the 32px and 128px fixed-background
 badges. Fonts and headers stay outside the standalone Skill. The published

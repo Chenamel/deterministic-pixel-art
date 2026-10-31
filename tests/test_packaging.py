@@ -41,3 +41,26 @@ class SkillReferenceTests(unittest.TestCase):
 
     def test_document_fragment_needs_no_separate_file(self):
         self.check_reference('#entry', exists=False, valid=True)
+
+    def test_links_inside_reference_pages(self):
+        cases = (
+            ('other.md#details', True, True),
+            ('missing.md#details', False, False),
+            ('#local-section', False, True),
+            ('https://example.com/guide#details', False, True),
+        )
+        for target, exists, valid in cases:
+            with self.subTest(target=target), tempfile.TemporaryDirectory() as directory:
+                skill = Path(directory) / 'test-skill'
+                references = skill / 'references'
+                references.mkdir(parents=True)
+                (skill / 'SKILL.md').write_text('[Review](references/review.md)\n', encoding='utf-8')
+                (references / 'review.md').write_text(
+                    f'# Local section\n[Details]({target})\n', encoding='utf-8')
+                if exists:
+                    (references / 'other.md').write_text('# Details\n', encoding='utf-8')
+                if valid:
+                    validate_local_references(skill)
+                else:
+                    with self.assertRaisesRegex(RuntimeError, 'Broken skill reference'):
+                        validate_local_references(skill)

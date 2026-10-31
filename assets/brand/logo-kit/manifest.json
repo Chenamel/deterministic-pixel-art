@@ -1,0 +1,381 @@
+{
+  "version": 1,
+  "name": "Pixel Anchor",
+  "source_sha256": "4ed6dd01e37d9617c864fd8c275a17d7559b8f9f3846abe02ae71970b12c1c9d",
+  "sizes": [
+    32,
+    64,
+    128,
+    256,
+    512
+  ],
+  "badge_defaults": {
+    "32": "simple",
+    "64": "simple",
+    "128": "simple",
+    "256": "enhanced",
+    "512": "enhanced"
+  },
+  "assets": [
+    {
+      "file": "badge-dark/pixel-anchor-32.png",
+      "spec": "badge-dark/pixel-anchor-32.json",
+      "variant": "badge-dark",
+      "size": [
+        32,
+        32
+      ],
+      "detail": "simple",
+      "sha256": "fef887d487d2990104f9b94d62822e3506673baa6954ce8014d08a67ab0709c5",
+      "rgba_sha256": "66e299bd3318241cf555fc6ce6d570c572ba39fe592537d12119cec3cd16a9cb"
+    },
+    {
+      "file": "badge-dark/pixel-anchor-64.png",
+      "spec": "badge-dark/pixel-anchor-64.json",
+      "variant": "badge-dark",
+      "size": [
+        64,
+        64
+      ],
+      "detail": "simple",
+      "sha256": "d6889147e3c8b26c3bf30bb61b677b6f5ca3eef983ac77624100ca9404d3998c",
+      "rgba_sha256": "a00733e83c90cd71227aa921c099e20b68331fc5096e63713b015f35aa8ab6e1"
+    },
+    {
+      "file": "badge-dark/pixel-anchor-128.png",
+      "spec": "badge-dark/pixel-anchor-128.json",
+      "variant": "badge-dark",
+      "size": [
+        128,
+        128
+      ],
+      "detail": "simple",
+      "sha256": "932f8d8e4deb0552624c3a503deb02627d6176b689aaff6bbdd1f3cf75697259",
+      "rgba_sha256": "c8d4c55c4d2bef704577029e38df80e7f0af02603d8d64c63080e7ce5198b93d"
+    },
+    {
+      "file": "badge-dark/pixel-anchor-256.png",
+      "spec": "badge-dark/pixel-anchor-256.json",
+      "variant": "badge-dark",
+      "size": [
+        256,
+        256
+      ],
+      "detail": "enhanced",
+      "sha256": "b626dac537ab5d5a82b0f1899c5b137a79559d3999da9d1cc6213091dc497429",
+      "rgba_sha256": "0cac59cfee8b13230dcddd06e4ffee33ff7b9990039fdb7375372cb950967b18"
+    },
+    {
+      "file": "badge-dark/pixel-anchor-512.png",
+      "spec": "badge-dark/pixel-anchor-512.json",
+      "variant": "badge-dark",
+      "size": [
+        512,
+        512
+      ],
+      "detail": "enhanced",
+      "sha256": "003d28ca027bf4acfaf0f2d58898d2a84149442c5d561159a2a2a74a2594bd7c",
+      "rgba_sha256": "3d5223985458dc25265128c9d0da9fe0d32fef7f43c753436a58c592e315b9ea"
+    },
+    {
+      "file": "badge-light/pixel-anchor-32.png",
+      "spec": "badge-light/pixel-anchor-32.json",
+      "variant": "badge-light",
+      "size": [
+        32,
+        32
+      ],
+      "detail": "simple",
+      "sha256": "9dfd9eb31e53424aa63ddb623992f4f75a3965536257da68ddec16c4fac4d4be",
+      "rgba_sha256": "48dc04e41737ddc109d9a1c05072ff8ea4b7763d95d2cc58010eae2370775b7d"
+    },
+    {
+      "file": "badge-light/pixel-anchor-64.png",
+      "spec": "badge-light/pixel-anchor-64.json",
+      "variant": "badge-light",
+      "size": [
+        64,
+        64
+      ],
+      "detail": "simple",
+      "sha256": "3b744829b8233d635ec0f69b51e180d2f190889b4fd1289e8ef4d29474bdfc59",
+      "rgba_sha256": "3a06ca52c6dbd34d68dc1b798fd382a6db99d0a97314b01fc124ea3ea9d5529e"
+    },
+    {
+      "file": "badge-light/pixel-anchor-128.png",
+      "spec": "badge-light/pixel-anchor-128.json",
+      "variant": "badge-light",
+      "size": [
+        128,
+        128
+      ],
+      "detail": "simple",
+      "sha256": "800cfdce5ff4ba229c5ecdc820e63cf7363d0038c20192899ee3984703a4af40",
+      "rgba_sha256": "b3bf52f7d7dc8040f0ea66147004b76351b969dbaa00dc0bab0338c0d954a413"
+    },
+    {
+      "file": "badge-light/pixel-anchor-256.png",
+      "spec": "badge-light/pixel-anchor-256.json",
+      "variant": "badge-light",
+      "size": [
+        256,
+        256
+      ],
+      "detail": "enhanced",
+      "sha256": "dcbc0c627bb165b6ebcf745fcd63ad7c0a0b24014fa40885c0be0fa92ee2501a",
+      "rgba_sha256": "7a28a450590dd649c077136e58df11c256a6cdb0c75cd397cc871e6e3c49d420"
+    },
+    {
+      "file": "badge-light/pixel-anchor-512.png",
+      "spec": "badge-light/pixel-anchor-512.json",
+      "variant": "badge-light",
+      "size": [
+        512,
+        512
+      ],
+      "detail": "enhanced",
+      "sha256": "b8bbddcfc4bed12c7f616c495135521e351fa93fe4cd78865a9c21f0e89df88b",
+      "rgba_sha256": "9e454634fcc753dd528a9472359858e604b5e08dc065335771f2f9628bc48531"
+    },
+    {
+      "file": "mark-dark/pixel-anchor-32.png",
+      "spec": "mark-dark/pixel-anchor-32.json",
+      "variant": "mark-dark",
+      "size": [
+        32,
+        32
+      ],
+      "detail": "simple",
+      "sha256": "974e4cc84298313b2adc81ccc3582ce68195f877438236a6a0d5494c202f0ca2",
+      "rgba_sha256": "e1593cf2b59f60771b4ee380b785d9f7b196dcc641e64187b1abb79ebe5ad762"
+    },
+    {
+      "file": "mark-dark/pixel-anchor-64.png",
+      "spec": "mark-dark/pixel-anchor-64.json",
+      "variant": "mark-dark",
+      "size": [
+        64,
+        64
+      ],
+      "detail": "simple",
+      "sha256": "18329c28d6f382b2206c983839209fec74423cc29dbd9775c2425ea8d9480b01",
+      "rgba_sha256": "df3d952e64e387d9112072e0f43663e1c57b0815c8a32b7678909bf0bb1950e2"
+    },
+    {
+      "file": "mark-dark/pixel-anchor-128.png",
+      "spec": "mark-dark/pixel-anchor-128.json",
+      "variant": "mark-dark",
+      "size": [
+        128,
+        128
+      ],
+      "detail": "simple",
+      "sha256": "4f745050c669160779001a7b56309f346a2dc9d31b74371b0cdabd68c5f91c5f",
+      "rgba_sha256": "5ee5dadbfab57c2f52516beb9779255066c154a45db5ac53d0b2aff948cc8324"
+    },
+    {
+      "file": "mark-dark/pixel-anchor-256.png",
+      "spec": "mark-dark/pixel-anchor-256.json",
+      "variant": "mark-dark",
+      "size": [
+        256,
+        256
+      ],
+      "detail": "simple",
+      "sha256": "7d91230e513bc39f4e35b9b6734d7d65d738c53657fd218545177254fcb24487",
+      "rgba_sha256": "b61dd89702d6908b210d8f4da82f2044917cc56e45c9fc715971e3a8a117453a"
+    },
+    {
+      "file": "mark-dark/pixel-anchor-512.png",
+      "spec": "mark-dark/pixel-anchor-512.json",
+      "variant": "mark-dark",
+      "size": [
+        512,
+        512
+      ],
+      "detail": "simple",
+      "sha256": "1fa2b9da10aa96a838bc0624e50c3d91ec23e1e43986c3cab49615f2e061c193",
+      "rgba_sha256": "36bbc296a35fce9cb5269b3fafaed36ff652a5df06d505ec122f89c3e47b23c8"
+    },
+    {
+      "file": "mark-light/pixel-anchor-32.png",
+      "spec": "mark-light/pixel-anchor-32.json",
+      "variant": "mark-light",
+      "size": [
+        32,
+        32
+      ],
+      "detail": "simple",
+      "sha256": "01fcb1149b3cdc80b9868db1a7ad3bbe11e8a039fae766576812741a0ce564a1",
+      "rgba_sha256": "c2136acc35d22b69bbb6721e5e3f68852d0bba2e966cb9b12d8a2ee4a9785143"
+    },
+    {
+      "file": "mark-light/pixel-anchor-64.png",
+      "spec": "mark-light/pixel-anchor-64.json",
+      "variant": "mark-light",
+      "size": [
+        64,
+        64
+      ],
+      "detail": "simple",
+      "sha256": "ae128fa699d0ca7d2c55c4a20beba9f8fb1b2944769d1700d2d0d4a7329d18f4",
+      "rgba_sha256": "081efb1bc116240e0f5f0a070f50122e9593cc24da0c16893d6e887317133808"
+    },
+    {
+      "file": "mark-light/pixel-anchor-128.png",
+      "spec": "mark-light/pixel-anchor-128.json",
+      "variant": "mark-light",
+      "size": [
+        128,
+        128
+      ],
+      "detail": "simple",
+      "sha256": "1aa6ad07d7b7e1f7069069eb94ff5672aeaab8e70f9deed989e435fabb1ade37",
+      "rgba_sha256": "a294e9c80dca63f7ad2a2d69e7c3b135ae2067f4d85aa47a0f65f2838237e30e"
+    },
+    {
+      "file": "mark-light/pixel-anchor-256.png",
+      "spec": "mark-light/pixel-anchor-256.json",
+      "variant": "mark-light",
+      "size": [
+        256,
+        256
+      ],
+      "detail": "simple",
+      "sha256": "47aafb2db910ce8f67c96397a33d95b63a2c013d4ff5bfb5b0d1350ffb1857df",
+      "rgba_sha256": "a84776970ccb4117cc3cc5c9e7489cd8bd36d08622196a8f945cd4ca484075d9"
+    },
+    {
+      "file": "mark-light/pixel-anchor-512.png",
+      "spec": "mark-light/pixel-anchor-512.json",
+      "variant": "mark-light",
+      "size": [
+        512,
+        512
+      ],
+      "detail": "simple",
+      "sha256": "562ea02119ff48ae1cc6bc9fc734216b79e53f11a5a1a8e3975f528a52b2a89c",
+      "rgba_sha256": "ee413ab8c4fa25e51288fd37e188e3396d8a9e13061253daa86ce473c64f2f1b"
+    },
+    {
+      "file": "mono-black/pixel-anchor-32.png",
+      "spec": "mono-black/pixel-anchor-32.json",
+      "variant": "mono-black",
+      "size": [
+        32,
+        32
+      ],
+      "detail": "simple",
+      "sha256": "6709f2b1d084f7c902d1208bb3bce07f99c334f05fd5cf96afc19b159e39fc7e",
+      "rgba_sha256": "f13ce17716c12c84181f5170cb74d40c037296e83731b695e87c37168678f776"
+    },
+    {
+      "file": "mono-black/pixel-anchor-64.png",
+      "spec": "mono-black/pixel-anchor-64.json",
+      "variant": "mono-black",
+      "size": [
+        64,
+        64
+      ],
+      "detail": "simple",
+      "sha256": "bfe0fa4cbe6ba324a6b0a6ab24c7d7f50f4084a2066d7f28cdc46830c39aa4b8",
+      "rgba_sha256": "4230daecd66d8647054bbb3d7331e9cb070cace4c26d545a90085e822117e903"
+    },
+    {
+      "file": "mono-black/pixel-anchor-128.png",
+      "spec": "mono-black/pixel-anchor-128.json",
+      "variant": "mono-black",
+      "size": [
+        128,
+        128
+      ],
+      "detail": "simple",
+      "sha256": "2a05ea58e5588611e8202b6993fc26545d0eeedf48626aa533a9f43c4eb5c5f5",
+      "rgba_sha256": "9cac1f656f12f21df84ff16465dadaa9061cf47a07eba3e9f73d6c4ec8516e34"
+    },
+    {
+      "file": "mono-black/pixel-anchor-256.png",
+      "spec": "mono-black/pixel-anchor-256.json",
+      "variant": "mono-black",
+      "size": [
+        256,
+        256
+      ],
+      "detail": "simple",
+      "sha256": "c12bde61ce60c95c4d2515ab101998d4d1834161d3784cfedbb82084a606b0de",
+      "rgba_sha256": "e66397854bae27bf8f51d350afc7e2293b11b6ac4ab750daa83cb0491429a474"
+    },
+    {
+      "file": "mono-black/pixel-anchor-512.png",
+      "spec": "mono-black/pixel-anchor-512.json",
+      "variant": "mono-black",
+      "size": [
+        512,
+        512
+      ],
+      "detail": "simple",
+      "sha256": "61a0288e4c501b38474a3507a18cc7a9363b52979335b2ce296d834a5b0993bd",
+      "rgba_sha256": "b8bb42d465cbec5f22244948f68fd28e8988d11975e6da1a17e570b318498220"
+    },
+    {
+      "file": "mono-white/pixel-anchor-32.png",
+      "spec": "mono-white/pixel-anchor-32.json",
+      "variant": "mono-white",
+      "size": [
+        32,
+        32
+      ],
+      "detail": "simple",
+      "sha256": "5c738ab56ad35f902327ac371340de28327bce6089fd558b3012fbd3d0221141",
+      "rgba_sha256": "88bbfb861aaca289d5c158fc8997f664be368d02616ae5fc9d42acdcf6f45d57"
+    },
+    {
+      "file": "mono-white/pixel-anchor-64.png",
+      "spec": "mono-white/pixel-anchor-64.json",
+      "variant": "mono-white",
+      "size": [
+        64,
+        64
+      ],
+      "detail": "simple",
+      "sha256": "8cd42b374f6cccc7021e20f12d6f384a1479fb28847cacfbc9b0a232b95f5b1a",
+      "rgba_sha256": "002f5e0d0e8824d717e3e3d20dc0a05b068ce9b319ab12c5360e07a839c8ea23"
+    },
+    {
+      "file": "mono-white/pixel-anchor-128.png",
+      "spec": "mono-white/pixel-anchor-128.json",
+      "variant": "mono-white",
+      "size": [
+        128,
+        128
+      ],
+      "detail": "simple",
+      "sha256": "cbdbdc9b392dc5562e4926c884b9614972521445e3cc27e77dc3524ddcfd11c2",
+      "rgba_sha256": "786308ea52a4dba9a5676a56ec1dbcaba58c4f8ad45df3b2379c32f67edeb21b"
+    },
+    {
+      "file": "mono-white/pixel-anchor-256.png",
+      "spec": "mono-white/pixel-anchor-256.json",
+      "variant": "mono-white",
+      "size": [
+        256,
+        256
+      ],
+      "detail": "simple",
+      "sha256": "492ade10c2c33fa1ccfcbac220dd510e6a852f912601c3f8f2d843d6f17e9ee9",
+      "rgba_sha256": "d02c12cc518c9c0df2b7f1c4fa4675c5bdccd2045f59c22a1589d36f8d492f04"
+    },
+    {
+      "file": "mono-white/pixel-anchor-512.png",
+      "spec": "mono-white/pixel-anchor-512.json",
+      "variant": "mono-white",
+      "size": [
+        512,
+        512
+      ],
+      "detail": "simple",
+      "sha256": "2bfe711a28e431dfb99fea0d54ded067b035ce4e139e890f8b5ac1cb0cf10d05",
+      "rgba_sha256": "8d1721c95228844e356f603e00904d5f3d7f091e8717e037d99f124af3bcb595"
+    }
+  ]
+}

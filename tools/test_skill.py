@@ -27,11 +27,12 @@ def nonportable_host_path(text):
 
 
 def validate_local_references(skill):
-    """Check referenced files; Markdown fragments identify sections, not files."""
-    for target in re.findall(r'\]\(([^)]+)\)', (skill / 'SKILL.md').read_text(encoding='utf-8')):
-        filename = target.partition('#')[0]
-        if filename and '://' not in target and not (skill / filename).is_file():
-            raise RuntimeError(f'Broken skill reference {target}')
+    """Check entry and reference files; fragments identify sections, not files."""
+    for doc in [skill / 'SKILL.md', *sorted((skill / 'references').glob('*.md'))]:
+        for target in re.findall(r'\]\(([^)]+)\)', doc.read_text(encoding='utf-8')):
+            filename = target.partition('#')[0]
+            if filename and '://' not in target and not (doc.parent / filename).is_file():
+                raise RuntimeError(f'Broken skill reference {doc.name} -> {target}')
 
 
 def main(python, validator):
@@ -313,11 +314,6 @@ def main(python, validator):
         run('packaged-bad-context-no-output', [cli, 'review', '--image', warning_image,
             '--context', bad_context, '--out-dir', folder / 'bad-review'], expected=2)
         assert not (folder / 'bad-review').exists()
-        for doc in (skill / 'references').glob('*.md'):
-            for target in re.findall(r'\]\(([^)]+)\)', doc.read_text(encoding='utf-8')):
-                if '://' not in target:
-                    assert (doc.parent / target).is_file(), f'Broken reference: {doc.name} -> {target}'
-
         # Held-out task: four named directional icons with safe margins, no MC palette.
         directions = {'right': [[3, 7], [9, 7], [9, 4], [12, 8], [9, 11], [9, 9], [3, 9]]}
         points = directions['right']

@@ -1,0 +1,13 @@
+# Small action icons: meaning before detail
+
+Use this card when a small flat icon's movement or transfer direction is unclear or changing, for example at 12–16px. Skip it for color-only edits with clear meaning. User requirements, references and project conventions take priority. For button states or text fit, use [UI](ui.md#state-vocabulary) or [actual-font checks](consumer-ui.md).
+
+1. **Name the action.** State what moves from where to where, and whether it moves one way or both ways. A name such as `transfer` does not answer that question. Clarify uncertain meaning before choosing a shape; do not infer two arrows from the name alone.
+2. **Check the shape first.** View the target background at native size and an integer nearest-neighbor enlargement, such as 8×. Locate direction-bearing features and the space between shapes. In an arrow-based design, two separated, opposing arrows are one option for exchange; one arrow may suffice for a one-way action. Follow the requested visual language rather than treating either as a universal symbol.
+3. **Change only what obscures the action.** Inherit the set's colors, stroke weight and placement conventions. If a flat silhouette communicates the action, it may need no extra shading, texture or colors. Read [clusters and light](pixel-art.md#clusters-lines-and-light) only if the actual problem calls for them.
+
+At 1:1, can you point to each required direction? Do opposing shapes still have a gap? Do the full image and its silhouette support the intended action? Does it fit the neighboring icons in the complete atlas? Answer by looking; pixel counts and a clean check report cannot establish meaning. Retain an uncertain candidate and describe the remaining issue instead of continuing to polish it.
+
+When editing a named atlas cell, use [named PNG editing](workflows.md#named-png-editing) to keep the editable source, replace that cell and check the allowed change region. Do not hand-copy layout data. The difference check establishes the edit boundary, not whether the icon conveys its action. Start with one targeted revision, then review the questions above.
+
+Methods and limits: [silhouette and negative space](pixel-art.md#silhouette-and-negative-space) and [sources](sources.md) contain the existing summaries of Derek Yu's line/shading methods and Saint11's silhouette tutorials. The opposing-arrow option here is a local application, not a quoted rule from those authors. This card sets no universal color limit or ban on antialiasing or isolated pixels, and does not replace character, material, UI-state or application checks.

@@ -10,6 +10,7 @@ Create editable specifications and exact-grid PNGs with Python and Pillow. Work 
 
 ## Choose the shortest useful path
 
+- **Unclear or changing direction in a small flat action icon:** read [action-icons.md](references/action-icons.md) to decide direction and silhouette before detail. Skip this card for color-only edits when the action is already clear.
 - **Small edit:** inherit dimensions, palette, lighting, outline and atlas order. Modify only the affected region and check its neighbors. An existing PNG can be imported to an editable spec. Alternatives and a full contact sheet are optional.
 - **Text-only work:** read [text-workflow.md](references/text-workflow.md). Use `inspect` for coordinates, colors, components and a size-limited symbol grid; import, edit, render and compare. Measurements do not identify objects or judge beauty.
 - **Visual work:** inspect native size and nearest-neighbor enlargement on the intended background. Use [review.md](references/review.md) for contact sheets, named cells, baseline differences, intentional specks and declared functional contrast pairs.

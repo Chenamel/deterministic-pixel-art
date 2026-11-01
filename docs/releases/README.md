@@ -1,5 +1,7 @@
 # Preparing the next Release
 
+[v1.2.2 local candidate notes](v1.2.2.md) · [中文候选说明](v1.2.2.zh-CN.md) · [SkillHub packaging](../skillhub-distribution.zh-CN.md)
+
 [中文 Logo 发行说明](../logo-assets.zh-CN.md)
 
 Keep existing tags and downloads unchanged. Use the established release checks for the Skill;

@@ -12,3 +12,7 @@ Consulted 2026-10-21. Notes and teaching artwork are original summaries/studies.
 | Forge, [1.20.1 Screens](https://docs.minecraftforge.net/en/1.20.1/gui/screens/) | Relative coordinates, GUI Scale, explicit UV/texture dimensions, separate content layers | Version-specific integration; offline PNG review does not run the client. |
 
 Borrow reasoning and adapt it to the user's reference and constraints. If a source is unavailable, local summaries remain usable; do not claim to have rechecked it.
+
+## Additional scene references
+
+Relevant source sections and selected figures for the [scene-space guide](scene-space.md#sources) and [scene-revision guide](scene-revision.md#sources) were reviewed on 2026-11-01. Their references distinguish geometry, artist practice, documented mechanisms and application suggestions. Source images remain with their publishers; these summaries do not establish artwork or efficiency improvements.

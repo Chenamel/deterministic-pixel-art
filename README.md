@@ -2,6 +2,11 @@
 
 [简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases) · [AI install](INSTALL.md)
 
+[![Release](https://img.shields.io/github/v/release/Chenamel/deterministic-pixel-art?style=flat-square&label=release)](https://github.com/Chenamel/deterministic-pixel-art/releases/latest)
+[![Main branch checks](https://img.shields.io/github/actions/workflow/status/Chenamel/deterministic-pixel-art/test.yml?branch=main&style=flat-square&label=checks)](https://github.com/Chenamel/deterministic-pixel-art/actions/workflows/test.yml)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](INSTALL.md)
+[![MIT license](https://img.shields.io/github/license/Chenamel/deterministic-pixel-art?style=flat-square)](LICENSE)
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/brand/header-en-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/images/brand/header-en-light.png">
@@ -12,9 +17,9 @@
 
 Make PNG icons, sprites, UI components and named sprite atlases from text grids, integer drawing commands or Python masks. Import existing PNGs without quantization, edit a selected region and assemble separately drawn components. Built for AI-assisted game assets and pixel UI; Minecraft styling is optional.
 
-![Original examples: icons, a native-128 sprite, UI states and a four-chunk scene](docs/images/overview.png)
+![Original travel kit: six 32px items with glass, paper, leather and metal materials, composed into an inventory panel](demos/travel-kit/assets/overview.png)
 
-[Icons and UI](demos/pixel-ui/README.md) · [128×128 sprite](examples/workflows/sprite-128.json) · [Four-chunk 256×256 scene](demos/chunk-scene/README.md). Existing original artwork, enlarged only by integer nearest-neighbor scaling.
+[Editable travel kit](demos/travel-kit/README.md) · [Native UI PNG](demos/travel-kit/assets/ui.png) · [Named item atlas](demos/travel-kit/assets/after.json). Original 32×32 items and a 192×160 static UI composition, with native-size views and integer nearest-neighbor enlargements. JSON sources and the drawing script are included.
 
 **Version: v1.2.2.** [Download the stable Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.2) · [What changed](docs/releases/v1.2.2.md). This maintenance release includes optional action-icon and scene guides, a separate full-size logo kit and SkillHub packaging tools. Rendering and editing behavior remain unchanged. PNG import, named-cell replacement, exact change verification, assembly and recipes have been available since v1.2.0.
 
@@ -26,7 +31,7 @@ Give an agent with terminal and file access this request:
 
 [AI installation guide](INSTALL.md): select the environment, install the self-contained Skill and run a small render. It also includes an optional `npx skills` shortcut for supported agents. Agents without native Skill support can run the same tools from a task-local folder.
 
-Once installed, try: “Use deterministic-pixel-art to create four 16×16 directional icons in a named atlas, keep a transparent one-pixel margin, and check each direction at native size.”
+Once installed, try: “Create six 32×32 travel items with a consistent palette and lighting, compose them into a small inventory panel, and keep the editable sources.”
 
 ## Use the Python CLI
 
@@ -51,6 +56,7 @@ Expected output: a **16×16 PNG** and a **128×128 nearest-neighbor preview** in
 
 | Task | Start here |
 |---|---|
+| Item set / UI composition | [Six travel items, a static inventory panel and a named-item edit](demos/travel-kit/README.md) |
 | Small grid sprite | [Transparent grid](examples/transparent-grid.json), [mirrored gem](examples/gem-16.json) |
 | Asymmetric sprite | [32×32 ship](examples/asymmetric-ship-32.json), [pixel-art guidance](skill/deterministic-pixel-art/references/pixel-art.md) |
 | UI or button states | [Generic panel](examples/generic-panel-96x40.json), [UI guidance](skill/deterministic-pixel-art/references/ui.md), [recipes](skill/deterministic-pixel-art/references/recipes.md) |
@@ -61,9 +67,9 @@ Expected output: a **16×16 PNG** and a **128×128 nearest-neighbor preview** in
 
 [More command examples](docs/usage.md) cover scoped edits, recipes and environment recovery. The [JSON v1 and Python API](skill/deterministic-pixel-art/references/formats.md) are available for custom generators. The [browser UI demo](demos/pixel-ui/README.md) includes actual-font and interaction checks.
 
-![Before, after replacing only the transfer cell, and the exact changed-pixel mask](docs/images/scoped-edit.png)
+![Travel kit before and after replacing only the lantern glass, with the exact changed-pixel mask](demos/travel-kit/assets/scoped-edit.png)
 
-This example changes **66 RGBA pixels inside one named cell, zero outside**. [Run the same edit and verification](docs/usage.md#edit-a-named-atlas-cell), or start with the [tiny grid recolor](docs/usage.md#change-one-grid-color).
+This example changes **106 RGBA pixels inside the lantern cell, zero outside**. Its shape, brass frame, atlas position and the other five items stay the same. [Run this named-item replacement and verification](demos/travel-kit/README.md#replace-one-named-item), or start with the [tiny grid recolor](docs/usage.md#change-one-grid-color).
 
 ## Evidence and limits
 

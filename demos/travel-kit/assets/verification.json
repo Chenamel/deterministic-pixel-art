@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "valid": true,
+  "changed_rgba_pixels": 106,
+  "changed_inside": 106,
+  "changed_outside": 0,
+  "allowed_pixels": 1024,
+  "outside_bbox": null,
+  "outside_samples": [],
+  "omitted_outside_samples": 0,
+  "note": "Exact edit boundary only; does not judge appearance, object identity or state meaning."
+}

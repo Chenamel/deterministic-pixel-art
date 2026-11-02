@@ -1,0 +1,3995 @@
+{
+  "version": 1,
+  "kind": "draw",
+  "size": [
+    192,
+    160
+  ],
+  "palette": {
+    "ink": "17212B",
+    "deep": "25323C",
+    "brass_shadow": "725342",
+    "brass": "B38656",
+    "gold": "D6B775",
+    "gleam": "F4DEAB",
+    "leather_dark": "583F3D",
+    "leather": "98634F",
+    "leather_light": "C18D64",
+    "rose": "B96D69",
+    "paper_shadow": "AA936D",
+    "paper": "D9C79B",
+    "ivory": "F0E1B9",
+    "sea_dark": "325A60",
+    "sea": "438B87",
+    "mint": "74B7A4",
+    "glass": "BDD9BD",
+    "violet_dark": "484968",
+    "violet": "7475A3",
+    "lavender": "A3A4D0",
+    "ice": "D1D9E5",
+    "panel": "253B3D",
+    "slot": "1B2B31",
+    "panel_light": "476164"
+  },
+  "operations": [
+    {
+      "op": "blit",
+      "x": 0,
+      "y": 0,
+      "source": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          192,
+          160
+        ],
+        "palette": {
+          "ink": "17212B",
+          "deep": "25323C",
+          "brass_shadow": "725342",
+          "brass": "B38656",
+          "gold": "D6B775",
+          "gleam": "F4DEAB",
+          "leather_dark": "583F3D",
+          "leather": "98634F",
+          "leather_light": "C18D64",
+          "rose": "B96D69",
+          "paper_shadow": "AA936D",
+          "paper": "D9C79B",
+          "ivory": "F0E1B9",
+          "sea_dark": "325A60",
+          "sea": "438B87",
+          "mint": "74B7A4",
+          "glass": "BDD9BD",
+          "violet_dark": "484968",
+          "violet": "7475A3",
+          "lavender": "A3A4D0",
+          "ice": "D1D9E5",
+          "panel": "253B3D",
+          "slot": "1B2B31",
+          "panel_light": "476164"
+        },
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                4,
+                1
+              ],
+              [
+                187,
+                1
+              ],
+              [
+                190,
+                4
+              ],
+              [
+                190,
+                155
+              ],
+              [
+                187,
+                158
+              ],
+              [
+                4,
+                158
+              ],
+              [
+                1,
+                155
+              ],
+              [
+                1,
+                4
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                5,
+                2
+              ],
+              [
+                186,
+                2
+              ],
+              [
+                189,
+                5
+              ],
+              [
+                189,
+                154
+              ],
+              [
+                186,
+                157
+              ],
+              [
+                5,
+                157
+              ],
+              [
+                2,
+                154
+              ],
+              [
+                2,
+                5
+              ]
+            ],
+            "color": "brass_shadow"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                6,
+                4
+              ],
+              [
+                185,
+                4
+              ],
+              [
+                187,
+                6
+              ],
+              [
+                187,
+                153
+              ],
+              [
+                185,
+                155
+              ],
+              [
+                6,
+                155
+              ],
+              [
+                4,
+                153
+              ],
+              [
+                4,
+                6
+              ]
+            ],
+            "color": "panel"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                7,
+                5
+              ],
+              [
+                184,
+                5
+              ]
+            ],
+            "color": "panel_light"
+          },
+          {
+            "op": "rect",
+            "x": 7,
+            "y": 8,
+            "w": 178,
+            "h": 26,
+            "color": "deep"
+          },
+          {
+            "op": "rect",
+            "x": 10,
+            "y": 35,
+            "w": 172,
+            "h": 1,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 14,
+            "y": 44,
+            "w": 44,
+            "h": 40,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 15,
+            "y": 45,
+            "w": 42,
+            "h": 38,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 16,
+            "y": 46,
+            "w": 40,
+            "h": 36,
+            "color": "slot"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                17,
+                80
+              ],
+              [
+                54,
+                80
+              ]
+            ],
+            "color": "deep"
+          },
+          {
+            "op": "rect",
+            "x": 74,
+            "y": 44,
+            "w": 44,
+            "h": 40,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 75,
+            "y": 45,
+            "w": 42,
+            "h": 38,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 76,
+            "y": 46,
+            "w": 40,
+            "h": 36,
+            "color": "slot"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                77,
+                80
+              ],
+              [
+                114,
+                80
+              ]
+            ],
+            "color": "deep"
+          },
+          {
+            "op": "rect",
+            "x": 134,
+            "y": 44,
+            "w": 44,
+            "h": 40,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 135,
+            "y": 45,
+            "w": 42,
+            "h": 38,
+            "color": "panel_light"
+          },
+          {
+            "op": "rect",
+            "x": 136,
+            "y": 46,
+            "w": 40,
+            "h": 36,
+            "color": "slot"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                137,
+                80
+              ],
+              [
+                174,
+                80
+              ]
+            ],
+            "color": "deep"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                134,
+                49
+              ],
+              [
+                134,
+                44
+              ],
+              [
+                139,
+                44
+              ]
+            ],
+            "color": "gold"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                172,
+                83
+              ],
+              [
+                177,
+                83
+              ],
+              [
+                177,
+                78
+              ]
+            ],
+            "color": "gold"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                138,
+                47
+              ],
+              [
+                140,
+                49
+              ],
+              [
+                138,
+                51
+              ],
+              [
+                136,
+                49
+              ]
+            ],
+            "color": "gold"
+          },
+          {
+            "op": "rect",
+            "x": 14,
+            "y": 88,
+            "w": 44,
+            "h": 40,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 15,
+            "y": 89,
+            "w": 42,
+            "h": 38,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 16,
+            "y": 90,
+            "w": 40,
+            "h": 36,
+            "color": "slot"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                17,
+                124
+              ],
+              [
+                54,
+                124
+              ]
+            ],
+            "color": "deep"
+          },
+          {
+            "op": "rect",
+            "x": 74,
+            "y": 88,
+            "w": 44,
+            "h": 40,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 75,
+            "y": 89,
+            "w": 42,
+            "h": 38,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 76,
+            "y": 90,
+            "w": 40,
+            "h": 36,
+            "color": "slot"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                77,
+                124
+              ],
+              [
+                114,
+                124
+              ]
+            ],
+            "color": "deep"
+          },
+          {
+            "op": "rect",
+            "x": 134,
+            "y": 88,
+            "w": 44,
+            "h": 40,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 135,
+            "y": 89,
+            "w": 42,
+            "h": 38,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 136,
+            "y": 90,
+            "w": 40,
+            "h": 36,
+            "color": "slot"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                137,
+                124
+              ],
+              [
+                174,
+                124
+              ]
+            ],
+            "color": "deep"
+          },
+          {
+            "op": "rect",
+            "x": 11,
+            "y": 133,
+            "w": 170,
+            "h": 1,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 138,
+            "y": 138,
+            "w": 40,
+            "h": 13,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 139,
+            "y": 138,
+            "w": 38,
+            "h": 12,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 140,
+            "y": 139,
+            "w": 36,
+            "h": 9,
+            "color": "gold"
+          },
+          {
+            "op": "rect",
+            "x": 141,
+            "y": 139,
+            "w": 34,
+            "h": 1,
+            "color": "gleam"
+          }
+        ]
+      }
+    },
+    {
+      "op": "blit",
+      "x": 20,
+      "y": 48,
+      "source": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          32
+        ],
+        "palette": {
+          "ink": "17212B",
+          "deep": "25323C",
+          "brass_shadow": "725342",
+          "brass": "B38656",
+          "gold": "D6B775",
+          "gleam": "F4DEAB",
+          "leather_dark": "583F3D",
+          "leather": "98634F",
+          "leather_light": "C18D64",
+          "rose": "B96D69",
+          "paper_shadow": "AA936D",
+          "paper": "D9C79B",
+          "ivory": "F0E1B9",
+          "sea_dark": "325A60",
+          "sea": "438B87",
+          "mint": "74B7A4",
+          "glass": "BDD9BD",
+          "violet_dark": "484968",
+          "violet": "7475A3",
+          "lavender": "A3A4D0",
+          "ice": "D1D9E5",
+          "panel": "253B3D",
+          "slot": "1B2B31",
+          "panel_light": "476164"
+        },
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                3
+              ],
+              [
+                20,
+                3
+              ],
+              [
+                20,
+                10
+              ],
+              [
+                24,
+                14
+              ],
+              [
+                26,
+                19
+              ],
+              [
+                25,
+                25
+              ],
+              [
+                22,
+                28
+              ],
+              [
+                10,
+                28
+              ],
+              [
+                7,
+                25
+              ],
+              [
+                6,
+                19
+              ],
+              [
+                8,
+                14
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                13,
+                9
+              ],
+              [
+                19,
+                9
+              ],
+              [
+                19,
+                11
+              ],
+              [
+                23,
+                15
+              ],
+              [
+                25,
+                19
+              ],
+              [
+                24,
+                24
+              ],
+              [
+                21,
+                27
+              ],
+              [
+                11,
+                27
+              ],
+              [
+                8,
+                24
+              ],
+              [
+                7,
+                19
+              ],
+              [
+                9,
+                15
+              ],
+              [
+                13,
+                11
+              ]
+            ],
+            "color": "sea_dark"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                13
+              ],
+              [
+                19,
+                12
+              ],
+              [
+                22,
+                16
+              ],
+              [
+                22,
+                21
+              ],
+              [
+                18,
+                25
+              ],
+              [
+                11,
+                25
+              ],
+              [
+                9,
+                22
+              ],
+              [
+                9,
+                17
+              ]
+            ],
+            "color": "sea"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                9,
+                19
+              ],
+              [
+                13,
+                17
+              ],
+              [
+                18,
+                18
+              ],
+              [
+                23,
+                17
+              ],
+              [
+                24,
+                20
+              ],
+              [
+                23,
+                24
+              ],
+              [
+                20,
+                26
+              ],
+              [
+                11,
+                26
+              ],
+              [
+                8,
+                23
+              ]
+            ],
+            "color": "mint"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                10,
+                21
+              ],
+              [
+                15,
+                22
+              ],
+              [
+                20,
+                21
+              ],
+              [
+                23,
+                21
+              ],
+              [
+                22,
+                25
+              ],
+              [
+                19,
+                26
+              ],
+              [
+                12,
+                26
+              ]
+            ],
+            "color": "sea"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                9,
+                18
+              ],
+              [
+                10,
+                15
+              ],
+              [
+                12,
+                13
+              ]
+            ],
+            "color": "glass"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                9,
+                20
+              ],
+              [
+                9,
+                22
+              ],
+              [
+                10,
+                23
+              ]
+            ],
+            "color": "ivory"
+          },
+          {
+            "op": "points",
+            "points": [
+              [
+                12,
+                24
+              ],
+              [
+                19,
+                19
+              ],
+              [
+                20,
+                24
+              ]
+            ],
+            "color": "glass"
+          },
+          {
+            "op": "rect",
+            "x": 13,
+            "y": 8,
+            "w": 6,
+            "h": 3,
+            "color": "mint"
+          },
+          {
+            "op": "rect",
+            "x": 14,
+            "y": 9,
+            "w": 2,
+            "h": 2,
+            "color": "glass"
+          },
+          {
+            "op": "rect",
+            "x": 11,
+            "y": 6,
+            "w": 10,
+            "h": 3,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 12,
+            "y": 6,
+            "w": 8,
+            "h": 2,
+            "color": "brass"
+          },
+          {
+            "op": "rect",
+            "x": 12,
+            "y": 6,
+            "w": 7,
+            "h": 1,
+            "color": "gleam"
+          },
+          {
+            "op": "rect",
+            "x": 13,
+            "y": 3,
+            "w": 6,
+            "h": 3,
+            "color": "leather"
+          },
+          {
+            "op": "rect",
+            "x": 13,
+            "y": 3,
+            "w": 5,
+            "h": 1,
+            "color": "leather_light"
+          },
+          {
+            "op": "points",
+            "points": [
+              [
+                15,
+                4
+              ],
+              [
+                18,
+                5
+              ]
+            ],
+            "color": "brass_shadow"
+          }
+        ]
+      }
+    },
+    {
+      "op": "blit",
+      "x": 80,
+      "y": 48,
+      "source": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          32
+        ],
+        "palette": {
+          "ink": "17212B",
+          "deep": "25323C",
+          "brass_shadow": "725342",
+          "brass": "B38656",
+          "gold": "D6B775",
+          "gleam": "F4DEAB",
+          "leather_dark": "583F3D",
+          "leather": "98634F",
+          "leather_light": "C18D64",
+          "rose": "B96D69",
+          "paper_shadow": "AA936D",
+          "paper": "D9C79B",
+          "ivory": "F0E1B9",
+          "sea_dark": "325A60",
+          "sea": "438B87",
+          "mint": "74B7A4",
+          "glass": "BDD9BD",
+          "violet_dark": "484968",
+          "violet": "7475A3",
+          "lavender": "A3A4D0",
+          "ice": "D1D9E5",
+          "panel": "253B3D",
+          "slot": "1B2B31",
+          "panel_light": "476164"
+        },
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                7,
+                6
+              ],
+              [
+                22,
+                3
+              ],
+              [
+                27,
+                7
+              ],
+              [
+                25,
+                25
+              ],
+              [
+                10,
+                29
+              ],
+              [
+                5,
+                25
+              ],
+              [
+                5,
+                10
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                8,
+                22
+              ],
+              [
+                24,
+                19
+              ],
+              [
+                24,
+                24
+              ],
+              [
+                10,
+                27
+              ],
+              [
+                7,
+                25
+              ]
+            ],
+            "color": "paper_shadow"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                8,
+                23
+              ],
+              [
+                23,
+                20
+              ],
+              [
+                23,
+                22
+              ],
+              [
+                10,
+                25
+              ]
+            ],
+            "color": "ivory"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                11,
+                26
+              ],
+              [
+                22,
+                23
+              ]
+            ],
+            "color": "paper"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                7,
+                7
+              ],
+              [
+                21,
+                4
+              ],
+              [
+                25,
+                7
+              ],
+              [
+                23,
+                22
+              ],
+              [
+                9,
+                26
+              ],
+              [
+                6,
+                23
+              ],
+              [
+                6,
+                10
+              ]
+            ],
+            "color": "leather_dark"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                10,
+                7
+              ],
+              [
+                21,
+                5
+              ],
+              [
+                24,
+                7
+              ],
+              [
+                22,
+                21
+              ],
+              [
+                10,
+                24
+              ],
+              [
+                9,
+                22
+              ]
+            ],
+            "color": "leather"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                11,
+                8
+              ],
+              [
+                21,
+                6
+              ],
+              [
+                22,
+                8
+              ],
+              [
+                20,
+                19
+              ],
+              [
+                12,
+                21
+              ],
+              [
+                10,
+                21
+              ]
+            ],
+            "color": "rose"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                7,
+                10
+              ],
+              [
+                7,
+                21
+              ],
+              [
+                9,
+                24
+              ]
+            ],
+            "color": "leather_light"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                11,
+                7
+              ],
+              [
+                20,
+                5
+              ]
+            ],
+            "color": "leather_light"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                16,
+                10
+              ],
+              [
+                20,
+                13
+              ],
+              [
+                16,
+                18
+              ],
+              [
+                12,
+                15
+              ]
+            ],
+            "color": "brass_shadow"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                16,
+                10
+              ],
+              [
+                19,
+                13
+              ],
+              [
+                16,
+                16
+              ],
+              [
+                13,
+                14
+              ]
+            ],
+            "color": "gold"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                16,
+                12
+              ],
+              [
+                17,
+                13
+              ],
+              [
+                16,
+                15
+              ],
+              [
+                15,
+                14
+              ]
+            ],
+            "color": "gleam"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                12,
+                9
+              ],
+              [
+                14,
+                8
+              ]
+            ],
+            "color": "gold"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                18,
+                20
+              ],
+              [
+                21,
+                19
+              ],
+              [
+                21,
+                17
+              ]
+            ],
+            "color": "gold"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                17,
+                25
+              ],
+              [
+                20,
+                24
+              ],
+              [
+                20,
+                29
+              ],
+              [
+                18,
+                28
+              ],
+              [
+                17,
+                30
+              ]
+            ],
+            "color": "leather_dark"
+          },
+          {
+            "op": "rect",
+            "x": 18,
+            "y": 25,
+            "w": 1,
+            "h": 3,
+            "color": "rose"
+          }
+        ]
+      }
+    },
+    {
+      "op": "blit",
+      "x": 140,
+      "y": 48,
+      "source": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          32
+        ],
+        "palette": {
+          "ink": "17212B",
+          "deep": "25323C",
+          "brass_shadow": "725342",
+          "brass": "B38656",
+          "gold": "D6B775",
+          "gleam": "F4DEAB",
+          "leather_dark": "583F3D",
+          "leather": "98634F",
+          "leather_light": "C18D64",
+          "rose": "B96D69",
+          "paper_shadow": "AA936D",
+          "paper": "D9C79B",
+          "ivory": "F0E1B9",
+          "sea_dark": "325A60",
+          "sea": "438B87",
+          "mint": "74B7A4",
+          "glass": "BDD9BD",
+          "violet_dark": "484968",
+          "violet": "7475A3",
+          "lavender": "A3A4D0",
+          "ice": "D1D9E5",
+          "panel": "253B3D",
+          "slot": "1B2B31",
+          "panel_light": "476164",
+          "pane_shadow": "9B5540",
+          "pane": "D58E49",
+          "pane_light": "F3C76E",
+          "pane_glint": "FFF0BF"
+        },
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                11,
+                8
+              ],
+              [
+                11,
+                5
+              ],
+              [
+                14,
+                2
+              ],
+              [
+                18,
+                2
+              ],
+              [
+                21,
+                5
+              ],
+              [
+                21,
+                8
+              ],
+              [
+                18,
+                8
+              ],
+              [
+                18,
+                6
+              ],
+              [
+                17,
+                5
+              ],
+              [
+                15,
+                5
+              ],
+              [
+                14,
+                6
+              ],
+              [
+                14,
+                8
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                12,
+                7
+              ],
+              [
+                12,
+                5
+              ],
+              [
+                14,
+                3
+              ],
+              [
+                18,
+                3
+              ],
+              [
+                20,
+                5
+              ],
+              [
+                20,
+                7
+              ]
+            ],
+            "color": "brass"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                13,
+                5
+              ],
+              [
+                15,
+                3
+              ],
+              [
+                17,
+                3
+              ]
+            ],
+            "color": "gleam"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                11,
+                8
+              ],
+              [
+                20,
+                8
+              ],
+              [
+                24,
+                11
+              ],
+              [
+                24,
+                13
+              ],
+              [
+                8,
+                13
+              ],
+              [
+                8,
+                11
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                9
+              ],
+              [
+                20,
+                9
+              ],
+              [
+                22,
+                11
+              ],
+              [
+                10,
+                11
+              ]
+            ],
+            "color": "brass"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                12,
+                9
+              ],
+              [
+                18,
+                9
+              ]
+            ],
+            "color": "gold"
+          },
+          {
+            "op": "rect",
+            "x": 9,
+            "y": 12,
+            "w": 14,
+            "h": 15,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 11,
+            "y": 14,
+            "w": 10,
+            "h": 11,
+            "color": "pane_shadow"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                14
+              ],
+              [
+                19,
+                14
+              ],
+              [
+                20,
+                16
+              ],
+              [
+                19,
+                23
+              ],
+              [
+                12,
+                23
+              ]
+            ],
+            "color": "pane"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                13,
+                15
+              ],
+              [
+                17,
+                15
+              ],
+              [
+                18,
+                17
+              ],
+              [
+                17,
+                22
+              ],
+              [
+                13,
+                22
+              ]
+            ],
+            "color": "pane_light"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                12,
+                16
+              ],
+              [
+                12,
+                20
+              ]
+            ],
+            "color": "pane_glint"
+          },
+          {
+            "op": "points",
+            "points": [
+              [
+                13,
+                15
+              ],
+              [
+                16,
+                23
+              ]
+            ],
+            "color": "pane_glint"
+          },
+          {
+            "op": "rect",
+            "x": 9,
+            "y": 13,
+            "w": 2,
+            "h": 13,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 10,
+            "y": 13,
+            "w": 1,
+            "h": 11,
+            "color": "gold"
+          },
+          {
+            "op": "rect",
+            "x": 21,
+            "y": 13,
+            "w": 2,
+            "h": 13,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 21,
+            "y": 13,
+            "w": 1,
+            "h": 11,
+            "color": "brass"
+          },
+          {
+            "op": "rect",
+            "x": 8,
+            "y": 25,
+            "w": 16,
+            "h": 4,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 9,
+            "y": 26,
+            "w": 14,
+            "h": 2,
+            "color": "brass"
+          },
+          {
+            "op": "rect",
+            "x": 10,
+            "y": 26,
+            "w": 11,
+            "h": 1,
+            "color": "gold"
+          },
+          {
+            "op": "rect",
+            "x": 8,
+            "y": 12,
+            "w": 16,
+            "h": 1,
+            "color": "gold"
+          },
+          {
+            "op": "rect",
+            "x": 10,
+            "y": 11,
+            "w": 11,
+            "h": 1,
+            "color": "gleam"
+          },
+          {
+            "op": "rect",
+            "x": 14,
+            "y": 24,
+            "w": 4,
+            "h": 1,
+            "color": "brass_shadow"
+          }
+        ]
+      }
+    },
+    {
+      "op": "blit",
+      "x": 20,
+      "y": 92,
+      "source": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          32
+        ],
+        "palette": {
+          "ink": "17212B",
+          "deep": "25323C",
+          "brass_shadow": "725342",
+          "brass": "B38656",
+          "gold": "D6B775",
+          "gleam": "F4DEAB",
+          "leather_dark": "583F3D",
+          "leather": "98634F",
+          "leather_light": "C18D64",
+          "rose": "B96D69",
+          "paper_shadow": "AA936D",
+          "paper": "D9C79B",
+          "ivory": "F0E1B9",
+          "sea_dark": "325A60",
+          "sea": "438B87",
+          "mint": "74B7A4",
+          "glass": "BDD9BD",
+          "violet_dark": "484968",
+          "violet": "7475A3",
+          "lavender": "A3A4D0",
+          "ice": "D1D9E5",
+          "panel": "253B3D",
+          "slot": "1B2B31",
+          "panel_light": "476164"
+        },
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                8,
+                7
+              ],
+              [
+                24,
+                4
+              ],
+              [
+                28,
+                7
+              ],
+              [
+                27,
+                12
+              ],
+              [
+                25,
+                12
+              ],
+              [
+                25,
+                24
+              ],
+              [
+                22,
+                26
+              ],
+              [
+                8,
+                29
+              ],
+              [
+                4,
+                26
+              ],
+              [
+                4,
+                11
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                8,
+                8
+              ],
+              [
+                24,
+                5
+              ],
+              [
+                26,
+                7
+              ],
+              [
+                24,
+                24
+              ],
+              [
+                8,
+                27
+              ]
+            ],
+            "color": "paper_shadow"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                9,
+                8
+              ],
+              [
+                23,
+                6
+              ],
+              [
+                23,
+                23
+              ],
+              [
+                9,
+                26
+              ]
+            ],
+            "color": "paper"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                10,
+                9
+              ],
+              [
+                21,
+                7
+              ],
+              [
+                22,
+                14
+              ],
+              [
+                10,
+                17
+              ]
+            ],
+            "color": "ivory"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                11,
+                17
+              ],
+              [
+                16,
+                16
+              ],
+              [
+                21,
+                17
+              ]
+            ],
+            "color": "paper_shadow"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                23,
+                5
+              ],
+              [
+                26,
+                6
+              ],
+              [
+                27,
+                8
+              ],
+              [
+                26,
+                10
+              ],
+              [
+                23,
+                10
+              ]
+            ],
+            "color": "paper"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                24,
+                6
+              ],
+              [
+                26,
+                7
+              ],
+              [
+                26,
+                8
+              ]
+            ],
+            "color": "ivory"
+          },
+          {
+            "op": "rect",
+            "x": 24,
+            "y": 9,
+            "w": 2,
+            "h": 1,
+            "color": "brass_shadow"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                6,
+                11
+              ],
+              [
+                8,
+                10
+              ],
+              [
+                10,
+                12
+              ],
+              [
+                9,
+                26
+              ],
+              [
+                7,
+                27
+              ],
+              [
+                5,
+                25
+              ],
+              [
+                5,
+                13
+              ]
+            ],
+            "color": "paper"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                6,
+                13
+              ],
+              [
+                6,
+                23
+              ],
+              [
+                7,
+                25
+              ]
+            ],
+            "color": "ivory"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                9,
+                13
+              ],
+              [
+                8,
+                24
+              ]
+            ],
+            "color": "paper_shadow"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                12,
+                14
+              ],
+              [
+                15,
+                10
+              ],
+              [
+                18,
+                13
+              ],
+              [
+                20,
+                10
+              ],
+              [
+                22,
+                12
+              ]
+            ],
+            "color": "sea_dark"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                20,
+                14
+              ],
+              [
+                18,
+                16
+              ],
+              [
+                19,
+                19
+              ],
+              [
+                16,
+                23
+              ]
+            ],
+            "color": "sea"
+          },
+          {
+            "op": "points",
+            "points": [
+              [
+                12,
+                20
+              ],
+              [
+                14,
+                20
+              ],
+              [
+                14,
+                18
+              ],
+              [
+                15,
+                17
+              ]
+            ],
+            "color": "leather"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                22
+              ],
+              [
+                14,
+                20
+              ],
+              [
+                17,
+                22
+              ],
+              [
+                15,
+                25
+              ],
+              [
+                12,
+                24
+              ]
+            ],
+            "color": "leather_dark"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                13,
+                22
+              ],
+              [
+                14,
+                21
+              ],
+              [
+                16,
+                22
+              ],
+              [
+                15,
+                24
+              ],
+              [
+                13,
+                23
+              ]
+            ],
+            "color": "rose"
+          }
+        ]
+      }
+    },
+    {
+      "op": "blit",
+      "x": 80,
+      "y": 92,
+      "source": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          32
+        ],
+        "palette": {
+          "ink": "17212B",
+          "deep": "25323C",
+          "brass_shadow": "725342",
+          "brass": "B38656",
+          "gold": "D6B775",
+          "gleam": "F4DEAB",
+          "leather_dark": "583F3D",
+          "leather": "98634F",
+          "leather_light": "C18D64",
+          "rose": "B96D69",
+          "paper_shadow": "AA936D",
+          "paper": "D9C79B",
+          "ivory": "F0E1B9",
+          "sea_dark": "325A60",
+          "sea": "438B87",
+          "mint": "74B7A4",
+          "glass": "BDD9BD",
+          "violet_dark": "484968",
+          "violet": "7475A3",
+          "lavender": "A3A4D0",
+          "ice": "D1D9E5",
+          "panel": "253B3D",
+          "slot": "1B2B31",
+          "panel_light": "476164"
+        },
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                12,
+                8
+              ],
+              [
+                12,
+                4
+              ],
+              [
+                14,
+                2
+              ],
+              [
+                19,
+                2
+              ],
+              [
+                21,
+                4
+              ],
+              [
+                21,
+                8
+              ],
+              [
+                18,
+                8
+              ],
+              [
+                18,
+                5
+              ],
+              [
+                15,
+                5
+              ],
+              [
+                15,
+                8
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                13,
+                7
+              ],
+              [
+                13,
+                4
+              ],
+              [
+                15,
+                3
+              ],
+              [
+                18,
+                3
+              ],
+              [
+                20,
+                5
+              ]
+            ],
+            "color": "leather_light"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                6,
+                12
+              ],
+              [
+                9,
+                11
+              ],
+              [
+                11,
+                24
+              ],
+              [
+                8,
+                28
+              ],
+              [
+                5,
+                25
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 6,
+            "y": 14,
+            "w": 2,
+            "h": 10,
+            "color": "leather_dark"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                23,
+                12
+              ],
+              [
+                26,
+                14
+              ],
+              [
+                27,
+                25
+              ],
+              [
+                24,
+                28
+              ],
+              [
+                22,
+                25
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 24,
+            "y": 16,
+            "w": 2,
+            "h": 8,
+            "color": "leather"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                10,
+                7
+              ],
+              [
+                21,
+                7
+              ],
+              [
+                25,
+                12
+              ],
+              [
+                25,
+                26
+              ],
+              [
+                22,
+                29
+              ],
+              [
+                9,
+                29
+              ],
+              [
+                6,
+                26
+              ],
+              [
+                7,
+                13
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                10,
+                9
+              ],
+              [
+                20,
+                8
+              ],
+              [
+                23,
+                12
+              ],
+              [
+                23,
+                26
+              ],
+              [
+                21,
+                27
+              ],
+              [
+                10,
+                27
+              ],
+              [
+                8,
+                25
+              ],
+              [
+                8,
+                14
+              ]
+            ],
+            "color": "leather"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                19,
+                14
+              ],
+              [
+                23,
+                14
+              ],
+              [
+                23,
+                26
+              ],
+              [
+                20,
+                27
+              ],
+              [
+                19,
+                23
+              ]
+            ],
+            "color": "leather_dark"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                9,
+                9
+              ],
+              [
+                20,
+                8
+              ],
+              [
+                23,
+                11
+              ],
+              [
+                23,
+                15
+              ],
+              [
+                20,
+                18
+              ],
+              [
+                10,
+                18
+              ],
+              [
+                8,
+                15
+              ]
+            ],
+            "color": "brass_shadow"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                10,
+                9
+              ],
+              [
+                20,
+                9
+              ],
+              [
+                22,
+                11
+              ],
+              [
+                21,
+                15
+              ],
+              [
+                19,
+                16
+              ],
+              [
+                11,
+                16
+              ],
+              [
+                9,
+                14
+              ]
+            ],
+            "color": "leather_light"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                11,
+                9
+              ],
+              [
+                19,
+                9
+              ],
+              [
+                21,
+                10
+              ]
+            ],
+            "color": "paper_shadow"
+          },
+          {
+            "op": "rect",
+            "x": 11,
+            "y": 16,
+            "w": 3,
+            "h": 6,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 12,
+            "y": 16,
+            "w": 1,
+            "h": 5,
+            "color": "brass"
+          },
+          {
+            "op": "rect",
+            "x": 18,
+            "y": 16,
+            "w": 3,
+            "h": 6,
+            "color": "ink"
+          },
+          {
+            "op": "rect",
+            "x": 19,
+            "y": 16,
+            "w": 1,
+            "h": 5,
+            "color": "brass"
+          },
+          {
+            "op": "rect",
+            "x": 11,
+            "y": 18,
+            "w": 3,
+            "h": 3,
+            "color": "gold"
+          },
+          {
+            "op": "rect",
+            "x": 12,
+            "y": 19,
+            "w": 1,
+            "h": 1,
+            "color": "leather_dark"
+          },
+          {
+            "op": "rect",
+            "x": 18,
+            "y": 18,
+            "w": 3,
+            "h": 3,
+            "color": "gold"
+          },
+          {
+            "op": "rect",
+            "x": 19,
+            "y": 19,
+            "w": 1,
+            "h": 1,
+            "color": "leather_dark"
+          },
+          {
+            "op": "rect",
+            "x": 11,
+            "y": 23,
+            "w": 9,
+            "h": 4,
+            "color": "leather_dark"
+          },
+          {
+            "op": "rect",
+            "x": 12,
+            "y": 23,
+            "w": 7,
+            "h": 3,
+            "color": "leather_light"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                12,
+                23
+              ],
+              [
+                18,
+                23
+              ]
+            ],
+            "color": "paper_shadow"
+          }
+        ]
+      }
+    },
+    {
+      "op": "blit",
+      "x": 140,
+      "y": 92,
+      "source": {
+        "version": 1,
+        "kind": "draw",
+        "size": [
+          32,
+          32
+        ],
+        "palette": {
+          "ink": "17212B",
+          "deep": "25323C",
+          "brass_shadow": "725342",
+          "brass": "B38656",
+          "gold": "D6B775",
+          "gleam": "F4DEAB",
+          "leather_dark": "583F3D",
+          "leather": "98634F",
+          "leather_light": "C18D64",
+          "rose": "B96D69",
+          "paper_shadow": "AA936D",
+          "paper": "D9C79B",
+          "ivory": "F0E1B9",
+          "sea_dark": "325A60",
+          "sea": "438B87",
+          "mint": "74B7A4",
+          "glass": "BDD9BD",
+          "violet_dark": "484968",
+          "violet": "7475A3",
+          "lavender": "A3A4D0",
+          "ice": "D1D9E5",
+          "panel": "253B3D",
+          "slot": "1B2B31",
+          "panel_light": "476164"
+        },
+        "operations": [
+          {
+            "op": "polygon",
+            "points": [
+              [
+                5,
+                14
+              ],
+              [
+                9,
+                11
+              ],
+              [
+                14,
+                21
+              ],
+              [
+                10,
+                28
+              ],
+              [
+                5,
+                24
+              ],
+              [
+                3,
+                18
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                5,
+                15
+              ],
+              [
+                8,
+                13
+              ],
+              [
+                11,
+                21
+              ],
+              [
+                9,
+                25
+              ],
+              [
+                5,
+                23
+              ],
+              [
+                4,
+                18
+              ]
+            ],
+            "color": "violet"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                5,
+                15
+              ],
+              [
+                6,
+                14
+              ],
+              [
+                8,
+                21
+              ],
+              [
+                7,
+                23
+              ],
+              [
+                5,
+                21
+              ]
+            ],
+            "color": "lavender"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                22,
+                15
+              ],
+              [
+                27,
+                11
+              ],
+              [
+                30,
+                16
+              ],
+              [
+                27,
+                25
+              ],
+              [
+                22,
+                29
+              ],
+              [
+                18,
+                25
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                23,
+                16
+              ],
+              [
+                26,
+                13
+              ],
+              [
+                28,
+                17
+              ],
+              [
+                26,
+                24
+              ],
+              [
+                22,
+                27
+              ],
+              [
+                20,
+                24
+              ]
+            ],
+            "color": "violet_dark"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                24,
+                16
+              ],
+              [
+                26,
+                14
+              ],
+              [
+                27,
+                17
+              ],
+              [
+                24,
+                24
+              ],
+              [
+                22,
+                25
+              ]
+            ],
+            "color": "lavender"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                14,
+                2
+              ],
+              [
+                21,
+                7
+              ],
+              [
+                23,
+                21
+              ],
+              [
+                18,
+                29
+              ],
+              [
+                11,
+                27
+              ],
+              [
+                8,
+                21
+              ],
+              [
+                10,
+                9
+              ]
+            ],
+            "color": "ink"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                14,
+                4
+              ],
+              [
+                20,
+                8
+              ],
+              [
+                21,
+                20
+              ],
+              [
+                17,
+                27
+              ],
+              [
+                12,
+                25
+              ],
+              [
+                10,
+                20
+              ],
+              [
+                11,
+                10
+              ]
+            ],
+            "color": "violet"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                14,
+                4
+              ],
+              [
+                15,
+                12
+              ],
+              [
+                13,
+                23
+              ],
+              [
+                11,
+                20
+              ],
+              [
+                12,
+                10
+              ]
+            ],
+            "color": "ice"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                14,
+                5
+              ],
+              [
+                19,
+                8
+              ],
+              [
+                16,
+                12
+              ],
+              [
+                15,
+                12
+              ]
+            ],
+            "color": "lavender"
+          },
+          {
+            "op": "polygon",
+            "points": [
+              [
+                17,
+                12
+              ],
+              [
+                20,
+                9
+              ],
+              [
+                21,
+                20
+              ],
+              [
+                17,
+                26
+              ],
+              [
+                15,
+                23
+              ]
+            ],
+            "color": "violet_dark"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                12,
+                11
+              ],
+              [
+                12,
+                17
+              ]
+            ],
+            "color": "gleam"
+          },
+          {
+            "op": "line",
+            "points": [
+              [
+                14,
+                24
+              ],
+              [
+                16,
+                26
+              ]
+            ],
+            "color": "lavender"
+          }
+        ]
+      }
+    },
+    {
+      "op": "points",
+      "points": [
+        [
+          15,
+          15
+        ],
+        [
+          19,
+          15
+        ],
+        [
+          23,
+          15
+        ],
+        [
+          24,
+          15
+        ],
+        [
+          28,
+          15
+        ],
+        [
+          32,
+          15
+        ],
+        [
+          35,
+          15
+        ],
+        [
+          36,
+          15
+        ],
+        [
+          37,
+          15
+        ],
+        [
+          41,
+          15
+        ],
+        [
+          42,
+          15
+        ],
+        [
+          46,
+          15
+        ],
+        [
+          47,
+          15
+        ],
+        [
+          48,
+          15
+        ],
+        [
+          52,
+          15
+        ],
+        [
+          53,
+          15
+        ],
+        [
+          54,
+          15
+        ],
+        [
+          57,
+          15
+        ],
+        [
+          58,
+          15
+        ],
+        [
+          59,
+          15
+        ],
+        [
+          63,
+          15
+        ],
+        [
+          67,
+          15
+        ],
+        [
+          68,
+          15
+        ],
+        [
+          69,
+          15
+        ],
+        [
+          76,
+          15
+        ],
+        [
+          79,
+          15
+        ],
+        [
+          82,
+          15
+        ],
+        [
+          85,
+          15
+        ],
+        [
+          86,
+          15
+        ],
+        [
+          87,
+          15
+        ],
+        [
+          15,
+          16
+        ],
+        [
+          17,
+          16
+        ],
+        [
+          19,
+          16
+        ],
+        [
+          22,
+          16
+        ],
+        [
+          25,
+          16
+        ],
+        [
+          29,
+          16
+        ],
+        [
+          31,
+          16
+        ],
+        [
+          35,
+          16
+        ],
+        [
+          40,
+          16
+        ],
+        [
+          43,
+          16
+        ],
+        [
+          46,
+          16
+        ],
+        [
+          49,
+          16
+        ],
+        [
+          52,
+          16
+        ],
+        [
+          57,
+          16
+        ],
+        [
+          60,
+          16
+        ],
+        [
+          63,
+          16
+        ],
+        [
+          66,
+          16
+        ],
+        [
+          76,
+          16
+        ],
+        [
+          78,
+          16
+        ],
+        [
+          82,
+          16
+        ],
+        [
+          86,
+          16
+        ],
+        [
+          15,
+          17
+        ],
+        [
+          17,
+          17
+        ],
+        [
+          19,
+          17
+        ],
+        [
+          22,
+          17
+        ],
+        [
+          23,
+          17
+        ],
+        [
+          24,
+          17
+        ],
+        [
+          25,
+          17
+        ],
+        [
+          30,
+          17
+        ],
+        [
+          35,
+          17
+        ],
+        [
+          36,
+          17
+        ],
+        [
+          37,
+          17
+        ],
+        [
+          40,
+          17
+        ],
+        [
+          41,
+          17
+        ],
+        [
+          42,
+          17
+        ],
+        [
+          43,
+          17
+        ],
+        [
+          46,
+          17
+        ],
+        [
+          47,
+          17
+        ],
+        [
+          48,
+          17
+        ],
+        [
+          52,
+          17
+        ],
+        [
+          53,
+          17
+        ],
+        [
+          54,
+          17
+        ],
+        [
+          57,
+          17
+        ],
+        [
+          58,
+          17
+        ],
+        [
+          59,
+          17
+        ],
+        [
+          67,
+          17
+        ],
+        [
+          68,
+          17
+        ],
+        [
+          76,
+          17
+        ],
+        [
+          77,
+          17
+        ],
+        [
+          82,
+          17
+        ],
+        [
+          86,
+          17
+        ],
+        [
+          15,
+          18
+        ],
+        [
+          17,
+          18
+        ],
+        [
+          19,
+          18
+        ],
+        [
+          22,
+          18
+        ],
+        [
+          25,
+          18
+        ],
+        [
+          30,
+          18
+        ],
+        [
+          35,
+          18
+        ],
+        [
+          40,
+          18
+        ],
+        [
+          43,
+          18
+        ],
+        [
+          46,
+          18
+        ],
+        [
+          48,
+          18
+        ],
+        [
+          52,
+          18
+        ],
+        [
+          57,
+          18
+        ],
+        [
+          59,
+          18
+        ],
+        [
+          69,
+          18
+        ],
+        [
+          76,
+          18
+        ],
+        [
+          78,
+          18
+        ],
+        [
+          82,
+          18
+        ],
+        [
+          86,
+          18
+        ],
+        [
+          16,
+          19
+        ],
+        [
+          18,
+          19
+        ],
+        [
+          22,
+          19
+        ],
+        [
+          25,
+          19
+        ],
+        [
+          30,
+          19
+        ],
+        [
+          35,
+          19
+        ],
+        [
+          40,
+          19
+        ],
+        [
+          43,
+          19
+        ],
+        [
+          46,
+          19
+        ],
+        [
+          49,
+          19
+        ],
+        [
+          52,
+          19
+        ],
+        [
+          53,
+          19
+        ],
+        [
+          54,
+          19
+        ],
+        [
+          57,
+          19
+        ],
+        [
+          60,
+          19
+        ],
+        [
+          66,
+          19
+        ],
+        [
+          67,
+          19
+        ],
+        [
+          68,
+          19
+        ],
+        [
+          76,
+          19
+        ],
+        [
+          79,
+          19
+        ],
+        [
+          82,
+          19
+        ],
+        [
+          86,
+          19
+        ]
+      ],
+      "color": "ivory"
+    },
+    {
+      "op": "points",
+      "points": [
+        [
+          167,
+          15
+        ],
+        [
+          168,
+          15
+        ],
+        [
+          173,
+          15
+        ],
+        [
+          174,
+          15
+        ],
+        [
+          166,
+          16
+        ],
+        [
+          169,
+          16
+        ],
+        [
+          172,
+          16
+        ],
+        [
+          166,
+          17
+        ],
+        [
+          169,
+          17
+        ],
+        [
+          172,
+          17
+        ],
+        [
+          173,
+          17
+        ],
+        [
+          174,
+          17
+        ],
+        [
+          166,
+          18
+        ],
+        [
+          169,
+          18
+        ],
+        [
+          172,
+          18
+        ],
+        [
+          175,
+          18
+        ],
+        [
+          167,
+          19
+        ],
+        [
+          168,
+          19
+        ],
+        [
+          173,
+          19
+        ],
+        [
+          174,
+          19
+        ]
+      ],
+      "color": "mint"
+    },
+    {
+      "op": "points",
+      "points": [
+        [
+          15,
+          141
+        ],
+        [
+          21,
+          141
+        ],
+        [
+          22,
+          141
+        ],
+        [
+          26,
+          141
+        ],
+        [
+          30,
+          141
+        ],
+        [
+          33,
+          141
+        ],
+        [
+          34,
+          141
+        ],
+        [
+          35,
+          141
+        ],
+        [
+          38,
+          141
+        ],
+        [
+          39,
+          141
+        ],
+        [
+          40,
+          141
+        ],
+        [
+          43,
+          141
+        ],
+        [
+          44,
+          141
+        ],
+        [
+          45,
+          141
+        ],
+        [
+          49,
+          141
+        ],
+        [
+          53,
+          141
+        ],
+        [
+          15,
+          142
+        ],
+        [
+          20,
+          142
+        ],
+        [
+          23,
+          142
+        ],
+        [
+          26,
+          142
+        ],
+        [
+          27,
+          142
+        ],
+        [
+          30,
+          142
+        ],
+        [
+          34,
+          142
+        ],
+        [
+          38,
+          142
+        ],
+        [
+          43,
+          142
+        ],
+        [
+          46,
+          142
+        ],
+        [
+          49,
+          142
+        ],
+        [
+          50,
+          142
+        ],
+        [
+          53,
+          142
+        ],
+        [
+          15,
+          143
+        ],
+        [
+          20,
+          143
+        ],
+        [
+          21,
+          143
+        ],
+        [
+          22,
+          143
+        ],
+        [
+          23,
+          143
+        ],
+        [
+          26,
+          143
+        ],
+        [
+          28,
+          143
+        ],
+        [
+          30,
+          143
+        ],
+        [
+          34,
+          143
+        ],
+        [
+          38,
+          143
+        ],
+        [
+          39,
+          143
+        ],
+        [
+          40,
+          143
+        ],
+        [
+          43,
+          143
+        ],
+        [
+          44,
+          143
+        ],
+        [
+          45,
+          143
+        ],
+        [
+          49,
+          143
+        ],
+        [
+          51,
+          143
+        ],
+        [
+          53,
+          143
+        ],
+        [
+          15,
+          144
+        ],
+        [
+          20,
+          144
+        ],
+        [
+          23,
+          144
+        ],
+        [
+          26,
+          144
+        ],
+        [
+          29,
+          144
+        ],
+        [
+          30,
+          144
+        ],
+        [
+          34,
+          144
+        ],
+        [
+          38,
+          144
+        ],
+        [
+          43,
+          144
+        ],
+        [
+          45,
+          144
+        ],
+        [
+          49,
+          144
+        ],
+        [
+          52,
+          144
+        ],
+        [
+          53,
+          144
+        ],
+        [
+          15,
+          145
+        ],
+        [
+          16,
+          145
+        ],
+        [
+          17,
+          145
+        ],
+        [
+          20,
+          145
+        ],
+        [
+          23,
+          145
+        ],
+        [
+          26,
+          145
+        ],
+        [
+          30,
+          145
+        ],
+        [
+          34,
+          145
+        ],
+        [
+          38,
+          145
+        ],
+        [
+          39,
+          145
+        ],
+        [
+          40,
+          145
+        ],
+        [
+          43,
+          145
+        ],
+        [
+          46,
+          145
+        ],
+        [
+          49,
+          145
+        ],
+        [
+          53,
+          145
+        ]
+      ],
+      "color": "ivory"
+    },
+    {
+      "op": "points",
+      "points": [
+        [
+          152,
+          140
+        ],
+        [
+          155,
+          140
+        ],
+        [
+          159,
+          140
+        ],
+        [
+          160,
+          140
+        ],
+        [
+          161,
+          140
+        ],
+        [
+          164,
+          140
+        ],
+        [
+          165,
+          140
+        ],
+        [
+          166,
+          140
+        ],
+        [
+          152,
+          141
+        ],
+        [
+          155,
+          141
+        ],
+        [
+          158,
+          141
+        ],
+        [
+          164,
+          141
+        ],
+        [
+          152,
+          142
+        ],
+        [
+          155,
+          142
+        ],
+        [
+          159,
+          142
+        ],
+        [
+          160,
+          142
+        ],
+        [
+          164,
+          142
+        ],
+        [
+          165,
+          142
+        ],
+        [
+          166,
+          142
+        ],
+        [
+          152,
+          143
+        ],
+        [
+          155,
+          143
+        ],
+        [
+          161,
+          143
+        ],
+        [
+          164,
+          143
+        ],
+        [
+          153,
+          144
+        ],
+        [
+          154,
+          144
+        ],
+        [
+          158,
+          144
+        ],
+        [
+          159,
+          144
+        ],
+        [
+          160,
+          144
+        ],
+        [
+          164,
+          144
+        ],
+        [
+          165,
+          144
+        ],
+        [
+          166,
+          144
+        ]
+      ],
+      "color": "ink"
+    }
+  ]
+}

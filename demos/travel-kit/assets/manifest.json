@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "items": [
+    "tonic",
+    "journal",
+    "lantern",
+    "map",
+    "satchel",
+    "crystal"
+  ],
+  "native_item_size": [
+    32,
+    32
+  ],
+  "native_ui_size": [
+    192,
+    160
+  ],
+  "source_sha256": "12c8c0cef697f796e08ef01aa24dee28af92cfa0091f0ac57107cc0c1f38fdae",
+  "font_sha256": "c845473330b94c2079ce9af01c51ac8ba2d99c24f4d14c039843bbb8e642ebd8",
+  "files": {
+    "before.json": "abab731fe906e8a098eecb7479c9e7fe58ab3a394c8f5dfc01d27d4e4a00b4fd",
+    "before.png": "1e5d4253720a8988db56786ad4d537fe2828e51a026b7c138beb80e02f3ebda8",
+    "before-layout.json": "c7fc82610fa714fa17480fb815c9e92d96071d2b401a290f5aeb002709c1db72",
+    "after.json": "ddae26c12db754c3b8d56f29d234a6773e91a8f06eb7e72431cc36d88037b9c7",
+    "after.png": "2a77ea0b2c1f15b35179b17312455ec9075b97883c062b4e7d2eaa457c2aabb3",
+    "after-layout.json": "0459549881b1716bcbb22e36d98d3c32e50c8068e5fd00f55cb312fb9a4e5a78",
+    "lantern-amber.json": "8b05a30ca7a4e279740c9ddd69f2461cb25dd55353c83981749c8914b6cde681",
+    "panel.json": "7fa0bdd2d40d610b19ba9d7d29ea5b7f01ba3d2ff76ec4309d2f81a37f4f2655",
+    "ui.json": "881154909e9ab9f4232dd6e9bd833f85616378ab8cef5d73f49b31392ee7f54f",
+    "ui.png": "950cdbee0bbd0462f61346ef902e6af82a9916bf03e1c0df70b28f19adc3309a",
+    "verification.json": "fc5db1f9e517f826f41b9499d539d8327ffb21ee7111d1c17854902ffe1cf110",
+    "overview.png": "51fd3527da20e7b0d039681a1bcc2f4f930cfecd7a77293e5a3f3ec065a52da9",
+    "scoped-edit.png": "d86d3b0dc1f42aa41e9c93e8a1b3424856b088dd533a7787505f2c719dc99247",
+    "tonic.png": "9092feede8f9131d39d191ba2fa9afb24cffb7eaee20c76333a5197bc91c2593",
+    "journal.png": "e2967ac4aa28b89b365452689ce3d630f89527bebe013134ffc198a70acdc288",
+    "lantern.png": "0d384c54155d52d80ef669abad30b9c8bdbc726c9f5db0408491d46e70855715",
+    "map.png": "a1d5ad1a449db299a75794a757c6f50a1fe43690a5f9d27d9c990381f59202f9",
+    "satchel.png": "fbd929e3d8046f3a750243e60c2a3576ac82e5a56ce5863eab63fe9fa094a53e",
+    "crystal.png": "2f801d798a56a287632da34644fc6751744006128cb33a0b3fd5578d8e83e57d"
+  }
+}

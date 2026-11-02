@@ -2,6 +2,11 @@
 
 [English](README.md) · [MIT](LICENSE) · [版本下载](https://github.com/Chenamel/deterministic-pixel-art/releases) · [交给AI安装](INSTALL.md)
 
+[![最新版本](https://img.shields.io/github/v/release/Chenamel/deterministic-pixel-art?style=flat-square&label=release)](https://github.com/Chenamel/deterministic-pixel-art/releases/latest)
+[![main 分支检查](https://img.shields.io/github/actions/workflow/status/Chenamel/deterministic-pixel-art/test.yml?branch=main&style=flat-square&label=checks)](https://github.com/Chenamel/deterministic-pixel-art/actions/workflows/test.yml)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](INSTALL.md)
+[![MIT 许可证](https://img.shields.io/github/license/Chenamel/deterministic-pixel-art?style=flat-square)](LICENSE)
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/brand/header-zh-CN-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/images/brand/header-zh-CN-light.png">
@@ -12,9 +17,9 @@
 
 用字符网格、整数绘图指令或 Python 蒙版制作 PNG 图标、精灵和 UI，也可以给多张小图命名后组成图集。支持无损导入已有 PNG、修改指定区域，以及拼接独立绘制的组件。适合用 AI 辅助制作游戏素材和像素 UI，Minecraft 风格可按需选用。
 
-![原创示例：图标、128×128像素精灵、UI状态及四块拼接场景](docs/images/overview.png)
+![原创旅行用品：六件32px物品，表现玻璃、纸张、皮革与金属材质，并组合成完整物品栏](demos/travel-kit/assets/overview.png)
 
-[图标与 UI](demos/pixel-ui/README.md) · [128×128 精灵](examples/workflows/sprite-128.json) · [四块拼接的 256×256 场景](demos/chunk-scene/README.md)。展示使用项目已有的原创素材，放大时仅使用整数倍最近邻缩放，保持像素边缘清晰。
+[可编辑旅行用品示范](demos/travel-kit/README.md) · [原尺寸 UI PNG](demos/travel-kit/assets/ui.png) · [命名物品图集](demos/travel-kit/assets/after.json)。六件原创32×32物品与192×160静态界面组合，提供原尺寸及整数倍最近邻预览，附JSON源资料和绘图脚本。
 
 **版本：v1.2.2。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.2) · [版本变化](docs/releases/v1.2.2.zh-CN.md)。本次维护版纳入可选动作图标与场景指南、独立全尺寸 Logo 包和 SkillHub 打包工具，绘图与编辑行为保持。PNG 导入、按名称替换图集中的一格、逐像素核对修改、组件拼接和示例脚本从 v1.2.0 起提供。
 
@@ -26,7 +31,7 @@
 
 [AI 安装指南](INSTALL.md)说明如何选择 Python 环境、安装 Skill，并生成一张示例图确认安装成功；部分 AI 工具也可选用 `npx skills` 安装。不支持自动加载 Skill 的 AI，也能在任务目录直接运行同一套脚本。
 
-安装后可以说：“使用 deterministic-pixel-art 制作四个16×16方向图标，组成命名图集，保留1px透明边距，并在原尺寸核对各方向。”
+安装后可以说：“制作六个32×32旅行用品，统一光照与配色，放进一个小型物品栏，并保留可编辑源资料。”
 
 ## 直接使用 Python 工具
 
@@ -51,6 +56,7 @@ python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png 
 
 | 任务 | 从这里开始 |
 |---|---|
+| 成套物品 / 界面组合 | [六件旅行用品、静态物品栏及命名单格修改](demos/travel-kit/README.md) |
 | 小型网格精灵 | [透明网格](examples/transparent-grid.json)、[镜像宝石](examples/gem-16.json) |
 | 新建非对称精灵 | [32×32飞船](examples/asymmetric-ship-32.json)、[像素画指导](skill/deterministic-pixel-art/references/pixel-art.md) |
 | UI 与按钮状态 | [通用面板](examples/generic-panel-96x40.json)、[UI 指导](skill/deterministic-pixel-art/references/ui.md)、[Python 示例脚本](skill/deterministic-pixel-art/references/recipes.md) |
@@ -61,9 +67,9 @@ python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png 
 
 [更多命令示例](docs/usage.zh-CN.md)介绍局部修改、Python 示例脚本和环境问题处理。编写自己的绘图脚本时，可参考 [JSON v1 与 Python API](skill/deterministic-pixel-art/references/formats.md)。[浏览器 UI 演示](demos/pixel-ui/README.md)还展示如何检查真实字体和按钮交互。
 
-![修改前、仅替换transfer单格后，以及准确的变更像素蒙版](docs/images/scoped-edit.png)
+![旅行用品图集修改前后，只替换提灯玻璃配色，并显示准确的变更像素蒙版](demos/travel-kit/assets/scoped-edit.png)
 
-此例只改变 transfer 这一格内的 **66 个 RGBA 像素，这一格以外没有变化**。可以[运行同一个局部修改示例](docs/usage.zh-CN.md#修改命名图集的单格)，或从[小网格改色](docs/usage.zh-CN.md#修改网格的一种颜色)开始。
+此例只改变提灯这一格内的 **106 个 RGBA 像素，格外零变化**。提灯轮廓、黄铜框架、图集位置和另外五件物品保持原样。可以[运行这份命名单格替换与核验示例](demos/travel-kit/README.md#replace-one-named-item)，或从[小网格改色](docs/usage.zh-CN.md#修改网格的一种颜色)开始。
 
 ## 测试结果与使用限制
 

@@ -1,6 +1,6 @@
-# Preparing the next Release
+# Releases and packaging
 
-[v1.2.2 local candidate notes](v1.2.2.md) · [中文候选说明](v1.2.2.zh-CN.md) · [SkillHub packaging](../skillhub-distribution.zh-CN.md)
+[v1.2.2 release notes](v1.2.2.md) · [中文版本说明](v1.2.2.zh-CN.md) · [Stable downloads](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.2) · [SkillHub packaging](../skillhub-distribution.zh-CN.md)
 
 [中文 Logo 发行说明](../logo-assets.zh-CN.md)
 

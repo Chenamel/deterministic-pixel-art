@@ -1,11 +1,11 @@
 # Changelog
 
-## 1.2.2 (unreleased candidate)
+## 1.2.2 (2026-11-02)
 
 - Include the optional action-icon card and scene-space/revision guides already merged in the repository. They help with direction, connected forms, surface-bounded fills, patterns and changes to related parts; user references remain the starting point.
 - Add the separately packaged full-size Pixel Anchor logo kit, including light/dark and monochrome appearances with editable specifications.
 - Add a reproducible SkillHub upload adapter that derives platform metadata from the complete Skill and records its source commit. The generic Skill keeps its existing frontmatter.
-- Keep rendering behavior, commands, JSON v1, Python APIs, recipes, example pixels and dependency requirements unchanged. Pillow 13 remains an experimental compatibility result, outside this candidate's supported range.
+- Keep rendering behavior, commands, JSON v1, Python APIs, recipes, example pixels and dependency requirements unchanged. Pillow 13 remains an experimental compatibility result, outside this release's supported range.
 
 ## 1.2.1 (2026-10-31)
 

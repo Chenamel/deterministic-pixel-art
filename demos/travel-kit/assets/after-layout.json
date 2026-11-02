@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "size": [
+    96,
+    64
+  ],
+  "mode": "RGBA",
+  "atlas": {
+    "cell_size": [
+      32,
+      32
+    ],
+    "columns": 3,
+    "rows": 2,
+    "cells": [
+      {
+        "name": "tonic",
+        "x": 0,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      {
+        "name": "journal",
+        "x": 32,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      {
+        "name": "lantern",
+        "x": 64,
+        "y": 0,
+        "w": 32,
+        "h": 32
+      },
+      {
+        "name": "map",
+        "x": 0,
+        "y": 32,
+        "w": 32,
+        "h": 32
+      },
+      {
+        "name": "satchel",
+        "x": 32,
+        "y": 32,
+        "w": 32,
+        "h": 32
+      },
+      {
+        "name": "crystal",
+        "x": 64,
+        "y": 32,
+        "w": 32,
+        "h": 32
+      }
+    ]
+  },
+  "rgba_sha256": "620d661e7f6343156ab70d9494cf36cab19a16d7ab3ea042154fac9af5f34d21"
+}

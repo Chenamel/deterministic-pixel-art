@@ -1,0 +1,506 @@
+{
+  "version": 1,
+  "kind": "draw",
+  "size": [
+    192,
+    160
+  ],
+  "palette": {
+    "ink": "17212B",
+    "deep": "25323C",
+    "brass_shadow": "725342",
+    "brass": "B38656",
+    "gold": "D6B775",
+    "gleam": "F4DEAB",
+    "leather_dark": "583F3D",
+    "leather": "98634F",
+    "leather_light": "C18D64",
+    "rose": "B96D69",
+    "paper_shadow": "AA936D",
+    "paper": "D9C79B",
+    "ivory": "F0E1B9",
+    "sea_dark": "325A60",
+    "sea": "438B87",
+    "mint": "74B7A4",
+    "glass": "BDD9BD",
+    "violet_dark": "484968",
+    "violet": "7475A3",
+    "lavender": "A3A4D0",
+    "ice": "D1D9E5",
+    "panel": "253B3D",
+    "slot": "1B2B31",
+    "panel_light": "476164"
+  },
+  "operations": [
+    {
+      "op": "polygon",
+      "points": [
+        [
+          4,
+          1
+        ],
+        [
+          187,
+          1
+        ],
+        [
+          190,
+          4
+        ],
+        [
+          190,
+          155
+        ],
+        [
+          187,
+          158
+        ],
+        [
+          4,
+          158
+        ],
+        [
+          1,
+          155
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "color": "ink"
+    },
+    {
+      "op": "polygon",
+      "points": [
+        [
+          5,
+          2
+        ],
+        [
+          186,
+          2
+        ],
+        [
+          189,
+          5
+        ],
+        [
+          189,
+          154
+        ],
+        [
+          186,
+          157
+        ],
+        [
+          5,
+          157
+        ],
+        [
+          2,
+          154
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "color": "brass_shadow"
+    },
+    {
+      "op": "polygon",
+      "points": [
+        [
+          6,
+          4
+        ],
+        [
+          185,
+          4
+        ],
+        [
+          187,
+          6
+        ],
+        [
+          187,
+          153
+        ],
+        [
+          185,
+          155
+        ],
+        [
+          6,
+          155
+        ],
+        [
+          4,
+          153
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "color": "panel"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          7,
+          5
+        ],
+        [
+          184,
+          5
+        ]
+      ],
+      "color": "panel_light"
+    },
+    {
+      "op": "rect",
+      "x": 7,
+      "y": 8,
+      "w": 178,
+      "h": 26,
+      "color": "deep"
+    },
+    {
+      "op": "rect",
+      "x": 10,
+      "y": 35,
+      "w": 172,
+      "h": 1,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 14,
+      "y": 44,
+      "w": 44,
+      "h": 40,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 15,
+      "y": 45,
+      "w": 42,
+      "h": 38,
+      "color": "brass_shadow"
+    },
+    {
+      "op": "rect",
+      "x": 16,
+      "y": 46,
+      "w": 40,
+      "h": 36,
+      "color": "slot"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          17,
+          80
+        ],
+        [
+          54,
+          80
+        ]
+      ],
+      "color": "deep"
+    },
+    {
+      "op": "rect",
+      "x": 74,
+      "y": 44,
+      "w": 44,
+      "h": 40,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 75,
+      "y": 45,
+      "w": 42,
+      "h": 38,
+      "color": "brass_shadow"
+    },
+    {
+      "op": "rect",
+      "x": 76,
+      "y": 46,
+      "w": 40,
+      "h": 36,
+      "color": "slot"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          77,
+          80
+        ],
+        [
+          114,
+          80
+        ]
+      ],
+      "color": "deep"
+    },
+    {
+      "op": "rect",
+      "x": 134,
+      "y": 44,
+      "w": 44,
+      "h": 40,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 135,
+      "y": 45,
+      "w": 42,
+      "h": 38,
+      "color": "panel_light"
+    },
+    {
+      "op": "rect",
+      "x": 136,
+      "y": 46,
+      "w": 40,
+      "h": 36,
+      "color": "slot"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          137,
+          80
+        ],
+        [
+          174,
+          80
+        ]
+      ],
+      "color": "deep"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          134,
+          49
+        ],
+        [
+          134,
+          44
+        ],
+        [
+          139,
+          44
+        ]
+      ],
+      "color": "gold"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          172,
+          83
+        ],
+        [
+          177,
+          83
+        ],
+        [
+          177,
+          78
+        ]
+      ],
+      "color": "gold"
+    },
+    {
+      "op": "polygon",
+      "points": [
+        [
+          138,
+          47
+        ],
+        [
+          140,
+          49
+        ],
+        [
+          138,
+          51
+        ],
+        [
+          136,
+          49
+        ]
+      ],
+      "color": "gold"
+    },
+    {
+      "op": "rect",
+      "x": 14,
+      "y": 88,
+      "w": 44,
+      "h": 40,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 15,
+      "y": 89,
+      "w": 42,
+      "h": 38,
+      "color": "brass_shadow"
+    },
+    {
+      "op": "rect",
+      "x": 16,
+      "y": 90,
+      "w": 40,
+      "h": 36,
+      "color": "slot"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          17,
+          124
+        ],
+        [
+          54,
+          124
+        ]
+      ],
+      "color": "deep"
+    },
+    {
+      "op": "rect",
+      "x": 74,
+      "y": 88,
+      "w": 44,
+      "h": 40,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 75,
+      "y": 89,
+      "w": 42,
+      "h": 38,
+      "color": "brass_shadow"
+    },
+    {
+      "op": "rect",
+      "x": 76,
+      "y": 90,
+      "w": 40,
+      "h": 36,
+      "color": "slot"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          77,
+          124
+        ],
+        [
+          114,
+          124
+        ]
+      ],
+      "color": "deep"
+    },
+    {
+      "op": "rect",
+      "x": 134,
+      "y": 88,
+      "w": 44,
+      "h": 40,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 135,
+      "y": 89,
+      "w": 42,
+      "h": 38,
+      "color": "brass_shadow"
+    },
+    {
+      "op": "rect",
+      "x": 136,
+      "y": 90,
+      "w": 40,
+      "h": 36,
+      "color": "slot"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          137,
+          124
+        ],
+        [
+          174,
+          124
+        ]
+      ],
+      "color": "deep"
+    },
+    {
+      "op": "rect",
+      "x": 11,
+      "y": 133,
+      "w": 170,
+      "h": 1,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 138,
+      "y": 138,
+      "w": 40,
+      "h": 13,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 139,
+      "y": 138,
+      "w": 38,
+      "h": 12,
+      "color": "brass_shadow"
+    },
+    {
+      "op": "rect",
+      "x": 140,
+      "y": 139,
+      "w": 36,
+      "h": 9,
+      "color": "gold"
+    },
+    {
+      "op": "rect",
+      "x": 141,
+      "y": 139,
+      "w": 34,
+      "h": 1,
+      "color": "gleam"
+    }
+  ]
+}

@@ -1,0 +1,384 @@
+{
+  "version": 1,
+  "kind": "draw",
+  "size": [
+    32,
+    32
+  ],
+  "palette": {
+    "ink": "17212B",
+    "deep": "25323C",
+    "brass_shadow": "725342",
+    "brass": "B38656",
+    "gold": "D6B775",
+    "gleam": "F4DEAB",
+    "leather_dark": "583F3D",
+    "leather": "98634F",
+    "leather_light": "C18D64",
+    "rose": "B96D69",
+    "paper_shadow": "AA936D",
+    "paper": "D9C79B",
+    "ivory": "F0E1B9",
+    "sea_dark": "325A60",
+    "sea": "438B87",
+    "mint": "74B7A4",
+    "glass": "BDD9BD",
+    "violet_dark": "484968",
+    "violet": "7475A3",
+    "lavender": "A3A4D0",
+    "ice": "D1D9E5",
+    "panel": "253B3D",
+    "slot": "1B2B31",
+    "panel_light": "476164",
+    "pane_shadow": "9B5540",
+    "pane": "D58E49",
+    "pane_light": "F3C76E",
+    "pane_glint": "FFF0BF"
+  },
+  "operations": [
+    {
+      "op": "polygon",
+      "points": [
+        [
+          11,
+          8
+        ],
+        [
+          11,
+          5
+        ],
+        [
+          14,
+          2
+        ],
+        [
+          18,
+          2
+        ],
+        [
+          21,
+          5
+        ],
+        [
+          21,
+          8
+        ],
+        [
+          18,
+          8
+        ],
+        [
+          18,
+          6
+        ],
+        [
+          17,
+          5
+        ],
+        [
+          15,
+          5
+        ],
+        [
+          14,
+          6
+        ],
+        [
+          14,
+          8
+        ]
+      ],
+      "color": "ink"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          12,
+          7
+        ],
+        [
+          12,
+          5
+        ],
+        [
+          14,
+          3
+        ],
+        [
+          18,
+          3
+        ],
+        [
+          20,
+          5
+        ],
+        [
+          20,
+          7
+        ]
+      ],
+      "color": "brass"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          13,
+          5
+        ],
+        [
+          15,
+          3
+        ],
+        [
+          17,
+          3
+        ]
+      ],
+      "color": "gleam"
+    },
+    {
+      "op": "polygon",
+      "points": [
+        [
+          11,
+          8
+        ],
+        [
+          20,
+          8
+        ],
+        [
+          24,
+          11
+        ],
+        [
+          24,
+          13
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          8,
+          11
+        ]
+      ],
+      "color": "ink"
+    },
+    {
+      "op": "polygon",
+      "points": [
+        [
+          12,
+          9
+        ],
+        [
+          20,
+          9
+        ],
+        [
+          22,
+          11
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "color": "brass"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          12,
+          9
+        ],
+        [
+          18,
+          9
+        ]
+      ],
+      "color": "gold"
+    },
+    {
+      "op": "rect",
+      "x": 9,
+      "y": 12,
+      "w": 14,
+      "h": 15,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 11,
+      "y": 14,
+      "w": 10,
+      "h": 11,
+      "color": "pane_shadow"
+    },
+    {
+      "op": "polygon",
+      "points": [
+        [
+          12,
+          14
+        ],
+        [
+          19,
+          14
+        ],
+        [
+          20,
+          16
+        ],
+        [
+          19,
+          23
+        ],
+        [
+          12,
+          23
+        ]
+      ],
+      "color": "pane"
+    },
+    {
+      "op": "polygon",
+      "points": [
+        [
+          13,
+          15
+        ],
+        [
+          17,
+          15
+        ],
+        [
+          18,
+          17
+        ],
+        [
+          17,
+          22
+        ],
+        [
+          13,
+          22
+        ]
+      ],
+      "color": "pane_light"
+    },
+    {
+      "op": "line",
+      "points": [
+        [
+          12,
+          16
+        ],
+        [
+          12,
+          20
+        ]
+      ],
+      "color": "pane_glint"
+    },
+    {
+      "op": "points",
+      "points": [
+        [
+          13,
+          15
+        ],
+        [
+          16,
+          23
+        ]
+      ],
+      "color": "pane_glint"
+    },
+    {
+      "op": "rect",
+      "x": 9,
+      "y": 13,
+      "w": 2,
+      "h": 13,
+      "color": "brass_shadow"
+    },
+    {
+      "op": "rect",
+      "x": 10,
+      "y": 13,
+      "w": 1,
+      "h": 11,
+      "color": "gold"
+    },
+    {
+      "op": "rect",
+      "x": 21,
+      "y": 13,
+      "w": 2,
+      "h": 13,
+      "color": "brass_shadow"
+    },
+    {
+      "op": "rect",
+      "x": 21,
+      "y": 13,
+      "w": 1,
+      "h": 11,
+      "color": "brass"
+    },
+    {
+      "op": "rect",
+      "x": 8,
+      "y": 25,
+      "w": 16,
+      "h": 4,
+      "color": "ink"
+    },
+    {
+      "op": "rect",
+      "x": 9,
+      "y": 26,
+      "w": 14,
+      "h": 2,
+      "color": "brass"
+    },
+    {
+      "op": "rect",
+      "x": 10,
+      "y": 26,
+      "w": 11,
+      "h": 1,
+      "color": "gold"
+    },
+    {
+      "op": "rect",
+      "x": 8,
+      "y": 12,
+      "w": 16,
+      "h": 1,
+      "color": "gold"
+    },
+    {
+      "op": "rect",
+      "x": 10,
+      "y": 11,
+      "w": 11,
+      "h": 1,
+      "color": "gleam"
+    },
+    {
+      "op": "rect",
+      "x": 14,
+      "y": 24,
+      "w": 4,
+      "h": 1,
+      "color": "brass_shadow"
+    }
+  ]
+}

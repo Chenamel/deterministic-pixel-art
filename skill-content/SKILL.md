@@ -11,7 +11,7 @@ Create editable specifications and exact-grid PNGs with Python and Pillow. Work 
 ## Choose the shortest useful path
 
 - **Unclear or changing direction in a small flat action icon:** read [action-icons.md](references/action-icons.md) to decide direction and silhouette before detail. Skip this card for color-only edits when the action is already clear.
-- **Small edit:** inherit dimensions, palette, lighting, outline and atlas order. Modify only the affected region and check its neighbors. An existing PNG can be imported to an editable spec. Alternatives and a full contact sheet are optional.
+- **Small edit:** inherit dimensions, palette, lighting, outline and atlas order. Modify only the affected region and check its neighbors. An existing PNG can be imported to an editable spec; exact scoped color changes can use [recolor](references/workflows.md#scoped-color-variants). Alternatives and a full contact sheet are optional.
 - **Text-only work:** read [text-workflow.md](references/text-workflow.md). Use `inspect` for coordinates, colors, components and a size-limited symbol grid; import, edit, render and compare. Measurements do not identify objects or judge beauty.
 - **Visual work:** inspect native size and nearest-neighbor enlargement on the intended background. Use [review.md](references/review.md) for contact sheets, named cells, baseline differences, intentional specks and declared functional contrast pairs.
 - **Named PNG edit or component scene:** read [workflows.md](references/workflows.md) for named import, single-cell replacement, exact allowed-change checks and PNG assembly. Load it only for these tasks.
@@ -50,7 +50,7 @@ Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores
 
 ## Check against intent
 
-Use `preview --image candidate.png --out native.png --scale 1 --background 172033` for a native target-background view; `review` makes diagnostic sheets. `import` creates editable pixels, `replace-cell` updates one atlas member, `verify` checks allowed RGBA changes, and `assemble` places PNG components. If a visual description conflicts with the pixels, follow the [local fact check](references/review.md#when-a-visual-description-conflicts) before revising artwork.
+Use `preview --image candidate.png --out native.png --scale 1 --background 172033` for a native target-background view; `review` makes diagnostic sheets. `import` creates editable pixels, `replace-cell` updates one atlas member, `recolor` applies declared color mappings within an explicit scope, `verify` checks allowed RGBA changes, and `assemble` places PNG components. If a visual description conflicts with the pixels, follow the [local fact check](references/review.md#when-a-visual-description-conflicts) before revising artwork.
 
 If the filesystem rejects hard links when creating output files, choose a local output directory, use `--portable-output`, or explicitly set `PIXELART_PORTABLE_OUTPUT=1` once in the task shell. CLI and recipes inherit it; `--no-portable-output` overrides it for one command. This mode still refuses to overwrite existing files, but another program may read a new file before writing has finished. Never add `--force` automatically. Task-local environment setup and dependency recovery are in [workflows.md](references/workflows.md). Supported Pillow versions can differ in polygon fill; exact reproduction uses the fixed baseline or an unchanged imported pixel spec.
 

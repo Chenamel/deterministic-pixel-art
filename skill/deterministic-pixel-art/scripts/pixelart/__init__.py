@@ -3,7 +3,7 @@ from .core import Canvas, PixelArtError, color, make_preview, outline, validate
 from .spec import render
 
 __all__ = ['Canvas', 'PixelArtError', 'color', 'make_preview', 'outline', 'render', 'validate',
-           'inspect_image', 'image_to_spec','replace_cell','verify_edit','assemble']
+           'inspect_image', 'image_to_spec','replace_cell','recolor_image','verify_edit','assemble']
 __version__ = '1.2.2'
 
 
@@ -25,6 +25,11 @@ def replace_cell(spec,name,replacement):
 def verify_edit(image,comparison,*,regions=None,mask=None):
     from .edit import verify_edit as verify
     return verify(image,comparison,regions=regions,mask=mask)
+
+
+def recolor_image(image,mapping,*,regions=None,mask=None):
+    from .edit import recolor_image as recolor
+    return recolor(image,mapping,regions=regions,mask=mask)
 
 
 def assemble(project,sources):

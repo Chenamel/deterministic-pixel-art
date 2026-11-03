@@ -35,12 +35,16 @@ def encode_png(image, metadata=None):
     return buffer.getvalue()
 
 
-def merge_layout(image, context=None, metadata=None):
-    """Merge independent declarations; mismatch is an error, never precedence."""
+def merge_layout(image, context=None, metadata=None, *, require_bound_atlas=False):
+    """Merge declarations; mismatch is an error, never precedence.
+
+    Strict consumers can require a digest-checked record supplying the atlas.
+    Context alone, or a pixel digest with no atlas, cannot bind a layout.
+    """
     if context is not None and not isinstance(context, Mapping):
         raise PixelArtError('context: expected an object')
     context = dict(context or {})
-    sources, unchecked = [], []
+    sources, unchecked, bound_atlases = [], [], []
     atlas = context.get('atlas')
     if atlas is not None:
         sources.append('context')
@@ -76,8 +80,16 @@ def merge_layout(image, context=None, metadata=None):
             if atlas is not None and atlas != candidate:
                 raise PixelArtError(f'{source} metadata conflicts with declared atlas')
             atlas = candidate
+            if 'rgba_sha256' in record:
+                bound_atlases.append(source)
         sources.append(source)
     if atlas is not None:
         context['atlas'] = atlas
-    return context, dict(sources=sources, unverified_records=unchecked,
-                         note='Hashes verify pixels, not state-name meaning; legacy records have no pixel digest.')
+    provenance = dict(sources=sources, unverified_records=unchecked,
+                      note='Hashes verify pixels, not state-name meaning; legacy records have no pixel digest.')
+    if require_bound_atlas:
+        if not bound_atlases or unchecked:
+            raise PixelArtError('atlas: require content-bound metadata supplying the named layout; '
+                                'regenerate --metadata with the PNG')
+        provenance['content_bound_atlas_sources'] = bound_atlases
+    return context, provenance

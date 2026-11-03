@@ -102,6 +102,77 @@ class ReliabilityTests(unittest.TestCase):
             self.assertEqual(b.read_bytes(), b'old-b')
             self.assertEqual(sorted(p.name for p in root.iterdir()), ['a.png', 'b.json'])
 
+    def test_failed_rollback_retains_only_unrestored_backup(self):
+        with tempfile.TemporaryDirectory(prefix='recovery space ') as directory:
+            root = Path(directory)
+            a, b, c = (root/name for name in ('a.png', 'b.json', 'c.png'))
+            for path, data in ((a, b'old-a'), (b, b'old-b'), (c, b'old-c')):
+                path.write_bytes(data)
+            replace = os.replace
+
+            def fail_commit_and_restore(source, target):
+                if Path(target).resolve() == c.resolve() and str(source).endswith('.tmp'):
+                    raise OSError('injected third commit failure')
+                if Path(target).resolve() == b.resolve() and str(source).endswith('.bak'):
+                    raise OSError('injected restore failure')
+                return replace(source, target)
+
+            with patch('pixelart.output.os.replace', side_effect=fail_commit_and_restore):
+                with self.assertRaises(PixelArtError) as raised:
+                    publish({a: b'new-a', b: b'new-b', c: b'new-c'}, force=True)
+            detail = json.loads(str(raised.exception).split(': ', 1)[1])
+            self.assertEqual(a.read_bytes(), b'old-a')
+            self.assertEqual(b.read_bytes(), b'new-b')
+            self.assertEqual(c.read_bytes(), b'old-c')
+            self.assertEqual(len(detail['rollback_errors']), 1)
+            recovery = detail.get('recovery_backups', [])
+            self.assertEqual(len(recovery), 1)
+            self.assertEqual(Path(recovery[0]['path']), b.resolve())
+            backup = Path(recovery[0]['backup'])
+            self.assertTrue(backup.is_absolute())
+            self.assertEqual(backup.parent.resolve(), root.resolve())
+            self.assertEqual(backup.read_bytes(), b'old-b')
+            self.assertEqual(sorted(p.name for p in root.iterdir()),
+                             sorted(['a.png', 'b.json', 'c.png', backup.name]))
+
+    def test_failed_rollback_keeps_external_change_and_old_backup(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            a, b = root/'a.png', root/'b.json'
+            a.write_bytes(b'old-a'); b.write_bytes(b'old-b')
+            replace = os.replace
+
+            def change_target_before_failure(source, target):
+                if Path(target).resolve() == b.resolve() and str(source).endswith('.tmp'):
+                    a.write_bytes(b'external-change')
+                    raise OSError('injected second commit failure')
+                return replace(source, target)
+
+            with patch('pixelart.output.os.replace', side_effect=change_target_before_failure):
+                with self.assertRaises(PixelArtError) as raised:
+                    publish({a: b'new-a', b: b'new-b'}, force=True)
+            detail = json.loads(str(raised.exception).split(': ', 1)[1])
+            self.assertEqual(a.read_bytes(), b'external-change')
+            self.assertEqual(b.read_bytes(), b'old-b')
+            self.assertIn('target changed after publication', detail['rollback_errors'][0]['error'])
+            recovery = detail.get('recovery_backups', [])
+            self.assertEqual(len(recovery), 1)
+            self.assertEqual(Path(recovery[0]['path']), a.resolve())
+            backup = Path(recovery[0]['backup'])
+            self.assertEqual(backup.read_bytes(), b'old-a')
+            self.assertEqual(sorted(p.name for p in root.iterdir()),
+                             sorted(['a.png', 'b.json', backup.name]))
+
+    def test_successful_force_cleans_backups_and_staging(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            a, b = root/'a.png', root/'b.json'
+            a.write_bytes(b'old-a'); b.write_bytes(b'old-b')
+            publish({a: b'new-a', b: b'new-b'}, force=True)
+            self.assertEqual(a.read_bytes(), b'new-a')
+            self.assertEqual(b.read_bytes(), b'new-b')
+            self.assertEqual(sorted(p.name for p in root.iterdir()), ['a.png', 'b.json'])
+
     def test_no_force_controlled_concurrent_cli_writers(self):
         with tempfile.TemporaryDirectory(prefix='并发 space ') as directory:
             root=Path(directory);spec=root/'spec.json';out=root/'out.png';ready=root/'ready'

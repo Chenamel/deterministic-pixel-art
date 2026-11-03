@@ -18,10 +18,10 @@ def compose_labels(image, context, *, font_path, font_size, labels, font_mode,
     region is required per cell. Origins share a cell-local base per label,
     plus explicit state offsets. Rectangles are half-open [x,y,width,height].
     """
-    merged, provenance = merge_layout(image, context, metadata)
+    merged, provenance = merge_layout(image, context, metadata, require_bound_atlas=True)
     ctx = _context(merged, image.size)
     cells = ctx['cells']
-    if not cells or provenance['unverified_records']:
+    if not cells:
         raise PixelArtError('labels: require a named atlas with content-bound metadata; regenerate --metadata with the PNG')
     if font_mode not in ('grayscale', 'monochrome'):
         raise PixelArtError('font_mode: choose grayscale or monochrome explicitly')

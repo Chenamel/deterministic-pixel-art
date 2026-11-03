@@ -78,6 +78,23 @@ at local origin, not a one-cell atlas. Embedded or in-memory layouts also work.
 The full source digest/layout is checked before selecting the cell; `--region`
 cannot be combined with `--cell`. Import without selection retains its prior behavior.
 
+### Atlas consumption limits
+
+Plan the next operation before generating a large atlas. Rendering retains its
+existing image/grid limits. Whole-atlas `inspect`, metadata-based `import`,
+`review`, label composition and CLI `recolor` support at most 256 named cells.
+`inspect --cell NAME` and `import --cell NAME` can select one cell from a larger
+atlas; they still validate the entire layout and any supplied pixel digest.
+No cells are silently dropped. Split larger atlases for whole-atlas operations,
+or import one cell and review its resulting PNG.
+
+Atlas names match JSON v1 rendering: unique nonempty strings with exact spelling,
+including whitespace and names longer than 160 characters. Quote names in shell
+commands. Other Context names retain their 160-character limit. Serialized PNG
+layout records still have the 256 KiB metadata limit; import specs retain the
+4 MiB limit. Selecting a cell does not waive these limits or the 64×64/62-color
+text-grid limit.
+
 ## Reuse layout
 
 `render --metadata layout.json` retains the existing size/mode/atlas fields and

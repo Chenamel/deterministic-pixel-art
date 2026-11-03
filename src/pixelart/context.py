@@ -19,6 +19,13 @@ def _name(value, where):
     return value
 
 
+def _cell_name(value, where):
+    """Match JSON v1 atlas rendering: any nonempty string, preserved exactly."""
+    if not isinstance(value, str) or not value:
+        raise PixelArtError(f'{where}: expected a nonempty cell name')
+    return value
+
+
 def _items(value, where, maximum=256):
     if not isinstance(value, list) or len(value)>maximum:
         raise PixelArtError(f'{where}: expected a list of at most {maximum} items')
@@ -56,7 +63,10 @@ def contrast(fg,bg):
     return (b+0.05)/(a+0.05)
 
 
-def _context(value,size):
+def _context(value,size,*,selected_cell=None):
+    # Selection bounds consumption, not validation: every layout item is checked.
+    if selected_cell is not None:
+        _cell_name(selected_cell,'cell')
     value={} if value is None else value
     _fields(value,optional=('version','asset_type','backgrounds','primary_background','atlas','regions',
                             'contrast_pairs','allowed_specks','analysis'))
@@ -86,15 +96,21 @@ def _context(value,size):
         cols=integer(layout['columns'],'atlas.columns',1); rows=integer(layout['rows'],'atlas.rows',1)
         if (cw*cols,ch*rows)!=size: raise PixelArtError('atlas: grid does not match image dimensions')
         occupied=set(); names=set()
-        for item in _items(layout['cells'],'atlas.cells'):
+        items=_items(layout['cells'],'atlas.cells',cols*rows)
+        if selected_cell is None and len(items)>256:
+            raise PixelArtError('atlas.cells: whole-atlas operations support at most 256 cells; '
+                                'use inspect/import --cell NAME, or split the atlas for review, labels and recolor')
+        for item in items:
             _fields(item,('name','x','y','w','h'),where='atlas.cell')
-            name=_name(item['name'],'atlas.cell.name')
+            name=_cell_name(item['name'],'atlas.cell.name')
             box=_box([item[k] for k in ('x','y','w','h')],size,'atlas.cell')
             x,y,w,h=box
             if name in names or (x,y) in occupied: raise PixelArtError('atlas: duplicate cell name or position')
             if (w,h)!=(cw,ch) or x%cw or y%ch: raise PixelArtError('atlas: cells must align to declared grid')
-            names.add(name);occupied.add((x,y));cells.append(dict(name=name,rect=box))
-        if not cells: raise PixelArtError('atlas.cells: cannot be empty')
+            names.add(name);occupied.add((x,y))
+            if selected_cell is None or name==selected_cell:
+                cells.append(dict(name=name,rect=box))
+        if not items: raise PixelArtError('atlas.cells: cannot be empty')
     regions=[]
     names=set()
     for item in _items(value.get('regions',[]),'regions'):

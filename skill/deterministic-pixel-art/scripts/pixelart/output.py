@@ -54,6 +54,7 @@ def publish(artifacts, *, force=False, portable=False):
     Filesystems without hard-link support fail explicitly rather than clobber.
     Opt-in portable publication uses exclusive creation: no overwrite, but other
     readers can see a partially written NEW file. Force still uses os.replace.
+    If rollback fails, retain the old backup and report its recovery path.
     """
     prepared = [(Path(p).resolve(), encoded(value)) for p, value in artifacts.items()]
     if len({p for p, _ in prepared}) != len(prepared):
@@ -65,6 +66,7 @@ def publish(artifacts, *, force=False, portable=False):
             if parent.exists() and not parent.is_dir():
                 raise PixelArtError(f'output parent is not a directory: {parent}')
     locks, staged, backups, committed = [], {}, {}, []
+    retained_backups = set()
     rollback_errors = []
     portable_created = {}
     step = None
@@ -124,13 +126,19 @@ def publish(artifacts, *, force=False, portable=False):
                     path.unlink()
             except OSError as rollback:
                 rollback_errors.append({'path': str(path), 'error': str(rollback)})
+                if path in backups:
+                    retained_backups.add(backups[path])
         detail = {'cause': str(exc), 'committed_before_error': list(map(str, committed)),
                   'rollback_errors': rollback_errors,
                   'remaining_outputs': [str(p) for p in committed if p.exists()]}
+        if retained_backups:
+            detail['recovery_backups'] = [
+                {'path': str(path), 'backup': str(backup)}
+                for path, backup in backups.items() if backup in retained_backups]
         if step=='hard_link' and isinstance(exc,OSError) and exc.errno in (errno.EPERM,errno.EXDEV,errno.ENOTSUP,errno.EACCES):
             detail['hint']='Hard-link publication was rejected (filesystem or permissions). Choose a local output directory, use --portable-output, or explicitly set PIXELART_PORTABLE_OUTPUT=1 for this task process. Portable output preserves no-overwrite but NEW files are not atomically visible. Do not use --force as an automatic workaround.'
         raise PixelArtError('output publication failed: ' + json.dumps(detail, ensure_ascii=False)) from exc
     finally:
         for path in [*staged.values(), *backups.values(), *locks]:
-            if path.exists():
+            if path not in retained_backups and path.exists():
                 path.unlink()

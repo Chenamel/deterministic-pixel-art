@@ -17,6 +17,7 @@ Create editable specifications and exact-grid PNGs with Python and Pillow. Work 
 - **Named PNG edit or component scene:** read [workflows.md](references/workflows.md) for named import, single-cell replacement, exact allowed-change checks and PNG assembly. Load it only for these tasks.
 - **Scene edits:** when parts must move together, fills must stay inside a surface, or patterns are hard to read, you may consult [scene-revision.md](references/scene-revision.md). Read the relevant section; simple edits can skip it.
 - **Parameterized variants or large point lists:** use the [editable recipes](references/recipes.md) for icons, UI states, a 128×128 sprite and a component scene. Change named parameters or short source functions, then regenerate the JSON/PNG; small one-off edits need no recipe.
+- **Check a single PNG's repeating texture:** run the [tile repeat preview](references/recipes.md#single-tile-repeat-preview) directly on the PNG; choose left/right, up/down or both.
 - **Separately drawn chunks:** read [chunking.md](references/chunking.md) to define chunk boundaries, align repeating textures, connect shapes across seams and check local edits; start with the two-chunk example.
 
 For new artwork, capture meaning, native size, target background, style reference, palette roles, light/outline rules, state names and the requirements of the game or application that will use the image. User references take priority over demo styling. Read only the relevant guide:

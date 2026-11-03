@@ -141,7 +141,8 @@ def inspect_image(image,context=None,*,region=None,cell=None,grid=False,comparis
     """
     dimensions(image.size)
     if region is not None and cell is not None:raise PixelArtError('choose region or cell, not both')
-    merged,provenance=merge_layout(image,context,metadata);ctx=_context(merged,image.size)
+    merged,provenance=merge_layout(image,context,metadata)
+    ctx=_context(merged,image.size,selected_cell=cell)
     selected=[0,0,*image.size]
     if region is not None:selected=_box(region,image.size,'region')
     if cell is not None:

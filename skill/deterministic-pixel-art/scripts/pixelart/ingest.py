@@ -2,7 +2,7 @@
 import json
 
 from .analysis import SYMBOLS
-from .context import _box, _name
+from .context import _box, _cell_name
 from .core import PixelArtError, dimensions
 
 MAX_SPEC_BYTES=4*1024*1024
@@ -24,13 +24,13 @@ def image_to_spec(image,*,region=None,metadata=None,cell=None):
     if region is not None and cell is not None:
         raise PixelArtError('import: choose region or cell, not both')
     if cell is not None:
-        _name(cell,'import.cell')
+        _cell_name(cell,'import.cell')
     if metadata is not None or cell is not None:
         if region is not None:raise PixelArtError('import: metadata atlas and region are mutually exclusive')
         from .metadata import merge_layout
         from .context import _context
         merged,_=merge_layout(image,metadata=metadata)
-        context=_context(merged,image.size)
+        context=_context(merged,image.size,selected_cell=cell)
         if 'atlas' not in merged:
             if cell is not None:
                 raise PixelArtError('import.cell: requires sidecar, embedded or in-memory named atlas metadata')

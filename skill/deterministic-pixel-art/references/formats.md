@@ -28,7 +28,7 @@ See `assets/asymmetric-ship-32.json` and `assets/generic-panel-96x40.json`.
 
 ## Atlas and preview
 
-Atlas: `kind: atlas`, positive `columns`, `cells: [{name, spec}, ...]`, optional background. Names must be unique; cells render to identical dimensions. Cells are arranged left to right, then top to bottom; the last row can contain unused transparent cells. Columns cannot exceed cell count. In Python, `image.info['pixelart']` contains `cell_size`, `columns`, `rows`, and named `{x,y,w,h}` cell rectangles. The CLI's `--metadata` writes this under `atlas`, plus image size and mode. See `assets/minecraft-button-states.json`.
+Atlas: `kind: atlas`, positive `columns`, `cells: [{name, spec}, ...]`, optional background. Names must be unique nonempty strings and are preserved exactly; cells render to identical dimensions. Cells are arranged left to right, then top to bottom; the last row can contain unused transparent cells. Columns cannot exceed cell count. In Python, `image.info['pixelart']` contains `cell_size`, `columns`, `rows`, and named `{x,y,w,h}` cell rectangles. The CLI's `--metadata` writes this under `atlas`, plus image size and mode. See `assets/minecraft-button-states.json`. Before generating more than 256 cells, choose a [supported consumption path](text-workflow.md#atlas-consumption-limits): whole-atlas consumers are limited to 256; `inspect`/`import --cell NAME` support larger layouts.
 
 Preview: `kind: preview`, `source` nested spec, `scale` positive integer (default 8), and `background` (`checker` by default, a color, or null). Preview pixels are nearest-neighbor replicas; the background is composited only into the preview, leaving source transparency intact.
 

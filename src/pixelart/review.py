@@ -47,7 +47,98 @@ def _label(name):
     return name if name.isascii() else '[Unicode name: see report.json]'
 
 
-def _sheet(image,ctx,report,difference):
+def _window(size, point):
+    w,h=min(128,size[0]),min(128,size[1])
+    return [max(0,min(size[0]-w,point[0]-w//2)),
+            max(0,min(size[1]-h,point[1]-h//2)),w,h]
+
+
+def _intersection(a,b):
+    x=max(a[0],b[0]);y=max(a[1],b[1])
+    right=min(a[0]+a[2],b[0]+b[2]);bottom=min(a[1]+a[3],b[1]+b[3])
+    return [x,y,right-x,bottom-y] if right>x and bottom>y else None
+
+
+def _covered_area(rect,windows):
+    """Exact rectangle-union area, without allocating another full-size mask."""
+    boxes=[box for window in windows if (box:=_intersection(rect,window)) is not None]
+    edges=sorted({edge for x,y,w,h in boxes for edge in (x,x+w)})
+    area=0
+    for left,right in zip(edges,edges[1:]):
+        intervals=sorted((y,y+h) for x,y,w,h in boxes if x<=left and x+w>=right)
+        end=-1;covered=0
+        for top,bottom in intervals:
+            covered+=max(0,bottom-max(top,end));end=max(end,bottom)
+        area+=(right-left)*covered
+    return area
+
+
+def _focus_windows(size,ctx,change_mask):
+    """At most eight native windows, with exact coverage and omission facts."""
+    w,h=size;limit=8
+    changes=[]
+    bbox=change_mask.getbbox() if change_mask is not None else None
+    if bbox:
+        for y in range(bbox[1]//128*128,bbox[3],128):
+            for x in range(bbox[0]//128*128,bbox[2],128):
+                rect=[x,y,min(128,w-x),min(128,h-y)]
+                if _crop(change_mask,rect).getbbox():
+                    changes.append(dict(source_rect=rect,reason='visible changes'))
+
+    def spread(items,count):
+        if count<=0:return []
+        if len(items)<=count:return items
+        if count==1:return items[:1]
+        return [items[i*(len(items)-1)//(count-1)] for i in range(count)]
+
+    windows=spread(changes,limit)
+    def add(items):
+        seen={tuple(item['source_rect']) for item in windows};unique=[]
+        for item in items:
+            key=tuple(item['source_rect'])
+            if key not in seen:
+                seen.add(key);unique.append(item)
+        windows.extend(spread(unique,limit-len(windows)))
+
+    # Center declarations first; large targets also supply boundary samples.
+    for anchor in ('center','top-left','top-right','bottom-left','bottom-right'):
+        targets=[]
+        for region in ctx['regions']:
+            x,y,rw,rh=region['rect']
+            if anchor=='center':point=(x+rw//2,y+rh//2)
+            elif anchor=='top-left':point=(x,y)
+            elif anchor=='top-right':point=(x+rw-1,y)
+            elif anchor=='bottom-left':point=(x,y+rh-1)
+            else:point=(x+rw-1,y+rh-1)
+            targets.append(dict(source_rect=_window(size,point),reason='declared region',region=region['name']))
+        add(targets)
+    add([dict(source_rect=_window(size,point),reason='image boundary/context')
+         for point in ((0,0),(w-1,0),(0,h-1),(w-1,h-1),(w//2,h//2))])
+    rects=[item['source_rect'] for item in windows]
+    changed=omitted=remaining_bbox=None
+    if change_mask is not None:
+        changed=sum(change_mask.histogram()[1:]);remaining=change_mask.copy()
+        for x,y,rw,rh in rects:remaining.paste(0,(x,y,x+rw,y+rh))
+        omitted=sum(remaining.histogram()[1:]);bounds=remaining.getbbox()
+        if bounds:remaining_bbox=[bounds[0],bounds[1],bounds[2]-bounds[0],bounds[3]-bounds[1]]
+    targets=[]
+    for region in ctx['regions']:
+        area=_covered_area(region['rect'],rects)
+        targets.append(dict(name=region['name'],source_rect=region['rect'],displayed_area=area,
+                            omitted_area=region['rect'][2]*region['rect'][3]-area))
+    area=_covered_area([0,0,w,h],rects)
+    facts=dict(window_limit=limit,native_window_max_size=[128,128],windows=windows,
+        changed_tiles=len(changes),changed_visible_pixels=changed,
+        displayed_changed_visible_pixels=None if changed is None else changed-omitted,
+        omitted_changed_visible_pixels=omitted,omitted_changed_bbox=remaining_bbox,
+        target_regions=targets,native_source_pixels_displayed=area,native_source_pixels_omitted=w*h-area,
+        note='Coverage describes these focus windows; the full-image overview is downsampled. '
+             'Changes take priority, then declared regions and boundary/context samples. '
+             'When over budget, deterministic spatial samples leave explicitly counted omissions.')
+    return windows,facts
+
+
+def _sheet(image,ctx,report,difference,*,change_mask=None):
     w,h=image.size
     scale=max(1,min(8,512//max(w,h)))
     primary=next(bg['color'] for bg in ctx['backgrounds'] if bg['name']==ctx['primary_background'])
@@ -78,10 +169,12 @@ def _sheet(image,ctx,report,difference):
         if 'at' in warning:pen.point(tuple(warning['at']),fill='#FF6885')
     views.append(('annotated / not source art',annotated,scale))
     if difference is not None: views.append(('changed visible pixels',difference,scale))
+    origins=[(0,0)]*len(views)
     # State cells are numbered; names and exact rectangles are also in report.json.
     for i,cell in enumerate(ctx['cells']):
         piece=_crop(base,cell['rect'])
         views.append((f"cell {i+1}: {_label(cell['name'])}",piece,scale))
+        origins.append(tuple(cell['rect'][:2]))
     def fit(items, maximum_columns):
         cw=max(240,max(im.width*s for _,im,s in items))+16
         ch=max(im.height*s for _,im,s in items)+44
@@ -93,28 +186,58 @@ def _sheet(image,ctx,report,difference):
     layout=fit(views,3)
     manifest=[]
     if layout is None:
-        # Keep bounded native crops plus a labeled overview, never an implicit
-        # resize of a card claiming to be native 1:1.
+        # Focus actual changes/declared regions; a thumbnail cannot guarantee
+        # visibility of a one-pixel edit. Keep all original diagnostic cards.
+        focuses,report['facts']['review_focus']=_focus_windows(image.size,ctx,change_mask)
         overview=base.copy();overview.thumbnail((128,128),Image.Resampling.NEAREST)
         cropped=[('full image / nearest thumbnail',overview,1)]
         manifest.append(dict(label='full image / nearest thumbnail',source_rect=[0,0,w,h],downsampled=True))
-        for label,im,_ in views:
-            cw,ch=min(128,im.width),min(128,im.height)
-            cropped.append((label+f' / native crop [0,0,{cw},{ch}]',im.crop((0,0,cw,ch)),1))
-            manifest.append(dict(label=label,source_rect=[0,0,cw,ch],scale=1,
-                                 cropped=(cw,ch)!=im.size))
+        for (label,im,_),(ox,oy) in zip(views,origins):
+            source=[ox,oy,*im.size]
+            if source==[0,0,w,h]:rect=focuses[0]['source_rect']
+            else:
+                intersections=[box for focus in focuses
+                               if (box:=_intersection(source,focus['source_rect'])) is not None]
+                box=intersections[0] if intersections else source
+                local=_window(im.size,(box[0]+box[2]//2-ox,box[1]+box[3]//2-oy))
+                rect=[ox+local[0],oy+local[1],*local[2:]]
+            local=[rect[0]-ox,rect[1]-oy,*rect[2:]]
+            cropped.append((label+f' / native crop {rect}',_crop(im,local),1))
+            manifest.append(dict(label=label,source_rect=rect,scale=1,cropped=rect!=source))
+        for index,focus in enumerate(focuses[1:],2):
+            rect=focus['source_rect'];label=f"focus {index}: {focus['reason']} / native {rect}"
+            cropped.append((label,_crop(base,rect),1))
+            manifest.append(dict(label=label,source_rect=rect,scale=1,cropped=rect!=[0,0,w,h],
+                                 focus_kind='source',focus_reason=focus['reason']))
+            if difference is not None:
+                cropped.append((label+' / difference',_crop(difference,rect),1))
+                manifest.append(dict(label=label+' / difference',source_rect=rect,scale=1,
+                                     cropped=rect!=[0,0,w,h],focus_kind='difference',focus_reason=focus['reason']))
         views=cropped
         layout=fit(views,8)
     else:
-        manifest=[dict(label=label,source_rect=[0,0,*im.size],scale=s,cropped=False) for label,im,s in views]
+        manifest=[dict(label=label,source_rect=[*origin,*im.size],scale=s,cropped=False)
+                  for (label,im,s),origin in zip(views,origins)]
+    if layout is None:raise PixelArtError('review: native crop cards exceed the contact-sheet budget')
     card_w,card_h,columns,size=layout
     report['facts']['review_views']=manifest
     sheet=Image.new('RGB',size,'#101827');pen=ImageDraw.Draw(sheet);font=ImageFont.load_default(size=12)
+    crop_font=ImageFont.load_default(size=10) if 'review_focus' in report['facts'] else None
     pen.text((8,8),'ADVISORY REVIEW - overlays and diagnostics are separate from source art',fill='#E9EDF2',font=font)
     for i,(label,im,s) in enumerate(views):
         x=i%columns*card_w+8;y=i//columns*card_h+40
         manifest[i]['sheet_rect']=[x,y+22,im.width*s,im.height*s]
-        pen.text((x,y),label[:100],fill='#E9EDF2',font=font)
+        if crop_font is not None:
+            # Clip each caption to its card, with coordinates on a separate line.
+            caption=Image.new('RGB',(card_w-16,22),'#101827');text=ImageDraw.Draw(caption)
+            item=manifest[i];title=item['label'].split(' / native')[0]
+            if item.get('focus_kind')=='difference':title='difference / '+title
+            text.text((0,0),title,fill='#E9EDF2',font=crop_font)
+            detail='overview / not native' if item.get('downsampled') else (
+                '['+','.join(map(str,item['source_rect']))+'] / 1:1')
+            text.text((0,11),detail,fill='#E9EDF2',font=crop_font)
+            sheet.paste(caption,(x,y))
+        else:pen.text((x,y),label[:100],fill='#E9EDF2',font=font)
         sheet.paste(im.resize((im.width*s,im.height*s),Image.Resampling.NEAREST).convert('RGB'),(x,y+22))
     return sheet
 
@@ -142,7 +265,7 @@ def review(image,context=None,comparison=None,*,metadata=None):
             warnings.append(dict(rule='declared_contrast',name=item['name'],rect=item['rect'],
                 ratio=item['ratio'],minimum=item['min_ratio'],
                 message='Declared functional color pair is below its requested contrast ratio.'))
-    difference=None; comparison_report=None
+    difference=None; comparison_report=None;mask=None
     if comparison is not None:
         other=comparison.convert('RGBA')
         a,b=_visual_bytes(rgba),_visual_bytes(other)
@@ -166,4 +289,4 @@ def review(image,context=None,comparison=None,*,metadata=None):
     report['analysis']=inspect_image(image,context,comparison=comparison,metadata=metadata)
     report['cell_summary']=[{key:cell[key] for key in ('name','visible_pixels','occupancy','bbox','margins','centroid')}
                             for cell in report['analysis']['cells']]
-    return report,_sheet(rgba,ctx,report,difference),difference
+    return report,_sheet(rgba,ctx,report,difference,change_mask=mask),difference

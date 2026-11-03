@@ -8,6 +8,25 @@ python <skill>/scripts/pixel_art.py review --image asset.png --out-dir review --
 
 Outputs: `report.json`, `review.png`, plus `difference.png` when comparing. Each declared background has native 1:1 and nearest-neighbor views, alongside checkerboard, grayscale and annotations. Sprite context adds an alpha silhouette whose black/white foreground is chosen for contrast with the primary background; `facts.silhouette_color` records the choice. Atlas cells get separate cards. Integer enlargement is at most 8. The number of columns adjusts to the sheet's size limit; oversized views use explicitly labeled native crops and a nearest-neighbor overview. `facts.review_views` records displayed rectangles, scales and each card's `sheet_rect` in contact-sheet coordinates. Unicode names remain in JSON; diagnostic labels do not use the application's font.
 
+When full views exceed the contact-sheet budget, native crops follow up to eight
+128×128 source windows. Visible changes take priority; changes in more than
+eight tiles use deterministic spatial samples. Declared `regions` come next,
+then boundary/context samples. To inspect a known target without a comparison,
+declare its rectangle as a Context region, for example
+`{"regions":[{"name":"target","rect":[1470,1470,8,8],"role":"content"}]}`.
+The full-image thumbnail remains an overview; it may miss a one-pixel change.
+
+`facts.review_focus` records the chosen windows, exact displayed/omitted visible
+change counts, the omitted-change bounding box and each declared region's shown
+and omitted area. Those coverage facts describe the focus windows; individual
+cell cards may show additional pixels. All `review_views.source_rect` values,
+including cell cards, use global PNG coordinates `[x,y,width,height]`.
+`sheet_rect` locates the corresponding pixels on the sheet. Supplemental source
+and difference cards use the same rectangles. Follow any reported omissions
+with a separate cell/region inspection or the full `difference.png`; a clean
+sample does not establish that the whole image was inspected. The existing
+8192-side/16,777,216-pixel contact-sheet budget and 256-cell review limit remain.
+
 ## Context v1
 
 `--metadata layout.json` can reuse render output; embedded layouts are read automatically. Conflicting layouts or stale pixel digests are errors. Legacy sidecars are marked unverified. The additive `analysis` report uses the same measurements as `inspect`; see [text-workflow.md](text-workflow.md).

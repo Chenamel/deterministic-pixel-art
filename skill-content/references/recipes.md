@@ -1,8 +1,32 @@
-# Editable Python recipes
+# Python recipes
+
+Run a shipped recipe by absolute path with the same task-local Python/Pillow environment as `pixel_art.py`; no repository checkout is needed.
+
+## Single-tile repeat preview
+
+See how one PNG looks when repeated. Choose `--axis x` for left/right (3×1), `y` for up/down (1×3), or `xy` for both (3×3):
+
+```text
+python "<skill>/scripts/recipes/tile_preview.py" --image tile.png --axis xy --out-dir candidate
+```
+
+Open `candidate/preview.png` for the overall repeat, then `seams.png` for close-ups. `repeated.png` is the unmarked native-size result; `source.png` preserves your input. Check the source and repeat at native size before accepting continuity. This helper does not certify or repair seamlessness.
+
+### Options and project files
+
+- Preview: `--scale 4` is the default integer enlargement; `--background` accepts `checker` or `RRGGBB[AA]`. Backgrounds and diagnostic labels do not change `repeated.png`.
+- Input and limits: one single-frame PNG with at most 8-bit channels. Source, repeat and enlarged preview each have limits of 8192 per side and 16,777,216 pixels. An oversized preview reports a usable `--scale`; an oversized source or repeat needs a smaller crop. Nothing is silently resized. For an atlas, first export the desired cell with `import --cell` and `render`.
+- Reuse: `source.png` keeps the original file bytes. The repeat copies full RGBA, including semitransparent pixels and RGB under transparency. Move `source.png` and `project.json` together to reassemble:
+
+```text
+python "<skill>/scripts/pixel_art.py" assemble --project candidate/project.json --out rebuilt.png
+```
+
+`report.json` records source hashes, dimensions, placements and seam coordinates. Its `assembly.valid` confirms geometric coverage. Close-ups are bounded: check `assembly.omitted_seam_views` and inspect the full repeat when views are omitted. Judge continuity and repetition rhythm only along the declared axes.
+
+## Example artwork recipes
 
 Use these for repeated variants or a large mask-based asset. Small JSON edits can stay small; an imported PNG remains a pixel specification, not recovered source objects. The recipes are original examples, not a required style or a new input format. Copy a recipe and `_common.py` together when adapting its geometry; use the Skill's runtime as described below.
-
-Run the shipped recipe by absolute path with the same task-local Python/Pillow environment as `pixel_art.py`; no repository checkout is needed:
 
 ```text
 python <skill>/scripts/recipes/icons.py --out-dir icons --ink F5C26B

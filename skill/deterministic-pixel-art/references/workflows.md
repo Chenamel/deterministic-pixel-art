@@ -33,6 +33,25 @@ A later revision can use another candidate directory, or an explicit `--force` r
 
 Exit codes: 0 valid boundary; 1 outside changes; 2 input/output error. `--out verification.json` saves counts, outside xywh bbox, up to 64 coordinates and omitted count. This does not judge appearance or state meaning. `validate` checks the image against its specified rules.
 
+## Scoped color variants
+
+For an existing PNG, `recolor` replaces exact source RGBA colors only inside the declared region/mask union. When an editable recipe or semantic palette is simpler, change that source instead. Identify the requested object from the source and current image; another object with the same color is not automatically a target.
+
+```text
+python <skill>/scripts/pixel_art.py recolor --image <skill>/assets/workflows/atlas-before.png --metadata <skill>/assets/workflows/atlas-before-layout.json --map D8E3ED F5C26B --allow-region 32 0 16 16 --out candidate.png --report recolor.json --metadata-out candidate-layout.json
+python <skill>/scripts/pixel_art.py import --image candidate.png --metadata candidate-layout.json --out editable.json
+```
+
+For a request such as “make the transfer icon gold”, the example uses that cell's existing bounds and light color; it does not move or redraw the icon. Repeat `--map FROM TO` for simultaneous mappings of original pixels: `A→B` and `B→C` do not turn original A into C. Six-digit colors mean opaque RGBA; use eight digits when alpha matters. Duplicate decoded source colors are rejected.
+
+Declare at least one `--allow-region X Y W H` or `--allow-mask allowed.png`; repeat regions as needed. Their union has the same semantics as `verify`, including nonzero L/1 intensity or RGBA/LA alpha. A region can include a border when that border is the target. Use a precise mask to protect holes or other same-colored objects; a bounding rectangle does not identify a border. To recolor the whole image, explicitly declare its full rectangle. The tool does not infer objects or construct selections.
+
+The command accepts single-frame PNGs with at most 8-bit channels and outputs decoded RGBA. It validates supplied/embedded layout and digest before editing, preserves valid atlas names and positions, and embeds a fresh layout/digest in the candidate; `--metadata-out` also writes a sidecar. It does not copy other source metadata or retain indexed-color encoding. Original files are unchanged. Importing the candidate gives editable pixels, not reconstructed layers or objects.
+
+Stdout and optional `--report` record matched/changed counts per mapping, unmatched sources, `no_op`, and a `verification` of the exact allowed-change boundary. No matches and identity mappings succeed with `no_op:true`; inspect these counts before claiming a requested change happened. Hidden RGB changes under alpha zero count as RGBA changes, not proof of a visible change. Check the native-size image and its context before accepting the colors. Exit 2 indicates an input/output error; output overwrite and portable-mode rules below still apply.
+
+Python `recolor_image(image,mapping,*,regions=None,mask=None)` returns `(candidate,report)` without I/O or input mutation. Use a dict or list of `(source,target)` color pairs. The returned RGBA pixels have no inherited PNG metadata; validate any source layout and create a fresh record when publishing, as the CLI does.
+
 ## Native artwork and assembly
 
 Start with overall composition, silhouette, palette, lighting and pixel scale. Split UI by components and scenes by objects/layers; sprites share a complete silhouette before local detail. Enlarging a smaller PNG does not establish native detail. `assets/workflows/sprite-128.json` is an original native 128x128 asymmetric courier.

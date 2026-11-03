@@ -25,6 +25,20 @@ def read_image(path):
         return opened.copy()
 
 
+def _read_recolor_png(path):
+    """Reject unsupported source/mask formats before copying away frame info."""
+    from .core import dimensions
+    with path.open('rb') as handle:header=handle.read(33)
+    if len(header)<33 or header[:8]!=b'\x89PNG\r\n\x1a\n' or header[12:16]!=b'IHDR':
+        raise PixelArtError('recolor: expected a PNG input')
+    if header[24]>8:raise PixelArtError('recolor: PNG bit depth above 8 is not supported')
+    with Image.open(path) as opened:
+        dimensions(opened.size)
+        if getattr(opened,'n_frames',1)!=1:
+            raise PixelArtError('recolor: animated/multiframe PNG is not supported')
+        return opened.copy()
+
+
 def main(argv=None):
     # JSON and Unicode paths have a stable wire encoding even on legacy Windows locales.
     for stream in (sys.stdout,sys.stderr):
@@ -85,6 +99,17 @@ def main(argv=None):
     replace_cmd.add_argument('--image-out',type=Path)
     replace_cmd.add_argument('--metadata',type=Path,help='Output layout for --image-out.')
     replace_cmd.add_argument('--force',action='store_true')
+    recolor_cmd=commands.add_parser('recolor',help='Replace exact RGBA colors inside declared regions/mask; never infer objects.')
+    recolor_cmd.add_argument('--image',type=Path,required=True)
+    recolor_cmd.add_argument('--map',dest='mapping',nargs=2,action='append',required=True,metavar=('FROM','TO'),
+        help='Repeat for simultaneous original-pixel mappings. Colors are RRGGBB or RRGGBBAA.')
+    recolor_cmd.add_argument('--allow-region',type=int,nargs=4,action='append',metavar=('X','Y','W','H'))
+    recolor_cmd.add_argument('--allow-mask',type=Path)
+    recolor_cmd.add_argument('--metadata',type=Path,help='Verified source layout; not an output path.')
+    recolor_cmd.add_argument('--out',type=Path,required=True,help='Candidate PNG with fresh embedded layout/digest.')
+    recolor_cmd.add_argument('--report',type=Path)
+    recolor_cmd.add_argument('--metadata-out',type=Path,help='Optional fresh candidate layout sidecar.')
+    recolor_cmd.add_argument('--force',action='store_true')
     verify_cmd=commands.add_parser('verify',help='Check that RGBA edits stay within declared regions or mask; not an aesthetic test.')
     verify_cmd.add_argument('--image',type=Path,required=True)
     verify_cmd.add_argument('--compare',type=Path,required=True)
@@ -101,7 +126,7 @@ def main(argv=None):
     assemble_cmd.add_argument('--scale',type=int,default=2)
     assemble_cmd.add_argument('--preview-background',default='checker')
     assemble_cmd.add_argument('--force',action='store_true')
-    for writer in (draw,preview,review_cmd,inspect_cmd,ingest_cmd,replace_cmd,verify_cmd,assemble_cmd):
+    for writer in (draw,preview,review_cmd,inspect_cmd,ingest_cmd,replace_cmd,recolor_cmd,verify_cmd,assemble_cmd):
         add_output_options(writer)
     args = parser.parse_args(argv)
     try:
@@ -131,6 +156,28 @@ def main(argv=None):
             if args.out:publish({args.out:report},force=args.force,portable=args.portable_output)
             print(json.dumps(report,ensure_ascii=False,indent=2))
             return 0 if report['valid'] else 1
+        if args.command=='recolor':
+            from copy import deepcopy
+            from .context import _context
+            from .edit import recolor_image,verify_edit
+            from .metadata import encode_png,layout_record,merge_layout
+            check_alias([args.image,args.allow_mask,args.metadata],[args.out,args.report,args.metadata_out])
+            source=_read_recolor_png(args.image)
+            mask=_read_recolor_png(args.allow_mask) if args.allow_mask else None
+            context,layout_verification=merge_layout(source,metadata=read_json(args.metadata) if args.metadata else None)
+            _context(context,source.size)
+            image,report=recolor_image(source,args.mapping,regions=args.allow_region,mask=mask)
+            report['verification']=verify_edit(image,source,regions=args.allow_region,mask=mask)
+            if 'atlas' in context:image.info['pixelart']=deepcopy(context['atlas'])
+            fresh=layout_record(image)
+            report.update(output=str(args.out.resolve()),rgba_sha256=fresh['rgba_sha256'],
+                          source_layout_verification=layout_verification)
+            artifacts={args.out:encode_png(image,fresh)}
+            if args.report:artifacts[args.report]=report
+            if args.metadata_out:artifacts[args.metadata_out]=fresh
+            publish(artifacts,force=args.force,portable=args.portable_output)
+            print(json.dumps(report,ensure_ascii=False,indent=2))
+            return 0
         if args.command=='replace-cell':
             from .edit import replace_cell
             from .ingest import spec_bytes

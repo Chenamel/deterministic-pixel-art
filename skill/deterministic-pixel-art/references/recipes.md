@@ -2,6 +2,44 @@
 
 Run a shipped recipe by absolute path with the same task-local Python/Pillow environment as `pixel_art.py`; no repository checkout is needed.
 
+## Paged atlas review
+
+View every named cell in a large atlas at native size:
+
+```text
+python "<skill>/scripts/recipes/review_atlas.py" --image atlas.png --metadata layout.json --out-dir atlas-review
+```
+
+Open `atlas-review/index.json`, then **every page it lists at 1:1**. Each block
+appears on dark (left) and light (right) backgrounds. Captions show cell/block
+IDs and global `[x,y,width,height]`; the index preserves full cell names, original
+order, page mappings, source hashes and exact sheet rectangles. The input stays
+unchanged. Missing or stale content-bound layouts are rejected; `--metadata` can
+be omitted when the PNG has matching embedded layout metadata.
+
+The default is at most 64 native blocks per page; `--blocks-per-page 1` through
+`64` can reduce the number. A cell larger than 128×128 is split into blocks and
+may span pages. Every declared cell pixel is represented without downsampling;
+unnamed positions in a sparse grid are outside this coverage. This recipe makes
+coverage sheets; use `review` separately for its contextual warnings, grayscale,
+silhouettes and baseline differences. It does not judge artwork quality.
+
+Use a **new output directory for each revision**. Existing directories and
+`--force` are refused so old pages cannot be mistaken for a new complete result.
+An ordinary publication failure attempts rollback; an interrupted process or a
+cleanup failure can leave an incomplete directory. Check the complete index,
+listed files and their hashes before treating a delivery as complete. Never
+recursively delete a recovery directory without inspecting it.
+
+Limits: one single-frame PNG with at most 8-bit channels, 8192 per side and
+16,777,216 source pixels; 4096 declared cells/128×128 blocks, 64 pages, 4,194,304
+pixels per page, 67,108,864 total page pixels and 32 MiB encoded delivery. PNG
+input is at most 80 MiB, sidecar at most 1 MiB (embedded metadata keeps the runtime's
+256 KiB limit). Over-budget inputs fail before publishing; split the atlas or
+increase `--blocks-per-page` up to 64 when the page count is the obstacle. Pages
+are rendered and encoded one at a time; these limits are not a process peak-RAM
+guarantee. Existing whole-atlas commands retain their 256-cell limit.
+
 ## Single-tile repeat preview
 
 See how one PNG looks when repeated. Choose `--axis x` for left/right (3×1), `y` for up/down (1×3), or `xy` for both (3×3):

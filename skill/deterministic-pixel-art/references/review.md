@@ -27,6 +27,16 @@ with a separate cell/region inspection or the full `difference.png`; a clean
 sample does not establish that the whole image was inspected. The existing
 8192-side/16,777,216-pixel contact-sheet budget and 256-cell review limit remain.
 
+## Complete atlas pages
+
+For full native coverage of named atlas cells, including more than 256 cells,
+use the [paged atlas review recipe](recipes.md#paged-atlas-review). It creates
+bounded pages and an index of names, global coordinates and page rectangles.
+Large individual cells are fully tiled across pages. Open every listed page;
+only declared cells are covered in a sparse atlas. This separate recipe does
+not add warnings or comparison views, and it does not change `review`'s existing
+256-cell limit or guarantee that its eight focus windows cover a large scene.
+
 ## Context v1
 
 `--metadata layout.json` can reuse render output; embedded layouts are read automatically. Conflicting layouts or stale pixel digests are errors. Legacy sidecars are marked unverified. The additive `analysis` report uses the same measurements as `inspect`; see [text-workflow.md](text-workflow.md).

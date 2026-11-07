@@ -18,6 +18,7 @@ Create editable specifications and exact-grid PNGs with Python and Pillow. Work 
 - **Scene edits:** when parts must move together, fills must stay inside a surface, or patterns are hard to read, you may consult [scene-revision.md](references/scene-revision.md). Read the relevant section; simple edits can skip it.
 - **Parameterized variants or large point lists:** use the [editable recipes](references/recipes.md) for icons, UI states, a 128×128 sprite and a component scene. Change named parameters or short source functions, then regenerate the JSON/PNG; small one-off edits need no recipe.
 - **Check a single PNG's repeating texture:** run the [tile repeat preview](references/recipes.md#single-tile-repeat-preview) directly on the PNG; choose left/right, up/down or both.
+- **See named tiles together:** use the [named tile scene](references/recipes.md#named-tile-scene) with an explicit name layout. Replace a named tile and regenerate to update every placement; inspect the actual scene and seams.
 - **View every named atlas cell, including atlases over 256 cells:** use [paged atlas review](references/recipes.md#paged-atlas-review). Open every listed native page; the index retains names and global coordinates.
 - **Separately drawn chunks:** read [chunking.md](references/chunking.md) to define chunk boundaries, align repeating textures, connect shapes across seams and check local edits; start with the two-chunk example.
 

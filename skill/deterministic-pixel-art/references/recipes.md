@@ -62,6 +62,73 @@ python "<skill>/scripts/pixel_art.py" assemble --project candidate/project.json 
 
 `report.json` records source hashes, dimensions, placements and seam coordinates. Its `assembly.valid` confirms geometric coverage. Close-ups are bounded: check `assembly.omitted_seam_views` and inspect the full repeat when views are omitted. Judge continuity and repetition rhythm only along the declared axes.
 
+## Named tile scene
+
+Arrange different named tiles from one atlas into a small scene:
+
+```text
+python "<skill>/scripts/recipes/tile_scene.py" --image atlas.png --metadata atlas-layout.json --layout map.json --out-dir scene-v1
+```
+
+Open `scene-v1/preview.png` for context, `scene.png` at native size, then
+`seams.png` for close-ups. `report.json` maps every placement and adjacency to
+tile names and global rectangles. The model can translate a request such as
+“put a path through the grass and turn it right” into the layout; the user need
+not write JSON. Confirm the picture follows the intended path and tile meanings.
+
+For example, `map.json` can contain the following **when these exact names exist
+in the atlas**; each row runs left to right, with the first row at the top:
+
+```json
+{"version":1,"rows":[["grass","path-ns","grass"],["grass","turn-ne","path-ew"],["grass","grass","grass"]]}
+```
+
+Names are exact, case-sensitive strings; repeated names reuse the same source
+tile. The atlas must have matching content-bound layout metadata. `--metadata`
+is optional with matching embedded metadata. Empty/ragged rows, unknown names,
+stale/conflicting layouts and invalid source cells fail before publishing.
+Tiles use the atlas's fixed cell size; nothing is rotated or resized. This is
+explicit placement, without automatic terrain selection or transition repair.
+
+The directory contains the original-byte `atlas.png`, complete matching
+`atlas-layout.json`, name `layout.json`, native `scene.png`, integer `preview.png`,
+`seams.png`, relative-path `project.json` and `report.json`. Keep them together.
+To rebuild after moving the directory:
+
+```text
+python "<skill>/scripts/pixel_art.py" assemble --project scene-v1/project.json --out rebuilt.png
+```
+
+To change a tile, follow [named PNG editing](workflows.md#named-png-editing):
+import the atlas, edit/replace the named cell, and render a new atlas PNG with
+fresh metadata. Run `tile_scene.py` on that new pair with the same `layout.json`
+and a **new output directory**. All references to that name then use its new
+pixels. `assemble` alone reads the PNG in its project directory, so it will keep
+using that saved version until the source is explicitly updated.
+
+`--scale 4` is the default; `--background checker` or `RRGGBB[AA]` affects only
+the preview. An oversized preview reports a usable integer `--scale`. Raw RGBA
+copy preserves partial alpha and invisible RGB in the scene. Geometric coverage,
+matching edge colors and hashes do not certify visual continuity or meaning.
+Each `adjacencies` entry lists zero-based `seam_view_indices` into
+`assembly.seam_views` and its `omitted_views` count. Close-ups show at most 32
+64px segments; `omitted_adjacency_views` includes all undisplayed segments,
+including adjacencies beyond assembly's 256-seam report cap. Inspect important
+undisplayed boundaries directly in the full scene.
+
+Use a new directory for each revision; existing directories and `--force` are
+refused. Inputs remain unchanged. Ordinary publication errors attempt rollback;
+interruption or cleanup failure can leave an incomplete new directory. Check
+`delivery.files` and `delivery.sha256` in the report before using it; the report
+has no self-hash and its presence alone does not prove completeness.
+
+Limits: 4096 declared cells, 256 placements; one static PNG with at most 8-bit
+channels, 8192 per side and 16,777,216 pixels for the atlas, scene and preview
+separately; PNG input at most 80 MiB, sidecar/layout each at most 1 MiB (embedded
+metadata retains its 256 KiB limit), encoded delivery at most 128 MiB. Split an
+over-budget atlas or scene. These are bounded artifact sizes, not a peak-RAM
+guarantee. Other whole-atlas consumers keep their existing limits.
+
 ## Example artwork recipes
 
 Use these for repeated variants or a large mask-based asset. Small JSON edits can stay small; an imported PNG remains a pixel specification, not recovered source objects. The recipes are original examples, not a required style or a new input format. Copy a recipe and `_common.py` together when adapting its geometry; use the Skill's runtime as described below.

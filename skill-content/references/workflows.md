@@ -54,6 +54,12 @@ Python `recolor_image(image,mapping,*,regions=None,mask=None)` returns `(candida
 
 ## Native artwork and assembly
 
+For equal-size named atlas tiles in an explicit small layout, the
+[named tile scene recipe](recipes.md#named-tile-scene) resolves names, repeats
+placements and keeps a portable copy of the atlas and layout. Regenerate with
+a changed atlas and fresh metadata to update every reference to a named tile.
+Use the PNG project below for general component/layer placement.
+
 Start with overall composition, silhouette, palette, lighting and pixel scale. Split UI by components and scenes by objects/layers; sprites share a complete silhouette before local detail. Enlarging a smaller PNG does not establish native detail. `assets/workflows/sprite-128.json` is an original native 128x128 asymmetric courier.
 
 Assembly uses a separate PNG project. JSON v1 rendering stays embedded data without file includes:

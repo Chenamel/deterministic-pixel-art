@@ -92,6 +92,8 @@ python -B tools/check.py
 
 Maintain runtime code in `src/`, recipes in `recipes/`, and guidance in `skill-content/`. `tools/package_skill.py` generates the standalone Skill under `skill/`. Full checks create local artifacts without globally installing a Skill. [Fixture provenance](docs/PROVENANCE.md).
 
+For source browsing and edits, see the [source-to-Skill path map](CONTRIBUTING.md#source-and-generated-skill) and the [limited Python format gate](CONTRIBUTING.md#python-formatting).
+
 ## License
 
-[MIT](LICENSE) covers the code, original artwork and standalone Skill. Repository visuals use Silkscreen Regular under [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt) and Fusion Pixel Font under [SIL OFL 1.1](assets/brand/font-notices/README.md). Fonts are not included in the Skill ZIP. Pillow and development-only PyYAML are installed dependencies, not vendored files.
+[MIT](LICENSE) covers the code, original artwork and standalone Skill. Repository visuals use Silkscreen Regular under [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt) and Fusion Pixel Font under [SIL OFL 1.1](assets/brand/font-notices/README.md). Fonts are not included in the Skill ZIP. Pillow and development-only PyYAML/Ruff are installed dependencies, not vendored files.

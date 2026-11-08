@@ -14,11 +14,43 @@ Edit `src/` for runtime code, `recipes/` for short generators and `skill-content
 
 See [packaging and recovery](docs/packaging.md) for clean builds, preserved previous outputs and interruption limits.
 
-Run the checks from a checkout with Python and the development requirements:
+## Source and generated Skill
+
+The [source Skill entry](skill-content/SKILL.md) uses paths inside the generated package. To follow its links in this checkout, open the [generated entry](skill/deterministic-pixel-art/SKILL.md). To edit a linked file, find its source here:
+
+| Authoritative source | Generated path under `skill/deterministic-pixel-art/` |
+|---|---|
+| [Skill guidance](skill-content/), including [references](skill-content/references/) | Same relative path, including `SKILL.md` and `references/` |
+| [CLI entry](src/pixel_art.py) | `scripts/pixel_art.py` |
+| [Runtime modules](src/pixelart/) | `scripts/pixelart/` |
+| [Recipe generators](recipes/) | `scripts/recipes/` |
+| [Example JSON and PNG files](examples/), such as [transparent-grid.json](examples/transparent-grid.json) | `assets/`, such as [assets/transparent-grid.json](skill/deterministic-pixel-art/assets/transparent-grid.json) |
+| [Quality study PNGs](docs/quality/) | `assets/studies/` |
+
+The [packager's source map](tools/package_skill.py) defines the full file selection. Rebuild with the checks below after editing sources; keep the package-relative links in Skill guidance so they also work in an extracted ZIP.
+
+## Python formatting
+
+Install the development requirements before running checks:
 
 ```sh
 python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
+
+Ruff **0.14.3** is pinned in `requirements-dev.txt` and required by [.ruff.toml](.ruff.toml). It is a development dependency; the product still supports Python 3.10+ and Pillow >=10.4,<13. The format uses four spaces, single quotes, LF endings and a target line length of 88. The lint gate rejects multiple modules in one `import` statement (`E401`), one-line compound statements (`E701`), semicolon-separated statements (`E702`) and trailing semicolons (`E703`). Formatting and lint checks serve different purposes; neither verifies program behavior.
+
+Coverage is intentionally limited to `src/pixelart/cli.py`, `tests/test_chunk_trial.py`, the seven executable [chunk fixture sources](tests/fixtures/chunk_trial/), and `tools/check.py`, `tools/check_format.py`. Other modules and the generated Skill are outside this format gate. The fixture sources replace Python embedded in strings so their contents receive the same checks.
+
+From the checkout root, check or format this covered set with:
+
+```sh
+python -B tools/check_format.py
+python -B -m ruff format --config .ruff.toml .
+```
+
+`tools/check.py` runs the format gate first, so the existing main CI job enforces it. `tools/check_format.py` also works when invoked by absolute path from another directory. The compatibility CI jobs continue to test runtime behavior with their own Python/Pillow combinations; they do not install the formatter.
+
+To add coverage, select a module or small directory, inspect the formatter diff, verify behavior, then add its path to `include` in `.ruff.toml`. Add executable fixture code as files rather than strings when it needs continued maintenance. Keep version changes to the Ruff dependency and `required-version` setting together.
 
 For documentation changes, check relative links, matching English/Chinese sections and the commands you changed. Rebuild the README gallery with `python tools/build_readme_gallery.py`; it reuses existing original assets and rearranges UI cells for display without repainting them. Full checks generate local artifacts without installing globally. Describe what you tested and what remains unverified in the pull request. [README](README.md) · [中文首页](README.zh-CN.md).

@@ -1,4 +1,5 @@
 """Run the portable source-to-skill checks from any working directory."""
+
 import hashlib
 import subprocess
 import sys
@@ -8,11 +9,15 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def run(name, *arguments):
-    subprocess.run([sys.executable, '-B', str(ROOT / 'tools' / name), *arguments],
-                   cwd=ROOT, check=True)
+    subprocess.run(
+        [sys.executable, '-B', str(ROOT / 'tools' / name), *arguments],
+        cwd=ROOT,
+        check=True,
+    )
 
 
 if __name__ == '__main__':
+    run('check_format.py')
     run('build_workflow_examples.py')
     run('build_consumer_demo.py', '--force')
     run('build_chunk_scene.py', '--force')

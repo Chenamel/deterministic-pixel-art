@@ -55,7 +55,7 @@ class AnimationExportTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix='动画 contract ')
         self.addCleanup(self.temporary.cleanup)
-        self.root = Path(self.temporary.name)
+        self.root = Path(self.temporary.name).resolve()
         self.inputs = self.root / '原图 inputs'
         self.inputs.mkdir()
         self.cwd = self.root / '无关 cwd'

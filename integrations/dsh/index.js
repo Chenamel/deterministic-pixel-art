@@ -40,9 +40,15 @@ const provider = {
       resourceBase,
       content: raw.slice(frontmatter[0].length) +
         "\n\n## DSH runtime\n\n" +
-        "Use load_workspace_dependencies to select Python 3.10+ and Pillow >=10.4,<13. " +
-        "Keep editable sources and PNG outputs in the workspace; call present " +
-        "to deliver the finished PNG and provide its file path.\n",
+        "Use Python 3.10+ and Pillow >=10.4,<13. If load_workspace_dependencies " +
+        "is available, use it to select that environment; otherwise use an available " +
+        "shell to check existing Python and Pillow, and report missing prerequisites. " +
+        "Resolve scripts and references from this Skill's resource base. Keep editable " +
+        "sources and PNG outputs in the workspace. Inspect the finished PNG with an " +
+        "available image-reading tool, or state when visual inspection is unavailable. " +
+        "If present is available, use it to deliver the files; otherwise return their " +
+        "absolute paths. Reading an image for inspection does not by itself prove " +
+        "delivery to the user.\n",
     };
   },
 };

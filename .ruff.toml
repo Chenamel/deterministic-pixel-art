@@ -4,6 +4,10 @@ target-version = 'py310'
 line-length = 88
 include = [
     'src/pixelart/cli.py',
+    'recipes/animation_export.py',
+    'recipes/_animation_project.py',
+    'recipes/_animation_gif.py',
+    'tests/test_animation_export.py',
     'tests/test_chunk_trial.py',
     'tests/fixtures/chunk_trial/*.py',
     'tools/check.py',

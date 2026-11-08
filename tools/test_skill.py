@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import tempfile
 import zipfile
@@ -308,6 +309,52 @@ def main(python, validator):
         run('packaged-chunk-invalid-flag', [recipes/'chunk_pair.py', '--out-dir', recipe_work/'bad-chunks',
             '--flag', 'invalid'], expected=2)
         assert not (recipe_work/'bad-chunks').exists()
+
+        # Exercise animation from the ZIP, then remove original-location dependence.
+        animation_inputs = recipe_work / 'animation inputs'
+        animation_inputs.mkdir()
+        animation_originals = []
+        for index, fill in enumerate(((200, 100, 50, 128), (0, 0, 0, 0))):
+            with Image.new('RGBA', (3, 2), fill) as frame:
+                path = animation_inputs / f'frame-{index}.png'
+                frame.save(path)
+                animation_originals.append(path.read_bytes())
+        animation_project = animation_inputs / 'animation.json'
+        animation_project.write_text(json.dumps(dict(
+            version=1, kind='png-animation',
+            frames=[dict(image=f'frame-{i}.png', duration_ms=ms)
+                    for i, ms in enumerate((45, 75))],
+            actions=[dict(name='turn', range=[0, 2], direction='reverse')],
+            gif=dict(mode='binary', loop=2))), encoding='utf-8')
+        animation_output = recipe_work / 'animation'
+        animation_command = [recipes / 'animation_export.py', '--project', animation_project]
+        run('packaged-animation-export', [*animation_command, '--out-dir', animation_output])
+        animation_bytes = {p.name: p.read_bytes() for p in animation_output.iterdir()}
+        for i, original in enumerate(animation_originals):
+            assert animation_bytes[f'source-{i:04d}.png'] == original
+        animation_report = json.loads(animation_bytes['report.json'])
+        assert animation_report['actions'][0]['source_indices'] == [1, 0]
+        assert animation_report['actions'][0]['durations_ms'] == [75, 45]
+        assert animation_report['actions'][0]['gif']['readback']['verified'] is True
+        for name, digest in animation_report['delivery']['sha256'].items():
+            assert hashlib.sha256(animation_bytes[name]).hexdigest() == digest
+        with Image.open(animation_output / 'action-0000.gif') as preview:
+            assert preview.size == (3, 2) and preview.info['loop'] == 2
+            assert preview.info['duration'] == 70
+            assert set(preview.convert('RGBA').getchannel('A').tobytes()) == {0}
+            preview.seek(1)
+            assert preview.info['duration'] == 40
+            assert preview.convert('RGBA').getpixel((0, 0)) == (200, 100, 50, 255)
+        run('packaged-animation-no-clobber', [*animation_command, '--out-dir', animation_output], expected=2)
+        run('packaged-animation-force-rejected', [*animation_command, '--out-dir', recipe_work / 'force-animation', '--force'], expected=2)
+        assert not (recipe_work / 'force-animation').exists()
+        moved_animation = recipe_work / 'moved animation'
+        animation_output.rename(moved_animation)
+        shutil.rmtree(animation_inputs)
+        regenerated_animation = recipe_work / 'regenerated animation'
+        run('packaged-animation-move-regenerate', [recipes / 'animation_export.py',
+            '--project', moved_animation / 'animation.json', '--out-dir', regenerated_animation])
+        assert {p.name: p.read_bytes() for p in regenerated_animation.iterdir()} == animation_bytes
 
         bad_context = folder / 'bad-context.json'
         bad_context.write_text('{"atlas":{}}', encoding='utf-8')

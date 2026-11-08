@@ -1,0 +1,48 @@
+{
+  "name": "dsh-skill-deterministic-pixel-art",
+  "version": "0.1.0",
+  "description": "Third-party DSH bundle for the Deterministic Pixel Art Skill and its editable PNG tools.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "generated/",
+    "skills/",
+    "skill-manifest.json",
+    "NOTICE.md",
+    "README.zh-CN.md"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chenamel/deterministic-pixel-art.git",
+    "directory": "integrations/dsh"
+  },
+  "homepage": "https://github.com/Chenamel/deterministic-pixel-art/tree/main/integrations/dsh",
+  "bugs": {
+    "url": "https://github.com/Chenamel/deterministic-pixel-art/issues"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "engines": {
+    "node": ">=24.9.0",
+    "dsh": "0.2.2-rc.1"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-skill": "0.2.2-rc.1"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-skill": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-skill-filesystem": "0.2.2-rc.1"
+  }
+}

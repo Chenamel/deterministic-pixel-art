@@ -40,7 +40,7 @@ python -B tools/check.py
 
 Ruff **0.14.3** is pinned in `requirements-dev.txt` and required by [.ruff.toml](.ruff.toml). It is a development dependency; the product still supports Python 3.10+ and Pillow >=10.4,<13. The format uses four spaces, single quotes, LF endings and a target line length of 88. The lint gate rejects multiple modules in one `import` statement (`E401`), one-line compound statements (`E701`), semicolon-separated statements (`E702`) and trailing semicolons (`E703`). Formatting and lint checks serve different purposes; neither verifies program behavior.
 
-Coverage is intentionally limited to `src/pixelart/cli.py`, `tests/test_chunk_trial.py`, the seven executable [chunk fixture sources](tests/fixtures/chunk_trial/), and `tools/check.py`, `tools/check_format.py`. Other modules and the generated Skill are outside this format gate. The fixture sources replace Python embedded in strings so their contents receive the same checks.
+Coverage is intentionally limited to `src/pixelart/cli.py`, the animation recipe (`recipes/animation_export.py`, `recipes/_animation_project.py`, `recipes/_animation_gif.py`) and `tests/test_animation_export.py`, `tests/test_chunk_trial.py`, the seven executable [chunk fixture sources](tests/fixtures/chunk_trial/), and `tools/check.py`, `tools/check_format.py`. Other modules and the generated Skill are outside this format gate. The fixture sources replace Python embedded in strings so their contents receive the same checks.
 
 From the checkout root, check or format this covered set with:
 

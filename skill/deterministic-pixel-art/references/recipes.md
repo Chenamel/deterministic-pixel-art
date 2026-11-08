@@ -129,6 +129,46 @@ metadata retains its 256 KiB limit), encoded delivery at most 128 MiB. Split an
 over-budget atlas or scene. These are bounded artifact sizes, not a peak-RAM
 guarantee. Other whole-atlas consumers keep their existing limits.
 
+## PNG animation export
+
+`animation_export.py` exports existing, equal-size single-frame PNGs without drawing, scaling or cropping them. Create a UTF-8 `animation.json` beside the resources:
+
+```json
+{
+  "version": 1,
+  "kind": "png-animation",
+  "frames": [
+    {"image": "frames/idle-0.png", "duration_ms": 80},
+    {"image": "frames/idle-1.png", "duration_ms": 120}
+  ],
+  "actions": [{"name": "idle", "range": [0, 2]}]
+}
+```
+
+```text
+python <skill>/scripts/recipes/animation_export.py --project animation.json --out-dir export-v1
+```
+
+In a source checkout, use `python recipes/animation_export.py --project animation.json --out-dir export-v1`. Resource paths resolve relative to the manifest, using `/` separators. Subdirectories, Chinese names and spaces work; absolute paths, `..`, backslashes and links that resolve outside the manifest directory are refused. Frame order is explicit. Paths are resolved and bytes frozen once per source file; this is not a sandbox against concurrent malicious link changes.
+
+Each frame requires an integer duration from 1 to 60,000ms. Actions have distinct, case-sensitive names of 1–128 characters and zero-based half-open `range: [start, end]`. Optional `direction` is `forward` (default), `reverse` or `pingpong`; `[1,4]` expands to `[1,2,3]`, `[3,2,1]` or `[1,2,3,2]`. Source durations follow their frames. Single/two-frame pingpong actions do not duplicate endpoints. Repeated references and overlapping actions retain independent timeline entries. Unknown fields and boolean/float values in integer fields are errors.
+
+The new directory contains original-byte `source-0000.png` files, a normalized `animation.json` and `report.json`. The report records source bytes/RGBA hashes, action order/timing, runtime versions and all delivery names and hashes except its own hash. Check every listed file and hash. Keep and move the whole directory, then regenerate from its `animation.json` into another new directory with the same command. Same runtime versions reproduce the whole delivery bytes; regeneration needs the Skill, Python and Pillow. Input PNGs are never re-encoded or changed.
+
+GIF is optional. Add one explicit top-level configuration to the manifest:
+
+```json
+"gif": {"mode": "binary", "loop": 0}
+```
+
+Or use `"gif": {"mode": "background", "background": "172033", "loop": 2}`. Binary mode makes alpha below 128 transparent and alpha at least 128 fully opaque, reserving one palette index for transparency and up to 255 opaque colors. Background mode composites source-over on the required six-digit RGB background and permits 256 colors. Each action uses one palette; colors within capacity remain exact, otherwise Pillow MEDIANCUT quantizes without dithering. GIF conversion affects only `action-0000.gif` previews. Original PNG alpha, invisible RGB and exact milliseconds remain in the source delivery.
+
+GIF projects each selected entry independently to `duration_ms // 10 * 10`: 45/75/115ms becomes 40/70/110ms. Selected frames below 10ms cause rejection when GIF is enabled. Adjacent identical projected frames may merge after this projection; the report maps logical entries to encoded visible runs and records timing loss. Every GIF is decoded before publication to verify its size, loop field and visible timeline, including transparency clearing. `loop` defaults to 0 and accepts 0–65,535; 0 means indefinite looping, while finite values record the GIF field without promising identical player loop behavior. Inspect actual playback and target backgrounds in your receiving application.
+
+Limits: JSON 1MiB; 128 frame entries; 16 actions; native sides at most 1024px and 1,048,576 pixels/frame; PNG bytes at most 8MiB/file and 64MiB across entries; 16,777,216 source pixels across entries. Repeated references count toward entry budgets. Each action permits at most 256 expanded entries and 120,000 original milliseconds, with 1024 expanded entries total. GIF work permits 67,108,864 expanded pixels total; delivery permits 128MiB encoded bytes. PNG bit depth above 8 and APNG/multiframe inputs are refused. Split sources or actions when a limit is exceeded.
+
+Use a fresh output directory for every revision; this recipe rejects `--force` and every existing directory, including empty directories and dangling links. All input/GIF/budget validation precedes directory creation. `--portable-output`, `--no-portable-output` and `PIXELART_PORTABLE_OUTPUT` use the standard output rules. Ordinary write failures attempt rollback; a nonempty or unremovable directory is retained with a recovery path. Publication is not a crash-safe transaction across files; portable files may be visible while writing. The report is published last, and its existence alone does not prove completeness.
+
 ## Example artwork recipes
 
 Use these for repeated variants or a large mask-based asset. Small JSON edits can stay small; an imported PNG remains a pixel specification, not recovered source objects. The recipes are original examples, not a required style or a new input format. Copy a recipe and `_common.py` together when adapting its geometry; use the Skill's runtime as described below.

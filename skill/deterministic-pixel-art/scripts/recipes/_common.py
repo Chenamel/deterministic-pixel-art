@@ -31,10 +31,12 @@ def clipped(size,op,body):
     return dict(op='points',points=[list(p) for p in sorted(points_for(size,[op])&body)],color=op['color'])
 
 
-def parser(description):
+def parser(
+    description, *, force_help='Explicitly replace this recipe\'s existing outputs.'
+):
     result=argparse.ArgumentParser(description=description)
     result.add_argument('--out-dir',type=Path,required=True)
-    result.add_argument('--force',action='store_true',help='Explicitly replace this recipe\'s existing outputs.')
+    result.add_argument('--force',action='store_true',help=force_help)
     add_output_options(result)
     return result
 

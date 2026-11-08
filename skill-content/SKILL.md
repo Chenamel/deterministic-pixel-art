@@ -20,6 +20,7 @@ Create editable specifications and exact-grid PNGs with Python and Pillow. Work 
 - **Check a single PNG's repeating texture:** run the [tile repeat preview](references/recipes.md#single-tile-repeat-preview) directly on the PNG; choose left/right, up/down or both.
 - **See named tiles together:** use the [named tile scene](references/recipes.md#named-tile-scene) with an explicit name layout. Replace a named tile and regenerate to update every placement; inspect the actual scene and seams.
 - **View every named atlas cell, including atlases over 256 cells:** use [paged atlas review](references/recipes.md#paged-atlas-review). Open every listed native page; the index retains names and global coordinates.
+- **Export existing PNG frames as an animation:** use the optional [animation export](references/recipes.md#png-animation-export) with explicit actions and milliseconds. Keep exact PNGs; select GIF alpha/background conversion explicitly.
 - **Separately drawn chunks:** read [chunking.md](references/chunking.md) to define chunk boundaries, align repeating textures, connect shapes across seams and check local edits; start with the two-chunk example.
 
 For new artwork, capture meaning, native size, target background, style reference, palette roles, light/outline rules, state names and the requirements of the game or application that will use the image. User references take priority over demo styling. Read only the relevant guide:

@@ -12,6 +12,9 @@ include = [
     'tests/fixtures/chunk_trial/*.py',
     'tools/check.py',
     'tools/check_format.py',
+    'tools/package_dsh.py',
+    'tools/check_dsh.py',
+    'tests/test_dsh_package.py',
 ]
 force-exclude = true
 

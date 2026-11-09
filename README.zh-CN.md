@@ -33,6 +33,9 @@
 
 安装后可以说：“制作六个32×32旅行用品，统一光照与配色，放进一个小型物品栏，并保留可编辑源资料。”
 
+DSH 可选用[第三方 bundle 适配](integrations/dsh/README.md)，把同一份 Skill
+打成本地 `.tgz` 安装包。目前尚未发布到 npm 或收录于 DSH 市场。
+
 ## 直接使用 Python 工具
 
 需要 Python 3.10+、Pillow >=10.4,<13。依赖文件锁定 Pillow 12.3.0，便于复现。

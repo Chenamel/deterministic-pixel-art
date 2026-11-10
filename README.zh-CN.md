@@ -33,8 +33,9 @@
 
 安装后可以说：“制作六个32×32旅行用品，统一光照与配色，放进一个小型物品栏，并保留可编辑源资料。”
 
-DSH 可选用[第三方 bundle 适配](integrations/dsh/README.md)，把同一份 Skill
-打成本地 `.tgz` 安装包。目前尚未发布到 npm 或收录于 DSH 市场。
+DSH 可选用携带同一份 Skill 的[第三方 bundle 适配](integrations/dsh/README.zh-CN.md)。
+官方 npm registry 提供 `dsh-skill-deterministic-pixel-art@0.1.0` 时，可按说明从
+npm 安装；否则可生成并安装本地 `.tgz`。npm 安装无需等待 DSH 市场收录。
 
 ## 直接使用 Python 工具
 

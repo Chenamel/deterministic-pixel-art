@@ -4,7 +4,7 @@
 
 这是本项目的可选第三方 DSH bundle，携带原 `deterministic-pixel-art` Skill、
 说明、Python 工具、配方和可编辑示例。用户与模型都可按需调用；同名本地 Skill
-可以优先使用。目前未发布到 npm，也未收录于 DSH 市场。
+可以优先使用。
 
 ## 生成本地包
 
@@ -19,7 +19,7 @@ npm pack ./dist/dsh-package --ignore-scripts --pack-destination dist
 **>=24.9.0**；宿主需提供 DSH Skill **0.2.2-rc.1** 和 Cordis **~4.1.0**。
 其他 DSH 版本未声明兼容。
 
-## 用新配置试跑命令行
+## 在新配置中安装
 
 在 DSH NEXT 的 **DSH Terminal** 中运行 `dsh`，选择未使用过的 profile 名称；
 以下用 `pixel-art`。**先初始化一次，再安装插件**：`--from-default-profile`
@@ -27,11 +27,23 @@ npm pack ./dist/dsh-package --ignore-scripts --pack-destination dist
 
 ```text
 dsh --profile pixel-art --from-default-profile headless --help
+```
+
+这条命令初始化配置，不调用模型。随后**选择一种**安装方式。官方 npm registry
+提供 **0.1.0** 时，使用精确包版本：
+
+```text
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.0
+```
+
+若该版本不可用，按前文生成本地归档，改用其绝对路径；含空格路径保留引号：
+
+```text
 dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.0.tgz"
 ```
 
-将归档路径替换为前面实际生成的文件；含空格路径保留引号。第一条命令初始化配置，
-不调用模型。这些命令只作用于 `pixel-art`，不会把插件安装到 Desktop profile。
+两种方式都安装到 `pixel-art`；Desktop 使用独立的 profile。
+npm 安装无需等待 DSH 市场收录。
 
 官方 `headless` 模板默认关闭托管账户服务。若使用平时登录的 DeepSeek 账户，在
 任务目录保存以下 `dsh-account.patch.yml`；它只含配置，不填 token：
@@ -87,7 +99,7 @@ shell 检查 Python 和 Pillow。缺少它们属于运行前置条件，安装 b
 表示账户路线不可用，应检查 overlay、正常登录和 `DSH_HOME`，不必重装 Skill。
 同名本地 Skill 会覆盖随包版本。
 
-## 验证与发布状态
+## 验证与来源
 
 本机验证基线为 Windows DSH NEXT **2.0.22-next**、core **0.2.2-rc.1**、Node
 **24.21.0**、Python **3.12.14**、Pillow **12.3.0**。
@@ -98,7 +110,6 @@ Skill 服务与搬移后的绘图工具，不需要模型调用。
 权威输入；不手工维护生成资源，不建立第二套绘制引擎。`skill-manifest.json`
 记录文件哈希。DSH 与宿主 peer 不随包分发；许可和来源见 LICENSE、NOTICE.md。
 
-公开安装仍需确认 npm 名称、版本与账号所有权，发布已审归档，再单独提交市场。
 本项目不是 DeepSeek 官方插件。也可以按原仓库的
 [INSTALL.md](https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md)
 直接安装原生 Skill。

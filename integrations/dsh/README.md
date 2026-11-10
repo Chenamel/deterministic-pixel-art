@@ -5,7 +5,6 @@
 Optional third-party DSH bundle carrying the original `deterministic-pixel-art`
 Skill, references, editable examples, Python renderer and recipes. Users and
 models can invoke it as needed; a same-name local Skill can take precedence.
-This package is not published to npm or listed in the DSH marketplace.
 
 ## Build a local package
 
@@ -21,7 +20,7 @@ scripts. Its initial compatibility range is DSH core **0.2.2-rc.1**, Node
 **>=24.9.0**, DSH Skill **0.2.2-rc.1** and Cordis **~4.1.0**. Other DSH versions
 are not claimed compatible.
 
-## Try a new command-line profile
+## Install in a new command-line profile
 
 In DSH NEXT, run `dsh` inside **DSH Terminal**. Choose an unused profile name;
 the examples use `pixel-art`. Initialize it **once, before installing**:
@@ -30,12 +29,25 @@ local configuration. Do not rerun that initialization to start another task.
 
 ```text
 dsh --profile pixel-art --from-default-profile headless --help
+```
+
+This initializes the profile without a model call. Then choose **one** installation
+method. When the official npm registry provides version **0.1.0**, use its exact
+package version:
+
+```text
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.0
+```
+
+If that version is unavailable, build the local archive above and use its absolute
+path instead; quote paths containing spaces:
+
+```text
 dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.0.tgz"
 ```
 
-Replace the archive path with the file built above; quote paths containing
-spaces. The first command initializes the profile without a model call. These
-commands affect `pixel-art`; they do not install into the Desktop profile.
+Both methods install into `pixel-art`; Desktop uses a separate profile.
+npm installation does not require a DSH marketplace listing.
 
 The shipped `headless` template disables stored-account services. To use your
 normal DeepSeek account sign-in, save this as `dsh-account.patch.yml` in your
@@ -98,7 +110,7 @@ version before a model task. `ACCOUNT_SIGN_IN_REQUIRED` means the account route
 is unavailable: check the overlay, normal sign-in and `DSH_HOME`, rather than
 reinstalling the Skill. A same-name local Skill can override the bundled one.
 
-## Verification and publication
+## Verification and sources
 
 Platform validation uses Windows DSH NEXT **2.0.22-next**, core **0.2.2-rc.1**,
 Node **24.21.0**, Python **3.12.14** and Pillow **12.3.0**. Run
@@ -111,7 +123,5 @@ That check requires no model call.
 here; `skill-manifest.json` records their hashes. DSH and its peers are not
 bundled. See LICENSE and NOTICE.md for licensing and sources.
 
-Public installation still needs npm name/version ownership, publication of the
-reviewed archive and a separate marketplace submission. This project is not
-endorsed by DeepSeek. For native Skill installation, follow
+This project is not endorsed by DeepSeek. For native Skill installation, follow
 [INSTALL.md](https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md).

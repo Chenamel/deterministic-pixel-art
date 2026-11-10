@@ -33,9 +33,10 @@ Give an agent with terminal and file access this request:
 
 Once installed, try: “Create six 32×32 travel items with a consistent palette and lighting, compose them into a small inventory panel, and keep the editable sources.”
 
-For DSH, the optional [third-party bundle](integrations/dsh/README.md) packages this
-same Skill for a local `.tgz` installation. It is not yet published or listed in
-the DSH marketplace.
+For DSH, the optional [third-party bundle](integrations/dsh/README.md) carries this
+same Skill. Use its npm instructions when `dsh-skill-deterministic-pixel-art@0.1.0`
+is available from the official npm registry, or build and install a local `.tgz`.
+npm installation does not require a DSH marketplace listing.
 
 ## Use the Python CLI
 

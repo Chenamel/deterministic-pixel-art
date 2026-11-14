@@ -30,7 +30,7 @@
 | `dsh-skill-deterministic-pixel-art` | npm 安装包名 |
 | `deterministic-pixel-art` | 对话中使用的 Skill 名称 |
 
-本目录对应 bundle **0.1.1**，支持 DSH core 与 DSH Skill
+本目录对应 bundle **0.1.2-rc.1**，支持 DSH core 与 DSH Skill
 **0.2.2-rc.1 至 0.2.2-rc.3**。Node 要求 **>=24.9.0**，Cordis 为
 **~4.1.0**；绘图需要 Python **3.10+**、Pillow **>=10.4,<13**。
 更早版本、未来 rc 及正式版不在兼容声明内。桌面应用版本与内核版本不同，可用
@@ -40,10 +40,10 @@
 已有正常配置的 CLI 用户，可将 `YOUR-PROFILE` 换成自己的非 `desktop` profile：
 
 ```text
-dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.1
+dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.2-rc.1
 ```
 
-若 registry 尚无 0.1.1，说明该版本尚未发布；本地候选按文末的
+若 registry 尚无 0.1.2-rc.1，说明该版本尚未发布；本地候选按文末的
 [打包说明](#生成本地包)生成，不要将仅声明 rc.1 的旧 0.1.0 当作新版替代。
 npm CLI 不管理 Electron 专用的 `desktop` profile；桌面使用其自身的插件入口
 或内置命令。npm 安装无需等待市场收录。
@@ -60,16 +60,16 @@ dsh --profile pixel-art --from-default-profile headless --help
 ```
 
 这条命令初始化配置，不调用模型。随后**选择一种**安装方式。官方 npm registry
-提供 **0.1.1** 时，使用精确包版本：
+提供 **0.1.2-rc.1** 时，使用精确包版本：
 
 ```text
-dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.1
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.2-rc.1
 ```
 
 本地候选按文末说明生成归档，改用其绝对路径；含空格路径保留引号：
 
 ```text
-dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.1.tgz"
+dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.2-rc.1.tgz"
 ```
 
 两种方式都安装到 `pixel-art`；Desktop 使用独立的 profile。

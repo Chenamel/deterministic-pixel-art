@@ -27,7 +27,7 @@ def read_image(path):
         return opened.copy()
 
 
-def _read_recolor_png(path):
+def _read_edit_png(path, operation):
     """Reject unsupported source/mask formats before copying away frame info."""
     from .core import dimensions
 
@@ -38,13 +38,15 @@ def _read_recolor_png(path):
         or header[:8] != b'\x89PNG\r\n\x1a\n'
         or header[12:16] != b'IHDR'
     ):
-        raise PixelArtError('recolor: expected a PNG input')
+        raise PixelArtError(f'{operation}: expected a PNG input')
     if header[24] > 8:
-        raise PixelArtError('recolor: PNG bit depth above 8 is not supported')
+        raise PixelArtError(f'{operation}: PNG bit depth above 8 is not supported')
     with Image.open(path) as opened:
         dimensions(opened.size)
         if getattr(opened, 'n_frames', 1) != 1:
-            raise PixelArtError('recolor: animated/multiframe PNG is not supported')
+            raise PixelArtError(
+                f'{operation}: animated/multiframe PNG is not supported'
+            )
         return opened.copy()
 
 
@@ -260,10 +262,12 @@ def main(argv=None):
 
             check_alias([args.image, args.compare, args.allow_mask], [args.out])
             report = verify_edit(
-                read_image(args.image),
-                read_image(args.compare),
+                _read_edit_png(args.image, 'verify.image'),
+                _read_edit_png(args.compare, 'verify.compare'),
                 regions=args.allow_region,
-                mask=read_image(args.allow_mask) if args.allow_mask else None,
+                mask=_read_edit_png(args.allow_mask, 'verify.mask')
+                if args.allow_mask
+                else None,
             )
             if args.out:
                 publish(
@@ -281,8 +285,10 @@ def main(argv=None):
                 [args.image, args.allow_mask, args.metadata],
                 [args.out, args.report, args.metadata_out],
             )
-            source = _read_recolor_png(args.image)
-            mask = _read_recolor_png(args.allow_mask) if args.allow_mask else None
+            source = _read_edit_png(args.image, 'recolor')
+            mask = (
+                _read_edit_png(args.allow_mask, 'recolor') if args.allow_mask else None
+            )
             context, layout_verification = merge_layout(
                 source, metadata=read_json(args.metadata) if args.metadata else None
             )

@@ -11,6 +11,12 @@ from .core import PixelArtError
 from .jsonio import parse_json
 
 PNG_KEY = 'pixelart:layout'
+MAX_LAYOUT_BYTES = 256 * 1024
+
+
+def _check_record_size(text, source):
+    if len(text.encode('utf-8')) > MAX_LAYOUT_BYTES:
+        raise PixelArtError(f'{source} metadata exceeds 256 KiB')
 
 
 def rgba_digest(image):
@@ -28,8 +34,12 @@ def encode_png(image, metadata=None):
     buffer = BytesIO()
     options = {}
     if metadata is not None:
+        serialized = json.dumps(
+            metadata, ensure_ascii=True, sort_keys=True, separators=(',', ':')
+        )
+        _check_record_size(serialized, 'embedded')
         info = PngInfo()
-        info.add_text(PNG_KEY, json.dumps(metadata, ensure_ascii=True, sort_keys=True, separators=(',', ':')))
+        info.add_text(PNG_KEY, serialized)
         options['pnginfo'] = info
     image.save(buffer, format='PNG', **options)
     return buffer.getvalue()
@@ -55,8 +65,7 @@ def merge_layout(image, context=None, metadata=None, *, require_bound_atlas=Fals
         if record is None:
             continue
         if isinstance(record, str):
-            if len(record.encode('utf-8')) > 262144:
-                raise PixelArtError(f'{source} metadata exceeds 256 KiB')
+            _check_record_size(record, source)
             record = parse_json(record)
         if not isinstance(record, Mapping) or set(record)-{'version','size','mode','atlas','rgba_sha256'}:
             raise PixelArtError(f'{source} metadata: unknown fields or not an object')

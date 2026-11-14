@@ -21,7 +21,7 @@
 
 [可编辑旅行用品示范](demos/travel-kit/README.md) · [原尺寸 UI PNG](demos/travel-kit/assets/ui.png) · [命名物品图集](demos/travel-kit/assets/after.json)。六件原创32×32物品与192×160静态界面组合，提供原尺寸及整数倍最近邻预览，附JSON源资料和绘图脚本。
 
-**版本：v1.2.2。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.2) · [版本变化](docs/releases/v1.2.2.zh-CN.md)。本次维护版纳入可选动作图标与场景指南、独立全尺寸 Logo 包和 SkillHub 打包工具，绘图与编辑行为保持。PNG 导入、按名称替换图集中的一格、逐像素核对修改、组件拼接和示例脚本从 v1.2.0 起提供。
+**版本：v1.2.2。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.2) · [版本变化](docs/releases/v1.2.2.zh-CN.md)。本次维护版纳入可选动作图标与场景指南、独立全尺寸 Logo 包和 SkillHub 打包工具，绘图与编辑行为保持不变。PNG 导入、按名称替换图集中的一格、逐像素核对修改、组件拼接和示例脚本从 v1.2.0 起提供。
 
 ## 交给 AI 使用
 
@@ -33,9 +33,9 @@
 
 安装后可以说：“制作六个32×32旅行用品，统一光照与配色，放进一个小型物品栏，并保留可编辑源资料。”
 
-DSH 可选用携带同一份 Skill 的[第三方 bundle 适配](integrations/dsh/README.zh-CN.md)。
-官方 npm registry 提供 `dsh-skill-deterministic-pixel-art@0.1.0` 时，可按说明从
-npm 安装；否则可生成并安装本地 `.tgz`。npm 安装无需等待 DSH 市场收录。
+DSH 用户可从[插件安装与快速上手](integrations/dsh/README.zh-CN.md)开始：确认兼容版本，
+安装到聊天所用配置，然后直接用自然语言要求制作或修改素材。该可选第三方 bundle
+携带同一份 Skill；npm 安装无需等待市场收录。
 
 ## 直接使用 Python 工具
 

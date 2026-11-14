@@ -20,9 +20,28 @@ except ImportError:
     import package_skill
 
 ROOT = Path(__file__).resolve().parents[1]
+HOST_PACKAGES = (
+    'dsh-skill',
+    'dsh-skill-filesystem',
+    'dsh-llm',
+    'dsh-scope',
+    'dsh-fs',
+    'dsh-home-paths',
+)
 
 
-def verify(output):
+def verify_host_versions(package, expected_version):
+    for name in HOST_PACKAGES:
+        manifest = package / 'node_modules' / '@deepseek-ai' / name / 'package.json'
+        installed_version = json.loads(manifest.read_text(encoding='utf-8'))['version']
+        if installed_version != expected_version:
+            raise RuntimeError(
+                f'Expected @deepseek-ai/{name} {expected_version}, '
+                f'got {installed_version}'
+            )
+
+
+def verify(output, skill_version=None):
     output.mkdir(parents=True, exist_ok=False)
     records = []
 
@@ -98,7 +117,15 @@ def verify(output):
         )
         package = unpacked / 'package'
         # Install only real peer services into this disposable unpacked package.
-        run([npm, 'install', '--ignore-scripts', '--no-package-lock'], cwd=package)
+        install = [npm, 'install', '--ignore-scripts', '--no-package-lock']
+        if skill_version:
+            install.extend(['--no-save'])
+            install.extend(
+                f'@deepseek-ai/{name}@{skill_version}' for name in HOST_PACKAGES
+            )
+        run(install, cwd=package)
+        if skill_version:
+            verify_host_versions(package, skill_version)
         moved = output / '搬移后的包 with spaces'
         package.rename(moved)
         unrelated = output / '无关 工作目录'
@@ -160,12 +187,17 @@ def main():
     sys.stderr.reconfigure(encoding='utf-8', errors='backslashreplace')
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, help='new evidence directory to retain')
+    parser.add_argument(
+        '--skill-version',
+        choices=('0.2.2-rc.1', '0.2.2-rc.2', '0.2.2-rc.3'),
+        help='install matching DSH Skill services for the adapter check',
+    )
     args = parser.parse_args()
     if args.out:
-        verify(args.out.absolute())
+        verify(args.out.absolute(), args.skill_version)
     else:
         with tempfile.TemporaryDirectory(prefix='dsh-check-') as directory:
-            verify(Path(directory) / 'evidence')
+            verify(Path(directory) / 'evidence', args.skill_version)
 
 
 if __name__ == '__main__':

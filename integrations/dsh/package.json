@@ -1,6 +1,6 @@
 {
   "name": "dsh-skill-deterministic-pixel-art",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Third-party DSH bundle for the Deterministic Pixel Art Skill and its editable PNG tools.",
   "type": "module",
   "main": "index.js",
@@ -34,11 +34,11 @@
   },
   "engines": {
     "node": ">=24.9.0",
-    "dsh": "0.2.2-rc.1"
+    "dsh": ">=0.2.2-rc.1 <=0.2.2-rc.3"
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "~4.1.0",
-    "@deepseek-ai/dsh-skill": "0.2.2-rc.1"
+    "@deepseek-ai/dsh-skill": ">=0.2.2-rc.1 <=0.2.2-rc.3"
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "~4.1.0",

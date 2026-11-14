@@ -16,7 +16,7 @@ Prefer a project-local install unless the user requests an all-projects install.
 
 ## 2. Get a stable package
 
-Choose by the requested task. **v1.2.0** includes `render`, `preview`, `validate`, `review`, `import`, `inspect`, `replace-cell`, `verify`, `assemble` and editable recipes. Older **v1.1.1** installs offer only the first four commands. Do not report an install as ready for a task its command set cannot perform.
+Choose by the requested task. **v1.2.0** includes `render`, `preview`, `validate`, `review`, `import`, `inspect`, `replace-cell`, `verify`, `assemble` and editable recipes. **v1.3.0** also includes scoped `recolor`, paged atlas review, tile-scene previews and PNG animation export recipes. Exact `recolor` and `verify` accept only static PNGs with channel depth at most 8 bits. Older **v1.1.1** installs offer only the first four commands. Do not report an install as ready for a task its command set cannot perform.
 
 Read https://api.github.com/repos/Chenamel/deterministic-pixel-art/releases/latest and select the `deterministic-pixel-art-<tag>.zip` and `SHA256SUMS.txt` assets from that same release. This endpoint selects a published stable release, not a prerelease or the repository checkout. Follow the returned download URLs; do not guess a versioned filename.
 

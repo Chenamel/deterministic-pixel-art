@@ -21,7 +21,7 @@
 
 [可编辑旅行用品示范](demos/travel-kit/README.md) · [原尺寸 UI PNG](demos/travel-kit/assets/ui.png) · [命名物品图集](demos/travel-kit/assets/after.json)。六件原创32×32物品与192×160静态界面组合，提供原尺寸及整数倍最近邻预览，附JSON源资料和绘图脚本。
 
-**版本：v1.2.2。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.2) · [版本变化](docs/releases/v1.2.2.zh-CN.md)。本次维护版纳入可选动作图标与场景指南、独立全尺寸 Logo 包和 SkillHub 打包工具，绘图与编辑行为保持不变。PNG 导入、按名称替换图集中的一格、逐像素核对修改、组件拼接和示例脚本从 v1.2.0 起提供。
+**版本：v1.3.0。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.3.0) · [版本变化](docs/releases/v1.3.0.zh-CN.md)。提供限定区域改色、分页查看图集、命名地块场景预览和 PNG 动画导出。精确编辑要求静态、通道位深不超过 8 位的 PNG；请保留可编辑源资料和原始 PNG，便于继续修改。
 
 ## 交给 AI 使用
 

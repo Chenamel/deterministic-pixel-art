@@ -21,7 +21,7 @@ Make PNG icons, sprites, UI components and named sprite atlases from text grids,
 
 [Editable travel kit](demos/travel-kit/README.md) · [Native UI PNG](demos/travel-kit/assets/ui.png) · [Named item atlas](demos/travel-kit/assets/after.json). Original 32×32 items and a 192×160 static UI composition, with native-size views and integer nearest-neighbor enlargements. JSON sources and the drawing script are included.
 
-**Version: v1.2.2.** [Download the stable Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.2.2) · [What changed](docs/releases/v1.2.2.md). This maintenance release includes optional action-icon and scene guides, a separate full-size logo kit and SkillHub packaging tools. Rendering and editing behavior remain unchanged. PNG import, named-cell replacement, exact change verification, assembly and recipes have been available since v1.2.0.
+**Version: v1.3.0.** [Download the stable Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.3.0) · [What changed](docs/releases/v1.3.0.md). Includes scoped color replacement, paged atlas review, named-tile scene previews and PNG animation export. Exact editing requires static PNGs with channel depth at most 8 bits; editable sources and original PNGs remain the basis for later changes.
 
 ## Use with an AI agent
 

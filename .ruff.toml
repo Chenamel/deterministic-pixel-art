@@ -15,6 +15,7 @@ include = [
     'tools/package_dsh.py',
     'tools/check_dsh.py',
     'tests/test_dsh_package.py',
+    'tests/test_edit_boundaries.py',
 ]
 force-exclude = true
 

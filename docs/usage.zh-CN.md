@@ -21,6 +21,8 @@ python src/pixel_art.py verify --image output/candidate.png --compare examples/w
 
 预期得到 `valid: true`、`changed_inside: 66`、`changed_outside: 0`：transfer 这一格内改变了 66 个像素，这一格以外没有变化。使用自己修改的文件时，改为 `--replacement output/transfer.json`；如果文件没改，变化像素数应为 0。也支持导入整张图片，保留解码后的 8 位 RGBA 值，包括全透明像素里的 RGB；无法恢复原图层或绘制步骤。
 
+`verify` 的候选图、基准图和可选遮罩都必须是通道位深不超过 8 位的单帧 PNG。更高位深和动画会被拒绝，避免静默转换像素或只比较首帧。内嵌布局记录的序列化大小上限是 256 KiB；布局较大时，不加 `--embed-metadata`，用 `--metadata` 另存 JSON。完整限制见[精确编辑说明](../skill/deterministic-pixel-art/references/workflows.md)。
+
 ## 修改网格的一种颜色
 
 创建输出目录，将这份完整规格保存为 `output/recolor.json`（当前工作树的 `examples/transparent-grid.json` 也提供同一规格）：

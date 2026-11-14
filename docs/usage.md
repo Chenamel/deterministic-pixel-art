@@ -21,6 +21,8 @@ python src/pixel_art.py verify --image output/candidate.png --compare examples/w
 
 Expect `valid: true`, `changed_inside: 66` and `changed_outside: 0`. The allowed rectangle is the existing transfer cell. For your own edit use `--replacement output/transfer.json`; if unchanged, it should produce zero changed pixels. Full-image import is also available. Decoded 8-bit RGBA is preserved, including hidden RGB; original layers and drawing instructions are not recovered.
 
+`verify` requires single-frame PNGs with at most 8-bit channels for the candidate, baseline and optional mask. It rejects higher bit depths and animations rather than silently comparing converted pixels or only the first frame. Embedded layout records have a 256 KiB serialized limit; for larger layouts, render without `--embed-metadata` and keep a separate `--metadata` JSON file. See [exact edit limits](../skill/deterministic-pixel-art/references/workflows.md).
+
 ## Change one grid color
 
 Create the output directory and save this complete spec as `output/recolor.json` (also available as `examples/transparent-grid.json` in this checkout):

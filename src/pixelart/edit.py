@@ -6,6 +6,16 @@ from .core import PixelArtError,color,dimensions
 from .context import _box
 
 
+def _check_edit_image(image, where):
+    dimensions(image.size)
+    if getattr(image, 'n_frames', 1) != 1:
+        raise PixelArtError(f'{where}: animated/multiframe images are not supported')
+    if image.mode not in ('1', 'L', 'LA', 'P', 'RGB', 'RGBA'):
+        raise PixelArtError(
+            f'{where}: requires decoded 8-bit grayscale, palette, RGB or RGBA pixels'
+        )
+
+
 def replace_cell(spec,name,replacement):
     """Return a new valid atlas spec; no I/O and no change to the original."""
     from .spec import render
@@ -32,6 +42,8 @@ def _allowed_mask(size,regions,mask,where):
         x,y,w,h=_box(region,size,where+'.region')
         pen.rectangle((x,y,x+w-1,y+h-1),fill=255)
     if mask is not None:
+        if getattr(mask, 'n_frames', 1) != 1:
+            raise PixelArtError(f'{where}.mask: animated/multiframe masks are not supported')
         if mask.size!=size:raise PixelArtError(f'{where}.mask: dimensions must match')
         if mask.mode in ('RGBA','LA'):channel=mask.getchannel('A')
         elif mask.mode in ('L','1'):channel=mask.convert('L')
@@ -49,11 +61,7 @@ def recolor_image(image,mapping,*,regions=None,mask=None):
     object selection takes place. Returned pixels do not inherit PNG metadata;
     callers must validate source layout and publish a fresh output record.
     """
-    dimensions(image.size)
-    if getattr(image,'n_frames',1)!=1:
-        raise PixelArtError('recolor: animated/multiframe images are not supported')
-    if image.mode not in ('1','L','LA','P','RGB','RGBA'):
-        raise PixelArtError('recolor: requires decoded 8-bit grayscale, palette, RGB or RGBA pixels')
+    _check_edit_image(image, 'recolor')
     pairs=list(mapping.items()) if isinstance(mapping,Mapping) else mapping
     if not isinstance(pairs,(list,tuple)) or not pairs:
         raise PixelArtError('recolor.mapping: expected a nonempty mapping or list of color pairs')
@@ -97,7 +105,8 @@ def verify_edit(image,comparison,*,regions=None,mask=None):
     nonzero intensity (L/1); RGB masks are rejected to avoid an all-allowed trap.
     All reported rectangles are [x,y,width,height]. No artwork is changed.
     """
-    dimensions(image.size)
+    _check_edit_image(image, 'verify.image')
+    _check_edit_image(comparison, 'verify.compare')
     if image.size!=comparison.size:raise PixelArtError('verify: comparison dimensions must match')
     allowed=_allowed_mask(image.size,regions,mask,'verify')
     raw=image.convert('RGBA').tobytes();old=comparison.convert('RGBA').tobytes();permissions=allowed.tobytes()

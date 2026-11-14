@@ -21,6 +21,8 @@ Try `assets/workflows/atlas-before.png`, `atlas-before-layout.json` and `atlas-r
 
 `replace-cell --image-out ... --metadata ...` writes the complete atlas block and a fresh `rgba_sha256`. A standalone cell render correctly has no atlas block; that does not describe the metadata produced by atlas replacement. No manual sidecar construction is needed.
 
+Embedded layout records are limited to 256 KiB of serialized UTF-8, including JSON escapes for non-ASCII names. `render --embed-metadata` and `recolor` reject oversized records before publishing any outputs. Separate layout JSON files and in-memory layouts do not share this embedded-record limit. For a large layout, render without `--embed-metadata` and keep the `--metadata` sidecar; reduce or split the layout before using `recolor`, which always embeds a fresh record.
+
 ## Candidates without overwriting evidence
 
 When exploring variants, give each a directory such as `candidates/v01/` containing its spec, PNG, fresh layout and optional review. Use `v02/` for another candidate; keep paths meaningful rather than repeatedly occupying a shared `final.*`. After selecting a result, write the delivery paths. This is a useful convention, not a requirement to produce alternatives for every small edit.
@@ -30,6 +32,8 @@ A later revision can use another candidate directory, or an explicit `--force` r
 ## Prove a precise edit boundary
 
 `verify` compares all decoded RGBA, including RGB under alpha zero. Repeat `--allow-region X Y W H` for multiple rectangles. `--allow-mask allowed.png` accepts nonzero L/1 intensity or RGBA/LA alpha; RGB-only masks are rejected. Regions/mask combine by union. Mask size must match. A hollow border needs a hollow mask, not its enclosing rectangle.
+
+Candidate, baseline and mask must be single-frame PNGs with at most 8-bit channels. Unsupported formats, higher bit depths and animations exit 2; they are not silently reduced to 8-bit pixels or a first frame. Python `verify_edit` accepts decoded `1`, `L`, `LA`, `P`, `RGB` or `RGBA` images and single-frame masks with the channels above. Pass original decoded inputs: converting modes or copying a frame before verification can discard evidence the API cannot recover.
 
 Exit codes: 0 valid boundary; 1 outside changes; 2 input/output error. `--out verification.json` saves counts, outside xywh bbox, up to 64 coordinates and omitted count. This does not judge appearance or state meaning. `validate` checks the image against its specified rules.
 

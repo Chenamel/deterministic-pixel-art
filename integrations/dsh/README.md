@@ -2,9 +2,11 @@
 
 [简体中文](README.zh-CN.md)
 
-Optional third-party DSH bundle carrying the original `deterministic-pixel-art`
-Skill, references, editable examples, Python renderer and recipes. Users and
-models can invoke it as needed; a same-name local Skill can take precedence.
+Describe what you want to draw or change in a DSH conversation, or provide an
+existing PNG and ask for a specific edit. The Skill can render pixel-art PNGs
+with editable JSON and recolor a selected area. The package includes drawing
+tools, examples and reference guides; everyday use does not require writing
+pixel coordinates or Python code.
 
 ## Already installed: start a conversation
 
@@ -33,22 +35,28 @@ should return absolute file paths.
 | `dsh-skill-deterministic-pixel-art` | npm package name |
 | `deterministic-pixel-art` | Skill name to use in a conversation |
 
-This directory targets bundle **0.1.2**, supporting DSH core and DSH Skill
+This directory targets bundle **0.1.3**, supporting DSH core and DSH Skill
 **0.2.2-rc.1 through 0.2.2-rc.3**. Node must be **>=24.9.0** and Cordis
 **~4.1.0**. Drawing requires Python **3.10+** and Pillow **>=10.4,<13**.
 Earlier versions, future release candidates and stable releases are outside this
 declaration. Desktop app and core versions differ; check the core with that
 installation's `dsh --version`.
 
+As of 2026-11-15, npm audit reported seven high-severity findings in the DSH
+`rc.1` host dependency tree, involving upstream dependencies including `zod`.
+These are not findings in files bundled by this extension. The same check found
+no vulnerabilities for `rc.2` or `rc.3`. Compatibility with `rc.1` remains
+declared; prefer `rc.2` or `rc.3` when available.
+
 Use DSH's supported npm plugin installation method to install and enable the
 package in the profile used for chat. CLI users with an existing working profile
 can replace `YOUR-PROFILE` with its non-`desktop` profile name:
 
 ```text
-dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.2
+dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.3
 ```
 
-If 0.1.2 is absent from the registry, it has not been published yet. Build a local
+If 0.1.3 is absent from the registry, it has not been published yet. Build a local
 candidate using the [instructions below](#build-a-local-package); the old 0.1.0
 package declares support for rc.1 only. The npm CLI does not manage Electron's
 reserved `desktop` profile; use the desktop's plugin interface or bundled command.
@@ -67,18 +75,18 @@ dsh --profile pixel-art --from-default-profile headless --help
 ```
 
 This initializes the profile without a model call. Then choose **one** installation
-method. When the official npm registry provides version **0.1.2**, use its exact
+method. When the official npm registry provides version **0.1.3**, use its exact
 package version:
 
 ```text
-dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.2
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.3
 ```
 
 For a local candidate, build the archive using the instructions below and use its
 absolute path instead; quote paths containing spaces:
 
 ```text
-dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.2.tgz"
+dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.3.tgz"
 ```
 
 Both methods install into `pixel-art`; Desktop uses a separate profile.

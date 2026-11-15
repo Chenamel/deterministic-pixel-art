@@ -1,7 +1,7 @@
 {
   "name": "dsh-skill-deterministic-pixel-art",
-  "version": "0.1.2",
-  "description": "Third-party DSH bundle for the Deterministic Pixel Art Skill and its editable PNG tools.",
+  "version": "0.1.3",
+  "description": "在 DSH 对话中用自然语言创作像素图、修改现有 PNG，导出 PNG 和可编辑 JSON，也可按指定区域改色。 Create and edit pixel art in DSH with natural-language requests; export PNG and editable JSON, or recolor a selected area.",
   "type": "module",
   "main": "index.js",
   "exports": {

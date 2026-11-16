@@ -3,6 +3,7 @@
 from copy import deepcopy
 from pathlib import Path
 import sys
+from types import MappingProxyType
 import unittest
 
 from PIL import Image
@@ -113,6 +114,22 @@ class RecipeClippingTests(unittest.TestCase):
             with self.subTest(operation=operation):
                 with self.assertRaisesRegex(PixelArtError, 'clipped_ops'):
                     clipped_ops([3, 3], [operation], {(0, 0)})
+
+    def test_non_mapping_operations_raise_pixel_art_error(self):
+        for body in (set(), {(0, 0)}):
+            for operation in (None, 3, 'rect'):
+                for prefix in ([], [rect(0, 0, 1, 1, 'FFFFFF')]):
+                    with self.subTest(body=body, operation=operation, prefix=prefix):
+                        with self.assertRaisesRegex(PixelArtError, 'operation object'):
+                            clipped_ops([2, 2], [*prefix, operation], body)
+
+    def test_read_only_mapping_operations_are_supported(self):
+        operation = rect(0, 0, 2, 1, 'FFFFFF')
+        body = {(0, 0), (1, 0)}
+        self.assertEqual(
+            clipped_ops([2, 1], [MappingProxyType(operation)], body),
+            clipped_ops([2, 1], [operation], body),
+        )
 
     def test_empty_operations_and_surface_produce_no_drawing(self):
         self.assertEqual(clipped_ops([2, 1], [], {(0, 0)}), [])

@@ -1,6 +1,7 @@
 """Shared mechanics for editable recipes; no output writes at import time."""
 
 import argparse
+from collections.abc import Mapping
 from itertools import groupby
 import json
 from pathlib import Path
@@ -67,6 +68,8 @@ def clipped_ops(size, ops, body):
     dimensions(size)
 
     def fill_color(operation):
+        if not isinstance(operation, Mapping):
+            raise PixelArtError('clipped_ops: expected an operation object')
         if operation.get('op') not in ('rect', 'points', 'line', 'polygon'):
             raise PixelArtError('clipped_ops: expected rect, points, line or polygon')
         return color(operation.get('color'))

@@ -4,6 +4,8 @@ target-version = 'py310'
 line-length = 88
 include = [
     'src/pixelart/cli.py',
+    'recipes/_common.py',
+    'recipes/scene256.py',
     'recipes/animation_export.py',
     'recipes/_animation_project.py',
     'recipes/_animation_gif.py',
@@ -16,6 +18,7 @@ include = [
     'tools/check_dsh.py',
     'tests/test_dsh_package.py',
     'tests/test_edit_boundaries.py',
+    'tests/test_recipe_clipping.py',
 ]
 force-exclude = true
 

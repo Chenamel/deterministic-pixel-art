@@ -42,11 +42,19 @@ def spec(size, ops, background=None):
 
 def points_for(size, ops):
     image = render(spec(size, ops))
+    alpha = image.getchannel('A')
+    bbox = alpha.getbbox()
+    if bbox is None:
+        return set()
+    x0, y0, x1, y1 = bbox
+    width = x1 - x0
+    height = y1 - y0
+    data = alpha.crop(bbox).tobytes()
     return {
-        (x, y)
-        for y in range(image.height)
-        for x in range(image.width)
-        if image.getpixel((x, y))[3]
+        (x0 + dx, y0 + dy)
+        for dy in range(height)
+        for dx in range(width)
+        if data[dy * width + dx]
     }
 
 

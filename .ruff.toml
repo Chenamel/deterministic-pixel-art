@@ -19,6 +19,7 @@ include = [
     'tests/test_dsh_package.py',
     'tests/test_edit_boundaries.py',
     'tests/test_recipe_clipping.py',
+    'tests/test_recipe_points_for.py',
 ]
 force-exclude = true
 

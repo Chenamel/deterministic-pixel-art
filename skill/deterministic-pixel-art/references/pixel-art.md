@@ -4,6 +4,8 @@
 
 Reduce a sprite to its alpha silhouette on the target background. Find direction-bearing features: nose versus engine, arrow tip versus shaft, handle versus blade. Give those features space before adding highlights. At 12-16px, an extra pixel of negative space may matter more than another shade. Compare alternatives at 1:1 and 8x. Equal mathematical bounds do not imply equal visual weight.
 
+For a small form meant to read as three-dimensional, inspect thin branches or protrusions at native size. A one-pixel feature may not have room to show its volume; widen or simplify it only when that improves the intended silhouette. This is a readability check, not a ban on thin details [sources.md](sources.md#additional-scene-references).
+
 `assets/quality/directions-12.json` is a flat, already-readable set: shading would add little to that brief. `ship-32.json` shows a nose/cockpit/engine axis and separated exhaust. A silhouette can lose internal meaning, so inspect the full image too.
 
 ## Clusters, lines and light

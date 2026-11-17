@@ -70,6 +70,8 @@ Arrange different named tiles from one atlas into a small scene:
 python "<skill>/scripts/recipes/tile_scene.py" --image atlas.png --metadata atlas-layout.json --layout map.json --out-dir scene-v1
 ```
 
+This recipe places same-sized rectangular cells on an axis-aligned row-and-column grid. It copies each cell into a complete rectangular canvas; it does not position diamond-grid tiles, sort overlapping sprites by depth or composite overlapping tile bounds. Do not use it as an isometric scene builder. For diamond tiles or tall overlapping sprites, use a layout and renderer that support their ground anchors, draw order and transparency.
+
 Open `scene-v1/preview.png` for context, `scene.png` at native size, then
 `seams.png` for close-ups. `report.json` maps every placement and adjacency to
 tile names and global rectangles. The model can translate a request such as

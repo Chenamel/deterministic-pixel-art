@@ -15,4 +15,14 @@ Borrow reasoning and adapt it to the user's reference and constraints. If a sour
 
 ## Additional scene references
 
-Relevant source sections and selected figures for the [scene-space guide](scene-space.md#sources) and [scene-revision guide](scene-revision.md#sources) were reviewed on 2026-11-01. Their references distinguish geometry, artist practice, documented mechanisms and application suggestions. Source images remain with their publishers; these summaries do not establish artwork or efficiency improvements.
+Sources for the [scene-space guide](scene-space.md#sources) were checked on 2026-11-01 and 2026-11-17; the additional projection and engine references below were checked on 2026-11-17. Sources for the [scene-revision guide](scene-revision.md#sources) were checked on 2026-11-01. Geometry, artist practice and engine behavior have different scopes; none sets a universal art style.
+
+| Source | Used for | Limits |
+|---|---|---|
+| [Clint Bellanger, Isometric Tiles Math](https://clintbellanger.net/articles/isometric_math/) | Mapping orthogonal map coordinates to a 2:1 screen grid and relating diamond origins to sprite bounds | Describes a 2:1 projection; it does not choose a game's view or sprite anchor for every asset. |
+| [Godot, Using TileMaps](https://docs.godotengine.org/en/stable/tutorials/2d/using_tilemaps.html) | Y sorting, sort origins and separating layers | Engine-specific behavior and property names. |
+| [Tiled, Using Terrains](https://doc.mapeditor.org/en/stable/manual/terrain/) | Tile transformations and directional-shadow constraints | Applies to Tiled's terrain workflow; inspect other transforms against the chosen lighting. |
+| [Pixnote, Isometric Pixel Art Guide](https://pixnote.net/en/learn/isometric/) | Vertical edges and an example of face values under a stated light direction | An artist guide, not a lighting standard. |
+| [Sprixen, Isometric Pixel Art Guide](https://sprixen.com/blog/isometric-pixel-art-tile-and-building-sizes) | Examples of tile sizes and bottom-centered building anchors | Practical suggestions, not required dimensions or engine rules. |
+
+Source images remain with their publishers. These references do not establish artwork quality or efficiency improvements.

@@ -27,7 +27,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        skill-version: ['0.2.2-rc.1', '0.2.2-rc.2', '0.2.2-rc.3']
+        skill-version: ['0.2.2-rc.1', '0.2.2-rc.2', '0.2.2-rc.3', '0.2.2-rc.4', '0.2.2-rc.5', '0.2.3-alpha.1']
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -43,7 +43,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        skill-version: ['0.2.2-rc.1', '0.2.2-rc.2', '0.2.2-rc.3']
+        skill-version: ['0.2.2-rc.1', '0.2.2-rc.2', '0.2.2-rc.3', '0.2.2-rc.4', '0.2.2-rc.5', '0.2.3-alpha.1']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1

@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -182,6 +183,12 @@ def verify(output, skill_version=None):
         )
 
 
+def service_version(value):
+    if not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?', value):
+        raise argparse.ArgumentTypeError('expected an exact DSH service version')
+    return value
+
+
 def main():
     sys.stdout.reconfigure(encoding='utf-8', errors='backslashreplace')
     sys.stderr.reconfigure(encoding='utf-8', errors='backslashreplace')
@@ -189,7 +196,8 @@ def main():
     parser.add_argument('--out', type=Path, help='new evidence directory to retain')
     parser.add_argument(
         '--skill-version',
-        choices=('0.2.2-rc.1', '0.2.2-rc.2', '0.2.2-rc.3'),
+        type=service_version,
+        metavar='VERSION',
         help='install matching DSH Skill services for the adapter check',
     )
     args = parser.parse_args()

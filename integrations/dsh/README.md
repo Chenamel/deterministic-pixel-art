@@ -35,30 +35,28 @@ should return absolute file paths.
 | `dsh-skill-deterministic-pixel-art` | npm package name |
 | `deterministic-pixel-art` | Skill name to use in a conversation |
 
-This directory targets bundle **0.1.3**, supporting DSH core and DSH Skill
-**0.2.2-rc.1 through 0.2.2-rc.3**. Node must be **>=24.9.0** and Cordis
-**~4.1.0**. Drawing requires Python **3.10+** and Pillow **>=10.4,<13**.
-Earlier versions, future release candidates and stable releases are outside this
-declaration. Desktop app and core versions differ; check the core with that
-installation's `dsh --version`.
+Bundle **0.1.4** targets the DSH 0.2 API, starting with **0.2.2-rc.1**.
+DSH accepts later 0.2 release candidates and patch versions under its
+`engines.dsh` check. The Skill peer range explicitly includes prereleases of
+0.2.2 and 0.2.3 for npm. Check the core version with your installation's
+`dsh --version`. Desktop has its own app version. Node **>=24.9.0** and Cordis
+**~4.1.0** are required. Drawing uses Python **3.10+** and Pillow **>=10.4,<13**.
 
-As of 2026-11-15, npm audit reported seven high-severity findings in the DSH
-`rc.1` host dependency tree, involving upstream dependencies including `zod`.
-These are not findings in files bundled by this extension. The same check found
-no vulnerabilities for `rc.2` or `rc.3`. Compatibility with `rc.1` remains
-declared; prefer `rc.2` or `rc.3` when available.
+An npm audit on 2026-11-15 reported seven high-severity findings in the upstream
+DSH rc.1 host dependency tree, including `zod`. The same audit reported none for
+rc.2 or rc.3.
 
 Use DSH's supported npm plugin installation method to install and enable the
 package in the profile used for chat. CLI users with an existing working profile
 can replace `YOUR-PROFILE` with its non-`desktop` profile name:
 
 ```text
-dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.3
+dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.4
 ```
 
-If 0.1.3 is absent from the registry, it has not been published yet. Build a local
-candidate using the [instructions below](#build-a-local-package); the old 0.1.0
-package declares support for rc.1 only. The npm CLI does not manage Electron's
+For a local candidate, use the archive installation example below. Bundle 0.1.3
+declares a maximum core version of 0.2.2-rc.3 and DSH rc.5 rejects it.
+The npm CLI does not manage Electron's
 reserved `desktop` profile; use the desktop's plugin interface or bundled command.
 npm installation does not require a marketplace listing.
 
@@ -75,18 +73,18 @@ dsh --profile pixel-art --from-default-profile headless --help
 ```
 
 This initializes the profile without a model call. Then choose **one** installation
-method. When the official npm registry provides version **0.1.3**, use its exact
+method. When the official npm registry provides version **0.1.4**, use its exact
 package version:
 
 ```text
-dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.3
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.4
 ```
 
 For a local candidate, build the archive using the instructions below and use its
 absolute path instead; quote paths containing spaces:
 
 ```text
-dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.3.tgz"
+dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.4.tgz"
 ```
 
 Both methods install into `pixel-art`; Desktop uses a separate profile.
@@ -166,8 +164,9 @@ Node **24.21.0**, Python **3.12.14** and Pillow **12.3.0**. Run
 `python -B tools/check_dsh.py` with Node/npm and development requirements to
 build and check the actual archive, real Skill services and relocated renderer.
 That check requires no model call.
-CI uses `--skill-version` to check the three matching service versions on Windows
-and Ubuntu.
+The bundle has been tested with the matching Skill services for 0.2.2-rc.1
+through rc.5 and 0.2.3-alpha.1. CI checks those versions on Windows and Ubuntu.
+To test another release, pass its exact version with `--skill-version`.
 
 `tools/package_dsh.py` reuses the authoritative inputs in `skill-content/`,
 `src/`, `recipes/` and existing examples. Generated resources are not maintained

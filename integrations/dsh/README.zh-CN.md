@@ -30,26 +30,24 @@
 | `dsh-skill-deterministic-pixel-art` | npm 安装包名 |
 | `deterministic-pixel-art` | 对话中使用的 Skill 名称 |
 
-本目录对应 bundle **0.1.3**，支持 DSH core 与 DSH Skill
-**0.2.2-rc.1 至 0.2.2-rc.3**。Node 要求 **>=24.9.0**，Cordis 为
-**~4.1.0**；绘图需要 Python **3.10+**、Pillow **>=10.4,<13**。
-更早版本、未来 rc 及正式版不在兼容声明内。桌面应用版本与内核版本不同，可用
-该安装的 `dsh --version` 核对内核。
+Bundle **0.1.4** 面向 DSH 0.2 API，最低版本为 **0.2.2-rc.1**。DSH 的
+`engines.dsh` 检查允许后续 0.2 系列的 RC 和补丁版本。Skill 的 peer 范围
+显式包含 0.2.2 和 0.2.3 预发布版，供 npm 解析。可用当前安装的
+`dsh --version` 核对内核版本，桌面应用有独立版本号。Node 要求 **>=24.9.0**，
+Cordis 为 **~4.1.0**。绘图需要 Python **3.10+**、Pillow **>=10.4,<13**。
 
-截至 2026-11-15，npm audit 在 DSH `rc.1` 的主机依赖树中报告 7 项 high，涉及
-`zod` 等上游依赖，并非本扩展包内文件的审计结果。同一检查下 `rc.2` 和 `rc.3`
-未报告漏洞。仍保留对 `rc.1` 的兼容声明；若当前 DSH 提供较新版本，优先使用
-`rc.2` 或 `rc.3`。
+2026-11-15 的 npm audit 在 DSH rc.1 的宿主依赖树中报告 7 项高危问题，
+涉及 `zod` 等上游依赖。该次检查在 rc.2、rc.3 上报告 0 项。
 
 通过 DSH 支持的 npm 插件安装入口，将包装入实际用于聊天的配置并启用。
 已有正常配置的 CLI 用户，可将 `YOUR-PROFILE` 换成自己的非 `desktop` profile：
 
 ```text
-dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.3
+dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.4
 ```
 
-若 registry 尚无 0.1.3，说明该版本尚未发布；本地候选按文末的
-[打包说明](#生成本地包)生成，不要将仅声明 rc.1 的旧 0.1.0 当作新版替代。
+使用本地候选包时，按下文示例从归档安装。旧版 0.1.3 的内核上限为
+0.2.2-rc.3，DSH rc.5 会拒绝该版。
 npm CLI 不管理 Electron 专用的 `desktop` profile；桌面使用其自身的插件入口
 或内置命令。npm 安装无需等待市场收录。
 
@@ -65,16 +63,16 @@ dsh --profile pixel-art --from-default-profile headless --help
 ```
 
 这条命令初始化配置，不调用模型。随后**选择一种**安装方式。官方 npm registry
-提供 **0.1.3** 时，使用精确包版本：
+提供 **0.1.4** 时，使用精确包版本：
 
 ```text
-dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.3
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.4
 ```
 
 本地候选按文末说明生成归档，改用其绝对路径；含空格路径保留引号：
 
 ```text
-dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.3.tgz"
+dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.4.tgz"
 ```
 
 两种方式都安装到 `pixel-art`；Desktop 使用独立的 profile。
@@ -145,7 +143,9 @@ Windows 若出现 `sandbox-local: windows-acl workspace grant failed`，shell �
 **24.21.0**、Python **3.12.14**、Pillow **12.3.0**。
 `python -B tools/check_dsh.py` 需要 Node/npm 和开发依赖，检查实际归档、真实
 Skill 服务与搬移后的绘图工具，不需要模型调用。
-CI 在 Windows 和 Ubuntu 分别用 `--skill-version` 检查三版配套服务。
+本包已实际验证 0.2.2-rc.1 至 rc.5 以及 0.2.3-alpha.1 的配套 Skill 服务。
+CI 在 Windows 和 Ubuntu 上检查这些版本。检查其他版本时，可用
+`--skill-version` 传入确切版本号。
 
 `tools/package_dsh.py` 复用 `skill-content/`、`src/`、`recipes/` 与原示例目录的
 权威输入；不手工维护生成资源，不建立第二套绘制引擎。`skill-manifest.json`

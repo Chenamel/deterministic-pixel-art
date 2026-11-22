@@ -2,6 +2,28 @@
 
 Run a shipped recipe by absolute path with the same task-local Python/Pillow environment as `pixel_art.py`; no repository checkout is needed.
 
+## Single-asset delivery
+
+Turn one flat PNG or JSON v1 pixel source into a portable delivery containing
+`asset.png`, `asset.json`, a native-size preview, a nearest-neighbor preview,
+and `REBUILD.md`:
+
+```text
+python "<skill>/scripts/recipes/single_asset.py" --source input.png --out-dir delivery --pack-zip delivery.zip
+```
+
+Use `--source input.json` for an existing JSON v1 grid or draw object. For a
+preview spec, supply its underlying source. PNG import preserves decoded RGBA
+pixels in a renderable JSON source. Pass `--metadata layout.json` only with PNG
+inputs. For a named atlas, use the named import or atlas workflow.
+The preview defaults to `--scale 4` on a `checker` background. If the preview
+exceeds the image limits, the recipe reports the largest usable scale.
+Existing files are refused unless `--force` is explicit.
+`REBUILD.md` assumes the output directory is the working directory and writes
+`rebuilt.png`, leaving the delivered PNG untouched. It expects the Skill path to
+be filled in for the local installation. Imported pixels do not recover object
+structure, drawing layers or an original painting script; keep those separately.
+
 ## Paged atlas review
 
 View every named cell in a large atlas at native size:

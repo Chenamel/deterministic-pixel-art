@@ -29,6 +29,9 @@ def load_legacy(name):
         (ast.Import, ast.ImportFrom, ast.ClassDef, ast.FunctionDef)) or (
             isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and
                 (t.id.isupper() or t.id == 'Mask') for target in node.targets for t in ast.walk(target)))]
+    if not hasattr(Image.Image, 'get_flattened_data'):
+        # Legacy snapshot scripts assume Pillow >=12.1; bridge to getdata() on Pillow 10.4-12.0.
+        Image.Image.get_flattened_data = Image.Image.getdata
     namespace = {'__file__': str(path), '__name__': '__evaluation__'}
     exec(compile(tree, str(path), 'exec'), namespace)
     return namespace, tree

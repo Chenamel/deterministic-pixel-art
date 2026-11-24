@@ -10,6 +10,7 @@ Create editable specifications and exact-grid PNGs with Python and Pillow. Work 
 
 ## Choose the shortest useful path
 
+- **Unified workflow entrypoint (route, deliver, verify, rebuild, ZIP pack):** read [toolkit.md](references/toolkit.md) and run `scripts/recipes/asset_toolkit.py`. Routes small grids (`grid`), lossless PNG local edits (`png-native`), fixed-alpha dual-state grids (`shared-grid-states`), geometry/alpha-changing states with local rollback (`state-set`), named atlases (`atlas`), and layered component projects (`assembly`) without forcing flat JSON conversion.
 - **Unclear or changing direction in a small flat action icon:** read [action-icons.md](references/action-icons.md) to decide direction and silhouette before detail. Skip this card for color-only edits when the action is already clear.
 - **Small edit:** inherit dimensions, palette, lighting, outline and atlas order. Modify only the affected region and check its neighbors. An existing PNG can be imported to an editable spec; exact scoped color changes can use [recolor](references/workflows.md#scoped-color-variants). Alternatives and a full contact sheet are optional.
 - **Deliver one existing asset:** run the [single-asset delivery](references/recipes.md#single-asset-delivery) for one PNG or a JSON v1 grid or draw source. Use the named atlas workflow for atlases and keep original drawing layers or scripts separately.

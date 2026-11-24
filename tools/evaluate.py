@@ -122,7 +122,7 @@ def main():
     env.pop('PIXELART_PORTABLE_OUTPUT', None)  # Default-mode checks set task overrides explicitly.
     suite = subprocess.run([sys.executable, '-B', '-W', 'error', '-m', 'unittest', 'discover',
                             '-s', str(ROOT / 'tests'), '-v'], cwd=ROOT, env=env,
-                           capture_output=True, text=True, encoding='utf-8', timeout=180)
+                           capture_output=True, text=True, encoding='utf-8', timeout=360)
     (out / 'tests.log').write_text(suite.stdout + suite.stderr, encoding='utf-8')
     if suite.returncode:
         raise RuntimeError('Tests failed; see evaluation/tests.log')

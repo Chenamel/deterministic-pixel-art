@@ -35,23 +35,32 @@ should return absolute file paths.
 | `dsh-skill-deterministic-pixel-art` | npm package name |
 | `deterministic-pixel-art` | Skill name to use in a conversation |
 
-Bundle **0.1.4** targets the DSH 0.2 API, starting with **0.2.2-rc.1**.
-DSH accepts later 0.2 release candidates and patch versions under its
-`engines.dsh` check. The Skill peer range explicitly includes prereleases of
-0.2.2 and 0.2.3 for npm. Check the core version with your installation's
-`dsh --version`. Desktop has its own app version. Node **>=24.9.0** and Cordis
-**~4.1.0** are required. Drawing uses Python **3.10+** and Pillow **>=10.4,<13**.
+This package declares `engines.dsh: "*"` and wildcard peer ranges for the DSH
+Skill registry and Cordis host services. The official DSH plugin installer
+uses pnpm, which resolves these host prerelease versions. Ordinary npm peer
+resolution may still reject prerelease peers matched only by `*`, including
+with strict peer dependencies enabled. Install through DSH's supported plugin
+command.
+
+The wildcard DSH range allows installation across DSH versions. It does not
+mean the plugin API has been tested on every version. Runtime checks cover DSH
+Skill versions **0.2.2-rc.1** through **0.2.2-rc.5** and
+**0.2.3-alpha.1**. Check the core version with `dsh --version`. Desktop has its
+own app version. Node **>=24.9.0** remains a separate package requirement, and
+the selected DSH release may require a newer Node version. Drawing uses
+Python **3.10+** and Pillow **>=10.4,<13**.
 
 An npm audit on 2026-11-15 reported seven high-severity findings in the upstream
 DSH rc.1 host dependency tree, including `zod`. The same audit reported none for
 rc.2 or rc.3.
 
 Use DSH's supported npm plugin installation method to install and enable the
-package in the profile used for chat. CLI users with an existing working profile
-can replace `YOUR-PROFILE` with its non-`desktop` profile name:
+package version **0.1.5** in the profile used for chat. CLI users with an
+existing working profile can replace `YOUR-PROFILE` with its non-`desktop`
+profile name:
 
 ```text
-dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.4
+dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.5
 ```
 
 For a local candidate, use the archive installation example below. Bundle 0.1.3
@@ -73,18 +82,18 @@ dsh --profile pixel-art --from-default-profile headless --help
 ```
 
 This initializes the profile without a model call. Then choose **one** installation
-method. When the official npm registry provides version **0.1.4**, use its exact
+method. When the official npm registry provides **0.1.5**, install this exact
 package version:
 
 ```text
-dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.4
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.5
 ```
 
 For a local candidate, build the archive using the instructions below and use its
 absolute path instead; quote paths containing spaces:
 
 ```text
-dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.4.tgz"
+dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.5.tgz"
 ```
 
 Both methods install into `pixel-art`; Desktop uses a separate profile.
@@ -146,10 +155,12 @@ or display a PNG.
 
 If the Skill is absent, check that you launched the profile where it was
 installed. `dsh --profile pixel-art --dump-config` should include
-`deterministic-pixel-art-skill`. Resolve missing host peers or an unsupported DSH
-version before a model task. `ACCOUNT_SIGN_IN_REQUIRED` means the account route
-is unavailable: check the overlay, normal sign-in and `DSH_HOME`, rather than
-reinstalling the Skill. A same-name local Skill can override the bundled one.
+`deterministic-pixel-art-skill`. If installation or loading fails, provide the
+DSH core, DSH Skill, Cordis and Node versions plus the complete error. The
+installation range is not a per-version API compatibility test.
+`ACCOUNT_SIGN_IN_REQUIRED` means the account route is unavailable: check the
+overlay, normal sign-in and `DSH_HOME`, rather than reinstalling the Skill. A
+same-name local Skill can override the bundled one.
 
 On Windows, `sandbox-local: windows-acl workspace grant failed` can stop shell
 commands before Python starts. Try a separate task folder under your user

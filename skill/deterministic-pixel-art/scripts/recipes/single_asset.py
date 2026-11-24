@@ -14,11 +14,18 @@ from pixelart.cli import check_alias
 from pixelart.compat import require_pillow
 from pixelart.core import MAX_PIXELS, MAX_SIDE, color, dimensions, integer
 from pixelart.jsonio import read_json
-from pixelart.metadata import merge_layout
+from pixelart.metadata import merge_layout, rgba_digest
 from pixelart.output import encoded, publish
 
 
 OUTPUT_NAMES = ('asset.png', 'asset.json', 'native.png', 'nearest.png', 'REBUILD.md')
+PNG_NATIVE_OUTPUT_NAMES = (
+    'asset.png',
+    'manifest.json',
+    'native.png',
+    'nearest.png',
+    'REBUILD.md',
+)
 REBUILD_GUIDE = """# Rebuild
 
 Keep `asset.json` beside this file. From this directory, run the command below
@@ -30,6 +37,20 @@ python "<skill>/scripts/pixel_art.py" render --spec asset.json --out rebuilt.png
 
 Keep any original drawing layers, object structure or painting scripts alongside
 the delivery.
+"""
+PNG_NATIVE_REBUILD_GUIDE = """# Rebuild (PNG-Native)
+
+This delivery keeps the lossless 8-bit RGBA `asset.png` as pixel truth without
+forcing a flat JSON grid conversion (avoiding the 62-color scanline expansion
+cliff). Verify integrity against `manifest.json` or use `asset_toolkit.py` for
+masked local edits.
+
+```text
+python "<skill>/scripts/recipes/asset_toolkit.py" verify --image asset.png
+```
+
+Keep any original drawing layers, atlas layout sidecar or painting scripts
+alongside the delivery.
 """
 
 
@@ -76,14 +97,29 @@ def _read_png(source, metadata, scale):
             return opened.convert('RGBA')
 
 
-def make_files(source, metadata=None, *, scale=4, background='checker'):
+def make_files(
+    source,
+    metadata=None,
+    *,
+    scale=4,
+    background='checker',
+    source_mode='json-v1',
+):
     """Build a flat single-asset delivery from a JSON v1 spec or PNG file."""
     source = Path(source)
     integer(scale, 'scale', 1)
     if background != 'checker':
         color(background)
+    if source_mode not in ('json-v1', 'png-native'):
+        raise PixelArtError(
+            'single asset: --source-mode must be json-v1 or png-native'
+        )
 
     if source.suffix.lower() == '.json':
+        if source_mode == 'png-native':
+            raise PixelArtError(
+                'single asset: --source-mode png-native only applies to PNG inputs'
+            )
         if metadata is not None:
             raise PixelArtError('single asset: --metadata only applies to PNG inputs')
         spec = read_json(source)
@@ -104,6 +140,23 @@ def make_files(source, metadata=None, *, scale=4, background='checker'):
         _check_preview_size(image.size, scale)
     elif source.suffix.lower() == '.png':
         image = _read_png(source, metadata, scale)
+        if source_mode == 'png-native':
+            native = make_preview(image, 1, background)
+            nearest = make_preview(image, scale, background)
+            manifest = {
+                'version': 1,
+                'source_mode': 'png-native',
+                'size': list(image.size),
+                'rgba_sha256': rgba_digest(image),
+                'note': 'Lossless 8-bit PNG preserved without forced JSON grid flattening.',
+            }
+            return {
+                'asset.png': encoded(image),
+                'manifest.json': encoded(manifest),
+                'native.png': encoded(native),
+                'nearest.png': encoded(nearest),
+                'REBUILD.md': PNG_NATIVE_REBUILD_GUIDE.encode('utf-8'),
+            }
         spec = image_to_spec(image)
         if render(spec).tobytes() != image.tobytes():
             raise PixelArtError(
@@ -140,6 +193,12 @@ def main():
         help='Optional PNG layout sidecar used to detect a named atlas.',
     )
     cli.add_argument(
+        '--source-mode',
+        choices=('json-v1', 'png-native'),
+        default='json-v1',
+        help='Default json-v1 keeps full backward compatibility; png-native keeps lossless PNG without forced JSON grid flattening.',
+    )
+    cli.add_argument(
         '--scale',
         type=int,
         default=4,
@@ -158,18 +217,27 @@ def main():
     args = cli.parse_args()
 
     require_pillow()
-    outputs = [args.out_dir / name for name in OUTPUT_NAMES]
+    output_names = (
+        PNG_NATIVE_OUTPUT_NAMES
+        if args.source_mode == 'png-native'
+        else OUTPUT_NAMES
+    )
+    outputs = [args.out_dir / name for name in output_names]
     if args.pack_zip:
         outputs.append(args.pack_zip)
     check_alias([args.source, args.metadata], outputs)
     files = make_files(
-        args.source, args.metadata, scale=args.scale, background=args.background
+        args.source,
+        args.metadata,
+        scale=args.scale,
+        background=args.background,
+        source_mode=args.source_mode,
     )
     artifacts = {args.out_dir / name: data for name, data in files.items()}
     if args.pack_zip:
         buffer = BytesIO()
         with zipfile.ZipFile(buffer, 'w') as archive:
-            for name in OUTPUT_NAMES:
+            for name in output_names:
                 info = zipfile.ZipInfo(name)
                 info.create_system = 3
                 info.external_attr = 0o100644 << 16
@@ -184,7 +252,7 @@ def main():
         json.dumps(
             {
                 'out_dir': str(args.out_dir.resolve()),
-                'files': sorted(OUTPUT_NAMES),
+                'files': sorted(output_names),
                 'zip': str(args.pack_zip.resolve()) if args.pack_zip else None,
             }
         )

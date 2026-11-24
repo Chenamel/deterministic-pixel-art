@@ -46,6 +46,9 @@ Read the installed SKILL.md, then run from the task directory, using a fresh out
 ```text
 <python> <skill>/scripts/pixel_art.py --help
 <python> <skill>/scripts/pixel_art.py render --spec <skill>/assets/gem-16.json --out output/pixel-art-install-check/gem.png --preview output/pixel-art-install-check/gem-preview.png
+<python> <skill>/scripts/recipes/asset_toolkit.py route --prompt "新建16x16像素图标"
+<python> <skill>/scripts/recipes/asset_toolkit.py deliver --source <skill>/assets/gem-16.json --out-dir output/pixel-art-install-check/toolkit-gem --pack-zip output/pixel-art-install-check/toolkit-gem.zip
+<python> <skill>/scripts/recipes/asset_toolkit.py rebuild --input output/pixel-art-install-check/toolkit-gem.zip --out-dir output/pixel-art-install-check/toolkit-rebuilt
 ```
 
 Use Pillow to open and decode both outputs. Expect a 16×16 image and a 128×128 nearest-neighbor preview. If the mounted filesystem rejects hard links when creating output files and the installed version offers `--portable-output`, retry with that option; otherwise render to a local temporary directory. `--force` does not fix mount support. Use a new output directory on repeated checks.

@@ -30,20 +30,25 @@
 | `dsh-skill-deterministic-pixel-art` | npm 安装包名 |
 | `deterministic-pixel-art` | 对话中使用的 Skill 名称 |
 
-Bundle **0.1.4** 面向 DSH 0.2 API，最低版本为 **0.2.2-rc.1**。DSH 的
-`engines.dsh` 检查允许后续 0.2 系列的 RC 和补丁版本。Skill 的 peer 范围
-显式包含 0.2.2 和 0.2.3 预发布版，供 npm 解析。可用当前安装的
-`dsh --version` 核对内核版本，桌面应用有独立版本号。Node 要求 **>=24.9.0**，
-Cordis 为 **~4.1.0**。绘图需要 Python **3.10+**、Pillow **>=10.4,<13**。
+本包声明 `engines.dsh: "*"`，并将 DSH Skill registry 与 Cordis 宿主服务的
+peer 范围设为通配符。DSH 官方插件安装器使用 pnpm，可解析这些宿主预发布版本。
+普通 npm 的 peer 解析仍可能拒绝仅由 `*` 匹配的预发布 peer，包括启用严格
+peer 依赖时。请通过 DSH 支持的插件命令安装。
+
+DSH 通配范围允许安装器放行不同 DSH 版本，不代表已逐版本实测插件 API。实际运行
+检查覆盖 DSH Skill **0.2.2-rc.1** 至 **0.2.2-rc.5** 以及
+**0.2.3-alpha.1**。可用当前安装的 `dsh --version` 核对内核版本，桌面应用有
+独立版本号。Node **>=24.9.0** 仍是独立的包要求，所选 DSH 版本也可能要求更新的
+Node。绘图需要 Python **3.10+**、Pillow **>=10.4,<13**。
 
 2026-11-15 的 npm audit 在 DSH rc.1 的宿主依赖树中报告 7 项高危问题，
 涉及 `zod` 等上游依赖。该次检查在 rc.2、rc.3 上报告 0 项。
 
-通过 DSH 支持的 npm 插件安装入口，将包装入实际用于聊天的配置并启用。
-已有正常配置的 CLI 用户，可将 `YOUR-PROFILE` 换成自己的非 `desktop` profile：
+通过 DSH 支持的 npm 插件安装入口，将 **0.1.5** 装入实际用于聊天的配置并启用。已有
+正常配置的 CLI 用户，可将 `YOUR-PROFILE` 换成自己的非 `desktop` profile：
 
 ```text
-dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.4
+dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.5
 ```
 
 使用本地候选包时，按下文示例从归档安装。旧版 0.1.3 的内核上限为
@@ -63,16 +68,16 @@ dsh --profile pixel-art --from-default-profile headless --help
 ```
 
 这条命令初始化配置，不调用模型。随后**选择一种**安装方式。官方 npm registry
-提供 **0.1.4** 时，使用精确包版本：
+提供 **0.1.5** 后，使用这个确切包版本：
 
 ```text
-dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.4
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.5
 ```
 
 本地候选按文末说明生成归档，改用其绝对路径；含空格路径保留引号：
 
 ```text
-dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.4.tgz"
+dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.5.tgz"
 ```
 
 两种方式都安装到 `pixel-art`；Desktop 使用独立的 profile。
@@ -128,7 +133,8 @@ shell 检查 Python 和 Pillow。缺少它们属于运行前置条件，安装 b
 
 找不到 Skill 时，先确认当前 profile 与安装时一致。
 `dsh --profile pixel-art --dump-config` 应包含 `deterministic-pixel-art-skill`。
-加载报缺宿主 peer 或版本不兼容时，先解决运行环境。`ACCOUNT_SIGN_IN_REQUIRED`
+若安装或加载失败，请提供 DSH 内核、DSH Skill、Cordis、Node 的版本及完整错误。
+安装范围不代表已逐版本验证 API 兼容。`ACCOUNT_SIGN_IN_REQUIRED`
 表示账户路线不可用，应检查 overlay、正常登录和 `DSH_HOME`，不必重装 Skill。
 同名本地 Skill 会覆盖随包版本。
 

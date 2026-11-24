@@ -17,19 +17,56 @@ const filesystem = await import(
   pathToFileURL(requirePackage.resolve("@deepseek-ai/dsh-skill-filesystem"))
 );
 
-test("packed host requirements follow the DSH 0.2 API line", () => {
+test("packed compatibility metadata admits DSH prerelease versions", () => {
   const { satisfies } = requirePackage("semver");
   const manifest = requirePackage("./package.json");
-  const range = manifest.engines.dsh;
-  assert.equal(range, manifest.peerDependencies["@deepseek-ai/dsh-skill"]);
-  const skill = requirePackage("@deepseek-ai/dsh-skill/package.json");
-  assert.ok(satisfies(skill.version, range), skill.version);
-  for (const version of ["0.2.2-rc.1", "0.2.2-rc.5", "0.2.2-rc.100", "0.2.2", "0.2.3-alpha.1", "0.2.3-rc.8", "0.2.12"]) {
-    assert.ok(satisfies(version, range), version);
+  assert.equal(manifest.engines.node, ">=24.9.0");
+  assert.equal(manifest.engines.dsh, "*");
+  assert.equal(manifest.peerDependencies["@deepseek-ai/cordis"], "*");
+  assert.equal(manifest.peerDependencies["@deepseek-ai/dsh-skill"], "*");
+
+  const dshVersions = [
+    "0.0.1-rc.1",
+    "0.2.2-rc.5",
+    "0.2.3-alpha.2",
+    "0.2.3-rc.100",
+    "1.0.0-alpha.1",
+  ];
+  for (const version of dshVersions) {
+    assert.ok(satisfies(version, manifest.engines.dsh, { includePrerelease: true }), version);
   }
-  assert.ok(satisfies("0.2.4-rc.1", range, { includePrerelease: true }));
-  for (const version of ["0.2.2-rc.0", "0.3.0-alpha.1", "0.3.0", "1.0.0"]) {
-    assert.ok(!satisfies(version, range, { includePrerelease: true }), version);
+
+  assert.equal(satisfies("0.2.3-alpha.2", "*"), false);
+});
+
+test("packed host peer ranges include the published DSH tuples", () => {
+  const { satisfies } = requirePackage("semver");
+  const manifest = requirePackage("./package.json");
+  const skill = requirePackage("@deepseek-ai/dsh-skill/package.json");
+  assert.ok(
+    satisfies(skill.version, manifest.peerDependencies["@deepseek-ai/dsh-skill"], {
+      includePrerelease: true,
+    }),
+    skill.version,
+  );
+
+  const hostTuples = [
+    ["0.2.2-rc.5", "4.1.0"],
+    ["0.2.3-alpha.2", "4.2.0-alpha.1"],
+  ];
+  for (const [skillVersion, cordisVersion] of hostTuples) {
+    assert.ok(
+      satisfies(skillVersion, manifest.peerDependencies["@deepseek-ai/dsh-skill"], {
+        includePrerelease: true,
+      }),
+      skillVersion,
+    );
+    assert.ok(
+      satisfies(cordisVersion, manifest.peerDependencies["@deepseek-ai/cordis"], {
+        includePrerelease: true,
+      }),
+      cordisVersion,
+    );
   }
 });
 

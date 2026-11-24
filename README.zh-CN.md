@@ -60,6 +60,7 @@ python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png 
 
 | 任务 | 从这里开始 |
 |---|---|
+| 统一像素素材工作流工具包（路由/交付/校验/重建/组包） | `recipes/asset_toolkit.py`、[工具包指南](skill/deterministic-pixel-art/references/toolkit.md) |
 | 成套物品 / 界面组合 | [六件旅行用品、静态物品栏及命名单格修改](demos/travel-kit/README.md) |
 | 小型网格精灵 | [透明网格](examples/transparent-grid.json)、[镜像宝石](examples/gem-16.json) |
 | 新建非对称精灵 | [32×32飞船](examples/asymmetric-ship-32.json)、[像素画指导](skill/deterministic-pixel-art/references/pixel-art.md) |

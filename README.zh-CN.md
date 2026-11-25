@@ -1,6 +1,6 @@
 # Deterministic Pixel Art
 
-[English](README.md) · [MIT](LICENSE) · [版本下载](https://github.com/Chenamel/deterministic-pixel-art/releases) · [交给AI安装](INSTALL.md)
+[English](README.md) · [MIT](LICENSE) · [版本下载](https://github.com/Chenamel/deterministic-pixel-art/releases) · [AI 安装指南](INSTALL.md) · [更新日志](CHANGELOG.md)
 
 [![最新版本](https://img.shields.io/github/v/release/Chenamel/deterministic-pixel-art?style=flat-square&label=release)](https://github.com/Chenamel/deterministic-pixel-art/releases/latest)
 [![main 分支检查](https://img.shields.io/github/actions/workflow/status/Chenamel/deterministic-pixel-art/test.yml?branch=main&style=flat-square&label=checks)](https://github.com/Chenamel/deterministic-pixel-art/actions/workflows/test.yml)
@@ -13,33 +13,32 @@
   <img alt="Deterministic Pixel Art — 面向 AI 的像素绘图与精确编辑" src="docs/images/brand/header-zh-CN-light.png" width="1152">
 </picture>
 
-**让 AI 创作可编辑的像素素材，并精确核对每次修改。**
+**让 AI 稳定画出硬边像素图、图标与 UI，并且只改你让改的那一块。**
 
-用字符网格、整数绘图指令或 Python 蒙版制作 PNG 图标、精灵和 UI，也可以给多张小图命名后组成图集。支持无损导入已有 PNG、修改指定区域，以及拼接独立绘制的组件。适合用 AI 辅助制作游戏素材和像素 UI，Minecraft 风格可按需选用。
+无论是从零画游戏道具、人物精灵、物品栏界面，还是修改一张现有 PNG 里的某个部位，这套工具都能同时交付可二次编辑的源文件、原尺寸图和放大预览；局部改色或微调时，未选中区域的像素和透明背景保持一像素不动。
 
 ![原创旅行用品：六件32px物品，表现玻璃、纸张、皮革与金属材质，并组合成完整物品栏](demos/travel-kit/assets/overview.png)
 
-[可编辑旅行用品示范](demos/travel-kit/README.md) · [原尺寸 UI PNG](demos/travel-kit/assets/ui.png) · [命名物品图集](demos/travel-kit/assets/after.json)。六件原创32×32物品与192×160静态界面组合，提供原尺寸及整数倍最近邻预览，附JSON源资料和绘图脚本。
+[可编辑旅行用品示范](demos/travel-kit/README.md) · [原尺寸 UI PNG](demos/travel-kit/assets/ui.png) · [命名物品图集](demos/travel-kit/assets/after.json)。六件 32×32 原创道具与 192×160 静态物品栏组合示例，附带可编辑源文件与最近邻放大预览。
 
-**版本：v1.3.0。** [下载稳定版 Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.3.0) · [版本变化](docs/releases/v1.3.0.zh-CN.md)。提供限定区域改色、分页查看图集、命名地块场景预览和 PNG 动画导出。精确编辑要求静态、通道位深不超过 8 位的 PNG；请保留可编辑源资料和原始 PNG，便于继续修改。
+**当前最新稳定版：v1.4.0** — [下载 Skill ZIP 或 DSH 插件](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) · [作品展示与反馈](https://github.com/Chenamel/deterministic-pixel-art/discussions/30)。新增单件素材一站打包、给 AI 直接抄用的交付/重建命令，以及自动标出悬空像素点和断开部件的防呆检查。
 
-## 交给 AI 使用
+## 直接交给 AI 使用
 
-向具备终端和文件操作能力的 AI 发送：
+把下面这段话发给任何支持终端和文件读写的 AI 助手（Codex、Claude Code、Antigravity、Cursor 等）：
 
-> 请读取 <https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md>，从最新稳定版安装 deterministic-pixel-art。先确认它支持我要做的任务，再生成示例 PNG 验证安装。
+> 请读取 <https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md>，从最新稳定版安装 deterministic-pixel-art。先确认它支持我要做的任务，再生成一张示例 PNG 确认安装正常。
 
-[AI 安装指南](INSTALL.md)说明如何选择 Python 环境、安装 Skill，并生成一张示例图确认安装成功；部分 AI 工具也可选用 `npx skills` 安装。不支持自动加载 Skill 的 AI，也能在任务目录直接运行同一套脚本。
+装好之后，日常直接用自然语言提需求就行，例如：
+- “帮我画一个 32×32 的黄铜指南针图标，透明背景，适配 `#172033` 深色背景，保留可编辑源文件。”
+- “画六个 32×32 的旅行道具，统一光影和配色，拼进一个小型物品栏，并保留源文件。”
+- “只把这张 PNG 里提灯玻璃改成琥珀色，外框和其余区域保持原样。”
 
-安装后可以说：“制作六个32×32旅行用品，统一光照与配色，放进一个小型物品栏，并保留可编辑源资料。”
+需要自定义 Python 虚拟环境或 `npx skills` 快捷方式可看 [AI 安装指南](INSTALL.md)。如果你使用的是 **DSH**，直接看 [DSH 上手指南](integrations/dsh/README.zh-CN.md) 安装 `0.1.5` 即可在对话里直接调用。
 
-DSH 用户可从[插件安装与快速上手](integrations/dsh/README.zh-CN.md)开始：确认兼容版本，
-安装到聊天所用配置，然后直接用自然语言要求制作或修改素材。该可选第三方 bundle
-携带同一份 Skill；npm 安装无需等待市场收录。
+## 通过命令行使用
 
-## 直接使用 Python 工具
-
-需要 Python 3.10+、Pillow >=10.4,<13。依赖文件锁定 Pillow 12.3.0，便于复现。
+需要 Python 3.10+ 和 Pillow `>=10.4,<13`（`requirements.txt` 固定 Pillow 12.3.0，便于稳定复现）。
 
 ```sh
 git clone https://github.com/Chenamel/deterministic-pixel-art.git
@@ -47,58 +46,54 @@ cd deterministic-pixel-art
 python -m venv .venv
 ```
 
-PowerShell 激活：`.\.venv\Scripts\Activate.ps1`；macOS/Linux 激活：`source .venv/bin/activate`，然后执行：
+PowerShell 激活：`.\.venv\Scripts\Activate.ps1`；macOS/Linux 激活：`source .venv/bin/activate`，随后安装依赖并试跑一张 16×16 宝石：
 
 ```sh
 python -m pip install -r requirements.txt
 python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png --preview output/gem-preview.png
 ```
 
-预期在 `output/` 得到 **16×16 PNG** 和 **128×128 最近邻预览图**。没有 Git 时，可下载并解压仓库 ZIP，在顶层文件夹打开终端。规格与 PNG 一起保留；覆盖已有输出需要明确使用 `--force`。
+运行后会在 `output/` 下生成 **16×16 原尺寸 PNG** 和 **128×128 放大预览图**。建议把源文件和 PNG 一起保留方便后续修改；覆盖已有文件需要显式加上 `--force`。
 
-## 按任务选入口
+## 常见任务入口
 
-| 任务 | 从这里开始 |
+| 你的需求 | 从这里开始 |
 |---|---|
-| 统一像素素材工作流工具包（路由/交付/校验/重建/组包） | `recipes/asset_toolkit.py`、[工具包指南](skill/deterministic-pixel-art/references/toolkit.md) |
-| 成套物品 / 界面组合 | [六件旅行用品、静态物品栏及命名单格修改](demos/travel-kit/README.md) |
-| 小型网格精灵 | [透明网格](examples/transparent-grid.json)、[镜像宝石](examples/gem-16.json) |
-| 新建非对称精灵 | [32×32飞船](examples/asymmetric-ship-32.json)、[像素画指导](skill/deterministic-pixel-art/references/pixel-art.md) |
-| UI 与按钮状态 | [通用面板](examples/generic-panel-96x40.json)、[UI 指导](skill/deterministic-pixel-art/references/ui.md)、[Python 示例脚本](skill/deterministic-pixel-art/references/recipes.md) |
-| 已有 PNG / 图集的局部修改 | [导入、单格替换与差异核对](docs/usage.zh-CN.md#修改命名图集的单格) |
-| 分析图片、检查效果 | [文本分析](skill/deterministic-pixel-art/references/text-workflow.md)、[背景、布局和检查选项](skill/deterministic-pixel-art/references/review.md) |
-| 独立分块绘制 | [分块与接缝约定](skill/deterministic-pixel-art/references/chunking.md)、[四块拼接场景](demos/chunk-scene/README.md) |
-| Minecraft 风格 UI | [专项指导](skill/deterministic-pixel-art/references/minecraft.md) |
+| 单件/多态/图集一站交付与打包 | `recipes/asset_toolkit.py`、[工具包说明](skill/deterministic-pixel-art/references/toolkit.md) |
+| 成套物品与物品栏排版 | [旅行用品成套示例与静态界面](demos/travel-kit/README.md) |
+| 对称小图标 | [透明网格模板](examples/transparent-grid.json)、[对称宝石](examples/gem-16.json) |
+| 非对称精灵或道具 | [32×32 飞船](examples/asymmetric-ship-32.json)、[像素画造型指南](skill/deterministic-pixel-art/references/pixel-art.md) |
+| 按钮与多状态 UI 组件 | [通用面板](examples/generic-panel-96x40.json)、[UI 指南](skill/deterministic-pixel-art/references/ui.md)、[Python 示例脚本](skill/deterministic-pixel-art/references/recipes.md) |
+| 修改已有 PNG 或图集中的某一格 | [导入、单格替换与差异核验](docs/usage.zh-CN.md#修改命名图集的单格) |
+| 排查碎点、断块与看图检查 | [图像统计与检查](skill/deterministic-pixel-art/references/text-workflow.md)、[评审检查指南](skill/deterministic-pixel-art/references/review.md) |
+| 大场景分块合作绘制 | [分块接缝约定](skill/deterministic-pixel-art/references/chunking.md)、[四块拼接场景](demos/chunk-scene/README.md) |
+| Minecraft 风格槽位与界面 | [Minecraft 风格专项指南](skill/deterministic-pixel-art/references/minecraft.md) |
 
-[更多命令示例](docs/usage.zh-CN.md)介绍局部修改、Python 示例脚本和环境问题处理。编写自己的绘图脚本时，可参考 [JSON v1 与 Python API](skill/deterministic-pixel-art/references/formats.md)。[浏览器 UI 演示](demos/pixel-ui/README.md)还展示如何检查真实字体和按钮交互。
+想查更多局改命令可以看 [命令示例](docs/usage.zh-CN.md)；需要自己写 Python 生成脚本可以看 [JSON v1 与 Python API](skill/deterministic-pixel-art/references/formats.md)；要做真实字体和按钮交互检验可以看 [浏览器 UI 演示](demos/pixel-ui/README.md)。
 
 ![旅行用品图集修改前后，只替换提灯玻璃配色，并显示准确的变更像素蒙版](demos/travel-kit/assets/scoped-edit.png)
 
-此例只改变提灯这一格内的 **106 个 RGBA 像素，格外零变化**。提灯轮廓、黄铜框架、图集位置和另外五件物品保持原样。可以[运行这份命名单格替换与核验示例](demos/travel-kit/README.md#replace-one-named-item)，或从[小网格改色](docs/usage.zh-CN.md#修改网格的一种颜色)开始。
+上面这个例子**只改动了提灯那一格里的 106 个像素，范围外零改动**——外框、图集坐标和另外五件道具完全保持原样。你可以跟着走一遍 [命名单格替换示例](demos/travel-kit/README.md#replace-one-named-item)，或先试 [小网格换色](docs/usage.zh-CN.md#修改网格的一种颜色)。
 
-## 测试结果与使用限制
+## 适用范围与使用注意
 
-- **像素一致性：** 43 张基准图片保持像素一致。无损导入和局部修改会比较解码后的 RGBA 值，包括全透明像素里的 RGB。
-- **已测功能：** 源码测试、安装包测试和 Windows/Ubuntu CI 覆盖渲染、分析、导入、编辑和拼接。外部 AI 试用覆盖八类任务；记录中保留了原始失败和缺失的操作过程。
-- **实际效果仍需看图：** 请按原尺寸、在实际使用的背景上检查图片。自动检查不能判断图标是否容易辨认，也不能证明工具能普遍改善视觉效果、节省 token，或保证 Minecraft 游戏内显示正确。
+- **专攻硬边像素画**：精确局部编辑仅支持静态、单帧、通道位深不超过 8 位的 PNG；建议随时保留生成的 JSON 源文件或初始原图以便二次改动。
+- **自动检查帮你防错，但别跳过缩回 1× 看图**：工具能自动拦住越界修改、指出断掉的细小部件和孤立像素点，但图标好不好认、配色顺不顺眼，仍需在原尺寸和真实背景上亲眼确认。
+- **详细评测边界与验证依据**：完整的基准校验、支持环境清单和外部模型实测说明都整理在 [验证结果与使用限制](docs/verification.zh-CN.md)。
 
-[验证详情](docs/verification.zh-CN.md)分别说明功能测试、外部试用和图片效果检查的结果及限制。
+## 问题反馈与参与贡献
 
-## 帮助与贡献
+遇到报错、安装问题或顺手改进点，欢迎直接 [提 Issue](https://github.com/Chenamel/deterministic-pixel-art/issues)（附上运行命令、错误信息、Python/Pillow 版本和最小复现输入），或到 [Discussion #30](https://github.com/Chenamel/deterministic-pixel-art/discussions/30) 贴图交流。提交代码请先看 [贡献指南](CONTRIBUTING.md)。
 
-遇到缺陷、安装问题或有用的工作流缺口，可以[提交 Issue](https://github.com/Chenamel/deterministic-pixel-art/issues)。尽量附命令、错误、Python/Pillow 版本和最小输入。[贡献指南](CONTRIBUTING.md)。
-
-## 开发检查
+## 源码与开发测试
 
 ```sh
 python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
-工具代码位于 `src/`，Python 示例脚本位于 `recipes/`，Skill 说明的源文件位于 `skill-content/`；`tools/package_skill.py` 在 `skill/` 生成独立 Skill。完整检查会生成本地文件，不会自动安装到用户的 Skill 目录。[测试样本来源](docs/PROVENANCE.md)。
+运行时源码位于 `src/`，配方在 `recipes/`，Skill 文稿源文件位于 `skill-content/`，运行 `tools/package_skill.py` 会生成 `skill/` 目录下的独立 Skill 包。详情可对照 [源码与 Skill 路径映射](CONTRIBUTING.md#source-and-generated-skill)、[代码风格检查范围](CONTRIBUTING.md#python-formatting) 与 [测试样本来源](docs/PROVENANCE.md)。
 
-浏览和修改源码时，可查看[源码与 Skill 路径映射](CONTRIBUTING.md#source-and-generated-skill)及[本轮 Python 格式检查范围](CONTRIBUTING.md#python-formatting)。
+## 开源协议
 
-## 协议
-
-代码、原创图像和独立 Skill 使用 [MIT](LICENSE)。仓库展示使用的 Silkscreen Regular 遵循 [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt)，Fusion Pixel Font 遵循 [SIL OFL 1.1](assets/brand/font-notices/README.md)。字体不进入 Skill ZIP。Pillow 与仅开发使用的 PyYAML/Ruff 通过依赖安装，不随包捆绑。
+项目代码、原创演示素材与独立 Skill 包均采用 [MIT](LICENSE) 协议；展示图用到的 Silkscreen Regular 与 Fusion Pixel Font 遵循 [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt)（另见 [字体声明](assets/brand/font-notices/README.md)），不随 Skill ZIP 分发；Pillow 与开发依赖 PyYAML/Ruff 需通过 pip 另行安装。

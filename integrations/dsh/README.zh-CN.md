@@ -2,89 +2,57 @@
 
 [English](README.md)
 
-在 DSH 对话里直接说想画什么，或提供现有 PNG 并描述要修改的部分。Skill 可以
-生成像素画 PNG 和可继续编辑的 JSON，也能按指定区域改色。安装包包含绘图工具、
-示例和参考说明，日常使用不需要手写像素坐标或 Python 代码。
+在 DSH 对话里直接说想画什么，或贴一张已有 PNG 让它只改其中某一块。插件包内已经自带绘制脚本、示例和说明，平时用不需要自己写像素坐标或 Python 代码。
 
-## 已安装：直接开始对话
+## 快速开始（装完即可用）
 
-在已安装并启用插件的同一个 DSH 配置中开启对话，发送：
+在安装并启用了本插件的 DSH 配置里新开一个对话，发送：
 
-> 请使用 deterministic-pixel-art，制作一个 16×16、透明背景的像素提灯。先读取这个 Skill 并检查可用的 Python/Pillow 环境。交付 PNG、可继续修改的 JSON，以及 8 倍最近邻预览；完成后看图检查。
+> 请使用 deterministic-pixel-art，画一个 16×16、透明背景的像素提灯。先读取这个 Skill 并检查 Python/Pillow 环境，最后把原尺寸 PNG、可二次编辑的 JSON 和 8 倍放大预览一起交给我，并看图核对一遍。
 
-拿到图片后可以继续说：
+拿到图后如果要微调局部，可以接着说：
 
-> 只把提灯的金属边框改成深棕色，玻璃和其他部分保持原样。保留初版，另交修改后的 PNG 和源文件。
+> 只把提灯的金属外框改成深棕色，玻璃和其他地方不动；保留第一版，另存修改后的 PNG 和源文件。
 
-也可以提供已有 PNG，指出要修改的区域、保留的部分及目标效果。不必先学习命令
-或 JSON；需要特定游戏风格时，提供参考图或明确要求。
+也可以直接发已有 PNG，写清改哪里、留哪里。注意确认 AI 交回来了**原尺寸 PNG** 和 **JSON 源文件**（只有放大图或仅调用看图工具不算完成交付）。
 
-应收到原尺寸 PNG 和可编辑源文件。只有放大预览图还不够；桌面可直接交付文件，
-仅命令行环境则应返回文件的绝对路径。
+## 安装与运行前提
 
-## 安装与兼容版本
-
-| 名称 | 用途 |
+| 项目 | 说明 |
 | --- | --- |
-| Deterministic Pixel Art | 展示名称 |
-| `dsh-skill-deterministic-pixel-art` | npm 安装包名 |
-| `deterministic-pixel-art` | 对话中使用的 Skill 名称 |
+| 显示名称 | Deterministic Pixel Art |
+| npm 包名 | `dsh-skill-deterministic-pixel-art` |
+| 对话内 Skill 名称 | `deterministic-pixel-art` |
+| 当前插件版本 | `0.1.5`（已验证适配 DSH `0.2.2-rc.1`–`rc.5`、`0.2.3-alpha.1`） |
+| 依赖环境 | Node **>=24.9.0**、Python **3.10+**、Pillow **>=10.4,<13**（固定推荐 12.3.0） |
 
-本包声明 `engines.dsh: "*"`，并将 DSH Skill registry 与 Cordis 宿主服务的
-peer 范围设为通配符。DSH 官方插件安装器使用 pnpm，可解析这些宿主预发布版本。
-普通 npm 的 peer 解析仍可能拒绝仅由 `*` 匹配的预发布 peer，包括启用严格
-peer 依赖时。请通过 DSH 支持的插件命令安装。
-
-DSH 通配范围允许安装器放行不同 DSH 版本，不代表已逐版本实测插件 API。实际运行
-检查覆盖 DSH Skill **0.2.2-rc.1** 至 **0.2.2-rc.5** 以及
-**0.2.3-alpha.1**。可用当前安装的 `dsh --version` 核对内核版本，桌面应用有
-独立版本号。Node **>=24.9.0** 仍是独立的包要求，所选 DSH 版本也可能要求更新的
-Node。绘图需要 Python **3.10+**、Pillow **>=10.4,<13**。
-
-2026-11-15 的 npm audit 在 DSH rc.1 的宿主依赖树中报告 7 项高危问题，
-涉及 `zod` 等上游依赖。该次检查在 rc.2、rc.3 上报告 0 项。
-
-通过 DSH 支持的 npm 插件安装入口，将 **0.1.5** 装入实际用于聊天的配置并启用。已有
-正常配置的 CLI 用户，可将 `YOUR-PROFILE` 换成自己的非 `desktop` profile：
+在常用的 CLI 配置中执行安装（将 `YOUR-PROFILE` 换成实际的非 `desktop` 配置名；桌面端直接在 DSH 桌面插件页安装，或去 [GitHub Releases](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) 下载 TGZ）：
 
 ```text
 dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.5
 ```
 
-使用本地候选包时，按下文示例从归档安装。旧版 0.1.3 的内核上限为
-0.2.2-rc.3，DSH rc.5 会拒绝该版。
-npm CLI 不管理 Electron 专用的 `desktop` profile；桌面使用其自身的插件入口
-或内置命令。npm 安装无需等待市场收录。
+> 旧版 `0.1.3` 卡死了 `0.2.2-rc.3` 上限导致新 DSH 装不上；`0.1.5` 已放开版本限制，通过 npm 可直接升级安装，不必等市场同步。
 
-## 可选：新建命令行配置
+## 可选：新建纯命令行配置
 
-已有可用配置可以跳过本节。使用官方 DSH CLI，或在 DSH NEXT 的
-**DSH Terminal** 中运行 `dsh`，选择未使用过的 profile 名称；
-以下用 `pixel-art`。**先初始化一次，再安装插件**：`--from-default-profile`
-会替换目标 profile，包括其中的插件和本地配置。以后启动任务不要重复初始化。
+已有可用 DSH 配置可以跳过本节。在 `dsh`（或 DSH NEXT 的 **DSH Terminal**）里挑一个新配置名（如 `pixel-art`），**只在首次初始化一次**（`--from-default-profile` 会覆盖已有配置与插件）：
 
 ```text
 dsh --profile pixel-art --from-default-profile headless --help
 ```
 
-这条命令初始化配置，不调用模型。随后**选择一种**安装方式。官方 npm registry
-提供 **0.1.5** 后，使用这个确切包版本：
+然后从 npm（或下载后的本地 `.tgz` 绝对路径）装入插件：
 
 ```text
 dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.5
 ```
 
-本地候选按文末说明生成归档，改用其绝对路径；含空格路径保留引号：
-
 ```text
 dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.5.tgz"
 ```
 
-两种方式都安装到 `pixel-art`；Desktop 使用独立的 profile。
-npm 安装无需等待 DSH 市场收录。
-
-官方 `headless` 模板默认关闭托管账户服务。若使用平时登录的 DeepSeek 账户，在
-任务目录保存以下 `dsh-account.patch.yml`；它只含配置，不填 token：
+如果使用常规 DeepSeek 账号登录（而非自配 API Key），完成登录后在任务目录放入如下 `dsh-account.patch.yml`（仅配置开关，不要写入密钥）：
 
 ```yaml
 - id: agent-default-model
@@ -99,75 +67,36 @@ npm 安装无需等待 DSH 市场收录。
   disabled: false
 ```
 
-通过 DSH 的正常账户界面登录，并确保使用同一 `DSH_HOME`；不要复制凭据到此文件。
-在希望保存 JSON 和 PNG 的任务目录启动新任务：
+在准备存图的工作目录发起任务，并用返回的真实 `sessionId` 继续改图（若已有 API Key 配置，去掉 `--patch` 即可）：
 
 ```text
 dsh --profile pixel-art --patch ./dsh-account.patch.yml --json --permission-mode workspace-write --approval-policy never "用 deterministic-pixel-art 画一个16×16灯笼PNG，保留可编辑JSON。"
 ```
 
-`--json` 输出运行事件，其中包括新的 `sessionId`。继续会话时保持同一工作目录，
-将示例 ID 换成返回的真实 ID：
-
 ```text
 dsh --profile pixel-art --patch ./dsh-account.patch.yml --json --permission-mode workspace-write --approval-policy never --session-id session-YOUR-ID "把轮廓改深一点。"
 ```
 
-命令选择 `workspace-write` 模式，实际隔离程度取决于 DSH 与平台；`never` 关闭
-交互审批，需要审批的操作会失败。模型任务可能消耗账户余额，上述命令没有设置
-金额上限。若已用 API key 或
-其他配置好的 profile，保留其模型设置，将插件装入该 profile 即可，不必套用账户
-overlay。
+*(提示：`--approval-policy never` 会让需要审批的动作直接失败；发起任务会消耗模型额度。)*
 
-## 使用与排错
+## 常见问题排查
 
-工具需要 Python **3.10+**、Pillow **>=10.4,<13**；固定复现基线为 Pillow
-**12.3.0**。有 `load_workspace_dependencies` 时用它选择环境；没有时通过可用
-shell 检查 Python 和 Pillow。缺少它们属于运行前置条件，安装 bundle 不会自动
-运行 pip。按 Skill 的资源目录解析脚本与 references，源文件和 PNG 保存在任务
-目录。
+- **对话里找不到 Skill**：运行 `dsh --profile pixel-art --dump-config` 确认包含 `deterministic-pixel-art-skill`，并核对当前使用的 profile 与安装时一致（同名本地 Skill 会覆盖插件版）。
+- **缺 Python / Pillow**：安装 npm 插件不会顺带安装 Python 依赖，需确保当前环境已装 Python 3.10+ 和 Pillow（可用 `load_workspace_dependencies` 选择环境）。
+- **报 `ACCOUNT_SIGN_IN_REQUIRED`**：检查登录状态、`DSH_HOME` 与配置覆盖项即可，不用重装插件。
+- **Windows 报 `windows-acl workspace grant failed`**：把任务放到用户目录下当前账号拥有完全权限的独立文件夹里重试（保持 `workspace-write`）。
+- **非 DSH 用户安装原生 Skill**：见 [INSTALL.md](https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md)。
 
-有 `present` 时用它交付文件。默认 headless 应提供输出文件的绝对路径；`read_image`
-可供模型检查；看图调用不能证明已经向用户交付。桌面 profile 可以有额外工具。
-加载 Skill 本身不会生成或展示 PNG。
+<details>
+<summary>兼容细节、审计与本地打包说明（开发维护者参考）</summary>
 
-找不到 Skill 时，先确认当前 profile 与安装时一致。
-`dsh --profile pixel-art --dump-config` 应包含 `deterministic-pixel-art-skill`。
-若安装或加载失败，请提供 DSH 内核、DSH Skill、Cordis、Node 的版本及完整错误。
-安装范围不代表已逐版本验证 API 兼容。`ACCOUNT_SIGN_IN_REQUIRED`
-表示账户路线不可用，应检查 overlay、正常登录和 `DSH_HOME`，不必重装 Skill。
-同名本地 Skill 会覆盖随包版本。
-
-Windows 若出现 `sandbox-local: windows-acl workspace grant failed`，shell 命令
-可能在 Python 启动前就被阻止。可保持 `workspace-write`，先将任务副本放到用户
-目录下、当前账户具有完全控制权限的独立文件夹再试。若仍失败，使用 DSH 的沙箱
-诊断；重装本 bundle 无法修复宿主目录权限。
-
-## 验证与来源
-
-本机验证基线为 Windows DSH NEXT **2.0.22-next**、core **0.2.2-rc.1**、Node
-**24.21.0**、Python **3.12.14**、Pillow **12.3.0**。
-`python -B tools/check_dsh.py` 需要 Node/npm 和开发依赖，检查实际归档、真实
-Skill 服务与搬移后的绘图工具，不需要模型调用。
-本包已实际验证 0.2.2-rc.1 至 rc.5 以及 0.2.3-alpha.1 的配套 Skill 服务。
-CI 在 Windows 和 Ubuntu 上检查这些版本。检查其他版本时，可用
-`--skill-version` 传入确切版本号。
-
-`tools/package_dsh.py` 复用 `skill-content/`、`src/`、`recipes/` 与原示例目录的
-权威输入；不手工维护生成资源，不建立第二套绘制引擎。`skill-manifest.json`
-记录文件哈希。DSH 与宿主 peer 不随包分发；许可和来源见 LICENSE、NOTICE.md。
-
-本项目不是 DeepSeek 官方插件。也可以按原仓库的
-[INSTALL.md](https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md)
-直接安装原生 Skill。
-
-## 生成本地包
-
-仅源码开发或本地候选验收需要本节。在源码仓库安装 Python 和开发依赖后运行：
+- **宿主兼容声明**：`engines.dsh: "*"` 且 DSH Skill registry / Cordis 宿主 peer 设为通配符，供 DSH 内置 pnpm 安装器放行宿主预发布版（普通 npm 严格 peer 解析仍可能拦截）。
+- **测试矩阵与基线**：Windows/Ubuntu CI 定期在 DSH `0.2.2-rc.1`–`rc.5` 与 `0.2.3-alpha.1` 上校验归档、Skill 服务及工具搬移（`python -B tools/check_dsh.py`）。开发实测环境：Windows DSH NEXT `2.0.22-next`、core `0.2.2-rc.1`、Node `24.21.0`、Python `3.12.14`、Pillow `12.3.0`。另 2026-11-15 对 DSH `rc.1` 宿主依赖树的 `npm audit` 曾报 7 项高危（含 `zod`），`rc.2`/`rc.3` 为 0 项。
+- **打包构建方式**：`tools/package_dsh.py` 复用 `skill-content/`、`src/`、`recipes/` 与示例目录权威输入（哈希记入 `skill-manifest.json`，版权与出处见 `LICENSE`/`NOTICE.md`）。本项目非 DeepSeek 官方插件。
 
 ```sh
 python -B tools/package_dsh.py --out dist/dsh-package
 npm pack ./dist/dsh-package --ignore-scripts --pack-destination dist
 ```
 
-生成目录必须不存在。包没有安装脚本；通常使用者直接安装 npm 包即可。
+</details>

@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.4.0 (2026-11-25)
+
+- **Unified asset delivery & rebuild (`recipes/asset_toolkit.py`):** Package a single pixel asset along with its editable source (`grid` or `draw` JSON, existing PNG, state variants, named atlas, or layered assembly project), 1× native preview, enlarged nearest-neighbor preview, `REBUILD.md`, and `result.zip`, and verify pixel-identical ZIP reconstruction via `rebuild`.
+- **Faster agent workflows:** Added copyable quick-start `render`, `deliver`, and `rebuild` commands directly in `SKILL.md` and clarified that `--mode grid` accepts both `kind: grid` and `kind: draw` sources, reducing unnecessary source-code lookups before drawing.
+- **Built-in topology & speck feedback:** `render` now reports 8-connected component counts/sizes/bounding boxes, 4-connected isolated pixels, and advisory dark `2×2` block hints inline; `review` also warns on disconnected regions in sprites and named atlas cells.
+- **Check & packaging hygiene:** Added `tools/check.py --isolated` for clean-directory verification and normalized LF line endings across 19 workflow example JSON files for byte-identical packaging.
+- **DSH `0.1.5`:** Removed the old `0.2.2-rc.3` core upper bound via `engines.dsh: "*"` and wildcard peer ranges, tested across DSH `0.2.2-rc.1`–`rc.5` and `0.2.3-alpha.1` (requires Node `>=24.9.0`, Python `3.10+`, Pillow `>=10.4,<13`).
+
+## 1.3.0 (2026-11-15)
+
+- **Scoped PNG recoloring:** Added `recolor` to swap exact RGBA colors inside declared rectangles or PNG masks while preserving pixels and alpha outside scope; works alongside `verify` for pixel-exact diff checks.
+- **Paged atlas review & tile previews:** Added `recipes/review_atlas.py` (1:1 paginated inspection for large named atlases), `recipes/tile_preview.py`, and `recipes/tile_scene.py` (seam and layout assembly previews).
+- **PNG animation export & DSH source bundle:** Added `recipes/animation_export.py` to organize existing frame PNGs with optional GIF previews, introduced `integrations/dsh/`, and updated the `demos/travel-kit` showcase.
+- See [docs/releases/v1.3.0.md](docs/releases/v1.3.0.md) for full details and reliability boundaries.
+
 ## 1.2.2 (2026-11-02)
 
 - Include the optional action-icon card and scene-space/revision guides already merged in the repository. They help with direction, connected forms, surface-bounded fills, patterns and changes to related parts; user references remain the starting point.

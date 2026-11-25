@@ -1,6 +1,6 @@
 # Deterministic Pixel Art
 
-[简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases) · [AI install](INSTALL.md)
+[English](README.md) · [MIT](LICENSE) · [Releases](https://github.com/Chenamel/deterministic-pixel-art/releases) · [AI Install Guide](INSTALL.md) · [Changelog](CHANGELOG.md)
 
 [![Release](https://img.shields.io/github/v/release/Chenamel/deterministic-pixel-art?style=flat-square&label=release)](https://github.com/Chenamel/deterministic-pixel-art/releases/latest)
 [![Main branch checks](https://img.shields.io/github/actions/workflow/status/Chenamel/deterministic-pixel-art/test.yml?branch=main&style=flat-square&label=checks)](https://github.com/Chenamel/deterministic-pixel-art/actions/workflows/test.yml)
@@ -13,34 +13,32 @@
   <img alt="Deterministic Pixel Art — editable pixels, exact changes" src="docs/images/brand/header-en-light.png" width="1152">
 </picture>
 
-**Create editable pixel art with AI agents, then verify exactly what changed.**
+**Let AI agents draw crisp, hard-edged pixel art—and edit only the part you asked to change.**
 
-Make PNG icons, sprites, UI components and named sprite atlases from text grids, integer drawing commands or Python masks. Import existing PNGs without quantization, edit a selected region and assemble separately drawn components. Built for AI-assisted game assets and pixel UI; Minecraft styling is optional.
+Create game icons, sprites, inventory UI, and multi-item sprite sheets that always come back with editable sources, native-size PNGs, and enlarged previews. When updating an existing PNG, only your chosen region or color changes—the surrounding pixels and transparent background stay untouched.
 
 ![Original travel kit: six 32px items with glass, paper, leather and metal materials, composed into an inventory panel](demos/travel-kit/assets/overview.png)
 
-[Editable travel kit](demos/travel-kit/README.md) · [Native UI PNG](demos/travel-kit/assets/ui.png) · [Named item atlas](demos/travel-kit/assets/after.json). Original 32×32 items and a 192×160 static UI composition, with native-size views and integer nearest-neighbor enlargements. JSON sources and the drawing script are included.
+[Travel kit demo](demos/travel-kit/README.md) · [Native UI PNG](demos/travel-kit/assets/ui.png) · [Item atlas source](demos/travel-kit/assets/after.json). Six 32×32 items combined into a 192×160 inventory UI with matching editable specs and previews.
 
-**Version: v1.3.0.** [Download the stable Skill](https://github.com/Chenamel/deterministic-pixel-art/releases/tag/v1.3.0) · [What changed](docs/releases/v1.3.0.md). Includes scoped color replacement, paged atlas review, named-tile scene previews and PNG animation export. Exact editing requires static PNGs with channel depth at most 8 bits; editable sources and original PNGs remain the basis for later changes.
+**Latest stable release: v1.4.0** — [Download Skill ZIP or DSH plugin](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) · [Discussion & showcase](https://github.com/Chenamel/deterministic-pixel-art/discussions/30). Adds one-step asset delivery bundles, ready-to-copy commands for AI agents, and built-in checks that spot stray pixels or broken tiny parts.
 
 ## Use with an AI agent
 
-Give an agent with terminal and file access this request:
+Paste this message to any AI assistant that has terminal and file access:
 
-> Read <https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md> and install deterministic-pixel-art from the latest stable release. Check that it supports my intended task, then generate a sample PNG to verify installation.
+> Read <https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md> and install deterministic-pixel-art from the latest stable release. Check that it supports my task, then generate a small sample PNG to confirm the setup works.
 
-[AI installation guide](INSTALL.md): select the environment, install the self-contained Skill and run a small render. It also includes an optional `npx skills` shortcut for supported agents. Agents without native Skill support can run the same tools from a task-local folder.
+Once installed, you can drive everything in plain language—for example:
+- *"Make a 32×32 brass compass icon on a transparent background with crisp lighting on `#172033`, and keep the editable source."*
+- *"Create six matching 32×32 travel items and arrange them into a small inventory panel."*
+- *"Recolor only the lantern glass in this PNG to amber while keeping the outline and everything else unchanged."*
 
-Once installed, try: “Create six 32×32 travel items with a consistent palette and lighting, compose them into a small inventory panel, and keep the editable sources.”
+See the [AI Installation Guide](INSTALL.md) for virtual-environment setup and optional `npx skills` commands. If you use **DSH**, follow the [DSH quick-start](integrations/dsh/README.md) to install `0.1.5` via npm or the release archive and chat right away.
 
-DSH users can start with [installation and quick start](integrations/dsh/README.md):
-check compatible versions, install into the profile used for chat, then request an
-asset or edit in natural language. This optional third-party bundle carries the same
-Skill; npm installation does not require a marketplace listing.
+## Use from the command line
 
-## Use the Python CLI
-
-Requires Python 3.10+ and Pillow >=10.4,<13. The requirements file pins Pillow 12.3.0 for reproducibility.
+Requires Python 3.10+ and Pillow `>=10.4,<13` (pinned to Pillow 12.3.0 in `requirements.txt` for reproducible builds).
 
 ```sh
 git clone https://github.com/Chenamel/deterministic-pixel-art.git
@@ -48,57 +46,54 @@ cd deterministic-pixel-art
 python -m venv .venv
 ```
 
-Activate with `.\.venv\Scripts\Activate.ps1` in PowerShell, or `source .venv/bin/activate` on macOS/Linux, then:
+Activate with `.\.venv\Scripts\Activate.ps1` (PowerShell) or `source .venv/bin/activate` (macOS/Linux), then run:
 
 ```sh
 python -m pip install -r requirements.txt
 python src/pixel_art.py render --spec examples/gem-16.json --out output/gem.png --preview output/gem-preview.png
 ```
 
-Expected output: a **16×16 PNG** and a **128×128 nearest-neighbor preview** in `output/`. Without Git, download and extract the checkout ZIP, then open a terminal in its top-level folder. Keep the editable spec with the PNG; existing outputs require explicit `--force` to overwrite.
+This creates a native **16×16 PNG** and a **128×128 nearest-neighbor preview** inside `output/`. Keep the editable source alongside the PNG; overwriting existing files requires `--force`.
 
-## Choose a workflow
+## Common workflows
 
-| Task | Start here |
+| Goal | Start here |
 |---|---|
-| Item set / UI composition | [Six travel items, a static inventory panel and a named-item edit](demos/travel-kit/README.md) |
-| Small grid sprite | [Transparent grid](examples/transparent-grid.json), [mirrored gem](examples/gem-16.json) |
-| Asymmetric sprite | [32×32 ship](examples/asymmetric-ship-32.json), [pixel-art guidance](skill/deterministic-pixel-art/references/pixel-art.md) |
-| UI or button states | [Generic panel](examples/generic-panel-96x40.json), [UI guidance](skill/deterministic-pixel-art/references/ui.md), [recipes](skill/deterministic-pixel-art/references/recipes.md) |
-| Existing PNG / named atlas edit | [Import, replace-cell and verify](docs/usage.md#edit-a-named-atlas-cell) |
-| Image facts or review | [Text inspection](skill/deterministic-pixel-art/references/text-workflow.md), [review context](skill/deterministic-pixel-art/references/review.md) |
-| Separate chunks | [Chunk contracts](skill/deterministic-pixel-art/references/chunking.md), [four-source scene](demos/chunk-scene/README.md) |
-| Minecraft-style UI | [Optional guidance](skill/deterministic-pixel-art/references/minecraft.md) |
+| One-step delivery & packaging bundle | `recipes/asset_toolkit.py`, [toolkit guide](skill/deterministic-pixel-art/references/toolkit.md) |
+| Item sets & inventory UI | [Travel kit demo & UI panel](demos/travel-kit/README.md) |
+| Small symmetric icons | [Transparent grid](examples/transparent-grid.json), [mirrored gem](examples/gem-16.json) |
+| Asymmetric sprites | [32×32 ship](examples/asymmetric-ship-32.json), [pixel-art guide](skill/deterministic-pixel-art/references/pixel-art.md) |
+| Buttons & multi-state UI | [Generic panel](examples/generic-panel-96x40.json), [UI guide](skill/deterministic-pixel-art/references/ui.md), [Python recipes](skill/deterministic-pixel-art/references/recipes.md) |
+| Edit an existing PNG or atlas cell | [Import, replace-cell & verify](docs/usage.md#edit-a-named-atlas-cell) |
+| Check for stray specks or broken parts | [Image inspection](skill/deterministic-pixel-art/references/text-workflow.md), [review guide](skill/deterministic-pixel-art/references/review.md) |
+| Multi-chunk large scenes | [Chunk contracts](skill/deterministic-pixel-art/references/chunking.md), [four-part bridge demo](demos/chunk-scene/README.md) |
+| Minecraft-style UI slots | [Optional Minecraft guide](skill/deterministic-pixel-art/references/minecraft.md) |
 
-[More command examples](docs/usage.md) cover scoped edits, recipes and environment recovery. The [JSON v1 and Python API](skill/deterministic-pixel-art/references/formats.md) are available for custom generators. The [browser UI demo](demos/pixel-ui/README.md) includes actual-font and interaction checks.
+See [more command examples](docs/usage.md) for scoped color replacements, [the format reference](skill/deterministic-pixel-art/references/formats.md) if you write your own generators, and [the browser UI demo](demos/pixel-ui/README.md) for checking real font fit and hover states.
 
 ![Travel kit before and after replacing only the lantern glass, with the exact changed-pixel mask](demos/travel-kit/assets/scoped-edit.png)
 
-This example changes **106 RGBA pixels inside the lantern cell, zero outside**. Its shape, brass frame, atlas position and the other five items stay the same. [Run this named-item replacement and verification](demos/travel-kit/README.md#replace-one-named-item), or start with the [tiny grid recolor](docs/usage.md#change-one-grid-color).
+Here only **106 pixels inside the lantern cell changed—zero outside**. The lantern's frame, atlas coordinates, and the other five items stay identical. Try [the named-item replacement walkthrough](demos/travel-kit/README.md#replace-one-named-item) or [recolor one grid shade](docs/usage.md#change-one-grid-color).
 
-## Evidence and limits
+## What to keep in mind
 
-- **Reproducible assets:** 43 reference images retain the same decoded pixels. Lossless import and scoped edits compare decoded RGBA, including hidden RGB under zero alpha.
-- **Tested workflows:** source/package checks and Windows/Ubuntu CI cover rendering, inspection, import, editing and assembly. External agents have exercised eight task categories; original failures and incomplete records remain documented.
-- **Art direction stays contextual:** inspect native-size assets on their intended backgrounds. Automated checks do not establish recognizability, general aesthetic gains, token savings or Minecraft game integration.
-
-[Verification details and remaining limits](docs/verification.md) distinguish engineering checks, external use and visual judgment.
+- **Made for hard-edged pixel art:** Exact PNG edits require static, single-frame PNGs at up to 8-bit channel depth. Keep your editable spec or original PNG when planning later revisions.
+- **Checks assist your eyes—always check 1×:** Built-in checks catch unintended pixel drift, disconnected bits, and isolated specks, but readability and style still need a quick look at native size on the real target background.
+- **Full engineering & test boundaries:** Reproducible test baselines, supported runtime ranges, and external agent trial notes are documented in [Verification details & limits](docs/verification.md).
 
 ## Help and contribute
 
-[Open an issue](https://github.com/Chenamel/deterministic-pixel-art/issues) for a bug, installation problem or a useful missing workflow. Include the command, error, Python/Pillow versions and a small input when possible. [Contribution guide](CONTRIBUTING.md).
+Found a bug, setup snag, or workflow gap? [Open an issue](https://github.com/Chenamel/deterministic-pixel-art/issues) with the command, error message, Python/Pillow versions, and a tiny sample input if possible, or join [Discussion #30](https://github.com/Chenamel/deterministic-pixel-art/discussions/30). See [Contributing](CONTRIBUTING.md) before sending code changes.
 
-## Development
+## Development checks
 
 ```sh
 python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
-Maintain runtime code in `src/`, recipes in `recipes/`, and guidance in `skill-content/`. `tools/package_skill.py` generates the standalone Skill under `skill/`. Full checks create local artifacts without globally installing a Skill. [Fixture provenance](docs/PROVENANCE.md).
-
-For source browsing and edits, see the [source-to-Skill path map](CONTRIBUTING.md#source-and-generated-skill) and the [limited Python format gate](CONTRIBUTING.md#python-formatting).
+Source code lives in `src/`, example scripts in `recipes/`, and Skill docs in `skill-content/`. Running `tools/package_skill.py` regenerates the self-contained Skill under `skill/`. See [the source-to-Skill map](CONTRIBUTING.md#source-and-generated-skill), [formatting scope](CONTRIBUTING.md#python-formatting), and [fixture provenance](docs/PROVENANCE.md).
 
 ## License
 
-[MIT](LICENSE) covers the code, original artwork and standalone Skill. Repository visuals use Silkscreen Regular under [SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt) and Fusion Pixel Font under [SIL OFL 1.1](assets/brand/font-notices/README.md). Fonts are not included in the Skill ZIP. Pillow and development-only PyYAML/Ruff are installed dependencies, not vendored files.
+Code, original artwork, and the standalone Skill are licensed under [MIT](LICENSE). Repository previews use Silkscreen Regular ([SIL OFL 1.1](demos/pixel-ui/fonts/OFL.txt)) and Fusion Pixel Font ([SIL OFL 1.1](assets/brand/font-notices/README.md)), which are not bundled in the Skill ZIP. Pillow and development-only PyYAML/Ruff are installed separately via pip.

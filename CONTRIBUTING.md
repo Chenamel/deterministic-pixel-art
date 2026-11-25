@@ -38,6 +38,14 @@ python -m pip install -r requirements-dev.txt
 python -B tools/check.py
 ```
 
+Validate in a new directory outside the checkout with the isolated command.
+
+```sh
+python -B tools/check.py --isolated "../pixel-art verification"
+```
+
+The isolated command uses current source files, including local edits and new unignored files in project source directories. It also accepts a complete source export. The command prints the log path and keeps the copied project, evaluation files and reproducible Skill ZIP in the destination. Use `python -B tools/check.py` to build those artifacts in the checkout, including the Skill ZIP at its root.
+
 Ruff **0.14.3** is pinned in `requirements-dev.txt` and required by [.ruff.toml](.ruff.toml). It is a development dependency; the product still supports Python 3.10+ and Pillow >=10.4,<13. The format uses four spaces, single quotes, LF endings and a target line length of 88. The lint gate rejects multiple modules in one `import` statement (`E401`), one-line compound statements (`E701`), semicolon-separated statements (`E702`) and trailing semicolons (`E703`). Formatting and lint checks serve different purposes; neither verifies program behavior.
 
 Coverage is intentionally limited to the paths in [.ruff.toml](.ruff.toml): the CLI, animation recipes, DSH packaging tools, selected tests and executable [chunk fixture sources](tests/fixtures/chunk_trial/). Other modules and the generated Skill are outside this format gate. The fixture sources replace Python embedded in strings so their contents receive the same checks.

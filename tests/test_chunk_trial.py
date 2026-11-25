@@ -122,6 +122,11 @@ def complete_fixture(work, run):
 
 
 class ChunkTrialTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.completed_run = None
+        cls.addClassCleanup(setattr, cls, 'completed_run', None)
+
     def setUp(self):
         temporary = tempfile.TemporaryDirectory(prefix='分块 trial space ')
         self.addCleanup(temporary.cleanup)
@@ -158,6 +163,23 @@ class ChunkTrialTests(unittest.TestCase):
         )
         self.assertEqual(result.returncode, expected, result.stdout + result.stderr)
         return result
+
+    def prepare_completed_run(self):
+        run = self.work / 'RUN'
+        cls = type(self)
+        if cls.completed_run is None:
+            complete_fixture(self.work, self.run_recorder)
+            cls.completed_run = tuple(
+                (file.relative_to(run), file.read_bytes())
+                for file in sorted(run.rglob('*'))
+                if file.is_file()
+            )
+            return
+
+        for relative, data in cls.completed_run:
+            target = run / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data)
 
     def checks(self):
         return json.loads((self.work / 'RUN/checks.json').read_text(encoding='utf-8'))
@@ -205,7 +227,7 @@ class ChunkTrialTests(unittest.TestCase):
         self.assertFalse((self.root / 'bad').exists())
 
     def test_full_chain_boundary_refusal_and_archive(self):
-        complete_fixture(self.work, self.run_recorder)
+        self.prepare_completed_run()
         self.run_recorder('check')
         self.assertTrue(self.checks()['passed'])
         self.assertEqual(len(self.checks()['checks']), 63)
@@ -242,7 +264,7 @@ class ChunkTrialTests(unittest.TestCase):
             )
 
     def test_phase_edit_source_and_freeze_failures(self):
-        complete_fixture(self.work, self.run_recorder)
+        self.prepare_completed_run()
         for filename, at, ink, failure in [
             ('v1/scene.png', (128, 127), (128, 90, 56, 255), 'v1-plank-phase'),
             ('v1/scene.png', (120, 140), (63, 129, 149, 255), 'v1-water-phase'),

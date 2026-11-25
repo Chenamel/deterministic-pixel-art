@@ -53,3 +53,20 @@ class DocumentAuditTests(unittest.TestCase):
             self.assertEqual(result['missing'], ['references/missing.md'])
             self.assertEqual(result['unreachable'], ['references/orphan.md'])
             self.assertIn('references/b.md', result['not_directly_referenced'])
+
+    def test_historical_lt06_archive_citation_is_not_marked_broken(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / 'docs/self-check-logo-assets-20261031.md'
+            result = resolve_reference(root, source, 'src/gen_chest.py', 'file-reference')
+            self.assertEqual(result['status'], 'absent-generated-or-local-evidence')
+            self.assertFalse(result['exists'])
+
+    def test_other_missing_src_paths_and_markdown_links_stay_broken(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            archive = root / 'docs/lt06-results-20261030.zh-CN.md'
+            md_link = resolve_reference(root, archive, 'src/gen_chest.py', 'markdown')
+            self.assertEqual(md_link['status'], 'broken')
+            other_src = resolve_reference(root, archive, 'src/missing_helper.py', 'file-reference')
+            self.assertEqual(other_src['status'], 'broken')

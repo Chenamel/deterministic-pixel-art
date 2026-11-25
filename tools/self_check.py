@@ -19,6 +19,15 @@ PATH_TOKEN = re.compile(
     r'(?::\d+)?', re.IGNORECASE)
 ROOT_NAMES = {'docs', 'src', 'skill-content', 'skill', 'recipes', 'tools',
               'benchmarks', 'quality', 'baselines', 'examples', 'specs', 'tests', '.github'}
+# Historical Oct 30–31 audit logs cite this unshipped LT06 submission helper. Keep
+# real missing `src/` files and explicit links `broken`, and treat only this bare
+# archive citation as absent local evidence when `evaluation/` is not present.
+HISTORICAL_LOCAL_SUBMISSION_REFS = {
+    ('lt06-results-20261030.zh-CN.md', 'src/gen_chest.py'),
+    ('lt06-results-20261030.json', 'src/gen_chest.py'),
+    ('self-check-logo-assets-20261031.md', 'src/gen_chest.py'),
+    ('self-check-references-20261030.md', 'src/gen_chest.py'),
+}
 
 
 def references(text):
@@ -97,7 +106,9 @@ def resolve_reference(root, source, target, kind):
             return dict(status='exists', target=raw, exists=True, resolved=relative,
                         basis='distributed-skill' if relative.startswith('skill/') else 'document-or-repository')
     first = filename.split('/')[0]
-    if kind in ('markdown', 'definition', 'html') or first in ROOT_NAMES:
+    if kind == 'file-reference' and (source.name, filename) in HISTORICAL_LOCAL_SUBMISSION_REFS:
+        status = 'absent-generated-or-local-evidence'
+    elif kind in ('markdown', 'definition', 'html') or first in ROOT_NAMES:
         status = 'broken'
     elif first in ('evaluation', 'output', 'dist', 'RUN') or first.startswith('v1') or first.startswith('v2'):
         status = 'absent-generated-or-local-evidence'

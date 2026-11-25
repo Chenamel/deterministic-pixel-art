@@ -2,106 +2,57 @@
 
 [简体中文](README.zh-CN.md)
 
-Describe what you want to draw or change in a DSH conversation, or provide an
-existing PNG and ask for a specific edit. The Skill can render pixel-art PNGs
-with editable JSON and recolor a selected area. The package includes drawing
-tools, examples and reference guides; everyday use does not require writing
-pixel coordinates or Python code.
+Chat naturally in DSH to create new hard-edged pixel art or edit only a selected part of an existing PNG. The plugin bundles the pixel rendering tools, examples, and guides so you do not need to write coordinates or Python code by hand.
 
-## Already installed: start a conversation
+## Quick start (once installed)
 
-Open a conversation in the same DSH profile where the plugin is installed and
-enabled, then send:
+Open a conversation in the DSH profile where the plugin is enabled and try:
 
-> Use deterministic-pixel-art to make a 16×16 pixel lantern with a transparent background. Read the Skill and check the available Python/Pillow environment first. Deliver the PNG, editable JSON and an 8× nearest-neighbor preview, and inspect the finished image.
+> Use deterministic-pixel-art to draw a 16×16 pixel lantern with a transparent background. Read the Skill and check Python/Pillow first. Return the native PNG, editable JSON, and an 8× zoomed preview, and inspect the result.
 
-After receiving the image, you can continue:
+To tweak only part of the finished image:
 
-> Change only the lantern's metal outline to dark brown. Keep the glass and everything else unchanged. Preserve the first version and deliver a separate revised PNG with its editable source.
+> Change only the lantern's metal frame to dark brown, leaving the glass and everything else unchanged. Keep the original files and deliver the revised PNG and source.
 
-You can also provide an existing PNG and describe the region to change, what to
-preserve and the intended result. You do not need to learn commands or JSON first.
-Provide references or explicit requirements for a particular game style.
+You can also attach an existing PNG and say which area to change and which parts to keep untouched. Look for both the **native-size PNG** and its **editable source file** (zoomed previews alone are not enough).
 
-Expect a native-size PNG and editable source. An enlarged preview alone is not
-enough. Desktop tools can deliver files directly; command-line-only environments
-should return absolute file paths.
+## Install & requirements
 
-## Installation and compatible versions
-
-| Name | Purpose |
+| Field | Value |
 | --- | --- |
-| Deterministic Pixel Art | Display name |
-| `dsh-skill-deterministic-pixel-art` | npm package name |
-| `deterministic-pixel-art` | Skill name to use in a conversation |
+| Display name | Deterministic Pixel Art |
+| npm package | `dsh-skill-deterministic-pixel-art` |
+| Skill name in chat | `deterministic-pixel-art` |
+| Current plugin version | `0.1.5` (tested on DSH `0.2.2-rc.1`–`rc.5`, `0.2.3-alpha.1`) |
+| Runtime prerequisites | Node **>=24.9.0**, Python **3.10+**, Pillow **>=10.4,<13** (pinned 12.3.0) |
 
-This package declares `engines.dsh: "*"` and wildcard peer ranges for the DSH
-Skill registry and Cordis host services. The official DSH plugin installer
-uses pnpm, which resolves these host prerelease versions. Ordinary npm peer
-resolution may still reject prerelease peers matched only by `*`, including
-with strict peer dependencies enabled. Install through DSH's supported plugin
-command.
-
-The wildcard DSH range allows installation across DSH versions. It does not
-mean the plugin API has been tested on every version. Runtime checks cover DSH
-Skill versions **0.2.2-rc.1** through **0.2.2-rc.5** and
-**0.2.3-alpha.1**. Check the core version with `dsh --version`. Desktop has its
-own app version. Node **>=24.9.0** remains a separate package requirement, and
-the selected DSH release may require a newer Node version. Drawing uses
-Python **3.10+** and Pillow **>=10.4,<13**.
-
-An npm audit on 2026-11-15 reported seven high-severity findings in the upstream
-DSH rc.1 host dependency tree, including `zod`. The same audit reported none for
-rc.2 or rc.3.
-
-Use DSH's supported npm plugin installation method to install and enable the
-package version **0.1.5** in the profile used for chat. CLI users with an
-existing working profile can replace `YOUR-PROFILE` with its non-`desktop`
-profile name:
+Install **0.1.5** via DSH's plugin command into your chat profile (replace `YOUR-PROFILE` with a non-`desktop` profile name; desktop users should use the DSH desktop plugin manager or [GitHub Releases](https://github.com/Chenamel/deterministic-pixel-art/releases/latest)):
 
 ```text
 dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.5
 ```
 
-For a local candidate, use the archive installation example below. Bundle 0.1.3
-declares a maximum core version of 0.2.2-rc.3 and DSH rc.5 rejects it.
-The npm CLI does not manage Electron's
-reserved `desktop` profile; use the desktop's plugin interface or bundled command.
-npm installation does not require a marketplace listing.
+> Bundle `0.1.3` only supported up to DSH `0.2.2-rc.3`; `0.1.5` uses open version ranges so newer DSH releases can install it directly without waiting for marketplace re-indexing.
 
-## Optional: create a command-line profile
+## Optional: create a headless CLI profile
 
-Skip this section if you already have a working profile. Use the official DSH CLI,
-or run `dsh` inside **DSH Terminal** in DSH NEXT. Choose an unused profile name;
-the examples use `pixel-art`. Initialize it **once, before installing**:
-`--from-default-profile` replaces the target profile, including its plugins and
-local configuration. Do not rerun that initialization to start another task.
+Skip this section if you already have a working DSH profile. Using `dsh` (or **DSH Terminal**), pick an unused profile name (e.g. `pixel-art`) and initialize it **once** before installing (`--from-default-profile` resets that profile):
 
 ```text
 dsh --profile pixel-art --from-default-profile headless --help
 ```
 
-This initializes the profile without a model call. Then choose **one** installation
-method. When the official npm registry provides **0.1.5**, install this exact
-package version:
+Install the plugin from npm (or from a downloaded/local `.tgz` path):
 
 ```text
 dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.5
 ```
 
-For a local candidate, build the archive using the instructions below and use its
-absolute path instead; quote paths containing spaces:
-
 ```text
 dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.5.tgz"
 ```
 
-Both methods install into `pixel-art`; Desktop uses a separate profile.
-npm installation does not require a DSH marketplace listing.
-
-The shipped `headless` template disables stored-account services. To use your
-normal DeepSeek account sign-in, save this as `dsh-account.patch.yml` in your
-task directory. It contains configuration, not a token:
+If you use a signed-in DeepSeek account instead of an API key, place `dsh-account.patch.yml` (config only—never put credentials in this file) in your task folder after signing in through DSH:
 
 ```yaml
 - id: agent-default-model
@@ -116,86 +67,36 @@ task directory. It contains configuration, not a token:
   disabled: false
 ```
 
-Sign in through DSH's normal account UI using the same `DSH_HOME`; do not copy
-credentials into this file. From the directory where you want the JSON and PNG,
-start a new task:
+Start a task in the folder where you want outputs saved, then continue by reusing the printed `sessionId` (remove `--patch` if your profile already configures an API key):
 
 ```text
 dsh --profile pixel-art --patch ./dsh-account.patch.yml --json --permission-mode workspace-write --approval-policy never "Use deterministic-pixel-art to make a 16x16 lantern PNG and keep editable JSON."
 ```
 
-`--json` emits run events, including a new `sessionId`. To continue that session,
-keep the same working directory and replace the example ID with the returned ID:
-
 ```text
 dsh --profile pixel-art --patch ./dsh-account.patch.yml --json --permission-mode workspace-write --approval-policy never --session-id session-YOUR-ID "Make the outline darker."
 ```
 
-The command selects `workspace-write`; enforcement depends on DSH and the
-platform. `never` disables interactive approval requests, so operations needing
-approval fail. Model tasks may consume
-account balance. These examples do not set a monetary spending limit. If you
-already use an API-key or another configured profile, keep its model setup and
-install the bundle into that profile instead of applying the account overlay.
+*(Note: `--approval-policy never` fails any action that asks for approval, and running model tasks uses account quota/balance.)*
 
-## Use and troubleshoot
+## Troubleshooting & technical details
 
-Python **3.10+** and Pillow **>=10.4,<13** are required; Pillow **12.3.0** is the
-fixed reproduction baseline. If `load_workspace_dependencies` is available, use
-it to select an environment. Otherwise use the available shell to check Python
-and Pillow. Missing prerequisites are a runtime issue; installing this bundle
-does not run pip. Resolve scripts and references from the Skill's resource base,
-and keep editable sources and PNG outputs in the task directory.
+- **Skill not loaded:** Check `dsh --profile pixel-art --dump-config` includes `deterministic-pixel-art-skill` and confirm you launched the same profile you installed into (note: a local Skill of the same name overrides the plugin bundle).
+- **Missing Python/Pillow:** Installing the npm bundle does not install Python packages; make sure Python 3.10+ and Pillow are installed in the workspace environment (`load_workspace_dependencies` if available).
+- **Account sign-in error (`ACCOUNT_SIGN_IN_REQUIRED`):** Verify DSH login, `DSH_HOME`, and the account patch; reinstalling the Skill will not fix sign-in state.
+- **Windows ACL sandbox error (`windows-acl workspace grant failed`):** Move the task folder to a directory under your user folder where your account has full permissions and retry with `workspace-write`.
+- **Want the standalone non-DSH Skill?** See [INSTALL.md](https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md).
 
-Use `present` when that tool exists. In the default headless profile, provide
-absolute output paths instead. `read_image` lets the model inspect an image;
-that call alone does not prove the image was delivered to the user. Desktop
-profiles can have additional tools. Loading a Skill does not by itself create
-or display a PNG.
+<details>
+<summary>Technical compatibility, audit notes & local packaging (for maintainers)</summary>
 
-If the Skill is absent, check that you launched the profile where it was
-installed. `dsh --profile pixel-art --dump-config` should include
-`deterministic-pixel-art-skill`. If installation or loading fails, provide the
-DSH core, DSH Skill, Cordis and Node versions plus the complete error. The
-installation range is not a per-version API compatibility test.
-`ACCOUNT_SIGN_IN_REQUIRED` means the account route is unavailable: check the
-overlay, normal sign-in and `DSH_HOME`, rather than reinstalling the Skill. A
-same-name local Skill can override the bundled one.
-
-On Windows, `sandbox-local: windows-acl workspace grant failed` can stop shell
-commands before Python starts. Try a separate task folder under your user
-directory, where your account has full control, while keeping `workspace-write`.
-If it persists, use DSH's sandbox diagnostics; reinstalling this bundle does not
-repair host permissions.
-
-## Verification and sources
-
-Platform validation uses Windows DSH NEXT **2.0.22-next**, core **0.2.2-rc.1**,
-Node **24.21.0**, Python **3.12.14** and Pillow **12.3.0**. Run
-`python -B tools/check_dsh.py` with Node/npm and development requirements to
-build and check the actual archive, real Skill services and relocated renderer.
-That check requires no model call.
-The bundle has been tested with the matching Skill services for 0.2.2-rc.1
-through rc.5 and 0.2.3-alpha.1. CI checks those versions on Windows and Ubuntu.
-To test another release, pass its exact version with `--skill-version`.
-
-`tools/package_dsh.py` reuses the authoritative inputs in `skill-content/`,
-`src/`, `recipes/` and existing examples. Generated resources are not maintained
-here; `skill-manifest.json` records their hashes. DSH and its peers are not
-bundled. See LICENSE and NOTICE.md for licensing and sources.
-
-This project is not endorsed by DeepSeek. For native Skill installation, follow
-[INSTALL.md](https://github.com/Chenamel/deterministic-pixel-art/blob/main/INSTALL.md).
-
-## Build a local package
-
-Only source development and local candidate acceptance need this section. From a
-checkout with Python and the repository's development requirements:
+- **Host compatibility declaration:** Declares `engines.dsh: "*"` and wildcard peer ranges for DSH Skill registry and Cordis host services (resolved via pnpm inside DSH's plugin installer; plain npm with strict peer checks may reject prerelease peers matched by `*`).
+- **Validated DSH host versions:** Windows/Ubuntu CI checks `0.2.2-rc.1` through `0.2.2-rc.5` and `0.2.3-alpha.1` (`python -B tools/check_dsh.py`). Windows dev baseline: DSH NEXT `2.0.22-next`, core `0.2.2-rc.1`, Node `24.21.0`, Python `3.12.14`, Pillow `12.3.0`. Note: an npm audit on 2026-11-15 flagged 7 upstream findings (`zod`, etc.) on DSH `rc.1` host deps and 0 on `rc.2`/`rc.3`.
+- **Source provenance & local build:** `tools/package_dsh.py` builds the bundle from `skill-content/`, `src/`, `recipes/`, and examples without duplicating rendering code (`skill-manifest.json` records hashes; see `LICENSE` and `NOTICE.md`). Not endorsed by DeepSeek.
 
 ```sh
 python -B tools/package_dsh.py --out dist/dsh-package
 npm pack ./dist/dsh-package --ignore-scripts --pack-destination dist
 ```
 
-The package output directory must be new. The archive has no installation scripts;
-ordinary use can install the npm package directly.
+</details>

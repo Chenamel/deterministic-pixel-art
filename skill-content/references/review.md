@@ -70,7 +70,7 @@ Use `inspect --image asset.png --metadata layout.json --cell name --grid` to che
 
 Return to the brief and actually view the selected cell or region at native size and integer enlargement. Review on the target background: for `182637`, for example, set `"backgrounds":[{"name":"target_dark","color":"182637"}],"primary_background":"target_dark"` in context. Built-in `dark` remains `172033`; a custom name avoids a conflicting redeclaration. If visual interpretation remains uncertain, report it rather than treating the grid or zero warnings as proof that the image conveys the intended meaning.
 
-Warnings identify isolated pixels, visually identical named cells and declared pairs below target. Particles may be isolated; states may share a texture; decoration has no general 3:1 requirement. Isolated warnings are capped at 256 entries; the full count and omitted count remain in facts.
+Warnings identify isolated pixels, disconnected 8-connected components, visually identical named cells and declared pairs below target. Component warnings include the component count, sizes and source bounding boxes, checked per named cell. Separate parts may be intentional; particles may be isolated; states may share a texture; decoration has no general 3:1 requirement. Isolated warnings are capped at 256 entries; the full count and omitted count remain in facts.
 
 `cell_summary` surfaces the existing per-cell visible count, occupancy, bounding box, margins and pixel centroid. These measurements do not estimate optical weight or determine whether an icon should be centered. For raw-RGBA edit boundaries, including RGB under zero alpha, use `verify` in [workflows.md](workflows.md).
 

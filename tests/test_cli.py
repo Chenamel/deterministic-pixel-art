@@ -38,6 +38,12 @@ class CliTests(unittest.TestCase):
         with Image.open(enlarged) as image:
             self.assertEqual(image.size, (6, 3))
         self.assertEqual(json.loads(metadata.read_text(encoding='utf-8'))['size'], [2, 1])
+        render_report = json.loads(result.stdout)
+        self.assertEqual(render_report['advisory']['isolated_pixels_4conn'], 1)
+        self.assertEqual(render_report['advisory']['components_8conn_count'], 1)
+        self.assertEqual(render_report['advisory']['components_8conn_sizes'], [1])
+        self.assertEqual(render_report['advisory']['components_8conn_bboxes'], [[0, 0, 1, 1]])
+        self.assertIn('hints', render_report['advisory'])
         self.assertEqual(self.run_cli('validate', '--image', self.out).returncode, 0)
         self.assertEqual(self.run_cli('preview', '--image', self.out, '--out', self.folder / '另一个.png').returncode, 0)
 

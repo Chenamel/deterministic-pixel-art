@@ -25,15 +25,52 @@ class ReviewTests(unittest.TestCase):
         report,sheet,diff=review(image,dict(asset_type='sprite',allowed_specks=[[4,4]]))
         self.assertEqual(image.tobytes(),before)
         self.assertTrue(report['advisory']);self.assertIsNone(diff)
-        self.assertEqual([w['at'] for w in report['warnings']],[[1,1]])
+        isolated=[w for w in report['warnings'] if w['rule']=='isolated_pixel']
+        self.assertEqual([w['at'] for w in isolated],[[1,1]])
         self.assertGreater(sheet.width,image.width)
 
     def test_eight_neighbors_and_cell_boundaries(self):
         im=Image.new('RGBA',(4,2)); im.putpixel((1,0),(0,0,0,255));im.putpixel((2,0),(0,0,0,255))
-        self.assertEqual(review(im)[0]['facts']['isolated_pixels'],0)
+        plain_report=review(im)[0]
+        self.assertEqual(plain_report['facts']['isolated_pixels'],0)
+        self.assertFalse(any(w['rule']=='disconnected_components' for w in plain_report['warnings']))
         self.assertEqual(review(im,{'atlas':layout()})[0]['facts']['isolated_pixels'],2)
         diagonal=Image.new('RGBA',(3,3));diagonal.putpixel((0,0),(1,2,3,1));diagonal.putpixel((1,1),(1,2,3,128))
-        self.assertEqual(review(diagonal)[0]['facts']['isolated_pixels'],0)
+        diagonal_report=review(diagonal)[0]
+        self.assertEqual(diagonal_report['facts']['isolated_pixels'],0)
+        self.assertFalse(any(w['rule']=='disconnected_components' for w in diagonal_report['warnings']))
+
+    def test_review_warns_with_disconnected_component_sizes_and_bboxes(self):
+        image=Image.new('RGBA',(48,48))
+        for y in range(12,27):
+            for x in range(5,21):
+                image.putpixel((x,y),(200,150,50,255))
+        for y, start, end in ((4,22,25),(5,21,26),(6,21,26),(7,22,26)):
+            for x in range(start,end):
+                image.putpixel((x,y),(20,30,40,255))
+
+        report,_,_=review(image)
+
+        warnings=[w for w in report['warnings'] if w['rule']=='disconnected_components']
+        self.assertEqual(len(warnings),1)
+        self.assertEqual(warnings[0]['components_8conn_count'],2)
+        self.assertEqual(warnings[0]['component_sizes'],[240,17])
+        self.assertEqual(warnings[0]['component_bboxes'],[[5,12,16,15],[21,4,5,4]])
+        self.assertIn('may be intentional',warnings[0]['message'])
+
+    def test_review_checks_disconnected_components_per_atlas_cell(self):
+        image=Image.new('RGBA',(6,3))
+        image.putpixel((0,0),(0,0,0,255))
+        image.putpixel((2,2),(0,0,0,255))
+        image.putpixel((3,0),(0,0,0,255))
+        atlas=dict(cell_size=[3,3],columns=2,rows=1,cells=[
+            dict(name='image',x=0,y=0,w=3,h=3),dict(name='right',x=3,y=0,w=3,h=3)])
+
+        report,_,_=review(image,{'atlas':atlas})
+
+        warnings=[w for w in report['warnings'] if w['rule']=='disconnected_components']
+        self.assertEqual([(w['cell'],w['components_8conn_count']) for w in warnings],[('image',2)])
+        self.assertEqual(warnings[0]['component_bboxes'],[[0,0,1,1],[2,2,1,1]])
 
     def test_duplicate_states_ignore_invisible_rgb(self):
         im=Image.new('RGBA',(4,2));im.putpixel((0,0),(10,20,30,255));im.putpixel((2,0),(10,20,30,255))
@@ -80,6 +117,23 @@ class ReviewTests(unittest.TestCase):
 
 
 class ReviewCliTests(unittest.TestCase):
+    def test_disconnected_components_are_written_to_review_report(self):
+        with tempfile.TemporaryDirectory(prefix='review components ') as folder:
+            root=Path(folder);source=root/'source.png';out=root/'review'
+            image=Image.new('RGBA',(8,5))
+            image.putpixel((0,0),(255,255,255,255))
+            image.putpixel((7,4),(255,255,255,255))
+            image.save(source)
+            result=subprocess.run([sys.executable,'-B',str(CLI),'review','--image',str(source),
+                '--out-dir',str(out)],cwd=root,capture_output=True,timeout=30)
+
+            self.assertEqual(result.returncode,0,result.stderr)
+            report=json.loads((out/'report.json').read_text(encoding='utf-8'))
+            warning=next(w for w in report['warnings'] if w['rule']=='disconnected_components')
+            self.assertEqual(warning['components_8conn_count'],2)
+            self.assertEqual(warning['component_sizes'],[1,1])
+            self.assertEqual(warning['component_bboxes'],[[0,0,1,1],[7,4,1,1]])
+
     def test_execution_overwrite_invalid_context_alias_and_bad_compare(self):
         with tempfile.TemporaryDirectory(prefix='review 中文 space ') as folder:
             root=Path(folder);source=root/'source.png';Image.new('RGBA',(4,4),'white').save(source)

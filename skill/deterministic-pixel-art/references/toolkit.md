@@ -55,6 +55,55 @@ Add `--allow-alpha-change` only when contour or transparency edits are intended.
 For **state-set local rollback**, pass `--disable-patch <patch_id>` to revert one
 named patch while keeping other patches and region recolors intact.
 
+### Edit one operation slice in a draw source
+
+Inspect the file before selecting the slice. The read-only command prints
+`file_sha256`, the canvas size, and zero-based operation summaries. For a later
+page, pass the returned `next_offset` to `--offset`. `--limit` defaults to 50
+and accepts up to 200. Point lists show their count and first four points. Use
+the original JSON for complete operation fields.
+
+~~~text
+python <skill>/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --inspect-ops
+~~~
+
+Save a patch JSON such as the following. Replace the placeholder with the
+reported `file_sha256`, choose the operation index, and adapt the coordinates
+and colors to the artwork.
+
+~~~json
+{
+  "version": 1,
+  "base_sha256": "<file_sha256>",
+  "at": 12,
+  "remove": 1,
+  "insert": [
+    {"op": "line", "points": [[8, 7], [12, 7]], "color": "FFE3A3"}
+  ]
+}
+~~~
+
+`at` and `remove` describe a single slice of the original `operations` array.
+Set `remove` to zero for insertion, use an empty `insert` array for deletion, or
+use `operation_count` as `at` to append. Inserted `rect`, `points`, `line`,
+`polygon`, and `mask` operations follow the draw spec's coordinate, palette
+and clipping rules. The SHA-256 covers the original file bytes, including
+whitespace. Inspect the source again after any change.
+
+~~~text
+python <skill>/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --patch highlight.json --allow-region 7 5 8 6 --out revised.json
+~~~
+
+Declare at least one `--allow-region X Y W H` or a canvas-sized PNG `--mask`
+(L/1 nonzero intensity or RGBA/LA nonzero alpha). Repeated regions and a mask
+combine by union. The command compares the final rendered RGBA pixels, including
+RGB beneath transparent pixels. Alpha is locked by default. Use
+`--allow-alpha-change` for intended alpha changes inside the allowed scope.
+
+A scope or alpha violation returns exit 1. A stale digest, invalid input, or
+output conflict returns exit 2. The command writes the revised JSON only after
+the checks pass. Render it normally and deliver it with `deliver --mode grid`.
+
 ### Standalone 3-tier verify (read-only)
 
 ```text

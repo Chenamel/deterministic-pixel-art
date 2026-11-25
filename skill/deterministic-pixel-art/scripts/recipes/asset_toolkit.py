@@ -1,4 +1,4 @@
-"""Unified pixel-asset workflow toolkit CLI (route, deliver, verify, rebuild)."""
+"""Unified pixel-asset workflow toolkit CLI (route, deliver, patch-draw, verify, rebuild)."""
 
 import argparse
 import json
@@ -15,6 +15,8 @@ from pixelart.toolkit import (
     analyze_advisory,
     check_declared_contract,
     deliver_asset,
+    inspect_draw_ops,
+    patch_draw,
     rebuild_and_verify,
     route_intent,
     _alpha_diff_stats,
@@ -76,6 +78,58 @@ def _add_deliver_parser(subparsers):
     )
     cmd.add_argument('--force', action='store_true', help='Explicitly allow replacing existing output files.')
     add_output_options(cmd)
+
+
+def _add_patch_draw_parser(subparsers):
+    cmd = subparsers.add_parser(
+        'patch-draw',
+        help='Inspect draw operation indices or apply one scoped operation slice to a draw spec.',
+    )
+    cmd.add_argument('--source', type=Path, required=True, help='Editable JSON v1 draw source.')
+    cmd.add_argument('--inspect-ops', action='store_true', help='Print the source SHA-256 and a page of operation summaries.')
+    cmd.add_argument('--offset', type=int, help='First zero-based index to inspect (default: 0).')
+    cmd.add_argument('--limit', type=int, help='Operations per inspection page (default: 50, max: 200).')
+    cmd.add_argument('--patch', type=Path, help='JSON v1 draw operation slice.')
+    cmd.add_argument('--out', type=Path, help='Output editable JSON v1 draw file.')
+    cmd.add_argument(
+        '--allow-region',
+        type=int,
+        nargs=4,
+        action='append',
+        metavar=('X', 'Y', 'W', 'H'),
+        help='Allowed edit rectangle [x y w h]; repeatable.',
+    )
+    cmd.add_argument('--mask', type=Path, help='Optional PNG mask (L/1 intensity or RGBA/LA alpha).')
+    cmd.add_argument('--allow-alpha-change', action='store_true', help='Allow alpha changes inside the edit scope.')
+    cmd.add_argument('--force', action='store_true', help='Explicitly allow replacing an existing output file.')
+    add_output_options(cmd)
+
+
+def _run_patch_draw(args):
+    if args.inspect_ops:
+        if (args.patch is not None or args.out is not None or args.allow_region
+                or args.mask is not None or args.allow_alpha_change or args.force
+                or args.portable_output is not None):
+            raise PixelArtError('patch-draw: --inspect-ops accepts only --source, --offset and --limit')
+        return inspect_draw_ops(
+            args.source,
+            offset=0 if args.offset is None else args.offset,
+            limit=50 if args.limit is None else args.limit,
+        )
+    if args.offset is not None or args.limit is not None:
+        raise PixelArtError('patch-draw: --offset and --limit require --inspect-ops')
+    if args.patch is None or args.out is None:
+        raise PixelArtError('patch-draw: editing requires --patch and --out')
+    return patch_draw(
+        args.source,
+        args.patch,
+        args.out,
+        regions=args.allow_region,
+        mask=args.mask,
+        allow_alpha_change=args.allow_alpha_change,
+        force=args.force,
+        portable=resolve_portable_output(args.portable_output),
+    )
 
 
 def _add_verify_parser(subparsers):
@@ -165,11 +219,12 @@ def main(argv=None):
             stream.reconfigure(encoding='utf-8')
 
     parser = argparse.ArgumentParser(
-        description='Pixel-asset workflow toolkit: route, deliver, verify, and rebuild.'
+        description='Pixel-asset workflow toolkit: route, deliver, patch-draw, verify, and rebuild.'
     )
     sub = parser.add_subparsers(dest='command', required=True)
     _add_route_parser(sub)
     _add_deliver_parser(sub)
+    _add_patch_draw_parser(sub)
     _add_verify_parser(sub)
     _add_rebuild_parser(sub)
     args = parser.parse_args(argv)
@@ -177,6 +232,10 @@ def main(argv=None):
     try:
         if args.command == 'route':
             result = route_intent(args.prompt)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 0
+        if args.command == 'patch-draw':
+            result = _run_patch_draw(args)
             print(json.dumps(result, ensure_ascii=False, indent=2))
             return 0
         if args.command == 'verify':

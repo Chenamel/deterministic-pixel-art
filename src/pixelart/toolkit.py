@@ -14,6 +14,7 @@ import json
 from math import isqrt
 from pathlib import Path
 from pathlib import PureWindowsPath
+import re
 from struct import unpack_from
 import tempfile
 import unicodedata
@@ -28,10 +29,10 @@ from .context import _box
 from .core import MAX_PIXELS, MAX_SIDE, PixelArtError, color, dimensions, integer, make_preview
 from .edit import _allowed_mask, recolor_image, replace_cell, verify_edit
 from .ingest import image_to_spec
-from .jsonio import read_json
+from .jsonio import parse_json, read_json
 from .metadata import layout_record, merge_layout, rgba_digest
 from .output import encoded, publish
-from .spec import render
+from .spec import fields, render
 
 
 TOOLKIT_VERSION = '1.0.0'
@@ -124,6 +125,15 @@ def _same_existing_path(first, second):
         return False
 
 
+def _check_input_alias(resolved, key, input_paths):
+    for input_path in input_paths:
+        input_resolved = _resolved_path(input_path)
+        if key == _path_key(input_resolved) or _same_existing_path(resolved, input_resolved):
+            raise PixelArtError(
+                f'toolkit: output path {resolved} aliases input path {input_resolved}'
+            )
+
+
 def _publication_artifacts(out_dir, files, pack_zip, input_paths):
     out_root_key = _path_key(out_dir)
     delivery = [(Path(out_dir) / relative, data) for relative, data in files.items()]
@@ -149,12 +159,7 @@ def _publication_artifacts(out_dir, files, pack_zip, input_paths):
                 )
         resolved_targets.append((resolved, key))
 
-        for input_path in input_paths:
-            input_resolved = _resolved_path(input_path)
-            if key == _path_key(input_resolved) or _same_existing_path(resolved, input_resolved):
-                raise PixelArtError(
-                    f'toolkit: output path {resolved} aliases input path {input_resolved}'
-                )
+        _check_input_alias(resolved, key, input_paths)
 
     return dict(publication)
 
@@ -577,6 +582,123 @@ def _make_strip(labeled_images, scale, background):
         strip.paste(card, (x, gap + header))
         x += card.width + gap
     return strip
+
+
+def _reject_json_constant(value):
+    raise PixelArtError(f'patch-draw: invalid JSON constant {value}')
+
+
+def _read_draw_source(path):
+    data = Path(path).read_bytes()
+    spec = parse_json(data.decode('utf-8-sig'), parse_constant=_reject_json_constant)
+    if not isinstance(spec, dict) or spec.get('kind') != 'draw':
+        raise PixelArtError('patch-draw: source must be a JSON v1 draw object')
+    fields(spec, ('kind', 'size', 'operations'), ('version', 'background', 'palette', 'preset'))
+    version = spec.get('version', 1)
+    if type(version) is not int or version != 1:
+        raise PixelArtError('patch-draw: source must be version 1')
+    dimensions(spec['size'])
+    if not isinstance(spec['operations'], list):
+        raise PixelArtError('patch-draw: source operations must be a list')
+    return spec, _sha256_bytes(data)
+
+
+def inspect_draw_ops(source, *, offset=0, limit=50):
+    """Read a draw source snapshot and summarize a page of operation indices."""
+    offset = integer(offset, 'offset', 0)
+    limit = integer(limit, 'limit', 1)
+    if limit > 200:
+        raise PixelArtError('limit: maximum is 200')
+    spec, digest = _read_draw_source(source)
+    operations = spec['operations']
+    if offset > len(operations):
+        raise PixelArtError('offset: exceeds operation count')
+    summaries = []
+    for index, op in enumerate(operations[offset:offset + limit], start=offset):
+        if not isinstance(op, dict) or not isinstance(op.get('op'), str):
+            raise PixelArtError(f'operations[{index}]: expected an operation object with an op name')
+        summary = {'index': index, 'op': op['op']}
+        for key in ('x', 'y', 'w', 'h', 'color', 'tl', 'br', 'outline', 'state', 'clip'):
+            if key in op:
+                summary[key] = op[key]
+        if isinstance(op.get('points'), list):
+            summary.update(point_count=len(op['points']), points_sample=op['points'][:4])
+        summaries.append(summary)
+    end = offset + len(summaries)
+    return {
+        'file_sha256': digest,
+        'size': spec['size'],
+        'operation_count': len(operations),
+        'next_offset': end if end < len(operations) else None,
+        'operations': summaries,
+    }
+
+
+def patch_draw(source, patch_path, out, *, regions=None, mask=None,
+               allow_alpha_change=False, force=False, portable=False):
+    """Publish a draw spec with one operation slice edited within a pixel scope."""
+    require_pillow()
+    out = _resolved_path(out)
+    inputs = [source, patch_path]
+    if mask is not None:
+        inputs.append(mask)
+    _check_input_alias(out, _path_key(out), inputs)
+    if not regions and mask is None:
+        raise PixelArtError('patch-draw: declare --allow-region or --mask')
+
+    spec, digest = _read_draw_source(source)
+    patch = parse_json(Path(patch_path).read_text(encoding='utf-8-sig'),
+                       parse_constant=_reject_json_constant)
+    fields(patch, ('version', 'base_sha256', 'at', 'remove', 'insert'))
+    if type(patch['version']) is not int or patch['version'] != 1:
+        raise PixelArtError('patch-draw: patch version must be integer 1')
+    expected = patch['base_sha256']
+    if not isinstance(expected, str) or not re.fullmatch(r'[0-9a-f]{64}', expected):
+        raise PixelArtError('patch-draw: base_sha256 must be 64 lowercase hexadecimal digits')
+    if expected != digest:
+        raise PixelArtError('patch-draw: base_sha256 mismatch; re-run --inspect-ops on the source')
+
+    at = integer(patch['at'], 'at', 0)
+    remove = integer(patch['remove'], 'remove', 0)
+    insert = patch['insert']
+    if not isinstance(insert, list):
+        raise PixelArtError('patch-draw: insert must be a list')
+    if not remove and not insert:
+        raise PixelArtError('patch-draw: declare at least one insertion or removal')
+    operations = spec['operations']
+    if at + remove > len(operations):
+        raise PixelArtError('patch-draw: slice exceeds source operations')
+    for index, op in enumerate(insert):
+        if not isinstance(op, dict) or op.get('op') not in ('rect', 'points', 'line', 'polygon', 'mask'):
+            raise PixelArtError(
+                f'patch-draw: insert[{index}] must be a rect, points, line, polygon or mask operation'
+            )
+        if '_line' in op:
+            raise PixelArtError(f'patch-draw: insert[{index}] cannot specify _line')
+
+    candidate = {**spec, 'operations': operations[:at] + insert + operations[at + remove:]}
+    original_image = render(spec)
+    edited_image = render(candidate)
+    mask_image = _read_static_png(mask) if mask is not None else None
+    boundary = verify_edit(edited_image, original_image, regions=regions, mask=mask_image)
+    alpha_changed = _alpha_diff_stats(original_image, edited_image)['alpha_changed_pixels']
+    report = {
+        'version': 1, 'base_sha256': digest, 'at': at, 'removed': remove,
+        'inserted': len(insert), 'operation_count': len(candidate['operations']),
+        'changed_rgba_pixels': boundary['changed_rgba_pixels'], 'boundary': boundary,
+        'alpha_changed_pixels': alpha_changed,
+    }
+    failures = []
+    if not boundary['valid']:
+        failures.append(f'edit boundary violated: {boundary["changed_outside"]} RGBA pixel(s) outside allowed scope')
+    if alpha_changed and not allow_alpha_change:
+        failures.append(f'alpha lock violated: {alpha_changed} pixel(s) changed alpha; use --allow-alpha-change')
+    if failures:
+        raise ContractViolationError(' | '.join(failures), report=report)
+
+    data = json.dumps(candidate, ensure_ascii=False, indent=2, allow_nan=False) + '\n'
+    publish({out: data.encode('utf-8')}, force=force, portable=portable)
+    return {**report, 'output': str(out)}
 
 
 def _apply_png_patch(base_image, patch_spec, *, regions=None, mask=None):

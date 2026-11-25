@@ -22,6 +22,14 @@ python deterministic-pixel-art/scripts/recipes/asset_toolkit.py rebuild --input 
 
 Open the native image and the nearest-neighbor preview on the intended background. The delivery folder contains `native.png`, `nearest.png` and `REBUILD.md`.
 
+### Local edit on an existing PNG (`png-native`)
+
+To recolor or patch an existing PNG without flattening layers or touching pixels outside declared rectangles/masks (`--recolor` takes `{"#AABBCC": "#112233"}` or color pairs; `--patch` takes `{"ops": [{"op": "pixel"|"points"|"rect", ...}]}`; pass `--allow-alpha-change` only when silhouette changes are intended):
+
+```text
+python deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --mode png-native --source input.png --allow-region 8 10 16 14 --recolor map.json --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
+```
+
 ## Choose the shortest useful path
 
 - **Unified workflow entrypoint (route, deliver, verify, rebuild, ZIP pack):** read [toolkit.md](references/toolkit.md) and run `scripts/recipes/asset_toolkit.py`. Routes small grids (`grid`), lossless PNG local edits (`png-native`), fixed-alpha dual-state grids (`shared-grid-states`), geometry/alpha-changing states with local rollback (`state-set`), named atlases (`atlas`), and layered component projects (`assembly`) without forcing flat JSON conversion.
@@ -58,6 +66,12 @@ Grid transparency needs an explicit palette entry, such as `".":null`. This comp
 {"version":1,"kind":"grid","rows":["...",".X.","..."],"palette":{".":null,"X":"62D8E8"}}
 ```
 
+Minimal `draw` spec (`palette` aliases are optional; `op` supports `rect`, `points`, `line`, `polygon`, `bevel`, `mask`, `blit`, plus `minecraft` preset `button`/`slot`):
+
+```json
+{"version":1,"kind":"draw","size":[16,16],"palette":{"fill":"62D8E8","edge":"16223D"},"operations":[{"op":"rect","x":3,"y":3,"w":10,"h":10,"color":"fill"},{"op":"mask","points":[[7,7],[8,7],[7,8]],"color":"F7B955","outline":"edge","neighborhood":4}]}
+```
+
 Resolve `scripts/pixel_art.py` relative to this skill, not the working directory. Use Python 3.10+ with Pillow >=10.4,<13; the fixed reproduction baseline is Pillow 12.3.0. Install `requirements.txt` in a task-local virtual environment when needed.
 
 ```text
@@ -66,7 +80,9 @@ python <skill>/scripts/pixel_art.py inspect --image candidate.png --metadata lay
 python <skill>/scripts/pixel_art.py validate --image candidate.png --rules rules.json
 ```
 
-Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores layout for later automatic reuse. Keep the editable spec alongside the PNG. Existing outputs require `--force`; revise accepted art into a separate candidate unless replacement is requested. When revision history is required, retain each reviewed candidate's spec, PNG, layout and generator source before rebuilding. Python APIs include `Canvas`, `render`, `outline`, `make_preview`, `validate`, `inspect_image` and `image_to_spec`; keep task-specific writes behind an entrypoint.
+Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores layout for later automatic reuse. Keep the editable spec alongside the PNG. Existing outputs require `--force`; revise accepted art into a separate candidate unless replacement is requested. When revision history is required, retain each reviewed candidate's spec, PNG, layout and generator source before rebuilding. Keep task-specific writes behind an entrypoint.
+
+Python API (`scripts/` on `sys.path`): `Canvas(w, h, background=None)` exposes `.rect(x, y, w, h, color, *, clip=False)`, `.paint(pts, color, *, clip=False)`, `.line(pts, color, *, clip=False)`, `.polygon(pts, color, *, clip=False)`, `.bevel(x, y, w, h, tl, br, thickness=1, *, clip=False)`, `.mask(pts, color, outline=None, *, neighborhood=8, thickness=1, clip=False)`, `.composite(img, x, y, *, clip=False)`, and `.image`; module helpers include `render`, `outline`, `make_preview`, `validate`, `inspect_image`, and `image_to_spec`.
 
 ## Check against intent
 

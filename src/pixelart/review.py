@@ -287,6 +287,25 @@ def review(image,context=None,comparison=None,*,metadata=None):
                      'Only explicitly declared functional color pairs have contrast thresholds.',
                      'Isolated pixels are tested per cell with visible alpha and 8-neighbor connectivity.'])
     report['analysis']=inspect_image(image,context,comparison=comparison,metadata=metadata)
+    component_scopes = report['analysis']['cells'] or [
+        report['analysis']['facts']
+    ]
+    for scope in component_scopes:
+        components = scope['components']['8']
+        if components['count'] > 1:
+            warning = dict(
+                rule='disconnected_components',
+                components_8conn_count=components['count'],
+                component_sizes=[item['pixels'] for item in components['largest']],
+                component_bboxes=[item['bbox'] for item in components['largest']],
+                message=(
+                    'Multiple 8-connected visible components detected; separate components '
+                    'may be intentional. Check attachment and silhouette against the brief.'
+                ),
+            )
+            if 'name' in scope:
+                warning['cell'] = scope['name']
+            warnings.append(warning)
     report['cell_summary']=[{key:cell[key] for key in ('name','visible_pixels','occupancy','bbox','margins','centroid')}
                             for cell in report['analysis']['cells']]
     return report,_sheet(rgba,ctx,report,difference,change_mask=mask),difference

@@ -7,7 +7,6 @@ local rollback, named atlas and layered component preservation, and deterministi
 ZIP packing with isolated rebuild verification.
 """
 
-from collections import deque
 from copy import deepcopy
 from io import BytesIO
 import hashlib
@@ -22,8 +21,9 @@ import zipfile
 
 from PIL import Image, ImageDraw
 
+from .analysis import _components
 from .assembly import assemble, load_project, seam_sheet
-from .compat import pixels, require_pillow
+from .compat import require_pillow
 from .context import _box
 from .core import MAX_PIXELS, MAX_SIDE, PixelArtError, color, dimensions, integer, make_preview
 from .edit import _allowed_mask, recolor_image, replace_cell, verify_edit
@@ -324,38 +324,8 @@ def detect_source_mode(source, metadata=None):
 
 
 def _connected_components_8(rgba_bytes, width, height):
-    """Return sorted list of 8-connected opaque/non-zero-alpha component sizes."""
-    visited = bytearray(width * height)
-    sizes = []
-    for y in range(height):
-        row_off = y * width
-        for x in range(width):
-            idx = row_off + x
-            if visited[idx] or rgba_bytes[idx * 4 + 3] == 0:
-                continue
-            q = deque([(x, y)])
-            visited[idx] = 1
-            count = 0
-            while q:
-                cx, cy = q.popleft()
-                count += 1
-                for dy in (-1, 0, 1):
-                    ny = cy + dy
-                    if ny < 0 or ny >= height:
-                        continue
-                    nrow = ny * width
-                    for dx in (-1, 0, 1):
-                        if dx == 0 and dy == 0:
-                            continue
-                        nx = cx + dx
-                        if 0 <= nx < width:
-                            nidx = nrow + nx
-                            if not visited[nidx] and rgba_bytes[nidx * 4 + 3] > 0:
-                                visited[nidx] = 1
-                                q.append((nx, ny))
-            sizes.append(count)
-    sizes.sort(reverse=True)
-    return sizes
+    foreground = bytearray(alpha > 0 for alpha in rgba_bytes[3::4])
+    return _components(foreground, width, height, 8, (0, 0))
 
 
 def _edge_spikes(rgba_bytes, width, height):
@@ -385,15 +355,15 @@ def analyze_advisory(image):
     rgba = image.convert('RGBA')
     width, height = rgba.size
     raw = rgba.tobytes()
-    px = pixels(rgba)
     opaque = 0
     semi = 0
     colors = set()
-    for r, g, b, a in px:
-        if a > 0:
+    for index in range(0, len(raw), 4):
+        alpha = raw[index + 3]
+        if alpha > 0:
             opaque += 1
-            colors.add((r, g, b, a))
-            if a < 255:
+            colors.add(raw[index : index + 4])
+            if alpha < 255:
                 semi += 1
 
     # 4-connected isolated pixels
@@ -429,6 +399,9 @@ def analyze_advisory(image):
                     double_blocks += 1
 
     components = _connected_components_8(raw, width, height)
+    component_count = components['count']
+    largest = components['largest']
+    component_sizes = [component['pixels'] for component in largest]
     spikes = _edge_spikes(raw, width, height)
     hints = []
     if isolated:
@@ -439,9 +412,10 @@ def analyze_advisory(image):
         hints.append(
             f'{double_blocks} exact-color dark 2x2 block(s) detected; check for unintentional double-thick outlines.'
         )
-    if len(components) > 1:
+    if component_count > 1:
         hints.append(
-            f'{len(components)} 8-connected opaque components ({components[:6]}); multi-component art is valid when intentional.'
+            f'{component_count} 8-connected opaque components '
+            f'({component_sizes[:6]}); multi-component art is valid when intentional.'
         )
     if spikes:
         hints.append(
@@ -454,8 +428,9 @@ def analyze_advisory(image):
         'unique_visible_rgba_colors': len(colors),
         'isolated_pixels_4conn': isolated,
         'dark_exact_2x2_blocks': double_blocks,
-        'components_8conn_count': len(components),
-        'components_8conn_sizes': components[:16],
+        'components_8conn_count': component_count,
+        'components_8conn_sizes': component_sizes,
+        'components_8conn_bboxes': [component['bbox'] for component in largest],
         'perimeter_edge_spikes': spikes,
         'hints': hints,
         'human_visual_check_required': True,
@@ -509,10 +484,12 @@ def check_declared_contract(image, contract):
     if 'max_components' in contract:
         max_comp = integer(contract['max_components'], 'contract.max_components', 1)
         comps = _connected_components_8(raw, width, height)
-        details['components_8conn'] = len(comps)
-        if len(comps) > max_comp:
+        count = comps['count']
+        details['components_8conn'] = count
+        if count > max_comp:
+            sizes = [component['pixels'] for component in comps['largest'][:6]]
             failures.append(
-                f'max_components violated: {len(comps)} components ({comps[:6]}) > {max_comp}'
+                f'max_components violated: {count} components ({sizes}) > {max_comp}'
             )
 
     if contract.get('no_edge_spikes'):

@@ -59,6 +59,8 @@ With `--portable-output`, new files are created without hard links. Existing fil
 
 Rules (all optional): `size: [w,h]`, `mode: RGBA`, `alpha: [0,255]`, `palette: [colors...]`, positive `max_colors`, boolean `nonempty`, `cell_size: [w,h]`, integer `transparent_margin`, and `expected_pixels: [{at:[x,y],color:...}]`. Cell size must divide the canvas; margins apply to every cell, not only the outer image border. Palette checks count complete RGBA values, including transparent pixels. State meaning/order comes from atlas metadata and the application's requirements, not image-only validation.
 
+The CLI `render` success JSON includes an `advisory` summary alongside image metadata. It reports 4-connected isolated pixels, 8-connected component sizes and `[x,y,width,height]` bounding boxes, and exact-color dark 2×2 hints. These facts are non-blocking and do not classify intentional separate parts as errors.
+
 ```json
 {"size":[80,16],"mode":"RGBA","alpha":[0,255],"nonempty":true,"cell_size":[16,16],"transparent_margin":1}
 ```

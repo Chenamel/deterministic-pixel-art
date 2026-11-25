@@ -851,6 +851,10 @@ class AssetToolkitTests(unittest.TestCase):
             self.assertEqual(res_ok.returncode, 0, res_ok.stderr)
             data = json.loads(res_ok.stdout)
             self.assertGreater(data['tiers']['advisory']['components_8conn_count'], 1)
+            self.assertEqual(
+                len(data['tiers']['advisory']['components_8conn_bboxes']),
+                data['tiers']['advisory']['components_8conn_count'],
+            )
 
             # With explicit contract max_components=1, verify must fail at contract tier (rc=1)
             strict_contract = root / 'strict.json'

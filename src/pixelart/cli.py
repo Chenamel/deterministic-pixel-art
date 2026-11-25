@@ -497,8 +497,20 @@ def main(argv=None):
                 else None
             )
             from .metadata import layout_record, encode_png
+            from .toolkit import analyze_advisory
 
             metadata = layout_record(image)
+            facts = analyze_advisory(image)
+            advisory = {
+                key: facts[key]
+                for key in (
+                    'components_8conn_count',
+                    'components_8conn_sizes',
+                    'components_8conn_bboxes',
+                    'isolated_pixels_4conn',
+                    'hints',
+                )
+            }
             artifacts = {
                 args.out: encode_png(image, metadata) if args.embed_metadata else image
             }
@@ -509,7 +521,12 @@ def main(argv=None):
             publish(artifacts, force=args.force, portable=args.portable_output)
             print(
                 json.dumps(
-                    {'output': str(args.out.resolve()), **metadata}, ensure_ascii=False
+                    {
+                        'output': str(args.out.resolve()),
+                        **metadata,
+                        'advisory': advisory,
+                    },
+                    ensure_ascii=False,
                 )
             )
         else:

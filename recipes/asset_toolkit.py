@@ -35,7 +35,7 @@ def _add_deliver_parser(subparsers):
         '--mode',
         choices=SUPPORTED_MODES,
         default='auto',
-        help='Explicit source mode or auto-detect (default: auto).',
+        help='Source mode or auto-detect (default: auto). grid accepts JSON v1 kind grid and kind draw.',
     )
     cmd.add_argument('--metadata', type=Path, help='Optional layout.json sidecar for PNG inputs.')
     cmd.add_argument('--baseline', type=Path, help='Original PNG baseline for png-native diff/boundary verification.')

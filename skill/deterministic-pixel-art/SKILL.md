@@ -8,6 +8,20 @@ description: Create or edit deterministic pixel-art PNG sprites, icons, GUI comp
 
 Create editable specifications and exact-grid PNGs with Python and Pillow. Work at native logical resolution and enlarge with nearest-neighbor scaling.
 
+## Deliver a flat JSON asset
+
+Use the same delivery command for JSON v1 `kind: grid` and `kind: draw`. The toolkit option `--mode grid` accepts both source kinds and packages the editable JSON.
+
+Run these commands from the folder containing `asset.json` and the bundled Skill.
+
+```text
+python deterministic-pixel-art/scripts/pixel_art.py render --spec asset.json --out asset.png --preview asset-6x.png --preview-background 172033 --scale 6
+python deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --source asset.json --mode grid --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
+python deterministic-pixel-art/scripts/recipes/asset_toolkit.py rebuild --input result.zip --out-dir rebuilt-check
+```
+
+Open the native image and the nearest-neighbor preview on the intended background. The delivery folder contains `native.png`, `nearest.png` and `REBUILD.md`.
+
 ## Choose the shortest useful path
 
 - **Unified workflow entrypoint (route, deliver, verify, rebuild, ZIP pack):** read [toolkit.md](references/toolkit.md) and run `scripts/recipes/asset_toolkit.py`. Routes small grids (`grid`), lossless PNG local edits (`png-native`), fixed-alpha dual-state grids (`shared-grid-states`), geometry/alpha-changing states with local rollback (`state-set`), named atlases (`atlas`), and layered component projects (`assembly`) without forcing flat JSON conversion.

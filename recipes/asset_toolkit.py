@@ -86,7 +86,11 @@ def _add_patch_draw_parser(subparsers):
         help='Inspect draw operation indices or apply one scoped operation slice to a draw spec.',
     )
     cmd.add_argument('--source', type=Path, required=True, help='Editable JSON v1 draw source.')
-    cmd.add_argument('--inspect-ops', action='store_true', help='Print the source SHA-256 and a page of operation summaries.')
+    cmd.add_argument(
+        '--inspect-ops',
+        action='store_true',
+        help='Read-only mode (accepts only --source, --offset, --limit): print file_sha256 and operation summaries.',
+    )
     cmd.add_argument('--offset', type=int, help='First zero-based index to inspect (default: 0).')
     cmd.add_argument('--limit', type=int, help='Operations per inspection page (default: 50, max: 200).')
     cmd.add_argument('--patch', type=Path, help='JSON v1 draw operation slice.')

@@ -72,12 +72,23 @@ class CliTests(unittest.TestCase):
         self.assertEqual(self.run_cli('render', '--spec', self.spec, '--out', self.out).returncode, 2)
 
     def test_import_creates_no_files(self):
-        code = 'import sys; sys.path.insert(0, sys.argv[1]); import pixelart; import pixelart.cli'
+        code = 'import sys; sys.path.insert(0, sys.argv[1]); import pixelart; import pixelart.cli; import pixel_art'
         before = sorted(str(p.relative_to(self.folder)) for p in self.folder.rglob('*'))
         result = subprocess.run([sys.executable, '-B', '-c', code, str(ROOT / 'src')], cwd=self.folder,
                                 capture_output=True, timeout=30)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(before, sorted(str(p.relative_to(self.folder)) for p in self.folder.rglob('*')))
+
+    def test_pixel_art_entrypoint_reexports_public_api(self):
+        code = (
+            'import sys; sys.path.insert(0, sys.argv[1]); '
+            'import pixelart, pixel_art; '
+            'assert pixel_art.__all__ == pixelart.__all__; '
+            'assert all(getattr(pixel_art, name) is getattr(pixelart, name) for name in pixelart.__all__)'
+        )
+        result = subprocess.run([sys.executable, '-B', '-c', code, str(ROOT / 'src')], cwd=self.folder,
+                                capture_output=True, text=True, timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
 
 if __name__ == '__main__':

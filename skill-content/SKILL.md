@@ -91,7 +91,18 @@ python <skill>/scripts/pixel_art.py validate --image candidate.png --rules rules
 
 Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores layout for later automatic reuse. Keep the editable spec alongside the PNG. Existing outputs require `--force`; revise accepted art into a separate candidate unless replacement is requested. When revision history is required, retain each reviewed candidate's spec, PNG, layout and generator source before rebuilding. Keep task-specific writes behind an entrypoint, and write temporary helper scripts in your working directory rather than inside `deterministic-pixel-art/`.
 
-Python API (add `scripts/` to `sys.path`; import from `pixelart` or `pixel_art`): `Canvas(w, h, background=None)` exposes `.pixel(x, y, color, *, clip=False)`, `.rect(x, y, w, h, color, *, clip=False)`, `.ellipse(x, y, w, h, color, *, outline_color=None, neighborhood=4, thickness=1, hollow=False, clip=False)`, `.paint(pts, color, *, clip=False)`, `.line(pts, color, *, clip=False)`, `.polygon(pts, color, *, clip=False)`, `.bevel(x, y, w, h, tl, br, thickness=1, *, clip=False)`, `.mask(pts, color, outline=None, *, neighborhood=8, thickness=1, clip=False)`, `.mirror(axis='x', *, region=None)`, `.flip(axis='x', *, region=None)`, `.composite(img, x, y, *, clip=False)`, `.to_spec(*, region=None)`, and `.image`; module helpers include `render`, `outline`, `make_preview`, `validate`, `inspect_image`, and `image_to_spec`.
+Python API (add `scripts/` to `sys.path`; import from `pixelart` or `pixel_art`): `Canvas(w, h, background=None)` exposes `.pixel(x, y, color, *, clip=False)`, `.rect(x, y, w, h, color, *, clip=False)`, `.ellipse(x, y, w, h, color, *, outline_color=None, neighborhood=4, thickness=1, hollow=False, clip=False)`, `.paint(pts, color, *, clip=False)`, `.line(pts, color, *, clip=False)`, `.polygon(pts, color, *, clip=False)`, `.bevel(x, y, w, h, tl, br, thickness=1, *, clip=False)`, `.mask(pts, color, outline=None, *, neighborhood=8, thickness=1, clip=False)`, `.mirror(axis='x', *, region=None)`, `.flip(axis='x', *, region=None)`, `.composite(img, x, y, *, clip=False)`, `.to_spec(*, region=None)`, and `.image`; module helpers include `render`, `outline`, `make_preview`, `validate`, `inspect_image`, and `image_to_spec`. Use this starter instead of hand-writing `PIL.Image` loops and grid serializers:
+
+```python
+import json, pathlib, sys
+sys.path.insert(0, 'deterministic-pixel-art/scripts')
+from pixel_art import Canvas
+cv = Canvas(48, 48)
+cv.ellipse(8, 12, 32, 32, 'C28E36', outline_color='1C140F')
+cv.pixel(20, 20, 'FFF8C8')
+cv.mirror('x')
+pathlib.Path('asset.json').write_text(json.dumps(cv.to_spec()), encoding='utf-8')
+```
 
 ## Check against intent
 

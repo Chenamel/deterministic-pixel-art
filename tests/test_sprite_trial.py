@@ -54,6 +54,11 @@ def complete_fixture(work, run):
 
 
 class SpriteTrialTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.completed_run = None
+        cls.addClassCleanup(setattr, cls, 'completed_run', None)
+
     def setUp(self):
         temporary = tempfile.TemporaryDirectory(prefix='精灵 trial space ')
         self.addCleanup(temporary.cleanup)
@@ -78,6 +83,23 @@ class SpriteTrialTests(unittest.TestCase):
         self.assertEqual(result.returncode, expected, result.stdout+result.stderr)
         return result
 
+    def prepare_completed_run(self):
+        run = self.work / 'RUN'
+        cls = type(self)
+        if cls.completed_run is None:
+            complete_fixture(self.work, self.run_recorder)
+            cls.completed_run = tuple(
+                (file.relative_to(run), file.read_bytes())
+                for file in sorted(run.rglob('*'))
+                if file.is_file()
+            )
+            return
+
+        for relative, data in cls.completed_run:
+            target = run / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data)
+
     def checks(self):
         return json.loads((self.work/'RUN/checks.json').read_text(encoding='utf-8'))
 
@@ -101,7 +123,7 @@ class SpriteTrialTests(unittest.TestCase):
         self.assertFalse((self.root/'bad').exists())
 
     def test_recorded_chain_tamper_detection_and_submission(self):
-        complete_fixture(self.work, self.run_recorder)
+        self.prepare_completed_run()
         self.run_recorder('check')
         self.assertTrue(self.checks()['passed'])
         self.assertEqual(len(self.checks()['checks']), 22)
@@ -128,7 +150,7 @@ class SpriteTrialTests(unittest.TestCase):
             self.assertNotIn('LT05/deterministic-pixel-art/SKILL.md', bundle.namelist())
 
     def test_reviewed_v1_source_changes_are_detected(self):
-        complete_fixture(self.work, self.run_recorder)
+        self.prepare_completed_run()
         self.run_recorder('check')
         source = self.work/'RUN/v1/author.py'
         source.write_text(AUTHOR+'\n# changed after v1 was ready\n', encoding='utf-8')

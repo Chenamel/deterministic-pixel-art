@@ -61,6 +61,11 @@ def complete_fixture(work,run):
 
 
 class MinecraftTrialTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.completed_run = None
+        cls.addClassCleanup(setattr, cls, 'completed_run', None)
+
     def setUp(self):
         temporary=tempfile.TemporaryDirectory(prefix='界面 trial space ')
         self.addCleanup(temporary.cleanup)
@@ -85,6 +90,23 @@ class MinecraftTrialTests(unittest.TestCase):
         self.assertEqual(result.returncode,expected,result.stdout+result.stderr)
         return result
 
+    def prepare_completed_run(self):
+        run = self.work / 'RUN'
+        cls = type(self)
+        if cls.completed_run is None:
+            complete_fixture(self.work, self.run_recorder)
+            cls.completed_run = tuple(
+                (file.relative_to(run), file.read_bytes())
+                for file in sorted(run.rglob('*'))
+                if file.is_file()
+            )
+            return
+
+        for relative, data in cls.completed_run:
+            target = run / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(data)
+
     def checks(self):return json.loads((self.work/'RUN/checks.json').read_text(encoding='utf-8'))
     def failures(self):return {c['check'] for c in self.checks()['checks'] if not c['passed']}
 
@@ -101,7 +123,7 @@ class MinecraftTrialTests(unittest.TestCase):
         self.assertFalse((self.root/'bad').exists())
 
     def test_recorded_chain_refusal_and_submission(self):
-        complete_fixture(self.work,self.run_recorder)
+        self.prepare_completed_run()
         self.run_recorder('check')
         self.assertTrue(self.checks()['passed'])
         self.assertEqual(len(self.checks()['checks']),35)
@@ -120,7 +142,7 @@ class MinecraftTrialTests(unittest.TestCase):
             self.assertFalse(any('/deterministic-pixel-art/' in n for n in bundle.namelist()))
 
     def test_pixel_layout_placement_views_and_recording_drift(self):
-        complete_fixture(self.work,self.run_recorder)
+        self.prepare_completed_run()
         targets=[('scene.png','scene-assembled-exactly'),('seams.png','seam-view-exact'),
                  ('views/buttons-light-4x.png','views/buttons-light-4x.png-exact-preview')]
         for filename,failure in targets:

@@ -4,7 +4,7 @@ from pathlib import Path
 from .core import PixelArtError
 
 
-def parse_json(text):
+def parse_json(text, *, parse_constant=None):
     def unique(pairs):
         result = {}
         for key, value in pairs:
@@ -13,7 +13,7 @@ def parse_json(text):
             result[key] = value
         return result
     try:
-        return json.loads(text, object_pairs_hook=unique)
+        return json.loads(text, object_pairs_hook=unique, parse_constant=parse_constant)
     except RecursionError as exc:
         raise PixelArtError('JSON nesting exceeds the decoder limit; simplify the input') from exc
 

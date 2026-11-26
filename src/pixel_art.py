@@ -1,6 +1,23 @@
 #!/usr/bin/env python3
-"""Direct executable entrypoint; works from any current directory."""
+"""Direct executable entrypoint and Python API re-export; works from any current directory."""
 try:
+    from pixelart import (
+        Canvas,
+        PixelArtError,
+        __all__,
+        __version__,
+        assemble,
+        color,
+        image_to_spec,
+        inspect_image,
+        make_preview,
+        outline,
+        recolor_image,
+        render,
+        replace_cell,
+        validate,
+        verify_edit,
+    )
     from pixelart.cli import main
 except ModuleNotFoundError as exc:
     if exc.name == 'PIL' or (exc.name or '').startswith('PIL.'):

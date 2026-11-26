@@ -1,6 +1,6 @@
 import unittest
 from PIL import Image
-from pixelart import Canvas, PixelArtError, color, make_preview, outline, validate
+from pixelart import Canvas, PixelArtError, color, make_preview, outline, render, validate
 
 
 class CoreTests(unittest.TestCase):
@@ -96,6 +96,78 @@ class CoreTests(unittest.TestCase):
                       {'cell_size': [2, 2]}, {'expected_pixels': [{'at': [0, 0], 'color': 'FFFFFF'}]}]:
             with self.subTest(rules=rules):
                 self.assertFalse(validate(image, rules)['valid'])
+
+    def test_pixel_helper_bounds_and_clipping(self):
+        cv = Canvas(4, 4)
+        cv.pixel(1, 2, 'FF0000')
+        self.assertEqual(cv.image.getpixel((1, 2)), (255, 0, 0, 255))
+        cv.pixel(-1, 0, '00FF00', clip=True)
+        self.assertEqual(cv.image.getpixel((0, 0))[3], 0)
+        with self.assertRaisesRegex(PixelArtError, 'bounds'):
+            cv.pixel(4, 0, '00FF00')
+        with self.assertRaises(PixelArtError):
+            cv.pixel(True, 0, '00FF00')
+
+    def test_ellipse_fill_outline_hollow_and_clip(self):
+        # 3x3 cross, 5x5 symmetric disk, and bounded interior outline.
+        c3 = Canvas(3, 3)
+        c3.ellipse(0, 0, 3, 3, 'FFFFFF')
+        self.assertEqual(
+            {(x, y) for y in range(3) for x in range(3) if c3.image.getpixel((x, y))[3]},
+            {(1, 0), (0, 1), (1, 1), (2, 1), (1, 2)},
+        )
+        c5 = Canvas(5, 5)
+        c5.ellipse(0, 0, 5, 5, '36CFC9', outline_color='16223D')
+        for y in range(5):
+            for x in range(5):
+                px = c5.image.getpixel((x, y))
+                if (x in (0, 4) and y in (0, 4)):
+                    self.assertEqual(px[3], 0)
+                elif (x in (1, 2, 3) and y in (1, 2, 3)):
+                    self.assertEqual(px, color('36CFC9'))
+                else:
+                    self.assertEqual(px, color('16223D'))
+
+        # Hollow ring preserves interior pixels and rejects outline_color combination.
+        ring = Canvas(7, 7, '102030')
+        ring.ellipse(1, 1, 5, 5, 'F7B955', hollow=True)
+        self.assertEqual(ring.image.getpixel((3, 3)), color('102030'))
+        self.assertEqual(ring.image.getpixel((3, 1)), color('F7B955'))
+        self.assertEqual(ring.image.getpixel((0, 0)), color('102030'))
+        with self.assertRaisesRegex(PixelArtError, 'hollow'):
+            ring.ellipse(1, 1, 5, 5, 'F7B955', outline_color='FFFFFF', hollow=True)
+        with self.assertRaisesRegex(PixelArtError, 'bounds'):
+            Canvas(4, 4).ellipse(0, 0, 5, 4, 'FFFFFF')
+        clipped = Canvas(4, 4)
+        clipped.ellipse(-1, 0, 5, 4, 'FFFFFF', clip=True)
+        self.assertEqual(clipped.image.getpixel((0, 0)), color('FFFFFF'))
+
+    def test_mirror_flip_and_to_spec_round_trip(self):
+        cv = Canvas(5, 4)
+        cv.pixel(0, 1, 'FF0000')
+        cv.pixel(2, 1, '00FF00')
+        cv.pixel(4, 1, '0000FF')
+        cv.mirror('x')
+        self.assertEqual(cv.image.getpixel((4, 1)), color('FF0000'))
+        self.assertEqual(cv.image.getpixel((2, 1)), color('00FF00'))
+
+        # Sub-region flip preserves surrounding pixels verbatim.
+        cv.pixel(0, 0, 'FFFFFF')
+        cv.flip('x', region=[0, 1, 5, 2])
+        self.assertEqual(cv.image.getpixel((0, 0)), color('FFFFFF'))
+        with self.assertRaisesRegex(PixelArtError, 'axis'):
+            cv.mirror('z')
+        with self.assertRaisesRegex(PixelArtError, 'bounds'):
+            cv.flip('x', region=[-1, 0, 3, 2])
+
+        # Continuous drawing + lossless JSON v1 export round-trip.
+        cv.ellipse(0, 0, 4, 4, '62D8E8', outline_color='16223D')
+        spec = cv.to_spec()
+        self.assertEqual(spec['kind'], 'grid')
+        self.assertEqual(render(spec).tobytes(), cv.image.tobytes())
+        sub = cv.to_spec(region=[0, 0, 3, 3])
+        self.assertEqual(sub['size'], [3, 3])
+        self.assertEqual(render(sub).tobytes(), cv.image.crop((0, 0, 3, 3)).tobytes())
 
 
 if __name__ == '__main__':

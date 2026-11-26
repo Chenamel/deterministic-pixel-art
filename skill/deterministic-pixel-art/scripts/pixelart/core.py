@@ -138,6 +138,81 @@ class Canvas:
         if body:
             self.draw.point(list(body), fill=color(fill))
 
+    def _paint_rgba(self, coords, rgba, clip):
+        pts = [(px, py) for px, py in coords
+               if not clip or (0 <= px < self.image.width and 0 <= py < self.image.height)]
+        if pts:
+            self.draw.point(pts, fill=rgba)
+
+    def pixel(self, x, y, fill, *, clip=False):
+        """Set a single integer pixel, clipping out-of-bounds coordinates when clip=True."""
+        px, py = pair((x, y), 'position')
+        self.paint([(px, py)], fill, clip=clip)
+
+    def ellipse(self, x, y, w, h, fill, *, outline_color=None, neighborhood=4,
+                thickness=1, hollow=False, clip=False):
+        """Draw a deterministic integer-grid ellipse contained within [x, y, w, h]."""
+        x0, y0, x1, y1 = self._box(x, y, w, h, clip)
+        offsets = _validate_outline_params(neighborhood, thickness)
+        boolean(hollow, 'hollow')
+        if hollow and outline_color is not None:
+            raise PixelArtError('ellipse: hollow cannot be combined with outline_color')
+        body = _ellipse_points(x0, y0, x1 - x0 + 1, y1 - y0 + 1)
+        fill_rgba = color(fill)
+        if not hollow and outline_color is None:
+            self._paint_rgba(body, fill_rgba, clip)
+            return
+        edge, core = _interior_border(body, offsets, thickness)
+        if hollow:
+            self._paint_rgba(edge, fill_rgba, clip)
+            return
+        self._paint_rgba(edge, color(outline_color), clip)
+        self._paint_rgba(core, fill_rgba, clip)
+
+    def _region_box(self, region):
+        if region is None:
+            return 0, 0, self.image.width, self.image.height
+        if not isinstance(region, (list, tuple)) or len(region) != 4:
+            raise PixelArtError('region: expected [x, y, width, height]')
+        x0, y0, x1, y1 = self._box(*region, False)
+        return x0, y0, x1 - x0 + 1, y1 - y0 + 1
+
+    def _transform_region(self, axis, region, mode):
+        if axis not in ('x', 'y', 'xy'):
+            raise PixelArtError("axis: expected 'x', 'y' or 'xy'")
+        rx, ry, rw, rh = self._region_box(region)
+        sub = self.image.crop((rx, ry, rx + rw, ry + rh))
+        if mode == 'flip':
+            if 'x' in axis:
+                sub = sub.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+            if 'y' in axis:
+                sub = sub.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+        else:
+            if 'x' in axis:
+                half = rw // 2
+                if half:
+                    left = sub.crop((0, 0, half, rh)).transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+                    sub.paste(left, (rw - half, 0))
+            if 'y' in axis:
+                half_h = rh // 2
+                if half_h:
+                    top = sub.crop((0, 0, rw, half_h)).transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+                    sub.paste(top, (0, rh - half_h))
+        self.image.paste(sub, (rx, ry))
+
+    def mirror(self, axis='x', *, region=None):
+        """Mirror the leading half onto the trailing half along axis inside canvas or region."""
+        self._transform_region(axis, region, 'mirror')
+
+    def flip(self, axis='x', *, region=None):
+        """Flip pixels along axis inside canvas or region."""
+        self._transform_region(axis, region, 'flip')
+
+    def to_spec(self, *, region=None):
+        """Export the canvas or sub-region as a lossless JSON v1 grid or draw spec."""
+        from .ingest import image_to_spec
+        return image_to_spec(self.image, region=region)
+
     def composite(self, image, x, y, *, clip=False):
         self._box(x, y, image.width, image.height, clip)
         if image.mode != 'RGBA':
@@ -145,18 +220,53 @@ class Canvas:
         self.image.alpha_composite(image, (x, y))
 
 
+_NEIGHBORS = {
+    4: ((-1, 0), (1, 0), (0, -1), (0, 1)),
+    8: tuple((dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1) if (dx, dy) != (0, 0)),
+}
+
+
+def _validate_outline_params(neighborhood, thickness):
+    if type(neighborhood) is not int or neighborhood not in _NEIGHBORS:
+        raise PixelArtError('neighborhood: expected 4 or 8')
+    integer(thickness, 'thickness', 1)
+    if thickness > 64:
+        raise PixelArtError('thickness: maximum outline radius is 64')
+    return _NEIGHBORS[neighborhood]
+
+
+def _ellipse_points(x, y, w, h):
+    limit = w * w * h * h - (w * h if w == 3 and h == 3 else 0)
+    return {
+        (px, py)
+        for py in range(y, y + h)
+        for px in range(x, x + w)
+        if (2 * (px - x) + 1 - w) ** 2 * h * h + (2 * (py - y) + 1 - h) ** 2 * w * w < limit
+    }
+
+
+def _interior_border(body, offsets, thickness):
+    edge = set()
+    core = body.copy()
+    for _ in range(thickness):
+        frontier = {
+            (px, py)
+            for px, py in core
+            if any((px + dx, py + dy) not in core for dx, dy in offsets)
+        }
+        if not frontier:
+            break
+        edge.update(frontier)
+        core.difference_update(frontier)
+    return edge, core
+
+
 def outline(coordinates, *, neighborhood=8, thickness=1):
     return _outline_validated(set(points(coordinates)), neighborhood, thickness)
 
 
 def _outline_validated(body, neighborhood, thickness):
-    if type(neighborhood) is not int or neighborhood not in (4, 8):
-        raise PixelArtError('neighborhood: expected 4 or 8')
-    integer(thickness, 'thickness', 1)
-    if thickness > 64:
-        raise PixelArtError('thickness: maximum outline radius is 64')
-    offsets = [(-1, 0), (1, 0), (0, -1), (0, 1)] if neighborhood == 4 else [
-        (dx, dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1) if (dx, dy) != (0, 0)]
+    offsets = _validate_outline_params(neighborhood, thickness)
     expanded = body.copy()
     frontier = body
     for _ in range(thickness):

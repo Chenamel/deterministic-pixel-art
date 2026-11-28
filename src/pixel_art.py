@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Direct executable entrypoint and Python API re-export; works from any current directory."""
+import sys
+
+if __name__ == '__main__':
+    # CLI runs leave read-only Skill script trees free of __pycache__ files.
+    sys.dont_write_bytecode = True
+
 try:
     from pixelart import (
         Canvas,

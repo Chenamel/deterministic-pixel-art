@@ -1,9 +1,14 @@
 """Unified pixel-asset workflow toolkit CLI (route, deliver, patch-draw, verify, rebuild)."""
 
+import sys
+
+if __name__ == '__main__':
+    # CLI runs leave read-only Skill script trees free of __pycache__ files.
+    sys.dont_write_bytecode = True
+
 import argparse
 import json
 from pathlib import Path
-import sys
 
 from _common import resolve_portable_output
 from pixelart.compat import require_pillow

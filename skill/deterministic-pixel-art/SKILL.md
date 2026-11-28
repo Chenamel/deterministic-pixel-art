@@ -15,9 +15,9 @@ Use the same delivery command for JSON v1 `kind: grid` and `kind: draw`. The too
 Run these commands from the folder containing `asset.json` and the bundled Skill.
 
 ```text
-python deterministic-pixel-art/scripts/pixel_art.py render --spec asset.json --out asset.png --preview asset-6x.png --preview-background 172033 --scale 6
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --source asset.json --mode grid --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py rebuild --input result.zip --out-dir rebuilt-check
+python -B deterministic-pixel-art/scripts/pixel_art.py render --spec asset.json --out asset.png --preview asset-6x.png --preview-background 172033 --scale 6
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --source asset.json --mode grid --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py rebuild --input result.zip --out-dir rebuilt-check
 ```
 
 Open the native image and the nearest-neighbor preview on the intended background. The delivery folder contains `native.png`, `nearest.png` and `REBUILD.md`.
@@ -27,7 +27,7 @@ Open the native image and the nearest-neighbor preview on the intended backgroun
 To recolor or patch an existing PNG without flattening layers or touching pixels outside declared rectangles/masks (`--recolor` takes `{"#AABBCC": "#112233"}` or color pairs; `--patch` takes `{"ops": [{"op": "pixel"|"points"|"rect", ...}]}`; pass `--allow-alpha-change` only when silhouette changes are intended):
 
 ```text
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --mode png-native --source input.png --allow-region 8 10 16 14 --recolor map.json --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --mode png-native --source input.png --allow-region 8 10 16 14 --recolor map.json --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
 ```
 
 ### Local edit on an existing `draw` spec (`patch-draw`)
@@ -35,8 +35,8 @@ python deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --mode p
 Inspect the source SHA-256 and zero-based operation indices first (`--inspect-ops` is read-only and accepts only `--source`, `--offset`, `--limit`), then apply one contiguous operation slice (`{"version":1,"base_sha256":"<file_sha256>","at":12,"remove":1,"insert":[...]}` using `rect`, `points`, `line`, `polygon`, or `mask`):
 
 ```text
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --inspect-ops
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --patch patch.json --allow-region 8 10 16 14 --out revised.json
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --inspect-ops
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --patch patch.json --allow-region 8 10 16 14 --out revised.json
 ```
 
 ## Choose the shortest useful path
@@ -84,12 +84,12 @@ Minimal `draw` spec (`palette` aliases are optional; `op` supports `rect`, `poin
 Resolve `scripts/pixel_art.py` relative to this skill, not the working directory. Use Python 3.10+ with Pillow >=10.4,<13; the fixed reproduction baseline is Pillow 12.3.0. Install `requirements.txt` in a task-local virtual environment when needed.
 
 ```text
-python <skill>/scripts/pixel_art.py render --spec scene.json --out candidate.png --preview preview.png --preview-background 172033 --metadata layout.json
-python <skill>/scripts/pixel_art.py inspect --image candidate.png --metadata layout.json --cell normal --grid
-python <skill>/scripts/pixel_art.py validate --image candidate.png --rules rules.json
+python -B <skill>/scripts/pixel_art.py render --spec scene.json --out candidate.png --preview preview.png --preview-background 172033 --metadata layout.json
+python -B <skill>/scripts/pixel_art.py inspect --image candidate.png --metadata layout.json --cell normal --grid
+python -B <skill>/scripts/pixel_art.py validate --image candidate.png --rules rules.json
 ```
 
-Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores layout for later automatic reuse. Keep the editable spec alongside the PNG. Existing outputs require `--force`; revise accepted art into a separate candidate unless replacement is requested. When revision history is required, retain each reviewed candidate's spec, PNG, layout and generator source before rebuilding. Keep task-specific writes behind an entrypoint, write temporary helper scripts in your working directory rather than inside `deterministic-pixel-art/`, and run helpers with `python -B` (ignore `__pycache__` from read-only imports).
+Omit `--cell` for a non-atlas image. `render --embed-metadata` optionally stores layout for later automatic reuse. Keep the editable spec alongside the PNG. Existing outputs require `--force`; revise accepted art into a separate candidate unless replacement is requested. When revision history is required, retain each reviewed candidate's spec, PNG, layout and generator source before rebuilding. Keep task-specific writes behind an entrypoint, write temporary helper scripts in your working directory rather than inside `deterministic-pixel-art/`, and run Python scripts and one-liners with `python -B` (Skill CLIs skip bytecode automatically; do not run `git status` or clean `__pycache__` inside `deterministic-pixel-art/`).
 
 Python API (add `scripts/` to `sys.path`; import from `pixelart` or `pixel_art`): `Canvas(w, h, background=None)` exposes `.pixel(x, y, color, *, clip=False)`, `.rect(x, y, w, h, color, *, clip=False)`, `.ellipse(x, y, w, h, color, *, outline_color=None, neighborhood=4, thickness=1, hollow=False, clip=False)`, `.paint(pts, color, *, clip=False)`, `.line(pts, color, *, clip=False)`, `.polygon(pts, color, *, clip=False)`, `.bevel(x, y, w, h, tl, br, thickness=1, *, clip=False)`, `.mask(pts, color, outline=None, *, neighborhood=8, thickness=1, clip=False)`, `.mirror(axis='x', *, region=None)`, `.flip(axis='x', *, region=None)`, `.composite(img, x, y, *, clip=False)`, `.to_spec(*, region=None)`, and `.image`; module helpers include `render`, `outline`, `make_preview`, `validate`, `inspect_image`, and `image_to_spec`. Use this starter instead of hand-writing `PIL.Image` loops and grid serializers:
 

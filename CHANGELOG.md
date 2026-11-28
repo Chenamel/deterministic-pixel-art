@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.1 (2026-11-29)
+
+- **Scoped `draw` patching:** Added `asset_toolkit.py patch-draw` and `pixelart.toolkit.patch_draw` to edit or replace draw operations in `asset_toolkit.json` by label, index, or tag without rewriting the full spec, plus top-level Python helper re-exports on `pixel_art`.
+- **Expanded `Canvas` helpers & quick-starts:** Added deterministic `set`, `fill_ellipse`, `mirror_horizontal`, `flip_vertical`, and `to_spec` methods on `Canvas` alongside copyable `SKILL.md` quick-reference snippets and a Canvas starter template.
+- **Bytecode-free Skill CLIs:** `pixel_art.py` and `asset_toolkit.py` suppress `__pycache__` generation when invoked directly, and `SKILL.md` standardizes quick-start helper commands on `python -B`.
+- **DSH `0.1.6`:** Packages Skill `v1.4.1` with the same `engines.dsh: "*"` compatibility across DSH `0.2.2-rc.1`–`rc.5` and `0.2.3-alpha.1` (Node `>=24.9.0`, Python `3.10+`, Pillow `>=10.4,<13`).
+
 ## 1.4.0 (2026-11-25)
 
 - **Unified asset delivery & rebuild (`recipes/asset_toolkit.py`):** Package a single pixel asset along with its editable source (`grid` or `draw` JSON, existing PNG, state variants, named atlas, or layered assembly project), 1× native preview, enlarged nearest-neighbor preview, `REBUILD.md`, and `result.zip`, and verify pixel-identical ZIP reconstruction via `rebuild`.

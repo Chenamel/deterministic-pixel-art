@@ -21,7 +21,7 @@ Create game icons, sprites, inventory UI, and multi-item sprite sheets that alwa
 
 [Travel kit demo](demos/travel-kit/README.md) · [Native UI PNG](demos/travel-kit/assets/ui.png) · [Item atlas source](demos/travel-kit/assets/after.json). Six 32×32 items combined into a 192×160 inventory UI with matching editable specs and previews.
 
-**Latest stable release: v1.4.0** — [Download Skill ZIP or DSH plugin](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) · [Discussion & showcase](https://github.com/Chenamel/deterministic-pixel-art/discussions/30). Adds one-step asset delivery bundles, ready-to-copy commands for AI agents, and built-in checks that spot stray pixels or broken tiny parts.
+**Latest stable release: v1.4.1** — [Download Skill ZIP or DSH plugin](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) · [Discussion & showcase](https://github.com/Chenamel/deterministic-pixel-art/discussions/30). Adds scoped draw-operation patching (`patch-draw`), expanded `Canvas` drawing/transform helpers, bytecode-free Skill CLIs, one-step delivery bundles, and built-in checks that spot stray pixels or broken tiny parts.
 
 ## Use with an AI agent
 
@@ -34,7 +34,7 @@ Once installed, you can drive everything in plain language—for example:
 - *"Create six matching 32×32 travel items and arrange them into a small inventory panel."*
 - *"Recolor only the lantern glass in this PNG to amber while keeping the outline and everything else unchanged."*
 
-See the [AI Installation Guide](INSTALL.md) for virtual-environment setup and optional `npx skills` commands. If you use **DSH**, follow the [DSH quick-start](integrations/dsh/README.md) to install `0.1.5` via npm or the release archive and chat right away.
+See the [AI Installation Guide](INSTALL.md) for virtual-environment setup and optional `npx skills` commands. If you use **DSH**, follow the [DSH quick-start](integrations/dsh/README.md) to install `0.1.6` via npm or the release archive and chat right away.
 
 ## Use from the command line
 

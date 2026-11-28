@@ -13,9 +13,9 @@ import zipfile
 
 ARCHIVE_URL = (
     "https://github.com/Chenamel/deterministic-pixel-art/releases/download/"
-    "v1.4.0/deterministic-pixel-art-v1.4.0.zip"
+    "v1.4.1/deterministic-pixel-art-v1.4.1.zip"
 )
-ARCHIVE_SHA256 = "695be82ba579ae5d3a461025d1d24b990bce18e0bd29f1a2e73e1fce7cf80c93"
+ARCHIVE_SHA256 = "d6a77c0696134b1419470ff36bef5adb24cdb8cf9233323f0b1e24a2c5ba2671"
 ARCHIVE_ROOT = "deterministic-pixel-art/"
 MAX_ARCHIVE_BYTES = 16 * 1024 * 1024
 MAX_UNPACKED_BYTES = 16 * 1024 * 1024

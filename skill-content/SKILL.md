@@ -15,9 +15,9 @@ Use the same delivery command for JSON v1 `kind: grid` and `kind: draw`. The too
 Run these commands from the folder containing `asset.json` and the bundled Skill.
 
 ```text
-python deterministic-pixel-art/scripts/pixel_art.py render --spec asset.json --out asset.png --preview asset-6x.png --preview-background 172033 --scale 6
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --source asset.json --mode grid --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py rebuild --input result.zip --out-dir rebuilt-check
+python -B deterministic-pixel-art/scripts/pixel_art.py render --spec asset.json --out asset.png --preview asset-6x.png --preview-background 172033 --scale 6
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --source asset.json --mode grid --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py rebuild --input result.zip --out-dir rebuilt-check
 ```
 
 Open the native image and the nearest-neighbor preview on the intended background. The delivery folder contains `native.png`, `nearest.png` and `REBUILD.md`.
@@ -27,7 +27,7 @@ Open the native image and the nearest-neighbor preview on the intended backgroun
 To recolor or patch an existing PNG without flattening layers or touching pixels outside declared rectangles/masks (`--recolor` takes `{"#AABBCC": "#112233"}` or color pairs; `--patch` takes `{"ops": [{"op": "pixel"|"points"|"rect", ...}]}`; pass `--allow-alpha-change` only when silhouette changes are intended):
 
 ```text
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --mode png-native --source input.png --allow-region 8 10 16 14 --recolor map.json --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --mode png-native --source input.png --allow-region 8 10 16 14 --recolor map.json --out-dir delivery --pack-zip result.zip --background 172033 --scale 6
 ```
 
 ### Local edit on an existing `draw` spec (`patch-draw`)
@@ -35,8 +35,8 @@ python deterministic-pixel-art/scripts/recipes/asset_toolkit.py deliver --mode p
 Inspect the source SHA-256 and zero-based operation indices first (`--inspect-ops` is read-only and accepts only `--source`, `--offset`, `--limit`), then apply one contiguous operation slice (`{"version":1,"base_sha256":"<file_sha256>","at":12,"remove":1,"insert":[...]}` using `rect`, `points`, `line`, `polygon`, or `mask`):
 
 ```text
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --inspect-ops
-python deterministic-pixel-art/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --patch patch.json --allow-region 8 10 16 14 --out revised.json
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --inspect-ops
+python -B deterministic-pixel-art/scripts/recipes/asset_toolkit.py patch-draw --source draft.json --patch patch.json --allow-region 8 10 16 14 --out revised.json
 ```
 
 ## Choose the shortest useful path

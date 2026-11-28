@@ -85,8 +85,17 @@ class CliTests(unittest.TestCase):
         shutil.copytree(ROOT / 'src/pixelart', tree / 'pixelart', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
         shutil.copytree(ROOT / 'recipes', tree / 'recipes', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
         shutil.copyfile(ROOT / 'src/pixel_art.py', tree / 'pixel_art.py')
-        for cli_path in (tree / 'pixel_art.py', tree / 'recipes/asset_toolkit.py'):
-            result = subprocess.run([sys.executable, str(cli_path), '--help'], cwd=self.folder,
+        out_png = self.folder / 'rendered.png'
+        delivery_dir = self.folder / 'delivery'
+        commands = (
+            [str(tree / 'pixel_art.py'), '--help'],
+            [str(tree / 'pixel_art.py'), 'render', '--spec', str(self.spec), '--out', str(out_png)],
+            [str(tree / 'pixel_art.py'), 'inspect', '--image', str(out_png)],
+            [str(tree / 'recipes/asset_toolkit.py'), '--help'],
+            [str(tree / 'recipes/asset_toolkit.py'), 'deliver', '--source', str(self.spec), '--mode', 'grid', '--out-dir', str(delivery_dir)],
+        )
+        for cmd in commands:
+            result = subprocess.run([sys.executable, *cmd], cwd=self.folder,
                                     capture_output=True, text=True, timeout=30)
             self.assertEqual(result.returncode, 0, result.stderr)
         leftovers = [str(p.relative_to(tree)) for p in tree.rglob('*') if '__pycache__' in p.parts or p.suffix in ('.pyc', '.pyo')]

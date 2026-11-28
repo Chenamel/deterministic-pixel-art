@@ -21,7 +21,7 @@
 
 [可编辑旅行用品示范](demos/travel-kit/README.md) · [原尺寸 UI PNG](demos/travel-kit/assets/ui.png) · [命名物品图集](demos/travel-kit/assets/after.json)。六件 32×32 原创道具与 192×160 静态物品栏组合示例，附带可编辑源文件与最近邻放大预览。
 
-**当前最新稳定版：v1.4.0** — [下载 Skill ZIP 或 DSH 插件](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) · [作品展示与反馈](https://github.com/Chenamel/deterministic-pixel-art/discussions/30)。新增单件素材一站打包、给 AI 直接抄用的交付/重建命令，以及自动标出悬空像素点和断开部件的防呆检查。
+**当前最新稳定版：v1.4.1** — [下载 Skill ZIP 或 DSH 插件](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) · [作品展示与反馈](https://github.com/Chenamel/deterministic-pixel-art/discussions/30)。新增局部绘制指令补丁（`patch-draw`）、更多 `Canvas` 绘图/翻转辅助方法、免 `__pycache__` 污染的 CLI 运行、单件素材一站打包及防呆检查。
 
 ## 直接交给 AI 使用
 
@@ -34,7 +34,7 @@
 - “画六个 32×32 的旅行道具，统一光影和配色，拼进一个小型物品栏，并保留源文件。”
 - “只把这张 PNG 里提灯玻璃改成琥珀色，外框和其余区域保持原样。”
 
-需要自定义 Python 虚拟环境或 `npx skills` 快捷方式可看 [AI 安装指南](INSTALL.md)。如果你使用的是 **DSH**，直接看 [DSH 上手指南](integrations/dsh/README.zh-CN.md) 安装 `0.1.5` 即可在对话里直接调用。
+需要自定义 Python 虚拟环境或 `npx skills` 快捷方式可看 [AI 安装指南](INSTALL.md)。如果你使用的是 **DSH**，直接看 [DSH 上手指南](integrations/dsh/README.zh-CN.md) 安装 `0.1.6` 即可在对话里直接调用。
 
 ## 通过命令行使用
 

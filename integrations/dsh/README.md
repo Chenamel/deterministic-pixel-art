@@ -23,16 +23,16 @@ You can also attach an existing PNG and say which area to change and which parts
 | Display name | Deterministic Pixel Art |
 | npm package | `dsh-skill-deterministic-pixel-art` |
 | Skill name in chat | `deterministic-pixel-art` |
-| Current plugin version | `0.1.5` (tested on DSH `0.2.2-rc.1`–`rc.5`, `0.2.3-alpha.1`) |
+| Current plugin version | `0.1.6` (tested on DSH `0.2.2-rc.1`–`rc.5`, `0.2.3-alpha.1`) |
 | Runtime prerequisites | Node **>=24.9.0**, Python **3.10+**, Pillow **>=10.4,<13** (pinned 12.3.0) |
 
-Install **0.1.5** via DSH's plugin command into your chat profile (replace `YOUR-PROFILE` with a non-`desktop` profile name; desktop users should use the DSH desktop plugin manager or [GitHub Releases](https://github.com/Chenamel/deterministic-pixel-art/releases/latest)):
+Install **0.1.6** via DSH's plugin command into your chat profile (replace `YOUR-PROFILE` with a non-`desktop` profile name; desktop users should use the DSH desktop plugin manager or [GitHub Releases](https://github.com/Chenamel/deterministic-pixel-art/releases/latest)):
 
 ```text
-dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.5
+dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.6
 ```
 
-> Bundle `0.1.3` only supported up to DSH `0.2.2-rc.3`; `0.1.5` uses open version ranges so newer DSH releases can install it directly without waiting for marketplace re-indexing.
+> Bundle `0.1.3` only supported up to DSH `0.2.2-rc.3`; `0.1.5`+ (`0.1.6` current) uses open version ranges so newer DSH releases can install it directly without waiting for marketplace re-indexing.
 
 ## Optional: create a headless CLI profile
 
@@ -45,11 +45,11 @@ dsh --profile pixel-art --from-default-profile headless --help
 Install the plugin from npm (or from a downloaded/local `.tgz` path):
 
 ```text
-dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.5
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.6
 ```
 
 ```text
-dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.5.tgz"
+dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.6.tgz"
 ```
 
 If you use a signed-in DeepSeek account instead of an API key, place `dsh-account.patch.yml` (config only—never put credentials in this file) in your task folder after signing in through DSH:

@@ -23,16 +23,16 @@
 | 显示名称 | Deterministic Pixel Art |
 | npm 包名 | `dsh-skill-deterministic-pixel-art` |
 | 对话内 Skill 名称 | `deterministic-pixel-art` |
-| 当前插件版本 | `0.1.5`（已验证适配 DSH `0.2.2-rc.1`–`rc.5`、`0.2.3-alpha.1`） |
+| 当前插件版本 | `0.1.6`（已验证适配 DSH `0.2.2-rc.1`–`rc.5`、`0.2.3-alpha.1`） |
 | 依赖环境 | Node **>=24.9.0**、Python **3.10+**、Pillow **>=10.4,<13**（固定推荐 12.3.0） |
 
 在常用的 CLI 配置中执行安装（将 `YOUR-PROFILE` 换成实际的非 `desktop` 配置名；桌面端直接在 DSH 桌面插件页安装，或去 [GitHub Releases](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) 下载 TGZ）：
 
 ```text
-dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.5
+dsh plugin --profile YOUR-PROFILE add dsh-skill-deterministic-pixel-art@0.1.6
 ```
 
-> 旧版 `0.1.3` 卡死了 `0.2.2-rc.3` 上限导致新 DSH 装不上；`0.1.5` 已放开版本限制，通过 npm 可直接升级安装，不必等市场同步。
+> 旧版 `0.1.3` 卡死了 `0.2.2-rc.3` 上限导致新 DSH 装不上；`0.1.5` 及以上（当前 `0.1.6`）已放开版本限制，通过 npm 可直接升级安装，不必等市场同步。
 
 ## 可选：新建纯命令行配置
 
@@ -45,11 +45,11 @@ dsh --profile pixel-art --from-default-profile headless --help
 然后从 npm（或下载后的本地 `.tgz` 绝对路径）装入插件：
 
 ```text
-dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.5
+dsh plugin --profile pixel-art add dsh-skill-deterministic-pixel-art@0.1.6
 ```
 
 ```text
-dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.5.tgz"
+dsh plugin --profile pixel-art add "/absolute/path/to/dsh-skill-deterministic-pixel-art-0.1.6.tgz"
 ```
 
 如果使用常规 DeepSeek 账号登录（而非自配 API Key），完成登录后在任务目录放入如下 `dsh-account.patch.yml`（仅配置开关，不要写入密钥）：

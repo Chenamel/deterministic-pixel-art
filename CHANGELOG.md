@@ -6,6 +6,7 @@
 - **Expanded `Canvas` helpers & quick-starts:** Added deterministic `set`, `fill_ellipse`, `mirror_horizontal`, `flip_vertical`, and `to_spec` methods on `Canvas` alongside copyable `SKILL.md` quick-reference snippets and a Canvas starter template.
 - **Bytecode-free Skill CLIs:** `pixel_art.py` and `asset_toolkit.py` suppress `__pycache__` generation when invoked directly, and `SKILL.md` standardizes quick-start helper commands on `python -B`.
 - **DSH `0.1.6`:** Packages Skill `v1.4.1` with the same `engines.dsh: "*"` compatibility across DSH `0.2.2-rc.1`–`rc.5` and `0.2.3-alpha.1` (Node `>=24.9.0`, Python `3.10+`, Pillow `>=10.4,<13`).
+- See [docs/releases/v1.4.1.md](docs/releases/v1.4.1.md) ([简体中文](docs/releases/v1.4.1.zh-CN.md)) for release checksums and package status.
 
 ## 1.4.0 (2026-11-25)
 

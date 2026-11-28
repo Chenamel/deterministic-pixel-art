@@ -1,6 +1,6 @@
 # Releases and packaging
 
-[v1.4.0 release notes](v1.4.0.md) · [中文版本说明](v1.4.0.zh-CN.md) · [Stable downloads](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) · [SkillHub packaging](../skillhub-distribution.zh-CN.md)
+[v1.4.1 release notes](v1.4.1.md) · [中文版本说明](v1.4.1.zh-CN.md) · [v1.4.0](v1.4.0.md) · [Stable downloads](https://github.com/Chenamel/deterministic-pixel-art/releases/latest) · [SkillHub packaging](../skillhub-distribution.zh-CN.md)
 
 [中文 Logo 发行说明](../logo-assets.zh-CN.md)
 

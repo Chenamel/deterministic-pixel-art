@@ -2,7 +2,7 @@
 
 完整 Skill 包含图片素材、Python 工具和 MIT 许可文件。SkillHub CLI 2026.8.5 的发布接口会把目录文件作为上传包；该平台拒绝无后缀 `LICENSE`，网页端也禁止图片等二进制文件。因此，不能把删掉这些内容后的目录当成完整 Skill 上传。
 
-SkillHub 可使用一个文本安装入口：入口包只包含 `SKILL.md` 和 `install.py`，明确要求联网，并从 GitHub v1.4.1 稳定发行下载完整 ZIP。安装脚本会核对固定 SHA-256、检查 ZIP 路径和文件上限，再解压到用户指定且尚不存在的目录。它不会覆盖已有安装，也不自动安装 Python 依赖。
+SkillHub 可使用一个文本安装入口：入口包只包含 `SKILL.md` 和 `install.py`，默认支持失败自动重试并从 GitHub v1.4.1 稳定发行下载完整 ZIP，同时支持 `--archive` 指定本地已下载 ZIP 做离线安装。安装脚本会核对固定 SHA-256、检查 ZIP 路径和文件上限，再解压到用户指定且尚不存在的目录。它不会覆盖已有安装，也不自动安装 Python 依赖。
 
 网页发布表单允许单独上传 JPG、PNG 或 WebP 图标，截图所示上限为 5 MB。随包 CLI 的 `publish` 元数据与 multipart 文件上传没有图标字段；CLI 中的图片上传函数用于评论。需要 Skill 图标时，在网页表单中单独添加。可用图标为 `skill/deterministic-pixel-art/assets/brand/pixel-anchor-128.png`。
 
@@ -26,7 +26,7 @@ python tools/package_skillhub.py --out dist/skillhub-v1.4.1
 python tools/package_skillhub_installer.py --out dist/deterministic-pixel-art-skillhub-v1.4.1.zip
 ```
 
-先运行 `skillhub publish <zip> --dry-run` 检查平台元数据，再发布入口 ZIP。CLI dry-run 只验证元数据，不代表实际发布或安装流程已通过。入口不是完整离线 Skill；它要求联网，从 GitHub v1.4.1 稳定发行下载完整包，并固定校验 SHA-256。新版发布时，先完成 GitHub 稳定版发布，再更新入口中的版本、下载地址、摘要和说明。
+先运行 `skillhub publish <zip> --dry-run` 检查平台元数据，再发布入口 ZIP。CLI dry-run 只验证元数据，不代表实际发布或安装流程已通过。入口不是完整离线 Skill，但已同时提供自动网络重试与 `--archive` 本地官方 ZIP 离线安装兜底，均固定校验官方 SHA-256。新版发布时，先完成 GitHub 稳定版发布，再更新入口中的版本、下载地址、摘要和说明。
 
 源码与测试位于 `integrations/skillhub-installer/` 和 `tests/test_skillhub_installer.py`。安装器要求 Python 3.10+，不会替换已有目录，也不会自动安装 `requirements.txt` 中的依赖。
 

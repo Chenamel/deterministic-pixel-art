@@ -4,6 +4,7 @@ import io
 from pathlib import Path
 import tempfile
 import unittest
+from urllib.error import URLError
 from unittest.mock import patch
 import zipfile
 
@@ -89,6 +90,50 @@ class SkillHubInstallerTests(unittest.TestCase):
             self.assertEqual(names, {"SKILL.md", "install.py"})
             self.assertEqual(len(result["manifest"]), 2)
             self.assertTrue(all(b"\0" not in archive.read(name) for name in names))
+
+    def test_retries_transient_network_errors_and_verifies_digest(self):
+        digest = hashlib.sha256(self.archive).hexdigest()
+        side_effects = [URLError("temp 1"), URLError("temp 2"), io.BytesIO(self.archive)]
+        with patch.object(installer, "ARCHIVE_SHA256", digest), \
+             patch.object(installer, "urlopen", side_effect=side_effects) as mock_open, \
+             patch.object(installer.time, "sleep") as mock_sleep:
+            data = installer.download_archive(retries=2, retry_delay=0.1)
+        self.assertEqual(data, self.archive)
+        self.assertEqual(mock_open.call_count, 3)
+        self.assertEqual(mock_sleep.call_count, 2)
+
+    def test_does_not_retry_sha256_mismatch(self):
+        with patch.object(installer, "urlopen", return_value=io.BytesIO(b"unexpected")) as mock_open, \
+             patch.object(installer.time, "sleep") as mock_sleep:
+            with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
+                installer.download_archive(retries=3, retry_delay=0.1)
+        self.assertEqual(mock_open.call_count, 1)
+        mock_sleep.assert_not_called()
+
+    def test_offline_archive_installs_without_network_and_verifies_sha256(self):
+        local_zip = self.root / "local.zip"
+        local_zip.write_bytes(self.archive)
+        digest = hashlib.sha256(self.archive).hexdigest()
+        with patch.object(installer, "ARCHIVE_SHA256", digest), \
+             patch.object(installer, "urlopen", side_effect=AssertionError("unexpected network access")):
+            result = installer.install(self.root / "offline-installed", archive_path=local_zip)
+        self.assertEqual((result / "SKILL.md").read_bytes(), self.files["deterministic-pixel-art/SKILL.md"])
+
+        bad_zip = self.root / "bad.zip"
+        bad_zip.write_bytes(b"corrupted")
+        with patch.object(installer, "ARCHIVE_SHA256", digest):
+            with self.assertRaisesRegex(ValueError, "SHA-256 mismatch"):
+                installer.install(self.root / "offline-bad", archive_path=bad_zip)
+
+    def test_rejects_non_https_url_and_conflicting_sources(self):
+        with self.assertRaisesRegex(ValueError, "https://"):
+            installer.download_archive(url="http://example.invalid/release.zip", retries=0)
+        with self.assertRaisesRegex(ValueError, "not both"):
+            installer.install(
+                self.root / "conflict",
+                archive_path=self.root / "missing.zip",
+                url="https://example.invalid/custom.zip",
+            )
 
 
 if __name__ == "__main__":
